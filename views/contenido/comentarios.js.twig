@@ -1,0 +1,18 @@
+<script>
+	$(document).ready(function(){
+		autosize($("textarea[name='cuerpo']"));
+	});
+
+	function responder(id){
+		$('#r-'+id).show();
+	}
+
+	var votarComentario = function(id, valor){
+		var action_no = "{{ urlFor('runVotarComenta') }}";
+		$('#votarComentario').find('input[name="valor"]').val(valor)
+		var action_yes = action_no.replace(':idCom',id);
+		$('#votarComentario').attr('action', action_yes);
+		$('#votarComentario').submit();
+	}
+
+</script>

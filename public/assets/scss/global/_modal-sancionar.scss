@@ -1,0 +1,28 @@
+.modal-sancionar{
+    .panel.titulo{
+        font-size: rem-calc(33);
+        background-color: #FFFFFF;
+        border-radius: 7px;
+        color: #B61212;
+    }
+	p, input, textarea, label, ul li{
+		font-size: rem-calc(13);
+	}
+	p{margin-bottom: 5px;}
+    .tabs{
+        width: 100%;
+        max-width: 100%;
+        a {
+			font-size: rem-calc(13);
+            padding: 10px;
+        }
+        dd.active a{
+            background: #f4cf7d;
+        }
+    }
+	hr{margin:10px 0}
+    .tabs-content{
+        margin-bottom: 0;
+    }
+	.content{padding: 0}
+}

@@ -1,0 +1,33 @@
+// Remover Background
+.no-body-bg{background: 0;}
+.no-padding{padding: 0;}
+.transparente{opacity: 0;}
+
+.calendario-text { margin-top: .3em; }
+.version-text { margin-top: .3em; font-size: rem-calc(16); }
+
+.switch-on {
+    position: absolute;
+    left: -58px;
+    top: 8px;
+    color: white;
+    font-size: 12px;
+}
+
+.switch-off {
+    position: absolute;
+    left: -28px;
+    top: 8px;
+    color: white;
+    font-size: 12px;
+}
+
+ul.list {
+    margin: 0px;
+    li {
+        display: inline-block;
+        vertical-align: middle;
+        list-style-type: none;
+        margin: 0px 5px 0px 5px;
+    }
+}

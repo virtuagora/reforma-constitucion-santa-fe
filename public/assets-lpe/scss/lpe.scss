@@ -1,0 +1,246 @@
+@import "lpe/variables";
+@import "bootstrap";
+@import "lpe/bootswatch";
+@import "../css/materialdesignicons.css";
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    /* This line and the next line are not necessary unless you need IE6 support */
+    height: 100%;
+    margin: 0 auto -225px;
+    /* the bottom margin is the negative value of the footer's height */
+}
+
+.push {
+    height: 225px;
+    /* .push must be the same height as .footer */
+}
+
+.footer {
+    height: 145px;
+    // border-top: 50px solid #FFF;
+    margin-top: 80px;
+    text-align: center;
+    background-color: #ababab;
+    .img-logo {
+        height: 100px;
+        margin: -50px auto 10px;
+    }
+}
+
+
+textarea
+{
+   resize: none;
+}
+/*
+
+Sticky Footer by Ryan Fait
+http://ryanfait.com/
+
+*/
+
+.container,
+.push {}
+
+input[type=text].form-control.input-lg {
+    font-size: 24px
+}
+
+#listaSecciones .form-group textarea {
+    margin-bottom: 15px;
+}
+
+.navbar {
+    margin-top: 10px;
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.navbar-bottom-colors {
+    background-image: url("../img/barra-header.png");
+    height: 10px;
+    margin-bottom: 30px;
+}
+
+// @media (min-width: 768px){
+// nav .navbar-nav li a{
+//     padding-top: 15px;
+//     padding-bottom: 15px;
+// }
+// }
+// .navbar-nav li a {
+//     line-height: 34px;
+// }
+a.navbar-brand img {
+    height: 100%
+}
+
+
+.cuadro1 {
+    background-image: url("https://material-design.storage.googleapis.com/publish/material_v_8/material_ext_publish/0Bx4BSt6jniD7OFZFR1ZOUmFWTEE/style_icons_system_intro.png");
+    height: 100px;
+}
+
+//
+figure {
+    display: block;
+    position: relative;
+    float: left;
+    overflow: hidden;
+    // margin: 0 20px 20px 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #FFF;
+    }
+}
+
+.cuadro2 {
+    background-color: #2e2e2e;
+    height: 200px;
+    padding: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    ;
+}
+
+figcaption {
+    position: absolute;
+    background: black;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 10px 20px;
+    opacity: 0;
+    line-height: normal;
+    font-size: 13px;
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+}
+
+figure:hover figcaption {
+    opacity: 1;
+}
+
+figure:before {
+    content: "?";
+    position: absolute;
+    font-weight: 800;
+    background: black;
+    background: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0 5px white;
+    color: black;
+    width: 24px;
+    height: 24px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 24px;
+    -moz-transition: all 0.6s ease;
+    opacity: 0.75;
+}
+
+figure:hover:before {
+    opacity: 0;
+}
+
+.cap-left:before {
+    bottom: 10px;
+    left: 10px;
+}
+
+.cap-left figcaption {
+    bottom: 0;
+    left: -30%;
+}
+
+.cap-left:hover figcaption {
+    left: 0;
+}
+
+.cap-right:before {
+    bottom: 10px;
+    right: 10px;
+}
+
+.cap-right figcaption {
+    bottom: 0;
+    right: -30%;
+}
+
+.cap-right:hover figcaption {
+    right: 0;
+}
+
+.cap-top:before {
+    top: 10px;
+    left: 10px;
+}
+
+.cap-top figcaption {
+    left: 0;
+    top: -30%;
+}
+
+.cap-top:hover figcaption {
+    top: 0;
+}
+
+.cap-bot:before {
+    bottom: 10px;
+    left: 10px;
+}
+
+.cap-bot figcaption {
+    left: 0;
+    bottom: -30%;
+}
+
+.cap-bot:hover figcaption {
+    bottom: 0;
+}
+
+.grid-sizer,
+.grid-item {
+    border: 2px solid #FFF;
+    @media (max-width: $screen-xs-max) {
+        width: 100%;
+        background-color: #2a2a2a;
+        height: 150px;
+    }
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        width: 50%;
+        background-color: #2a2a2a;
+        height: 200px;
+    }
+    @media (min-width: $screen-md-min) {
+        width: 25%;
+        background-color: #2a2a2a;
+        height: 200px;
+    }
+}
+
+
+/* 2 columns */
+
+.grid-item--width2 {
+    width: 50%;
+}

@@ -1,0 +1,58 @@
+<script>
+	var enviarPost = false;
+	$(document).ready(function(){
+		buscarNotificaciones();
+	});
+
+	$('#bt-abrir-notif').on('click', function() {
+		if(enviarPost == true){
+			marcarNotificacionesLeidas();
+			$('.notificacion .contador-on').hide();
+		}
+	});
+
+	var nuevaNotificacion = function(fecha, mensaje){
+		var td_mensaje = $('<td>').html( mensaje );
+		var tr_notif = $('<tr>').addClass( 'notif-msj' ).append( td_mensaje );
+		$('#tabla-notificaciones-nav tbody').prepend( tr_notif );
+	}
+
+	var buscarNotificaciones = function(){
+		var request = $.ajax({
+			url: "{{ urlFor('shwListaNotific') }}",
+			cache: false,
+			dataType: "json"
+		}).done(function(resultados, textStatus, request) {
+			if(resultados.length > 0){
+				$('.sin-notificaciones').hide();
+				$('.contador-on').show().html(resultados.length);
+				$('.cant-notificaciones').html(resultados.length);
+				$('.portal-con-notificaciones').show();
+				for (var i=0; i<resultados.length; i++) {
+					nuevaNotificacion(
+						resultados[i].update_at,
+						resultados[i].mensaje);
+				}
+				enviarPost = true;
+			} else {
+				$('.sin-notificaciones').show();
+				$('.portal-sin-notificaciones').show();
+			}
+		}).fail(function(jqXHR, textStatus) {
+			alert("Request failed: " + textStatus);
+			return false;
+		});
+	}
+
+	var marcarNotificacionesLeidas = function(){
+		var request = $.ajax({
+			url: "{{ urlFor('runElimiNotific') }}",
+			type: 'POST',
+			cache: false,
+		}).done(function(resultados, textStatus, request) {
+			enviarPost = false;
+		}).fail(function(jqXHR, textStatus) {
+			alert("Request failed: " + textStatus);
+		});
+	}
+</script>

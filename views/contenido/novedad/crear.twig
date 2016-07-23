@@ -1,0 +1,78 @@
+{% extends "contenido/crear-contenido.twig" %}
+{# VARIBLES #}
+{% set body_class = 'color-novedad' %}
+{% set header_icono = 'fa-newspaper-o' %}
+{% if modo is not defined %}
+{% set header_titulo = 'NUEVA NOVEDAD' %}
+{% set url_form = urlFor('runCrearNovedad') %}
+{% endif %}
+{% set type_contenido = 'novedad' %}
+{% set url_redirigir = urlFor('shwPortal') %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Crear novedad - Virtuágora{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block pre_cuerpo %}
+{% if user.partido_id %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel">
+            <div class="row">
+                <div class="large-6 columns">
+                    <span class="enumerador fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-star-o blanco fa-stack-1x"></i>
+                    </span>
+                    <div class="descripcion text-justify">
+                        <b>Determine si desea asociarlo con su partido politico.</b> Esto permitirá que se pueda agrupar de mejor forma la informacion y que los afiliados puedan ser notificados por nuevos contenidos realizados y publicados por funcionarios pertenecientes al partido.
+                    </div>
+                </div>
+                <div class="large-6 columns text-center">
+                    <div class="switch round" style="margin-top: 15px;">
+                        <input id="checkbox" name="asociar" type="checkbox">
+                        <label for="checkbox">
+                            <span class="switch-on">ON</span>
+                            <span class="switch-off">OFF</span>
+                        </label>
+                    </div>
+                    <div class="descripcion-checkbox text-center">
+                        <p><span class="no-asociar"><b>NO </b></span>Asociar el siguiente anuncio con mi partido afiliado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block extension_form %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block content_modals %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block content_scripts %}
+
+{% block scripts_modificar %}{% endblock scripts_modificar %}
+
+<script>
+    var completarDescripcion = function() {
+        if ($('#checkbox').attr('checked')) {
+            $('.no-asociar').hide();
+        } else {
+            $('.no-asociar').show();
+        }
+    };
+
+    var cambiarEstado = function() {
+        if ($('#checkbox').attr('checked')) {
+            $("#checkbox").attr('checked', false);
+        } else {
+            $("#checkbox").attr('checked', true);
+        }
+        completarDescripcion();
+    };
+
+    $("#checkbox").click(cambiarEstado);
+</script>
+{% endblock %}
+{# ----------------------------------------------------------- #}

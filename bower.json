@@ -1,0 +1,10 @@
+{
+  "name": "foundation-compass-app",
+  "version": "0.0.1",
+  "private": "true",
+  "dependencies": {
+    "foundation": "zurb/bower-foundation",
+    "bootstrap-sass": "^3.3.6",
+    "mdi": "^1.6.50"
+  }
+}

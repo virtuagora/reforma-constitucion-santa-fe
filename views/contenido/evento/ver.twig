@@ -1,0 +1,378 @@
+{# VARIBLES #}
+{% set totalRespuestas = evento.presentes_count + evento.ausentes_count %}
+{% set presente_y_publico = 0 %}
+{% set ausente_y_publico = 0 %}
+{% for participante in participantes %}
+{% if participante.pivot.presente == 1 %}
+{% set presente_y_publico = presente_y_publico + 1 %}
+{% else %}
+{% set ausente_y_publico = ausente_y_publico + 1 %}
+{% endif %}
+{% endfor %}
+
+{% extends "contenido/ver-contenido.twig" %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Evento - {{ evento.titulo|capitalize }}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% set contenido_tipo = 'evento' %}
+{% set contenido_icono = 'fa-calendar' %}
+{# ----------------------------------------------------------- #}
+{% block linkheads_cont %}
+{% endblock linkheads_cont %}
+{# ----------------------------------------------------------- #}
+{% set titulo_cont = evento.titulo|title %}
+{% set fecha_cont = '' ~ evento.created_at|date("d/m/Y") %}
+{% set puntos_cont = '' ~ evento.puntos %}
+{% set url_modificar = urlFor('shwModifEvento', {'idEve': evento.contenible_id}) %}
+{% set url_eliminar = urlFor('runElimiEvento', {'idEve': evento.contenible_id}) %}
+{% set ver_comentarios = true %}
+{% set url_comentar = urlFor('runComentar', {'tipoRaiz': 'evento' , 'idRaiz': evento.contenible_id}) %}
+{# ----------------------------------------------------------- #}
+{% block content_body %}
+{{ evento.cuerpo|bbCode }}
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% set tags = evento.tags %}
+{% set autor = evento.autor %}
+{# ----------------------------------------------------------- #}
+{% set share_link = evento.link %}
+{% set twitter_txt = 'Me intereso este ' ~ evento.contenible_type|lower  %}
+{% set email_subject = 'Mire intereso compartir este ' ~ evento.contenible_type|lower ~ ' con vos' %}
+{% set email_body = 'Me parecio interesante compartir con vos este ' ~ evento.contenible_type|lower ~ '&crarr;' ~ evento.link %}
+{# ----------------------------------------------------------- #}
+{% block pre_content %}
+<div class="row">
+	<div class="small-12 medium-9 columns">
+		<div class="panel white opciones text-center">
+			<h5 style="margin:0;"><b><i class="fa fa-calendar fa-fw"></i> DIA</b></h5>
+			<hr>
+			<h4 style="margin:0;">{{evento.fecha|date("d/m/Y")}}</h4>
+<!--			<h4 style="margin:0;"><span class="fecha"></span></h4>-->
+		</div>
+	</div>
+	<div class="small-12 medium-3 columns" style="padding-left: 0;">
+		<div class="panel white opciones text-center">
+			<h5 style="margin:0;"><b><i class="fa fa-clock-o fa-fw"></i> HORA</b></h5>
+			<hr>
+			<h4 style="margin:0;">{{evento.fecha|date("H:i")}}</h4>
+		</div>
+	</div>
+	<div class="small-12 medium-12 columns">
+		<div class="panel white opciones">
+			<div class="row">
+				<div class="small-12 medium-3 columns text-center">
+					<h5 style="margin:0;"><b><i class="fa fa-map-marker fa-fw"></i> LUGAR</b></h5>
+					<hr class="show-for-small-only">
+				</div>
+				<div class="small-12 medium-9 columns text-center">
+					<h5 style="margin:0;">{{ evento.lugar }}</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% set autor_id = evento.autor.id %}
+{% set autor_puntos = evento.autor.puntos %}
+{% set autor_nombre_apellido = evento.autor.nombre ~ ' ' ~ evento.autor.apellido %}
+{% set autor_avatar_32 = avatarUrl(evento.autor.img_tipo, evento.autor.img_hash, 32) %}
+{# ----------------------------------------------------------- #}
+{% block opciones_cont %}
+<div class="panel white opciones text-center">
+	<div class="text-center">
+		<h4><b>¿CUAL SERÁ SU PARTICIPACIÓN?</b></h4>
+	</div>
+	<hr>
+	{% if participacion is not null %}
+	<div class="resumen-participacion text-center" style="display:none">
+		<div class="row">
+			<div class="medium-6 columns">
+				<ul class="list">
+					<li>
+						<i id="icono-participacion" class="fa fa-fw fa-4x"></i>
+					</li>
+					<li>
+						<i id="icono-publico" class="fa fa-fw fa-4x"></i>
+					</li>
+				</ul>
+				<div class="descripcion" style="margin-top:5px;">Usted <span id="txt-participacion"></span></div>
+				<div class="descripcion">Su dato es <span id="txt-publico"></span></div>
+			</div>
+			<div class="medium-6 columns">
+				<hr class="show-for-small-only">
+				<h6><b>SU PARTICIPACIÓN FUE REGISTRADA</b></h6>
+				<h5><small>Puede, aun así, cambiar su participacion y/o privacidad.</small></h5>
+				<div class="bt-cambiar button negative radius tiny"><i class="fa fa-exchange fa-fw"></i> Cambiar mi participación</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	<div class="elegir-participacion text-center" style="display:none">
+		<div class="row collapse opciones">
+			<div class="medium-6 small-12 columns text-center">
+				<div data-presente=1 class="bt-participacion button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;"><i class="fa fa-check fa-fw fa-3x"></i></div>
+			</div>
+			<div class="medium-6 small-12 columns text-center">
+				<div data-presente=0 class="bt-participacion button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;"><i class="fa fa-times fa-fw fa-3x"></i></div>
+			</div>
+		</div>
+	</div>
+	<div class="participacion text-center" style="display:none">
+		{% if user %}
+		<form action="{{ urlFor('runPartiEvento',{'idEve': evento.contenible_id}) }}" method="POST">
+			<div class="row">
+				<div class="small-12 medium-4 columns">
+					<i id="icono-participacion-new" class="fa fa-fw fa-3x"></i>
+					<div class="descripcion">Usted <span id="txt-participacion"></span></div>
+				</div>
+				<div class="small-12 medium-4 columns">
+					<hr class="show-for-small-only">
+					<div class="switch small round">
+						<input id="checkbox" name="publico" type="checkbox">
+						<label for="checkbox"></label>
+						<div class="descripcion">Su dato será <span id="txt-publico-new"></span></div>
+					</div>
+				</div>
+				<div class="small-12 medium-4 columns">
+					<hr class="show-for-small-only">
+					<h6><b>¿DESEA CONFIRMAR?</b></h6>
+					<input name="presente" type="text" style="display:none;">
+					<button class="button tiny success radius"><i class="fa fa-send fa-fw"></i> Enviar</button>
+					<div class="bt-cancelar button tiny negative radius"><i class=" fa fa-undo fa-fw"></i> Cancelar</div>
+				</div>
+			</div>
+		</form>
+		{% else %}
+		<div class="iniciar-sesion" style="padding-top: 10px">
+			<h5><b>Inicie sesión o Registresé</b></h5>
+			<p>Para poder registrar su participacion, debe primero <a href="{{ urlFor('shwLogin') }}">Iniciar sesion <i class="fa fa-sign-in fa-fw fa-lg"></i></a></p>
+		</div>
+		{% endif %}
+	</div>
+</div>
+<div class="panel white opciones">
+	<div class="row">
+		<div class="small-12 columns text-center">
+			{% if (evento.presentes_count + evento.ausentes_count) > 0 %}
+			<h4 style="margin: 0"><i class="fa fa-fw fa-check"></i> {{ totalRespuestas }} usuario{{ totalRespuestas > 1 ? 's' }} respondi{{ totalRespuestas > 1 ? 'eron' : 'ó' }} y {{ evento.presentes_count }} irán al evento</h4>
+			{% else %}
+			<h4 style="margin: 0"><i class="fa fa-fw fa-chain-broken"></i> Nadie ha confirmado su participación</h4>
+			{% endif %}
+		</div>
+	</div>
+	{% if presente_y_publico == 1 %}
+	<hr>
+	<div class="row collapse">
+		<div class="small-12 columns text-center">
+			<div class="row "style="margin-bottom:10px">Algunos participantes que votaron al evento</div>
+			<div class="row" >
+				{% for participante in participantes %}
+				{% if participante.pivot.presente == 1 %}
+				<a href="{{ urlFor('shwUsuario', {'idUsu': participante.id}) }}"><img class="img-perfil size-64" src="{{ avatarUrl(participante.img_tipo, participante.img_hash, 64) }}" style="padding:2px"></a>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	{% if participantes|length > 0 %}
+	<hr>
+	<div class="row">
+		<div class="small-12 columns text-center">
+			<a href="#" data-reveal-id="listaAsisten" class="button tiny negative radius"><i class="fa fa-list-ul"></i><i class="fa fa-check fa-fw"></i> Ver lista de quienes asisten</a>
+			<a href="#" data-reveal-id="listaNoAsisten" class="button tiny negative radius"><i class="fa fa-list-ul"></i><i class="fa fa-times fa-fw"></i>  Ver lista de quienes no asisten</a>
+		</div>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}
+
+{# ----------------------------------------------------------- #}
+{% block content_modals %}
+<div id="listaAsisten" class="lista-participantes-modal reveal-modal small" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
+	<div class="row text-center">
+		<div class="small-12 columns">
+			<h4>Participantes que ASISTEN ({{ evento.presentes_count }})</h4>
+		</div>
+		<hr>
+		<div class="small-12 columns">
+			<i>({{ evento.presentes_count - presente_y_publico }} participantes han ocultado su confirmación)</i>
+			<table class="listado-participantes">
+				<thead>
+					<tr style="display:none">
+						<th>Avatar</th>
+						<th>Nombre</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if participantes|length > 0 %}
+					{% for participante in participantes %}
+					{% if participante.pivot.presente == 1 %}
+					<tr>
+						<td class="text-center"><a href="{{ urlFor('shwUsuario', {'idUsu': participante.id}) }}"><img class="img-perfil size-32" src="{{ avatarUrl(participante.img_tipo, participante.img_hash, 32) }}" style="padding:2px"></a></td>
+						<td class="text-center">{{ participante.nombre }} {{ participante.apellido }}</td>
+					</tr>
+					{% endif %}
+					{% endfor %}
+					{% endif %}
+					<tr>
+						<td class="text-center" colspan="2"><i>- Fin de lista -</i></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div id="listaNoAsisten" class="lista-participantes-modal reveal-modal small" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
+	<div class="row text-center">
+		<div class="small-12 columns">
+			<h4>Participantes que NO ASÍSTEN ({{ evento.ausentes_count }})</h4>
+		</div>
+		<hr>
+		<div class="small-12 columns">
+			<i>({{ evento.ausentes_count - ausente_y_publico }} participantes han ocultado su confirmación)</i>
+			<table class="listado-participantes">
+				<thead>
+					<tr style="display:none">
+						<th>Avatar</th>
+						<th>Nombre</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if participantes|length > 0 %}
+					{% for participante in participantes %}
+					{% if participante.pivot.presente != 1 %}
+					<tr>
+						<td class="text-center"><a href="{{ urlFor('shwUsuario', {'idUsu': participante.id}) }}"><img class="img-perfil small-border square {% if participante.moderador %}moderador{% else %}{% if participante.es_jefe %}jefe{% else %}{% if participante.es_funcionario %}funcionario{% else %}{% if participante.verified_at %}verificado{% endif %}{% endif %}{% endif %}{% endif %} size-32" src="{{ avatarUrl(participante.img_tipo, participante.img_hash, 32) }}" style="padding:2px"></a></td>
+						<td class="text-center">{{ participante.nombre }} {{ participante.apellido }}</td>
+					</tr>
+					{% endif %}
+					{% endfor %}
+					{% endif %}
+					<tr>
+						<td class="text-center" colspan="2"><i>- Fin de lista -</i></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block content_scripts %}
+<script src="{{ baseUrl() }}/assets/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{ baseUrl() }}/assets/js/jquery-ui/datepicker-es.js"></script>
+<script>
+	var fechaString = $.datepicker.formatDate( "DD, d MM yy", new Date( '{{ evento.fecha }}' ));
+	$('.fecha').html(fechaString);
+
+	var participacion = {{ participacion.presente is null ? 'null' : participacion.presente }};
+	var publico = {{ participacion.publico is null ? 'null' : participacion.publico }};
+	var nuevoParticipacion = null;
+
+	$(document).ready(function(){
+		completarCheckbox();
+		if (participacion != null && publico != null){
+			completarParticipacionAnterior();
+			$('.resumen-participacion').show();
+		} else {
+			$('.elegir-participacion').show();
+		}
+	});
+
+	function participar(valor){
+		nuevoParticipacion = valor;
+		completarParticipacionNuevo();
+		$('.elegir-participacion').hide();
+		$('.participacion').show();
+	}
+
+	function limpiar(){
+		$('#icono-postura')
+			.removeClass('fa-check')
+			.removeClass('fa-times')
+		$('#icono-privacidad')
+			.removeClass('fa-eye')
+			.removeClass('fa-eye-slash');
+	}
+
+	function completarParticipacionAnterior(){
+		switch(participacion){
+			case 1:
+				$('#icono-participacion').addClass('fa-check');
+				$('#txt-participacion').html('<b>IRÁ AL EVENTO</b>');
+				break;
+			case 0:
+				$('#icono-participacion').addClass('fa-times');
+				$('#txt-participacion').html('<b>NO IRÁ AL EVENTO</b>');
+				break;
+			default:
+		}
+		switch(publico){
+			case 1:
+				$('#icono-publico').addClass('fa-eye');
+				$('#txt-publico').html('<b>PÚBLICO</b>');
+				$("#txt-publico-new").html('<b>PÚBLICO</b>');
+				$("#checkbox").attr('checked', true);
+				break;
+			case 0:
+				$('#icono-publico').addClass('fa-eye-slash');
+				$('#txt-publico').html('<b>PRIVADO</b>');
+				$("#txt-publico-new").html('<b>PRIVADO</b>');
+				break;
+			default:
+		}
+	}
+
+	function completarParticipacionNuevo(){
+		limpiar();
+		switch(nuevoParticipacion){
+			case 1:
+				$('#icono-participacion-new').addClass('fa-check');
+				$('#txt-participacion').html('<b>IRÁ AL EVENTO</b>');
+				break;
+			case 0:
+				$('#icono-participacion-new').addClass('fa-times');
+				$('#txt-participacion').html('<b>NO IRÁ AL EVENTO</b>');
+				break;
+			default:
+		}
+		$('input[name="presente"]').val(nuevoParticipacion);
+	}
+
+	$( ".bt-participacion" ).click(function() {
+		participar($(this).data('presente'));
+	});
+
+	$( ".bt-cambiar" ).click(function() {
+		$('.resumen-participacion').hide();
+		$('.elegir-participacion').show();
+	});
+
+	$( ".bt-cancelar" ).click(function() {
+		$('.participacion').hide();
+		if (participacion != null && publico != null){
+			$('.resumen-participacion').show();
+		} else {
+			$('.elegir-participacion').show();
+		}
+	});
+
+	$('#checkbox').click(completarCheckbox);
+
+	function completarCheckbox() {
+		if ($('#checkbox').is(':checked')) {
+			$("#txt-publico-new").html('<b>PÚBLICO</b>');
+			$("#checkbox").attr('checked', true);
+		} else {
+			$("#txt-publico-new").html('<b>PRIVADO</b>');
+			$("#checkbox").removeAttr("checked");
+			$("#checkbox").attr('checked', false);
+		}
+	}
+</script>
+{% endblock %}
+{# ----------------------------------------------------------- #}

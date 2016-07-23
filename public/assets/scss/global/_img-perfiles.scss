@@ -1,0 +1,58 @@
+img.img-perfil{
+    border-radius: 50%;
+    border-color: #6B8CCA;
+    &.square{
+        border-radius: 0;
+    }
+    &.verificado{
+        border-color: #EFCE18;
+    }
+    &.jefe{
+        border-color: #7DC82C;
+    }
+    &.moderador{
+        border-color: #50b788;
+    }
+    &.partido{
+        border-color: #A9EA62;
+    }
+    &.organismo, &.funcionario{
+        border-color: #DA7C43;
+    }
+    &.big-border{
+        padding: 1px;
+        border-width: 5px;
+        border-style: solid;
+        background-color:#FFFFFF;
+    }
+    &.small-border{
+        padding: 1px;
+        border-width: 1px;
+        border-style: solid;
+        background-color:#FFFFFF;
+    }
+    &.no-border{
+        border: 0;
+    }
+    &.size-20{
+        height: auto;
+        width: 20px;
+		vertical-align: bottom;
+    }
+	&.size-32{
+        height: auto;
+        width: 32px;
+    }
+    &.size-64{
+        height: auto;
+        width: 64px;
+    }
+    &.size-128{
+        height: auto;
+        width: 128px;
+    }
+    &.size-160{
+        height: auto;
+        width: 160px;
+    }
+}

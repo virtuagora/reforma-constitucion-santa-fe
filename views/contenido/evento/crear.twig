@@ -1,0 +1,216 @@
+{% extends "contenido/crear-contenido.twig" %}
+
+{# VARIBLES #}
+{% set body_class = 'color-evento' %}
+{% set header_icono = 'fa-calendar' %}
+{% if modo is not defined %}
+{% set header_titulo = 'NUEVO EVENTO' %}
+{% set url_form = urlFor('runCrearEvento') %}
+{% endif %}
+{% set type_contenido = 'evento' %}
+{% set url_redirigir = urlFor('shwPortal') %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Crear evento - Virtuágora{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block linkheads_cont %}
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/jquery-ui/jquery-ui.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/timepicker/jquery.timepicker.css"/>
+{% endblock linkheads_cont %}
+{# ----------------------------------------------------------- #}
+{% block pre_cuerpo %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel">
+            <div class="row">
+                <div class="large-6 columns">
+                    <span class="enumerador fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-star-o blanco fa-stack-1x"></i>
+                    </span>
+                    <div class="descripcion">
+                        <b>Seleccione la FECHA del evento.</b> Seleccione el dia con el siguiente calendario. Recuerde que no puede marcar fechas que esten anterior al dia actual.
+                    </div>
+                    <div class="text-center" style="margin:30px 0;">
+                        <h3><i class="fa fa-calendar-o fa-fw"></i> <span id="txt-fecha">Seleccione una fecha</span></h3>
+                    </div>
+                </div>
+                <div class="large-6 columns text-center">
+                    <div id="datepicker"></div>
+                    <input id="guardarFecha" hidden>
+                    <input id="fecha-final" name="fecha" type="text" style="display:none;"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel">
+            <div class="row">
+                <div class="large-6 columns">
+                    <span class="enumerador fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-star-o blanco fa-stack-1x"></i>
+                    </span>
+                    <div class="descripcion">
+                        <b>Seleccione la HORA del evento.</b> Puede escribir la hora, en formato de 24 hs (de 00:00 a 23:59). Una lista aparecera en caso que quiera seleccionar la hora. Puede modificar los numeros si espera un horario diferente o mas exacto.
+                    </div>
+                </div>
+                <div class="large-6 columns text-center">
+                    <div class="row wrapper-fecha collapse" style="margin: 30px 0;">
+                        <div class="small-6 columns text-right">
+                            <div class="hora-icono"><i class="fa fa-clock-o fa-fw"></i></div>
+                        </div>
+                        <div class="small-6 columns">
+                            <div class="muestra-tiempo">
+                                <input id="timepicker" type="text" data-time-format="H:i:s" placeholder="¿Hora?"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel">
+            <div class="row">
+                <div class="large-4 columns">
+                    <span class="enumerador fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-star-o blanco fa-stack-1x"></i>
+                    </span>
+                    <div class="descripcion">
+                        <b>Escriba la dirección donde se llevara a cabo el evento.</b>
+                    </div>
+                </div>
+                <div class="large-8 columns text-center">
+                    <div class="row collapse prefix-radius" style="margin: 10px 0;">
+                        <div class="small-2 columns">
+                            <span class="prefix">Lugar</span>
+                        </div>
+                        <div class="small-10 columns">
+                            <input name="lugar" type="text" placeholder="Escriba el lugar con la direccion" style="margin: 0;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if user.partido_id %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel">
+            <div class="row">
+                <div class="large-6 columns">
+                    <span class="enumerador fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-star-o blanco fa-stack-1x"></i>
+                    </span>
+                    <div class="descripcion">
+                        <b>Determine si desea asociarlo con su partido politico.</b> Esto permitirá que se pueda agrupar de mejor forma la informacion y que los afiliados puedan ser notificados por nuevos contenidos realizados y publicados por funcionarios pertenecientes al partido.
+                    </div>
+                </div>
+                <div class="large-6 columns text-center">
+                    <div class="switch round" style="margin-top: 15px;">
+                        <input id="checkbox" name="asociar" type="checkbox">
+                        <label for="checkbox">
+                            <span class="switch-on">ON</span>
+                            <span class="switch-off">OFF</span>
+                        </label>
+                    </div>
+                    <div class="descripcion-checkbox text-center">
+                        <p><span class="no-asociar"><b>NO </b></span>Asociar el siguiente evento con mi partido afiliado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block extension_form %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel">
+            <span class="enumerador fa-stack">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-star-o blanco fa-stack-1x"></i>
+            </span>
+            <div class="descripcion">
+                <b>Subir una o varias imagenes.</b> Utilice la herramienta si quiere publicar imagenes asociadas a su evento. (PROXIMAMENTE)
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block content_modals %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block content_scripts %}
+<script src="{{ baseUrl() }}/assets/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{ baseUrl() }}/assets/js/jquery-ui/datepicker-es.js"></script>
+<script src="{{ baseUrl() }}/assets/js/timepicker/jquery.timepicker.min.js"></script>
+
+{% block scripts_modificar %}{% endblock scripts_modificar %}
+
+<script>
+    $(document).ready(function(){
+        $( "#datepicker" ).datepicker({
+            numberOfMonths: 1,
+            dateFormat: 'DD, dd MM yy',
+            altField: "#guardarFecha",
+            altFormat: "yy-mm-dd",
+            minDate: 0,
+            onSelect: function() {
+                $('#txt-fecha').html(this.value);
+            }
+        });
+        $('#timepicker').timepicker({
+            'timeFormat': 'H:i',
+            'step': 15
+        });
+    });
+
+    $('form').submit(function(e){
+        var fecha = $( "#guardarFecha" ).val()
+        fecha += ' ' + $('#timepicker').val() + ':00';
+        $('#fecha-final').val(fecha);
+    })
+
+
+    // Evito que agreguen un retorno de carro.
+    $("textarea[name='titulo']").keypress(function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+        }
+    });
+
+    var completarDescripcion = function() {
+        if ($('#checkbox').attr('checked')) {
+            $('.no-asociar').hide();
+        } else {
+            $('.no-asociar').show();
+        }
+    };
+
+    var cambiarEstado = function() {
+        if ($('#checkbox').attr('checked')) {
+            $("#checkbox").attr('checked', false);
+        } else {
+            $("#checkbox").attr('checked', true);
+        }
+        completarDescripcion();
+    };
+
+    $("#checkbox").click(cambiarEstado);
+
+
+</script>
+
+{% endblock %}
+{# ----------------------------------------------------------- #}

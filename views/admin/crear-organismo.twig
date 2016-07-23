@@ -1,0 +1,76 @@
+{# VARIBLES #}
+
+{% set opcion_activa = 1 %}
+{% extends "admin/gestion.twig" %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Crear organismo{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block gestion %}
+<h4>Administrar organismo</h4>
+<h6 class="subheader">Crear organismo</h6>
+<div class="descripcion">
+	Formulario para la modificación de los datos de un organismo público.
+</div>
+<hr>
+<div class="row collapse">
+	<div class="medium-6 columns small-only-text-center">
+		<h6 class="subheader">Cargar imagen de perfil</h6>
+		<div class="descripcion">Nota: Usted podra subir una imagen de perfil luego de haber creado el organismo.</div>
+		<div class="button disabled tiny radius"><i class="fa fa-upload fa-fw fa-lg"></i> Subir imagen</div>
+	</div>
+	<div class="medium-6 columns text-center">
+		<img src="{{ baseUrl() }}/assets/img/anonOrganismo.png" alt="Aux img" class="img-perfil size-160">
+	</div>
+</div>
+<hr>
+<form action="{{ urlFor('runCrearOrganis') }}" method="POST">
+	<h6 class="subheader">Nombre del organismo</h6>
+	<input type="text" name="nombre">
+	<hr>
+	<div class="row collapse">
+		<div class="medium-6 columns">
+			<h6 class="subheader">Cupos disponibles</h6>
+		</div>
+		<div class="medium-6 columns"><input type="number" name="cupo" placeholder="Numero"></div>
+	</div>
+	<hr>
+	<h6 class="subheader">Descripcion del organismo</h6>
+	<textarea rows=2 name="descripcion"></textarea>
+	<hr>
+	<div class="row collapse">
+		<div class="medium-6 columns">
+			<h6 class="subheader">URL</h6>
+		</div>
+		<div class="medium-6 columns"><input type="text" name="url" placeholder="Ej: http://www.google.com"></div>
+	</div>
+	<hr>
+	<div class="row collapse">
+		<div class="medium-6 columns">
+			<h6 class="subheader">Email</h6>
+		</div>
+		<div class="medium-6 columns"><input type="email" name="email"></div>
+	</div>
+	<hr>
+	<div class="row collapse">
+		<div class="medium-6 columns">
+			<h6 class="subheader">Telefono</h6>
+		</div>
+		<div class="medium-6 columns"><input type="text" name="telefono"></div>
+	</div>
+	<hr>
+	<div class="small-text-center medium-text-right">
+		<button class="button success small radius"><i class="fa fa-plus fa-fw fa-lg"></i><i class="fa fa-check fa-fw fa-lg"></i> Crear nuevo organismo</button>
+	</div>
+</form>
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block modals %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block scripts_gestion %}
+<script src="{{ baseUrl() }}/assets/js/autosize/autosize.min.js"></script>
+<script>
+	autosize($('textarea[name="descripcion"]'));
+</script>
+{% endblock %}
+{# ----------------------------------------------------------- #}

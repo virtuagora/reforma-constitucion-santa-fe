@@ -1,0 +1,39 @@
+{# VARIBLES #}
+
+{% extends "contenido/ver-contenido.twig" %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Novedad - {{ novedad.titulo|capitalize }} {% endblock %}
+{# ----------------------------------------------------------- #}
+{% block linkheads_cont %}
+{% endblock linkheads_cont %}
+{# ----------------------------------------------------------- #}
+{% set contenido_tipo = 'novedad' %}
+{% set contenido_icono = 'fa-newspaper-o' %}
+{# ----------------------------------------------------------- #}
+{% set titulo_cont = novedad.titulo|title %}
+{% set fecha_cont = '' ~ novedad.created_at|date("d/m/Y") %}
+{% set puntos_cont = '' ~ novedad.puntos %}
+{% set url_modificar = urlFor('shwModifNovedad', {'idNov': novedad.contenible_id } ) %}
+{% set url_eliminar = urlFor('runElimiNovedad', {'idNov': novedad.contenible_id } ) %}
+{% set ver_comentarios = true %}
+{% set url_comentar = urlFor('runComentar', {'tipoRaiz': 'novedad' , 'idRaiz': novedad.contenible_id}) %}
+{# ----------------------------------------------------------- #}
+{% block content_body %}
+{{ novedad.cuerpo|bbCode }}
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% set tags = novedad.tags %}
+{% set autor = novedad.autor %}
+{# ----------------------------------------------------------- #}
+{% set share_link = novedad.link %}
+{% set twitter_txt = 'Me interesó esta ' ~ novedad.contenible_type  %}
+{% set email_subject = 'Queria compartir esta ' ~ novedad.contenible_type ~ ' con vos' %}
+{% set email_body = 'Me parecio interesante compartir con vos esta ' ~ novedad.contenible_type ~ '&crarr;' ~ novedad.link %}
+{# ----------------------------------------------------------- #}
+{% block opciones_cont %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block content_modals %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block content_scripts %}{% endblock %}
+{# ----------------------------------------------------------- #}

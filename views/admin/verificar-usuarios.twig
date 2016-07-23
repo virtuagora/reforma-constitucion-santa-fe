@@ -1,0 +1,173 @@
+{# VARIBLES #}
+
+{% set opcion_activa = 0 %}
+{% extends "admin/gestion.twig" %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Verificar usuarios{% endblock %}
+{# ----------------------------------------------------------- #}
+
+{# ----------------------------------------------------------- #}
+{% block gestion %}
+<h4>Verificar usuarios</h4>
+<h6 class="subheader">Usuarios sin verificar</h6>
+<div class="descripcion">
+	En la siguiente tabla tiene la lista de usuarios que no están verificados. Para agregar un usuario a la lista de "Usuarios a verificar" haga clic en el boton con el icono <i class="fa fa-plus fa-fw"></i>
+</div>
+<hr>
+<table id="tabla-usuarios" class="tabla-gestion">
+	<thead>
+		<tr style="//display:none;">
+			<th class="text-center"><i class="fa fa-picture-o fa-fw"></i></th>
+			<th>Usuario</th>
+			<th class="text-center"><i class="fa fa-trophy fa-fw"></i></th>
+			<th class="text-center"><i class="fa fa-warning fa-fw"></i>/<i class="fa fa-times fa-fw"></i></th>
+			<th class="text-center"><i class="fa fa-cog fa-fw"></i></th>
+		</tr>
+	</thead>
+	<tbody class="usuarios">
+		<tr>
+			<td colspan=5 class="text-center"><i class="fa fa-spinner fa-pulse"></i> Buscando usuarios</td>
+		</tr>
+	</tbody>
+</table>
+<div class="panel paginacion clearfix collapse">
+	<div class="small-5 columns text-left">
+		<a id="nav-first"><i class="fa fa-fast-backward fa-fw fa-lg"></i></a>&nbsp;&nbsp;
+		<a id="nav-prev"><i class="fa fa-chevron-left fa-fw fa-lg"></i> Anterior</a>
+	</div>
+	<div class="small-2 columns text-center">
+		<i class="ejecutando fa fa-spinner fa-fw fa-lg fa-pulse"></i>
+	</div>
+	<div class="small-5 columns text-right">
+		<a id="nav-next">Proximo <i class="fa fa-chevron-right fa-fw fa-lg"></i></a>&nbsp;&nbsp;
+		<a id="nav-last"><i class="fa fa-fast-forward fa-fw fa-lg"></i></a>
+	</div>
+</div>
+<hr>
+<h6 class="subheader">Usuarios a verificar</h6>
+<div class="descripcion">
+	En la siguiente tabla se irán agregando los usuarios que usted eligió verificar de la lista anterior. Puede quitar usuarios de esta lista haciendo clic en el boton <i class="fa fa-minus fa-fw"></i>
+</div>
+<table id="tabla-usuarios-verificar" class="tabla-gestion">
+	<thead>
+		<tr style="//display:none;">
+			<th class="text-center"><i class="fa fa-picture-o fa-fw"></i></th>
+			<th>Usuario</th>
+			<th class="text-center"><i class="fa fa-trophy fa-fw"></i></th>
+			<th class="text-center"><i class="fa fa-warning fa-fw"></i>/<i class="fa fa-times fa-fw"></i></th>
+			<th class="text-center"><i class="fa fa-cog fa-fw"></i></th>
+		</tr>
+	</thead>
+	<tbody class="agregando">
+
+	</tbody>
+</table>
+<div class="small-only-text-center text-right">
+	<form id="verificar" action="{{ urlFor('runAdmVrfUsuario') }}" method="POST">
+		<input type="text" name="entrantes" style="display:none;">
+		<button class="button radius small success"><i class="fa fa-check fa-fw"></i> Verificar ciudadanos</button>
+	</form>
+</div>
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block modals %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block scripts_gestion %}
+<script>
+	var usuarios_verificar = new Array();
+	var imgURL = "{{ urlFor('shwImgUsuario',{'res':32})}}"
+
+	$(document).ready(function(){
+		var query = { where_null:'verified_at' };
+		enviarSolicitud('{{ baseUrl() }}' + '/usuario?' + jQuery.param(query));
+	});
+
+	var agregarUsuario = function(id, nombre, apellido, puntos, advertencia, suspendido) {
+		td_img = $('<td>').addClass('text-center').html('<img src="'+ imgURL.replace(':idUsu',id)+'" class="img-perfil size-20">');
+		td_nombre = $('<td>').html( nombre + ' ' + apellido );
+		td_puntos = $('<td>').addClass('text-center').html( puntos );
+		td_status = $('<td>').addClass('text-center').html( 'null' );
+		boton_agregar = $('<a>').attr('src','#').addClass('agregar button tiny radius').html('<i class="fa fa-plus fa-fw fa-lg"></i>')
+		td_agregar = $('<td>').addClass('text-center').html( boton_agregar );
+		var advertido = null;
+		var suspendido = null;
+		if(advertencia){advertido = 'Si';} else {advertido = 'No';}
+		if(suspendido == '1'){suspendido = 'Si'} else {suspendido = 'No';}
+		td_status = $('<td>').addClass('text-center').html( advertido+' / '+suspendido );
+		tr_usuario = $('<tr>')
+			.append(td_img)
+			.append(td_nombre)
+			.append(td_puntos)
+			.append(td_status)
+			.append(td_agregar)
+			.attr('id','usuario-'+id)
+			.addClass('usuario');
+		if( advertencia ){tr_usuario.addClass('advertido');}
+		if( suspendido ){tr_usuario.addClass('suspendido');}
+		$("#tabla-usuarios").find('tbody').append(tr_usuario);
+	}
+
+	var agregarErrorFila = function(mensaje) {
+		td_mensaje = $('<td>').addClass('text-center').attr('colspan',6).html( mensaje );
+		tr_ultima = $('<tr>').append(td_mensaje);
+		$("#tabla-usuarios").find('tbody').append( tr_ultima );
+	}
+
+	function startGetRequest(event) {
+		enviarSolicitud(event.data.url);
+	}
+
+	function enviarSolicitud(url_query) {
+		$('.ejecutando').show();
+		var request = $.ajax({
+			url: url_query,
+			cache: false,
+			dataType: "json"
+		}).done(function(resultados, textStatus, request) {
+			refreshPaginator(parseLinkHeader(request.getResponseHeader('link')));
+			$("#tabla-usuarios").find('tbody').empty();
+			for (var i=0; i<resultados.length; i++) {
+				agregarUsuario(
+					resultados[i].id,
+					resultados[i].nombre,
+					resultados[i].apellido,
+					resultados[i].puntos,
+					resultados[i].advertencia,
+					resultados[i].suspendido);
+			}
+			$('.ejecutando').hide();
+		}).fail(function(jqXHR, textStatus) {
+			$("#tabla-usuarios").find('tbody').empty();
+			agregarErrorFila( '<i class="fa fa-unlink fa-fw"></i> Error en la busqueda de los usuarios!');
+			alert("Request failed: " + textStatus);
+			return false;
+		});
+	}
+
+	$(document).on('click', '.agregar', function() {
+		var id = $(this).closest('.usuario').attr('id').replace('usuario-', '');
+		if( $(".agregando tr#usuario-"+ id).length == 0 ){
+			$(this).removeClass('agregar').addClass('quitar');
+			$(this).addClass('alert');
+			$(this).children().removeClass('fa-plus').addClass('fa-minus');
+			$('.agregando').append($(this).closest('.usuario'));
+		}
+	});
+
+	$(document).on('click', '.quitar', function() {
+		$(this).closest('.usuario').remove();
+	});
+
+	$('#verificar').submit(function() {
+		$('.agregando').children('tr').each(function () {
+			var id_num = $(this).attr('id').replace('usuario-', '');
+			usuarios_verificar.push(id_num);
+		});
+
+		json_usuarios = '[' + usuarios_verificar.join() + ']';
+		$('input[name="entrantes"]').val(json_usuarios);
+	});
+</script>
+{% endblock %}
+{# ----------------------------------------------------------- #}

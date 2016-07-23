@@ -1,0 +1,24 @@
+{% extends "contenido/documento/crear.twig" %}
+
+{# VARIBLES #}
+{% set modo = 'modificar' %}
+{% set header_icono = 'fa-files-o' %}
+{% set header_titulo = 'NUEVA VERSION' %}
+{% set url_form = urlFor('runNuVerDocumen', {'idDoc': documento.id}) %}
+
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Nueva version - Virtuágora{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block scripts_modificar %}
+<script>
+    $(document).ready(function(){
+        $('.row-crear-titulo').remove();
+        $('.row-crear-categoria').remove();
+        $('.row-crear-descripcion').remove();
+        $('.row-crear-tags').remove();
+        $("textarea[name='cuerpo']").sceditor('instance').val('{{ cuerpo|bbCode }}', false);
+    });
+</script>
+{% endblock %}
+{# ----------------------------------------------------------- #}

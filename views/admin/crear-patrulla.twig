@@ -1,0 +1,43 @@
+{# VARIBLES #}
+
+{% set opcion_activa = 3 %}
+{% extends "admin/gestion.twig" %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Crear nueva patrulla{% endblock %}
+{# ----------------------------------------------------------- #}
+
+{% block gestion %}
+<h4>Administrar patrullas</h4>
+<h6 class="subheader">Crear patrulla</h6>
+<div class="descripcion">
+	Cree una nueva patrulla para asi asignarle moderadores y sus determinados permisos.
+</div>
+<hr>
+<form action="{{ urlFor('runCrearPatrull') }}" method="POST">
+	<h6 class="subheader">Nombre de la patrulla</h6>
+	<input type="text" name="nombre">
+	<hr>
+	<h6 class="subheader">Descripcion de la patrulla</h6>
+	<textarea rows=2 name="descripcion"></textarea>
+	<hr>
+	<div class="descripcion">
+		NOTA: Recuerde luego asignar nuevos moderadores a la patrulla una vez que haya sido creada.
+	</div>
+	<hr>
+	<div class="small-only-text-center medium-text-right">
+		<button class="button success radius small"><i class="fa fa-plus fa-fw fa-lg"></i><i class="fa fa-shield fa-fw fa-lg"></i> Crear patrulla</button>
+	</div>
+</form>
+
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block modals %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block scripts_gestion %}
+<script src="{{ baseUrl() }}/assets/js/autosize/autosize.min.js"></script>
+<script>
+		autosize($('textarea[name="descripcion"]'));
+</script>
+{% endblock %}
+{# ----------------------------------------------------------- #}

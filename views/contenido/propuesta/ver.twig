@@ -1,0 +1,270 @@
+{# VARIBLES #}
+{% set total_votos = propuesta.votos_favor + propuesta.votos_neutro + propuesta.votos_contra %}
+
+{% extends "contenido/ver-contenido.twig" %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Propuesta - {{ propuesta.titulo|capitalize }} {% endblock %}
+{# ----------------------------------------------------------- #}
+{% block linkheads_cont %}{% endblock linkheads_cont %}
+{# ----------------------------------------------------------- #}
+{% set contenido_tipo = 'propuesta' %}
+{% set contenido_icono = 'fa-lightbulb-o' %}
+{# ----------------------------------------------------------- #}
+{% set titulo_cont = propuesta.titulo|title %}
+{% set fecha_cont = '' ~ propuesta.created_at|date("d/m/Y") %}
+{% set puntos_cont = '' ~ propuesta.puntos %}
+{% if referido is defined %}
+{% set url_modificar = urlFor('shwModifPropues', {'idPro': propuesta.contenible_id}) ~ '#' ~ referido.contenible_id %}
+{% else %}
+{% set url_modificar = urlFor('shwModifPropues', {'idPro': propuesta.contenible_id}) %}
+{% endif %}
+{% set url_eliminar = urlFor('runElimiPropues', {'idPro': propuesta.contenible_id } ) %}
+{% set ver_comentarios = true %}
+{% set url_comentar = urlFor('runComentar', {'tipoRaiz': 'propuesta' , 'idRaiz': propuesta.contenible_id}) %}
+{# ----------------------------------------------------------- #}
+{% if propuesta.referido is not empty %}
+{% set alert = true %}
+{% set alert_class = 'alerta problematicas-asociadas text-center'%}
+{% block content_alert %}
+<i class="fa fa-bullhorn fa-fw fa-lg"></i> <a href="{{ urlFor('shwProblem',{'idPro': propuesta.referido.contenible_id}) }}">Problemática asociada: <i>"{{ propuesta.referido.titulo }}"</i></a>
+{% endblock content_alert %}
+{% endif %}
+{# ----------------------------------------------------------- #}
+{% block content_body %}
+{{ propuesta.cuerpo|bbCode }}
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% set tags = propuesta.tags %}
+{% set autor = propuesta.autor %}
+{# ----------------------------------------------------------- #}
+{% set chart = {
+'id': 'resultados',
+'data1': {'val': propuesta.votos_favor, 'tag': 'A favor', 'color': '#7dcc2e', 'highlight': '#92ce56' },
+'data2': {'val': propuesta.votos_neutro, 'tag': 'Neutro', 'color': '#d8ba19', 'highlight': '#e3cb4a' },
+'data3': {'val': propuesta.votos_contra, 'tag': 'En contra', 'color': '#d04d26', 'highlight': '#d17458' }}
+%}
+{# ----------------------------------------------------------- #}
+{% set share_link = propuesta.link %}
+{% set twitter_txt = 'Me interesó esta ' ~ propuesta.contenible_type|lower  %}
+{% set email_subject = 'Mire intereso compartir esta ' ~ evento.contenible_type|lower ~ ' con vos' %}
+{% set email_body = 'Me parecio interesante compartir con vos esta ' ~ propuesta.contenible_type|lower ~ '&crarr;' ~ propuesta.link %}
+{# ----------------------------------------------------------- #}
+{% block opciones_cont %}
+<div class="panel white opciones text-center">
+	<div class="text-center">
+		<h4><b>¿CUAL ES SU POSTURA CON LA PROPUESTA?</b></h4>
+	</div>
+	<hr>
+	{% if (voto.postura is not null) and (voto.publico is not null) %}
+	<div class="resumen-posicion text-center" style="display:none">
+		<div class="row">
+			<div class="medium-6 columns">
+				<ul class="list">
+					<li>
+						<i id="icono-voto-postura" class="fa fa-thumbs-o-up fa-fw fa-4x"></i>
+					</li>
+					<li>
+						<i id="icono-voto-publico" class="fa fa-eye fa-fw fa-4x"></i>
+					</li>
+				</ul>
+				<div class="descripcion" style="margin-top:5px;">Su posición es <span id="txt-voto-postura"></span></div>
+				<div class="descripcion">Su dato es <span id="txt-voto-publico"></span></div>
+			</div>
+			<div class="medium-6 columns">
+				<hr class="show-for-small-only">
+				<h6><b>SU OPINIÓN FUE REGISTRADA</b></h6>
+				<h5><small>Puede, aun así, cambiar su postura y/o privacidad.</small></h5>
+				<h5><small>NOTA: Cambiar la postura le costará <i class="fa fa-trophy fa-fw"></i> 3 puntos y podrá hacerlo luego de los 3 días de haber votado.</small></h5>
+				<div class="bt-cambiar button negative radius tiny"><i class="fa fa-exchange fa-fw"></i> Cambiar mi opinión</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	<div class="votar-posicion text-center" style="display:none">
+		<div class="row collapse opciones">
+			<div class="medium-4 small-12 columns text-center">
+				<div data-postura=1 class="bt-postura button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;"><i class="fa fa-thumbs-o-up fa-fw fa-3x"></i></div>
+			</div>
+			<div class="medium-4 small-12 columns text-center">
+				<div data-postura=0 class="bt-postura button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;"><i class="fa fa-meh-o fa-fw fa-3x"></i></div>
+			</div>
+			<div class="medium-4 small-12 columns text-center">
+				<div data-postura=-1 class="bt-postura button negative radius expand {{ user is null ? 'disabled' }}" style="width: 98%;"><i class="fa fa-thumbs-o-down fa-fw fa-3x"></i></div>
+			</div>
+		</div>
+	</div>
+	<div class="posicion text-center" style="display:none">
+		{% if user %}
+		<form action="{{ urlFor('runVotarPropues', {'idPro': propuesta.contenible_id}) }}" method="POST">
+			<div class="row">
+				<div class="small-12 medium-4 columns">
+					<i id="icono-postura" class="fa fa-fw fa-3x"></i>
+					<div class="descripcion">Su posición es <span id="txt-postura"></span></div>
+				</div>
+				<div class="small-12 medium-4 columns">
+					<hr class="show-for-small-only">
+					<div class="switch small round">
+						<input id="checkbox" name="publico" type="checkbox">
+						<label for="checkbox"></label>
+						<div class="descripcion">Su dato será <span id="txt-publico"></span></div>
+					</div>
+				</div>
+				<div class="small-12 medium-4 columns">
+					<hr class="show-for-small-only">
+					<h6><b>¿DESEA CONFIRMAR?</b></h6>
+					<input type="hidden" name="postura">
+					<button class="button small success radius"><i class="fa fa-send fa-fw"></i> Enviar</button>
+					<div class="bt-cancelar button small negative radius"><i class=" fa fa-undo fa-fw"></i> Cancelar</div>
+				</div>
+			</div>
+		</form>
+		{% else %}
+		<div class="iniciar-sesion" style="padding-top: 10px">
+			<h5><b>Inicie sesión o Registresé</b></h5>
+			<p>Para poder participar y dejar su voto, debe primero <a href="{{ urlFor('shwLogin') }}">Iniciar sesion <i class="fa fa-sign-in fa-fw fa-lg"></i></a></p>
+		</div>
+		{% endif %}
+	</div>
+</div>
+<div class="panel white opciones">
+	{% if total_votos > 0 %}
+	<div class="bt-ver-resultados button negative radius expand"><i class="fa fa-pie-chart fa-fw"></i> Ver resultados</div>
+	{% include 'contenido/chart-contenido.twig' with chart %}
+	{% else %}
+	<div class="iniciar-sesion text-center">
+		<h5><b>Aún no hay resultados</b></h5>
+		<p>No hay votos registrados. Sea el primero en participar y dejar su voto.</p>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block content_modals %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block content_scripts %}
+{% if total_votos > 0 %}
+{% include 'contenido/chart-contenido.js.twig' with chart %}
+{% endif %}
+<script>
+	var votoPostura = {{ voto.postura is null ? 'null' : voto.postura }};
+	var votoPublico = {{ voto.publico is null ? 'null' : voto.publico }};
+	var nuevoPostura = null;
+	$(document).ready(function(){
+		completarCheckbox();
+		if (votoPostura != null && votoPublico != null){
+			completarVotoAnterior();
+			$('.resumen-posicion').show();
+		} else {
+			$('.votar-posicion').show();
+		}
+	});
+
+	function postura(valor){
+		nuevoPostura = valor;
+		completarVotoNuevo();
+		$('.votar-posicion').hide();
+		$('.posicion').show();
+	}
+
+	function limpiar(){
+		$('#icono-postura')
+			.removeClass('fa-thumbs-o-up')
+			.removeClass('fa-meh-o')
+			.removeClass('fa-thumbs-o-down');
+		$('#icono-privacidad')
+			.removeClass('fa-eye')
+			.removeClass('fa-eye-slash');
+	}
+
+	function completarVotoAnterior(){
+		switch(votoPostura){
+			case 1:
+				$('#icono-voto-postura').addClass('fa-thumbs-o-up');
+				$('#txt-voto-postura').html('<b>A FAVOR</b>');
+				break;
+			case 0:
+				$('#icono-voto-postura').addClass('fa-meh-o');
+				$('#txt-voto-postura').html('<b>NEUTRA</b>');
+				break;
+			case -1:
+				$('#icono-voto-postura').addClass('fa-thumbs-o-down');
+				$('#txt-voto-postura').html('<b>EN CONTRA</b>');
+				break;
+			default:
+		}
+		switch(votoPublico){
+			case 1:
+				$('#icono-voto-publico').addClass('fa-eye');
+				$('#txt-voto-publico').html('<b>PÚBLICO</b>');
+				$("#txt-publico").html('<b>PÚBLICO</b>');
+				$("#checkbox").attr('checked', true);
+				break;
+			case 0:
+				$('#icono-voto-publico').addClass('fa-eye-slash');
+				$('#txt-voto-publico').html('<b>PRIVADO</b>');
+				$("#txt-publico").html('<b>PRIVADO</b>');
+				break;
+			default:
+		}
+	}
+
+	function completarVotoNuevo(){
+		limpiar();
+		switch(nuevoPostura){
+			case 1:
+				$('#icono-postura').addClass('fa-thumbs-o-up');
+				$('#txt-postura').html('<b>A FAVOR</b>');
+				break;
+			case 0:
+				$('#icono-postura').addClass('fa-meh-o');
+				$('#txt-postura').html('<b>NEUTRA</b>');
+				break;
+			case -1:
+				$('#icono-postura').addClass('fa-thumbs-o-down');
+				$('#txt-postura').html('<b>EN CONTRA</b>');
+				break;
+			default:
+		}
+		$('input[name="postura"]').val(nuevoPostura);
+	}
+
+	$( ".bt-postura" ).click(function() {
+		postura($(this).data('postura'));
+	});
+
+	$( ".bt-cambiar" ).click(function() {
+		$('.resumen-posicion').hide();
+		$('.votar-posicion').show();
+	});
+
+	$( ".bt-cancelar" ).click(function() {
+		$('.posicion').hide();
+		if (votoPostura != null && votoPublico != null){
+			$('.resumen-posicion').show();
+		} else {
+			$('.votar-posicion').show();
+		}
+	});
+
+	$( ".bt-ver-resultados" ).click(function() {
+		$(this).hide();
+		$('.chart.row').show();
+		mostrarChart();
+	});
+
+	$('#checkbox').click(completarCheckbox);
+
+	function completarCheckbox() {
+		if ($('#checkbox').is(':checked')) {
+			$("#txt-publico").html('<b>PÚBLICO</b>');
+			$("#checkbox").attr('checked', true);
+		} else {
+			$("#txt-publico").html('<b>PRIVADO</b>');
+			$("#checkbox").removeAttr("checked");
+			$("#checkbox").attr('checked', false);
+		}
+	}
+</script>
+{% endblock %}
+{# ----------------------------------------------------------- #}
