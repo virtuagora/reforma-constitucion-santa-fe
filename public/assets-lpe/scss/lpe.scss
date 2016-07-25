@@ -38,9 +38,9 @@ body {
 }
 
 
-textarea
-{
-   resize: none;
+.mce-content-body{
+    padding: 8px;
+    font-size: 15px;
 }
 /*
 
@@ -49,12 +49,7 @@ http://ryanfait.com/
 
 */
 
-.container,
-.push {}
 
-input[type=text].form-control.input-lg {
-    font-size: 24px
-}
 
 #listaSecciones .form-group textarea {
     margin-bottom: 15px;
@@ -243,4 +238,22 @@ figure:hover:before {
 
 .grid-item--width2 {
     width: 50%;
+}
+
+// AJAJAJA
+
+#body-editor{
+    font-size: 15px;
+    line-height: 20px
+}
+
+
+// CREAR DERECHO
+input[type=text].form-control.input-lg,
+textarea.form-control.input-lg {
+    font-size: 30px
+}
+
+.bolder{
+    font-weight: 700;
 }

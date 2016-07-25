@@ -9768,8 +9768,9 @@ body {
 }
 
 /* line 41, ../scss/lpe.scss */
-textarea {
-  resize: none;
+.mce-content-body {
+  padding: 8px;
+  font-size: 15px;
 }
 
 /*
@@ -9778,18 +9779,12 @@ Sticky Footer by Ryan Fait
 http://ryanfait.com/
 
 */
-/* line 55, ../scss/lpe.scss */
-input[type=text].form-control.input-lg, .input-group-lg > input[type=text].form-control,
-.input-group-lg > .input-group-btn > input[type=text].form-control.btn {
-  font-size: 24px;
-}
-
-/* line 59, ../scss/lpe.scss */
+/* line 54, ../scss/lpe.scss */
 #listaSecciones .form-group textarea {
   margin-bottom: 15px;
 }
 
-/* line 63, ../scss/lpe.scss */
+/* line 58, ../scss/lpe.scss */
 .navbar {
   margin-top: 10px;
   box-shadow: none;
@@ -9797,25 +9792,25 @@ input[type=text].form-control.input-lg, .input-group-lg > input[type=text].form-
   margin-bottom: 0;
 }
 
-/* line 70, ../scss/lpe.scss */
+/* line 65, ../scss/lpe.scss */
 .navbar-bottom-colors {
   background-image: url("../img/barra-header.png");
   height: 10px;
   margin-bottom: 30px;
 }
 
-/* line 85, ../scss/lpe.scss */
+/* line 80, ../scss/lpe.scss */
 a.navbar-brand img {
   height: 100%;
 }
 
-/* line 90, ../scss/lpe.scss */
+/* line 85, ../scss/lpe.scss */
 .cuadro1 {
   background-image: url("https://material-design.storage.googleapis.com/publish/material_v_8/material_ext_publish/0Bx4BSt6jniD7OFZFR1ZOUmFWTEE/style_icons_system_intro.png");
   height: 100px;
 }
 
-/* line 96, ../scss/lpe.scss */
+/* line 91, ../scss/lpe.scss */
 figure {
   display: block;
   position: relative;
@@ -9825,7 +9820,7 @@ figure {
   height: 100%;
   padding: 10px;
 }
-/* line 105, ../scss/lpe.scss */
+/* line 100, ../scss/lpe.scss */
 figure h1,
 figure h2,
 figure h3,
@@ -9835,7 +9830,7 @@ figure h6 {
   color: #FFF;
 }
 
-/* line 115, ../scss/lpe.scss */
+/* line 110, ../scss/lpe.scss */
 .cuadro2 {
   background-color: #2e2e2e;
   height: 200px;
@@ -9843,7 +9838,7 @@ figure h6 {
   border: 1px solid rgba(255, 255, 255, 0.75);
 }
 
-/* line 123, ../scss/lpe.scss */
+/* line 118, ../scss/lpe.scss */
 figcaption {
   position: absolute;
   background: black;
@@ -9858,12 +9853,12 @@ figcaption {
   -o-transition: all 0.6s ease;
 }
 
-/* line 137, ../scss/lpe.scss */
+/* line 132, ../scss/lpe.scss */
 figure:hover figcaption {
   opacity: 1;
 }
 
-/* line 141, ../scss/lpe.scss */
+/* line 136, ../scss/lpe.scss */
 figure:before {
   content: "?";
   position: absolute;
@@ -9884,86 +9879,86 @@ figure:before {
   opacity: 0.75;
 }
 
-/* line 161, ../scss/lpe.scss */
+/* line 156, ../scss/lpe.scss */
 figure:hover:before {
   opacity: 0;
 }
 
-/* line 165, ../scss/lpe.scss */
+/* line 160, ../scss/lpe.scss */
 .cap-left:before {
   bottom: 10px;
   left: 10px;
 }
 
-/* line 170, ../scss/lpe.scss */
+/* line 165, ../scss/lpe.scss */
 .cap-left figcaption {
   bottom: 0;
   left: -30%;
 }
 
-/* line 175, ../scss/lpe.scss */
+/* line 170, ../scss/lpe.scss */
 .cap-left:hover figcaption {
   left: 0;
 }
 
-/* line 179, ../scss/lpe.scss */
+/* line 174, ../scss/lpe.scss */
 .cap-right:before {
   bottom: 10px;
   right: 10px;
 }
 
-/* line 184, ../scss/lpe.scss */
+/* line 179, ../scss/lpe.scss */
 .cap-right figcaption {
   bottom: 0;
   right: -30%;
 }
 
-/* line 189, ../scss/lpe.scss */
+/* line 184, ../scss/lpe.scss */
 .cap-right:hover figcaption {
   right: 0;
 }
 
-/* line 193, ../scss/lpe.scss */
+/* line 188, ../scss/lpe.scss */
 .cap-top:before {
   top: 10px;
   left: 10px;
 }
 
-/* line 198, ../scss/lpe.scss */
+/* line 193, ../scss/lpe.scss */
 .cap-top figcaption {
   left: 0;
   top: -30%;
 }
 
-/* line 203, ../scss/lpe.scss */
+/* line 198, ../scss/lpe.scss */
 .cap-top:hover figcaption {
   top: 0;
 }
 
-/* line 207, ../scss/lpe.scss */
+/* line 202, ../scss/lpe.scss */
 .cap-bot:before {
   bottom: 10px;
   left: 10px;
 }
 
-/* line 212, ../scss/lpe.scss */
+/* line 207, ../scss/lpe.scss */
 .cap-bot figcaption {
   left: 0;
   bottom: -30%;
 }
 
-/* line 217, ../scss/lpe.scss */
+/* line 212, ../scss/lpe.scss */
 .cap-bot:hover figcaption {
   bottom: 0;
 }
 
-/* line 221, ../scss/lpe.scss */
+/* line 216, ../scss/lpe.scss */
 .grid-sizer,
 .grid-item {
   border: 2px solid #FFF;
 }
 @media (max-width: 767px) {
-  /* line 221, ../scss/lpe.scss */
+  /* line 216, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
     width: 100%;
@@ -9972,7 +9967,7 @@ figure:hover:before {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  /* line 221, ../scss/lpe.scss */
+  /* line 216, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
     width: 50%;
@@ -9981,7 +9976,7 @@ figure:hover:before {
   }
 }
 @media (min-width: 992px) {
-  /* line 221, ../scss/lpe.scss */
+  /* line 216, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
     width: 25%;
@@ -9991,7 +9986,27 @@ figure:hover:before {
 }
 
 /* 2 columns */
-/* line 244, ../scss/lpe.scss */
+/* line 239, ../scss/lpe.scss */
 .grid-item--width2 {
   width: 50%;
+}
+
+/* line 245, ../scss/lpe.scss */
+#body-editor {
+  font-size: 15px;
+  line-height: 20px;
+}
+
+/* line 252, ../scss/lpe.scss */
+input[type=text].form-control.input-lg, .input-group-lg > input[type=text].form-control,
+.input-group-lg > .input-group-btn > input[type=text].form-control.btn,
+textarea.form-control.input-lg,
+.input-group-lg > textarea.form-control,
+.input-group-lg > .input-group-btn > textarea.form-control.btn {
+  font-size: 30px;
+}
+
+/* line 257, ../scss/lpe.scss */
+.bolder {
+  font-weight: 700;
 }
