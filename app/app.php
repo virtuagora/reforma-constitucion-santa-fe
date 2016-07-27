@@ -130,6 +130,12 @@ $app->get('/login', function () use ($app) {
 $app->get('/derecho/crear', function () use ($app) {
     $app->render('lpe/crearDerecho.twig');
 });
+$app->get('/derecho/ver', function () use ($app) {
+    $app->render('lpe/verDerecho.twig');
+});
+$app->get('/opinion/ver', function () use ($app) {
+    $app->render('lpe/verOpinion.twig');
+});
 });
 
 

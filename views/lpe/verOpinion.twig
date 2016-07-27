@@ -1,0 +1,39 @@
+{% extends "lpe/master.twig" %} {% block linkhead %} {% endblock %} {# -----------------------------------------------------------
+#} {% block titulo %}Ver Derecho{% endblock %} {% block body %}
+
+<article>
+
+    <div class="titulo-derecho-background">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3">
+                    <img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/13083204_10154192019986554_3950936800454587432_n.jpg?oh=139f5f70f37a6e323735f686d8a09580&oe=58198BBF&__gda__=1479725481_e6e01db08f6441be446c6013623f2383" class="img-circle img-responsive" style="margin:0 auto 5px; max-width: 200px" alt="">
+                </div>
+                <div class="col-xs-9 text-left">
+                    <blockquote style="min-height:160px">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quae deleniti, nemo pariatur non dolorum dolore id neque ducimus omnis commodi ab rerum maxime eveniet voluptatem aperiam et, ad nulla.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quae deleniti, nemo pariatur non dolorum dolore id neque ducimus omnis commodi ab rerum maxime eveniet voluptatem aperiam et, ad nulla.</p>
+  
+  <small>Guillermo Croppi en <cite title="Source Title">El Derecho de las cosas</cite></small>
+</blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+
+</article>
+{% endblock %} {# ----------------------------------------------------------- #} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-lpe/js/autosize.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        autosize($('textarea'));
+      
+});
+    });
+</script> {% endblock %}

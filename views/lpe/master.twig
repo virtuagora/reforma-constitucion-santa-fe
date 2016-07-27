@@ -21,11 +21,11 @@
     <![endif]-->
 </head>
 
-<body>
+<body data-spy="scroll" data-target="#secciones" >
     <div class="wrapper">
 
         <div class="container">
-            <nav class="navbar navbar-default">
+            <header class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -60,31 +60,37 @@
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </header>
             <div class="navbar-bottom-colors">
             </div>
-            <!--NAV-->
+            <!--HEADER-->
 
             {% if flash['success'] is defined %}
-            <div class="alert alert-dismissible alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+            <div class="row">
+             <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ flash.success|capitalize }}
+    </div>   
             </div>
+            
             {% endif %} {% if flash['errors'] is defined %} {% for error in flash['errors'] %}
-            <div data-alert class="alert-box alert text-center">
-                <div class="row">
-                    <i class="fa fa-times fa-lg fa-fw"></i> {{ error|capitalize }}
-                    <a href="#" class="close"><i class="fa fa-times fa-fw fa-lg"></i></a>
-                </div>
+                        <div class="row">
+             <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ error|capitalize }}
+    </div>
+                
             </div>
+         
             {% endfor %} {% endif %} {% if flash['warning'] is defined %}
-            <div data-alert class="alert-box warning text-center">
-                <div class="row">
-                    <i class="fa fa-warning fa-lg fa-fw"></i> {{ flash.warning|capitalize }}
-                    <a href="#" class="close"><i class="fa fa-times fa-fw fa-lg"></i></a>
-                </div>
-            </div>
+<div class="row">
+    <div class="alert alert-dismissible alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button> {{ flash.warning|capitalize }}
+    </div>
+</div>
+            
             {% endif %}
+            </div><!-- container-->
             <!-- body -->
             {% block body %}{% endblock %}
 

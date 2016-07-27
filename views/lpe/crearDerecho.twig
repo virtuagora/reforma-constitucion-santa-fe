@@ -1,43 +1,42 @@
 {% extends "lpe/master.twig" %} {% block linkhead %}
-<link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{% endblock %} {% block body %}
-
-<div class="row">
-    <div class="col-xs-10">
-        <h2 class="text-primary"><i class="mdi mdi-plus-box"></i> Nuevo derecho</h2>
-        <hr>
-        <form action="" class="formulario derecho">
-
-
-            <div class="form-group">
-                <input id="titulo" class="form-control input-lg bolder" id="focusedInput" type="text" placeholder="Titulo del derecho">
-            </div>
-            <div class="form-group">
-                <textarea name="descripcion" class="form-control" rows="2" placeholder="Descripcion del derecho"></textarea>
-                <span class="help-block"><b>Redacte una descripción del documento.</b> La misma tiene que dar una pequeña introduccion del documento a desarrollar.</span>
-            </div>
+<link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10">
+            <h2 class="text-primary"><i class="mdi mdi-plus-box"></i> Nuevo derecho</h2>
             <hr>
-            <h4 class="text-primary"><i class="mdi mdi-plus-box"></i> Secciones del derecho</h4>
-            <ul class="list-group">
-                <li id="listaSecciones" class="list-group-item">
-                    <div class="clearfix">
-                        <h5 class="pull-left"><b>Articulo 1</b></h5>
+            <form action="" class="formulario derecho">
+                <div class="form-group">
+                    <input id="titulo" name="titulo" class="form-control input-lg bolder" type="text" placeholder="Titulo del derecho">
+                </div>
+                <div class="form-group">
+                    <textarea name="descripcion" class="form-control" rows="2" placeholder="Descripcion del derecho"></textarea>
+                    <span class="help-block"><b>Redacte una descripción del documento.</b> La misma tiene que dar una pequeña introduccion del documento a desarrollar.</span>
+                </div>
+                <hr>
+                <h4 class="text-primary"><i class="mdi mdi-plus-box"></i> Secciones del derecho</h4>
+                <ul class="list-group">
+                    <li id="listaSecciones" class="list-group-item">
+                        <div class="clearfix">
+                            <h5 class="pull-left"><b>Articulo 1</b></h5>
 
-                    </div>
-                    <textarea name="cuerpo-1" class=" ">Escriba el contenido del articulo...</textarea>
-                </li>
-                <li id="li-nuevo-articulo" class="list-group-item">
-                    <a id="nuevoArticulo" href="javascript:void(0)" class="btn btn-large btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una nueva sección</a>
-                </li>
+                        </div>
+                        <textarea name="cuerpo-1" class=" ">Escriba el contenido del articulo...</textarea>
+                    </li>
+                    <li id="li-nuevo-articulo" class="list-group-item">
+                        <a id="nuevoArticulo" href="javascript:void(0)" class="btn btn-large btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una nueva sección</a>
+                    </li>
 
-            </ul>
+                </ul>
 
-            <div class="clearfix">
-                <a href="#" class="btn btn-large btn-default ">Cancelar</a>
-                <button type="submit" class="btn btn-lg btn-primary pull-right">Subir nuevo derecho</a>
+                <div class="clearfix">
+                    <a href="#" class="btn btn-large btn-default ">Cancelar</a>
+                    <button type="submit" class="btn btn-lg btn-primary pull-right">Subir nuevo derecho</button>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
-</div>
 </div>
 
 {% endblock %} {# ----------------------------------------------------------- #} {% block scripts %}
@@ -97,5 +96,4 @@
 		});
     }
 
-</script>
-{% endblock %}
+</script> {% endblock %}

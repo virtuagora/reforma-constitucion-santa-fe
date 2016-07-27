@@ -7,6 +7,7 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 @import url(../css/materialdesignicons.css);
+@import "https://fonts.googleapis.com/css?family=Slabo+27px";
 /* line 9, ../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_normalize.scss */
 html {
   font-family: sans-serif;
@@ -9727,18 +9728,18 @@ input[type="checkbox"]:disabled:checked:after,
   color: inherit;
 }
 
-/* line 5, ../scss/lpe.scss */
+/* line 7, ../scss/lpe.scss */
 * {
   margin: 0;
 }
 
-/* line 9, ../scss/lpe.scss */
+/* line 11, ../scss/lpe.scss */
 html,
 body {
   height: 100%;
 }
 
-/* line 14, ../scss/lpe.scss */
+/* line 16, ../scss/lpe.scss */
 .wrapper {
   min-height: 100%;
   height: auto !important;
@@ -9748,26 +9749,26 @@ body {
   /* the bottom margin is the negative value of the footer's height */
 }
 
-/* line 23, ../scss/lpe.scss */
+/* line 25, ../scss/lpe.scss */
 .push {
   height: 225px;
   /* .push must be the same height as .footer */
 }
 
-/* line 28, ../scss/lpe.scss */
+/* line 30, ../scss/lpe.scss */
 .footer {
   height: 145px;
   margin-top: 80px;
   text-align: center;
   background-color: #ababab;
 }
-/* line 34, ../scss/lpe.scss */
+/* line 36, ../scss/lpe.scss */
 .footer .img-logo {
   height: 100px;
   margin: -50px auto 10px;
 }
 
-/* line 41, ../scss/lpe.scss */
+/* line 43, ../scss/lpe.scss */
 .mce-content-body {
   padding: 8px;
   font-size: 15px;
@@ -9779,12 +9780,12 @@ Sticky Footer by Ryan Fait
 http://ryanfait.com/
 
 */
-/* line 54, ../scss/lpe.scss */
+/* line 56, ../scss/lpe.scss */
 #listaSecciones .form-group textarea {
   margin-bottom: 15px;
 }
 
-/* line 58, ../scss/lpe.scss */
+/* line 60, ../scss/lpe.scss */
 .navbar {
   margin-top: 10px;
   box-shadow: none;
@@ -9792,25 +9793,25 @@ http://ryanfait.com/
   margin-bottom: 0;
 }
 
-/* line 65, ../scss/lpe.scss */
+/* line 67, ../scss/lpe.scss */
 .navbar-bottom-colors {
   background-image: url("../img/barra-header.png");
   height: 10px;
   margin-bottom: 30px;
 }
 
-/* line 80, ../scss/lpe.scss */
+/* line 82, ../scss/lpe.scss */
 a.navbar-brand img {
   height: 100%;
 }
 
-/* line 85, ../scss/lpe.scss */
+/* line 87, ../scss/lpe.scss */
 .cuadro1 {
   background-image: url("https://material-design.storage.googleapis.com/publish/material_v_8/material_ext_publish/0Bx4BSt6jniD7OFZFR1ZOUmFWTEE/style_icons_system_intro.png");
   height: 100px;
 }
 
-/* line 91, ../scss/lpe.scss */
+/* line 93, ../scss/lpe.scss */
 figure {
   display: block;
   position: relative;
@@ -9820,7 +9821,7 @@ figure {
   height: 100%;
   padding: 10px;
 }
-/* line 100, ../scss/lpe.scss */
+/* line 102, ../scss/lpe.scss */
 figure h1,
 figure h2,
 figure h3,
@@ -9830,7 +9831,7 @@ figure h6 {
   color: #FFF;
 }
 
-/* line 110, ../scss/lpe.scss */
+/* line 112, ../scss/lpe.scss */
 .cuadro2 {
   background-color: #2e2e2e;
   height: 200px;
@@ -9838,7 +9839,7 @@ figure h6 {
   border: 1px solid rgba(255, 255, 255, 0.75);
 }
 
-/* line 118, ../scss/lpe.scss */
+/* line 120, ../scss/lpe.scss */
 figcaption {
   position: absolute;
   background: black;
@@ -9853,12 +9854,12 @@ figcaption {
   -o-transition: all 0.6s ease;
 }
 
-/* line 132, ../scss/lpe.scss */
+/* line 134, ../scss/lpe.scss */
 figure:hover figcaption {
   opacity: 1;
 }
 
-/* line 136, ../scss/lpe.scss */
+/* line 138, ../scss/lpe.scss */
 figure:before {
   content: "?";
   position: absolute;
@@ -9879,86 +9880,86 @@ figure:before {
   opacity: 0.75;
 }
 
-/* line 156, ../scss/lpe.scss */
+/* line 158, ../scss/lpe.scss */
 figure:hover:before {
   opacity: 0;
 }
 
-/* line 160, ../scss/lpe.scss */
+/* line 162, ../scss/lpe.scss */
 .cap-left:before {
   bottom: 10px;
   left: 10px;
 }
 
-/* line 165, ../scss/lpe.scss */
+/* line 167, ../scss/lpe.scss */
 .cap-left figcaption {
   bottom: 0;
   left: -30%;
 }
 
-/* line 170, ../scss/lpe.scss */
+/* line 172, ../scss/lpe.scss */
 .cap-left:hover figcaption {
   left: 0;
 }
 
-/* line 174, ../scss/lpe.scss */
+/* line 176, ../scss/lpe.scss */
 .cap-right:before {
   bottom: 10px;
   right: 10px;
 }
 
-/* line 179, ../scss/lpe.scss */
+/* line 181, ../scss/lpe.scss */
 .cap-right figcaption {
   bottom: 0;
   right: -30%;
 }
 
-/* line 184, ../scss/lpe.scss */
+/* line 186, ../scss/lpe.scss */
 .cap-right:hover figcaption {
   right: 0;
 }
 
-/* line 188, ../scss/lpe.scss */
+/* line 190, ../scss/lpe.scss */
 .cap-top:before {
   top: 10px;
   left: 10px;
 }
 
-/* line 193, ../scss/lpe.scss */
+/* line 195, ../scss/lpe.scss */
 .cap-top figcaption {
   left: 0;
   top: -30%;
 }
 
-/* line 198, ../scss/lpe.scss */
+/* line 200, ../scss/lpe.scss */
 .cap-top:hover figcaption {
   top: 0;
 }
 
-/* line 202, ../scss/lpe.scss */
+/* line 204, ../scss/lpe.scss */
 .cap-bot:before {
   bottom: 10px;
   left: 10px;
 }
 
-/* line 207, ../scss/lpe.scss */
+/* line 209, ../scss/lpe.scss */
 .cap-bot figcaption {
   left: 0;
   bottom: -30%;
 }
 
-/* line 212, ../scss/lpe.scss */
+/* line 214, ../scss/lpe.scss */
 .cap-bot:hover figcaption {
   bottom: 0;
 }
 
-/* line 216, ../scss/lpe.scss */
+/* line 218, ../scss/lpe.scss */
 .grid-sizer,
 .grid-item {
   border: 2px solid #FFF;
 }
 @media (max-width: 767px) {
-  /* line 216, ../scss/lpe.scss */
+  /* line 218, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
     width: 100%;
@@ -9967,7 +9968,7 @@ figure:hover:before {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  /* line 216, ../scss/lpe.scss */
+  /* line 218, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
     width: 50%;
@@ -9976,7 +9977,7 @@ figure:hover:before {
   }
 }
 @media (min-width: 992px) {
-  /* line 216, ../scss/lpe.scss */
+  /* line 218, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
     width: 25%;
@@ -9986,18 +9987,18 @@ figure:hover:before {
 }
 
 /* 2 columns */
-/* line 239, ../scss/lpe.scss */
+/* line 241, ../scss/lpe.scss */
 .grid-item--width2 {
   width: 50%;
 }
 
-/* line 245, ../scss/lpe.scss */
+/* line 247, ../scss/lpe.scss */
 #body-editor {
   font-size: 15px;
   line-height: 20px;
 }
 
-/* line 252, ../scss/lpe.scss */
+/* line 254, ../scss/lpe.scss */
 input[type=text].form-control.input-lg, .input-group-lg > input[type=text].form-control,
 .input-group-lg > .input-group-btn > input[type=text].form-control.btn,
 textarea.form-control.input-lg,
@@ -10006,7 +10007,63 @@ textarea.form-control.input-lg,
   font-size: 30px;
 }
 
-/* line 257, ../scss/lpe.scss */
+/* line 259, ../scss/lpe.scss */
 .bolder {
   font-weight: 700;
+}
+
+/* line 263, ../scss/lpe.scss */
+.titulo-derecho-background {
+  padding: 30px 0;
+  color: #cdbfe3;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  background-color: #6f5499;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#563d7c), to(#6f5499));
+  background-image: -webkit-linear-gradient(top, #563d7c 0, #6f5499 100%);
+  background-image: -o-linear-gradient(top, #563d7c 0, #6f5499 100%);
+  background-image: linear-gradient(to bottom, #563d7c 0, #6f5499 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
+  background-repeat: repeat-x;
+  margin-bottom: 40px;
+}
+/* line 276, ../scss/lpe.scss */
+.titulo-derecho-background h1 {
+  color: #FFF;
+}
+
+/* line 280, ../scss/lpe.scss */
+article span.badge {
+  background-color: #2196F3;
+}
+/* line 283, ../scss/lpe.scss */
+article #nav-derechos.affix {
+  top: 30px;
+}
+/* line 287, ../scss/lpe.scss */
+article #nav-derechos > a {
+  padding: 10px;
+}
+/* line 290, ../scss/lpe.scss */
+article p.intro {
+  font-size: 20px;
+  line-height: 28px;
+  font-family: 'Slabo 27px', serif;
+  color: #222222;
+}
+/* line 297, ../scss/lpe.scss */
+article .body-seccion p {
+  font-size: 16px;
+  line-height: 20px;
+  font-family: 'Slabo 27px', serif;
+  color: #222222;
+}
+/* line 304, ../scss/lpe.scss */
+article p.comentario {
+  font-size: 12px;
+  line-height: 1.5;
+}
+/* line 308, ../scss/lpe.scss */
+article textarea.comentario {
+  resize: vertical;
 }
