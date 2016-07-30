@@ -122,19 +122,22 @@ $app->get('/captcha', function () use ($app) {
 
 $app->group('/lpe', function () use ($app, $checkRole) {
     $app->get('/', function () use ($app) {
-    $app->render('lpe/inicio.twig');
+    $app->render('lpe/portal/inicio.twig');
 });
 $app->get('/login', function () use ($app) {
-    $app->render('lpe/login.twig');
+    $app->render('lpe/portal/login.twig');
 });
 $app->get('/derecho/crear', function () use ($app) {
-    $app->render('lpe/crearDerecho.twig');
+    $app->render('lpe/derecho/crearDerecho.twig');
 });
 $app->get('/derecho/ver', function () use ($app) {
-    $app->render('lpe/verDerecho.twig');
+    $app->render('lpe/derecho/verDerecho.twig');
 });
-$app->get('/opinion/ver', function () use ($app) {
-    $app->render('lpe/verOpinion.twig');
+$app->get('/opinion/crear', function () use ($app) {
+    $app->render('lpe/opinion/crearOpinion.twig');
+});
+$app->get('/inicio/editar', function () use ($app) {
+    $app->render('lpe/portal/modificarInicio.twig');
 });
 });
 

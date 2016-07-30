@@ -11,7 +11,7 @@
     <!-- Bootstrap -->
     {% block linkhead %}{% endblock %}
     <link href="{{ baseUrl() }}/assets-lpe/css/lpe.css" rel="stylesheet">
-    
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,8 +21,8 @@
     <![endif]-->
 </head>
 
-<body data-spy="scroll" data-target="#secciones" >
-   
+<body data-spy="scroll" data-target="#secciones">
+
     <div class="wrapper">
 
         <div class="container">
@@ -40,9 +40,11 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">Link</a></li>
-                            <li class="dropdown">
+                            <li><a href="#"><i class="zmdi zmdi-home zmdi-hc-fw zmdi-hc-lg"></i>Inicio</a></li>
+                            <li><a href="#">Propuesta</a></li>
+                            <li><a href="#">Antecedentes</a></li>
+                            <li><a href="#">Cronograma</a></li>
+                            <!--<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#">Action</a></li>
@@ -53,11 +55,19 @@
                                     <li class="divider"></li>
                                     <li><a href="#">One more separated link</a></li>
                                 </ul>
-                            </li>
+                            </li>-->
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><i class="zmdi zmdi-account-circle zmdi-hc-lg zmdi-hc-fw"></i>Iniciar sesion</a></li>
+                            <li><a href="#"><i class="zmdi zmdi-sign-in zmdi-hc-lg zmdi-hc-fw"></i>Entrar</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="zmdi zmdi-account-circle zmdi-hc-lg zmdi-hc-fw"></i> Guillermo <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Administrar</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#" class="text-danger"><b><i class="zmdi zmdi-close-circle zmdi-hc-fw zmdi-hc-lg"></i>Salir</b></a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -68,36 +78,37 @@
 
             {% if flash['success'] is defined %}
             <div class="row">
-             <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ flash.success|capitalize }}
-    </div>   
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button> {{ flash.success|capitalize
+                    }}
+                </div>
             </div>
-            
+
             {% endif %} {% if flash['errors'] is defined %} {% for error in flash['errors'] %}
-                        <div class="row">
-             <div class="alert alert-dismissible alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ error|capitalize }}
-    </div>
-                
+            <div class="row">
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button> {{ error|capitalize }}
+                </div>
+
             </div>
-         
+
             {% endfor %} {% endif %} {% if flash['warning'] is defined %}
-<div class="row">
-    <div class="alert alert-dismissible alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button> {{ flash.warning|capitalize }}
-    </div>
-</div>
-            
+            <div class="row">
+                <div class="alert alert-dismissible alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button> {{ flash.warning|capitalize
+                    }}
+                </div>
+            </div>
+
             {% endif %}
-            </div><!-- container-->
-            <!-- body -->
-            {% block body %}{% endblock %}
+        </div>
+        <!-- container-->
+        <!-- body -->
+        {% block body %}{% endblock %}
 
 
         <div class="push"></div>
-        </div>
+    </div>
     </div>
     <div class="footer">
         <img class="img-logo" src="{{ baseUrl() }}/assets-lpe/img/logo-footer.png" alt="">

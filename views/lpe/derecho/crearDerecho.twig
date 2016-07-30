@@ -1,0 +1,149 @@
+{% extends "lpe/master.twig" %} {% block linkhead %}
+<link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
+%} {% block body %}
+<form id="crearDerecho">
+
+    <div class="titulo-derecho-background">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <textarea name="titulo" class="form-control" rows="1" placeholder="Escriba el título"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div id="derecho" class="col-xs-12 col-sm-12 col-md-8 text-justify">
+                <div id="descripcion">
+                    <h3><strong>Descripción</strong></h3>
+                    <textarea name="descripcion">Escriba la descripción del derecho...</textarea>
+                </div>
+                <hr>
+                <h3><strong>Acciones</strong></h3>
+                <div class="lista-acciones">
+                    <div class="accion-container">
+                        <textarea name="cuerpo-1" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
+                        <hr>
+                    </div>
+                </div>
+                <a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>
+                <hr>
+                <div class="clearfix">
+                    <a href="#" class="btn btn-large btn-default ">Cancelar</a>
+                    <button type="submit" class="btn btn-lg btn-primary pull-right">Subir nuevo derecho</button>
+                </div>
+            </div>
+            <div class="col-md-4 hidden-sm hidden-xs">
+                <div id="youtubeVideo" class="embed-responsive embed-responsive-16by9" style="margin-bottom: 20px;">
+                    <iframe class="embed-responsive-item" id="youtubeVideo" src="https://www.youtube.com/embed/Mtf7pocKg-E" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Imagen de Cabecera</label><br>
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Explorar <input name="archivo" type="file" style="display: none;">
+                    </span>
+                </label>
+                        <input type="text" class="form-control" readonly style="padding-left:10px">
+                    </div>
+                    <span class="help-block">
+                La imagen se subirá cuando se suba el derecho.
+            </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Video de Youtube</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="zmdi zmdi-youtube-play zmdi-hc-lg"></i></span>
+                        <input name="videoID" class="form-control" placeholder="Ej: Mtf7pocKg-E" type="text">
+                    </div>
+                </div>
+                <div class="alert alert-dismissible alert-info">
+                    Debe colocar el codigo que aparece en la URL del video, luego de la porcion "?v=". Por ejemplo, de <i>https://www.youtube.com/watch?v=Mtf7pocKg-E</i>
+                    la porcion seria <code>Mtf7pocKg-E</code><br>De ser correcto, el video tendria que mostrarse.
+                </div>
+                <h6 class="text-info"><b>Nota:</b> Las opiniones se podran cargar LUEGO que el derecho haya sido creado</h6>
+            </div>
+            
+        </div>
+    </div>
+</form>
+
+{% endblock %} {# ----------------------------------------------------------- #} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-lpe/js/autosize.min.js"></script>
+<script src="{{ baseUrl() }}/assets-lpe/js/sceditor/jquery.sceditor.js"></script>
+<script id="accionTemplate" type="text/template">
+    <div class="accion-container">
+        <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="mdi mdi-close"></i></a>
+        <textarea name="cuerpo-numAccion" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
+        <hr>
+    </div>
+</script>
+<script>
+    var numeroAccion = 2;
+    $(document).ready(function() {
+    //Events
+    // $("a.eliminarArticulo").on("click", eliminarArticulo);
+    autosize($('textarea'));
+    // iniciarEditor('cuerpo-1');
+    iniciarEditor('descripcion');
+
+    $(':file').on('fileselect', function(event, numFiles, label) {
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+        if(numFiles > 1 || numFiles == 0){
+            alert('Por favor, seleccione solo 1 archivo');
+        } else if(numFiles == 1){
+            input.val(log);
+        }
+    });
+    });
+    $('input[name=videoID]').change(function() {
+        $("#youtubeVideo iframe").remove();
+        $('<iframe class="embed-responsive-item" id="youtubeVideo" frameborder="0" allowfullscreen></iframe>')
+            .attr("src", "https://www.youtube.com/embed/" + $(this).val())
+            .appendTo("#youtubeVideo");
+    });
+
+    $("#nuevaAccion").click(function(e) {
+        var nuevaAccion = $("#accionTemplate").html().replace(new RegExp('numAccion', 'g'), numeroAccion);
+        $(".lista-acciones").append(nuevaAccion)
+        numeroAccion += 1
+        autosize($('textarea'));
+    });
+    $(document.body).on('click', '.eliminarAccion', function() {
+        var i = $(this).data('idaccion') + 1
+        $(this).closest(".accion-container").remove();
+        for (; i <= numeroAccion + 1; i++) {
+            $('#eliminar-' + i).attr('data-idaccion', (i - 1)).attr('id', "eliminar-" + (i - 1));;
+            $("textarea[name='cuerpo-" + i + "']").attr('name', "cuerpo-" + (i - 1))
+        }
+        numeroAccion -= 1;
+    });
+    var eliminarAccion = function(e) {
+        $(this).closest(".li-accion").remove();
+    }
+
+    $(document).on('change', ':file', function() {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+    });
+    var iniciarEditor = function(nombre) {
+        $("textarea[name='" + nombre + "']").sceditor({
+            plugins: "bbcode",
+            emoticonsEnabled: false,
+            toolbarExclude: "font,color,table,horizontalrule,subscript,superscript",
+            height: '100',
+            width: '100%',
+            style: "{{ baseUrl() }}/assets-lpe/css/lpe.css",
+            resizeEnabled: false,
+            resizeHeight: true,
+            autoExpand: true
+        });
+    }
+</script> {% endblock %}
