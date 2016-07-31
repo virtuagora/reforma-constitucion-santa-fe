@@ -1,7 +1,7 @@
 {% extends "lpe/master.twig" %} {% block linkhead %}
 <link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
 %} {% block body %}
-<form id="crearDerecho">
+<form id="crearDerecho" action="{# urlFor() #}" type="POST" enctype="multipart/form-data">
 
     <div class="titulo-derecho-background">
         <div class="overlay">
@@ -25,18 +25,18 @@
                 <h3><strong>Acciones</strong></h3>
                 <div class="lista-acciones">
                     <div class="accion-container">
-                        <textarea name="cuerpo-1" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
+                        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
                         <hr>
                     </div>
                 </div>
                 <a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>
                 <hr>
-                <div class="clearfix">
+                <div class="clearfix hidden-sm hidden-xs">
                     <a href="#" class="btn btn-large btn-default ">Cancelar</a>
                     <button type="submit" class="btn btn-lg btn-primary pull-right">Subir nuevo derecho</button>
                 </div>
             </div>
-            <div class="col-md-4 hidden-sm hidden-xs">
+            <div class="col-md-4">
                 <div id="youtubeVideo" class="embed-responsive embed-responsive-16by9" style="margin-bottom: 20px;">
                     <iframe class="embed-responsive-item" id="youtubeVideo" src="https://www.youtube.com/embed/Mtf7pocKg-E" frameborder="0" allowfullscreen></iframe>
                 </div>
@@ -58,7 +58,7 @@
                     <label class="control-label">Video de Youtube</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="zmdi zmdi-youtube-play zmdi-hc-lg"></i></span>
-                        <input name="videoID" class="form-control" placeholder="Ej: Mtf7pocKg-E" type="text">
+                        <input name="video" class="form-control" placeholder="Ej: Mtf7pocKg-E" type="text">
                     </div>
                 </div>
                 <div class="alert alert-dismissible alert-info">
@@ -67,7 +67,13 @@
                 </div>
                 <h6 class="text-info"><b>Nota:</b> Las opiniones se podran cargar LUEGO que el derecho haya sido creado</h6>
             </div>
-            
+            <input type="text" name="secciones" value="" hidden>
+            <input type="text" name="categoria" value="0" hidden>
+            <input type="text" name="tags" value="" hidden>
+             <div class="clearfix hidden-md hidden-lg">
+                    <a href="#" class="btn btn-large btn-default ">Cancelar</a>
+                    <button type="submit" class="btn btn-lg btn-primary pull-right">Subir nuevo derecho</button>
+                </div>
         </div>
     </div>
 </form>
@@ -78,7 +84,7 @@
 <script id="accionTemplate" type="text/template">
     <div class="accion-container">
         <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="mdi mdi-close"></i></a>
-        <textarea name="cuerpo-numAccion" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
+        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
         <hr>
     </div>
 </script>
@@ -101,7 +107,7 @@
         }
     });
     });
-    $('input[name=videoID]').change(function() {
+    $('input[name=video]').change(function() {
         $("#youtubeVideo iframe").remove();
         $('<iframe class="embed-responsive-item" id="youtubeVideo" frameborder="0" allowfullscreen></iframe>')
             .attr("src", "https://www.youtube.com/embed/" + $(this).val())
@@ -146,4 +152,12 @@
             autoExpand: true
         });
     }
+    $( "form" ).on( "submit", function( event ) {
+        var secciones = [];        
+        $( "textarea[name=cuerpo]" ).each(function( index ) {
+        secciones.push($( this ).val());
+        });
+        secciones.join('&&');
+        $('input[name=secciones]').val(secciones);
+});
 </script> {% endblock %}

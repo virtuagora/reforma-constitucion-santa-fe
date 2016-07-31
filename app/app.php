@@ -125,19 +125,22 @@ $app->group('/lpe', function () use ($app, $checkRole) {
     $app->render('lpe/portal/inicio.twig');
 });
 $app->get('/login', function () use ($app) {
-    $app->render('lpe/portal/login.twig');
+    $app->render('lpe/registro/login-static.twig');
 });
 $app->get('/derecho/crear', function () use ($app) {
-    $app->render('lpe/derecho/crearDerecho.twig');
+    $app->render('lpe/derecho/crear.twig');
 });
 $app->get('/derecho/ver', function () use ($app) {
-    $app->render('lpe/derecho/verDerecho.twig');
+    $app->render('lpe/derecho/ver.twig');
 });
 $app->get('/opinion/crear', function () use ($app) {
-    $app->render('lpe/opinion/crearOpinion.twig');
+    $app->render('lpe/opinion/crear.twig');
 });
 $app->get('/inicio/editar', function () use ($app) {
-    $app->render('lpe/portal/modificarInicio.twig');
+    $app->render('lpe/portal/modificar.twig');
+});
+$app->get('/test', function () use ($app) {
+    $app->render('lpe/test.twig');
 });
 });
 

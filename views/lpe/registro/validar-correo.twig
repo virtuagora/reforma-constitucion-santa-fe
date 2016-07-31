@@ -1,0 +1,50 @@
+{# VARIBLES #}
+{% set footer = false %}
+{% set barraNav = false %}
+{% set notificaciones = false %}
+{% set html_class = 'verif-exito-bg' %}
+{% set body_class = 'no-body-bg' %}
+
+{% extends "master.twig" %}
+
+{# ----------------------------------------------------------- #}
+{% block titulo %}Validar Correo{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block linkhead %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block body %}
+
+<div class="registro row">
+	<div class="medium-8 medium-centered columns no-padding-small-only">
+		<div class="panel text-center">
+			<div class="row">
+				<div class="small-12 columns">
+				{% if usuarioValido == true %}
+					<h1><i class="fa fa-check fa-fw fa-lg" style="color: #61bf26"></i></h1>
+					<h5 class="seccion"><b>Su dirección de email ha sido verificado</b></h5>
+					<hr>
+					<a href="{{ urlFor('shwPortal') }}" class="button large negative radius"><i class="fa fa-sign-in fa-fw"></i>Iniciar sesión</a>
+					{% else %}
+					<h1><i class="fa fa-unlink fa-fw" style="color: #bf2626"></i></h1>
+					<h5 class="seccion"><b>Link de verificación invalido</b></h5>
+					<hr>
+					<div class="descripcion">
+						El link ingresado es incorrecto. Verifique que el link que hemos enviado a su dirección de correo electrónico sea el mismo que ingresó en la barra de direcciones.
+					</div>
+					<div class="descripcion" style="margin: 15px 0;">
+						Si sigue viendo este mensaje, comuníquese con un administrador.
+					</div>
+					<a href="{{ urlFor('shwPortal') }}" class="button small negative radius"><i class="fa fa-home fa-fw"></i>Volver al inicio</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block modals %}{% endblock %}
+{# ----------------------------------------------------------- #}
+{% block scripts %}{% endblock %}
+{# ----------------------------------------------------------- #}
