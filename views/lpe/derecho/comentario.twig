@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-xs-1 col-sm-offset-1 text-center">
+        <a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}">
+            <img src="{{ avatarUrl(comentario.autor.img_tipo, comentario.autor.img_hash, 32) }}" class="img-circle" style="margin:0 auto 5px" alt="">
+            </a>
+    </div>
+    <div class="col-xs-11 col-sm-9">
+        <div class="clearfix">
+            <span class="pull-left text-info" style="margin-top:0"><strong>{{ comentario.autor.nombre }} {{ comentario.autor.apellido }}</strong></span>
+            <div class="pull-right">
+                <a href=""><i class="zmdi zmdi-alert-triangle zmdi-hc-fw zmdi-hc-lg"></i>Moderar</a> <a href=""><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Eliminar</a>
+            </div>
+        </div>
+        <p class="comentario">
+            {{ comentario.cuerpo|nl2br }}
+        </p>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 {% extends "lpe/master.twig" %} {% block linkhead %} {% endblock %} {# -----------------------------------------------------------
-#} {% block titulo %}Ver Derecho{% endblock %} {% block body %}
+#} {% block titulo %}{{ derecho.titulo }}{% endblock %} {% block body %}
 
 <article>
 
@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h1><strong>Neque porro quisquam est</strong></h1>
+                        <h1><strong>{{ derecho.titulo }}</strong></h1>
                         <h6><a href="#" class="btn btn-default"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar derecho</a> <a href="#" class="btn btn-warning"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Eliminar</a></h6>
                     </div>
                 </div>
@@ -20,178 +20,66 @@
             <div id="derecho" class="col-xs-12 col-sm-12 col-md-8 text-justify">
                 <div id="descripcion">
                     <h3><strong>Descripción</strong></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nihil blanditiis reiciendis autem maxime,
-                        ducimus ullam distinctio explicabo, accusamus ratione, modi delectus commodi sed odio officia eius
-                        repudiandae facere esse!</p>
+                    <p>{{ derecho.descripcion|bbCode }}</p>
                 </div>
                 <hr>
                 <h3><strong>Acciones</strong></h3>
-                <div class="accion">
-
+                {% for seccion in derecho.secciones %}
+                    <div class="accion">
                     <div class="pull-right" style="margin-left:20px">
-                        <h5>&nbsp;3/10<i class="zmdi zmdi zmdi-chart zmdi-hc-fw zmdi-hc-lg"></i></h5>
+                        <h5>&nbsp;{{seccion.votos_alta}}/{{seccion.votos_media}}/{{seccion.votos_baja}}<i class="zmdi zmdi zmdi-chart zmdi-hc-fw zmdi-hc-lg"></i></h5>
                     </div>
-                    <p class="lead">1) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi sint consequuntur, quibusdam beatae,
-                        molestias culpa eveniet debitis unde eum laboriosam similique aliquid nostrum perferendis minima
-                        voluptatum, veritatis eaque fuga nobis.</p>
+                    <p class="lead">{{seccion.descripcion}}</p>
                     <div class="text-center">
                         <h6><b>Importancia de la acción</b></h6>
-                        <div class="btn-group btn-group-justified" data-toggle="buttons" style="margin-bottom:20px;">
-                            <label class="btn btn-default">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> Alta
-  </label>
-                            <label class="btn btn-default">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Media
-  </label>
-                            <label class="btn btn-default">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Baja
-  </label>
+                        <div class="btn-group btn-group-justified">
+                            <a href="#" class="btn {{(votos[seccion.id] is not null) && (votos[seccion.id] == 3) ? 'btn-primary disabled','btn-default'}}">Alta</a>
+                            <a href="#" class="btn {{(votos[seccion.id] is not null) && (votos[seccion.id] == 2) ? 'btn-primary disabled','btn-default'}}">Media</a>
+                            <a href="#" class="btn {{(votos[seccion.id] is not null) && (votos[seccion.id] == 1) ? 'btn-primary disabled','btn-default'}}">Baja</a>
                         </div>
                     </div>
                     <div class="clearfix">
-                        <div class="pull-left">
-                            <span class="text-success">¡Gracias por tu opinión!</span>
-                            <span class="text-danger">Error</span>
-                            <span class=""><i class="zmdi zmdi-refresh zmdi-hc-spin zmdi-hc-fw zmdi-hc-lg"></i> Guardando..</span>
-                        </div>
                         <div class="pull-right">
-                            <a href="#" data-toggle="modal" data-target="#myModal" style="margin: 0 10px">Comentar</i></a>
-                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Tooltip on bottom"
-                                alt="">
-                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Tooltip on bottom"
-                                alt="">
-                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Tooltip on bottom"
-                                alt="">
-                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Tooltip on bottom"
-                                alt="">
-                            <a href="#" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal" title="Ver Comentarios"><i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i> 1</a>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" style="margin: 0 10px">Comentar</i></a>
+                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1"
+                                alt="Avatar">
+                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1"
+                                alt="Avatar">
+                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1"
+                                alt="Avatar">
+                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1"
+                                alt="Avatar">
+                            <a href="javascript:void(0)" class="btn btn-link btn-sm" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" data-toggle="tooltip" data-placement="bottom" data-original-title="Ver comentarios"><i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i> 1</a>
                         </div>
                     </div>
-                    <div id="myModal" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Modal title</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="well">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label class="col-xs-1 col-sm-offset-1 text-center"><img src="{{baseUrl()}}/assets/img/anon32.jpg" class="img-circle" style="margin:0 auto 5px" alt=""></label>
-                                                <div class="col-xs-11 col-sm-9">
-                                                    <span class="text-info"><strong>Guillermo CROPPI</strong></span>
-                                                    <textarea class="comentario form-control input-sm" rows="2" placeholder="Escriba aqui su comentario..."></textarea>
-                                                    <div class="clearfix" style="margin-top: 10px">
-                                                        <button type="reset" class="btn btn-default btn-sm">Cancelar</button>
-                                                        <button type="submit" class=" pull-right btn btn-primary btn-sm">Enviar comentario</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="lista-comentarios">
-                                        <div class="row">
-                                            <div class="col-xs-1 col-sm-offset-1 text-center">
-                                                <img src="{{baseUrl()}}/assets/img/anon32.jpg" class="img-circle" style="margin:0 auto 5px" alt="">
-                                            </div>
-                                            <div class="col-xs-11 col-sm-9">
-                                                <div class="clearfix">
-                                                <span class="pull-left text-info" style="margin-top:0"><strong>Guillermo Croppi</strong></span>
-                                                <div class="pull-right">
-<a href=""><i class="zmdi zmdi-alert-triangle zmdi-hc-fw zmdi-hc-lg"></i>Moderar</a> <a href=""><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Eliminar</a>
-                                                </div>
-                                                </div>
-                                                <p class="comentario">
-                                                    Lorem ipsum dolor sit amet, consectetur
-                                                    adipisicing elit. Alias nihil blanditiis reiciendis autem maxime, ducimus
-                                                    ullam distinctio explicabo, accusamus ratione, modi delectus commodi
-                                                    sed odio officia eius repudiandae facere esse!
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-link btn-block btn-sm" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% include 'lpe/derecho/comentarioModal.twig' %}
                 </div>
                 <hr>
+                {% endfor %}
             </div>
             <div class="col-md-4 hidden-sm hidden-xs">
+                {% if derecho.video is not null %}
                 <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 20px;">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/qkXOxLpdMds" frameborder="0" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{derecho.video}}" frameborder="0" allowfullscreen></iframe>
                 </div>
+                {% endif %}
+                {% for opinion in derecho.opiniones %}
                 <div class="panel">
                     <div class="panel-body tag-opinion" style="background-image: url('https://unsplash.it/505/300/?random');">
-                        <a href="#" data-toggle="modal" data-target="#myModal2">
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#opinion{{loop.index}}">
                             <div class="overlay">
-                                <h5><small>La opinión de..</small><br><b>Los legisladores</b></h5>
+                                <h5><small>La opinión de..</small><br><b>##TODO##</b></h5>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="panel">
-                    <div class="panel-body tag-opinion" style="background-image: url('https://unsplash.it/507/300/?random');">
-                        <a href="#" data-toggle="modal" data-target="#myModal2">
-                            <div class="overlay">
-                                <h5><small>La opinión de..</small><br><b>Los legisladores</b></h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-body tag-opinion" style="background-image: url('https://unsplash.it/500/300/?random');">
-                        <a href="#" data-toggle="modal" data-target="#myModal2">
-                            <div class="overlay">
-                                <h5><small>La opinión de..</small><br><b>Los legisladores</b></h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                {% include 'lpe/opinion/ver.twig' %}
+                {% endfor %}
                 <a href="#" class="btn btn-primary btn-block"><i class="zmdi zmdi-plus zmdi-hc-lg zmdi-hc-fw"></i>Nueva Opinion</a>
             </div>
         </div>
-
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body text-justify">
-                        <div class="header-opinion" style="background-image: url('https://unsplash.it/500/300/?random');">
-                            <div class="overlay text-center">
-                                <!--<img src="https://unsplash.it/300/200/?random" class="img-rounded" style="width:180px" alt="">-->
-                                <h3><small>La opinión de..</small><br><b>Los legisladores</b></h3>
-                                 <h6><a href="#" class="btn btn-default btn-sm"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar opinion</a> <a href="#" class="btn btn-warning btn-sm"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Eliminar</a></h6>
-                            </div>
-                        </div>
-                        <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti nemo esse illo facilis ratione!
-                            Doloribus voluptates cumque nemo neque asperiores sit numquam voluptas nostrum corporis deleniti
-                            consequatur, velit. Voluptatibus, quam!</p>
-                        <div class="embed-responsive embed-responsive-16by9" style="margin-bottom:20px">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/qkXOxLpdMds" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                        <p>Expedita recusandae fugit modi, sint, accusantium fugiat velit provident, sunt atque cumque numquam,
-                            exercitationem amet temporibus excepturi doloremque. Praesentium commodi error suscipit vitae,
-                            maiores sint excepturi placeat et perferendis nesciunt!</p>
-                        <p>Aut optio eos, corrupti nisi non ipsam quod eveniet iusto unde, praesentium est, odit incidunt dolores
-                            illum. Minima quae, debitis, at aperiam vero aliquam aspernatur accusamus temporibus est harum.
-                            Nulla.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class=" btn btn-link btn-block btn-sm" data-dismiss="modal" aria-label="Close"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 </article>
+
 {% endblock %} {# ----------------------------------------------------------- #} {% block scripts %}
 <script src="{{ baseUrl() }}/assets-lpe/js/autosize.min.js"></script>
 
