@@ -1,48 +1,41 @@
-{# VARIBLES #}
-{% set footer = false %}
-{% set barraNav = false %}
-{% set notificaciones = false %}
-{% set html_class = 'login-bg' %}
-{% set body_class = 'no-body-bg' %}
-
-{% extends "master.twig" %}
-
-{# ----------------------------------------------------------- #}
-{% block titulo %}Reiniciar contraseña{% endblock %}
-{# ----------------------------------------------------------- #}
-{% block linkhead %}{% endblock %}
-{# ----------------------------------------------------------- #}
+{% extends "lpe/master.twig" %} 
+{# ----------------------------------------------------------- #} 
+{% block titulo %}Reiniciar contraseña{% endblock %} 
 {% block body %}
 
-<div class="registro login row">
-	<div class="medium-8 medium-centered columns no-padding-small-only">
-		<div class="panel text-center panel-inicio">
-			<div class="row">
-				<div class="small-12 columns">
-					<h1 class="seccion"><b>Reinicio de contraseña</b></h1>
-					<hr>
-				</div>
+<div class="container">
+	<div class="row">
+		<div class="panel-inicio col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 ">
+			<h2><strong>Reiniciar contraseña</strong></h2>
+			<div class="well well-lg">
+				<form action="{{ urlFor('runReiniciarClave',{'idUsu': idUsu,'token': token}) }}" method="POST" class="form-horizontal">
+					<fieldset>
+						 <div class="form-group">
+                            <label for="inputPassword" class="col-md-2 control-label">Contraseña</label>
+                            <div class="col-md-10">
+                                <input name="password" type="password" placeholder="Escriba aquí su contraseña" id="inputPassword" class="form-control" data-error="Complete el campo con una contraseña" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input name="password2" type="password" placeholder="Reingrese su contraseña" class="form-control" data-match="#inputPassword"  data-error="Reingrese la contraseña que ha ingresado en el campo anterior" data-match-error="Las contraseñas no son iguales. Revisé" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+					</fieldset>
+				</form>
+				 <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Reiniciar contraseña<i class="zmdi zmdi-shield-check zmdi-hc-lg zmdi-hc-fw"></i></button>
+                </div>
 			</div>
-			<div class="row">
-				<div class="small-11 medium-10 large-8 small-centered columns">
-					<form action="{{ urlFor('runReiniciarClave',{'idUsu': idUsu,'token': token}) }}" method="POST">
-						<input name="password" type="password" placeholder="Nueva contraseña" style="border: 1px solid #ccc; border-radius: 0px;" required>
-						<input name="password2" type="password" placeholder="Confirmar nueva contraseña" required>
-						<button class="button radius large expand"><i class="fa fa-sign-in fa-fw"></i>&nbsp;Reiniciar contraseña</button>
-						<div style="margin-top: 15px;">
-						</div>
-					</form>
-				</div>
-			</div>
+		</div>
 		</div>
 	</div>
 </div>
 
-
-{% endblock %}
-{# ----------------------------------------------------------- #}
-{% block modals %}{% endblock %}
-{# ----------------------------------------------------------- #}
+{% endblock %} 
+{# ----------------------------------------------------------- #} 
 {% block scripts %}
+<script src="{{ baseUrl() }}/assets-lpe/js/validator.min.js"></script>
 {% endblock %}
-{# ----------------------------------------------------------- #}

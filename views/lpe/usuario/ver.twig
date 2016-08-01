@@ -26,27 +26,28 @@ endblock %} {% block body %}
                 </li>
                 {% endfor%} {% else %}
                 <li class="list-group-item">
-                    <i class="zmdi zmdi-close zmdi-hc-fw"></i> No hay acciones realizadas por el usuario
+                    <i class="zmdi zmdi-check zmdi-hc-fw"></i> No hay acciones realizadas por el usuario
                 </li>
                 {% endif %}
             </ul>
         </div>
         <div class="col-sm-6">
             <h4><strong>Comentarios</strong></h4>
-               {% if acciones|length > 0 %} {% for accion in acciones %}
-                <blockquote>
+            <blockquote>
                 <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                 <p class="lead"><small>Comentario en <cite title="Source Title">"Derecho 1"</cite> el 3/10/2016</small></p>
             </blockquote>
-            {% if loop.last == false %}
             <hr>
-            {% endif %}
-                {% endfor%} {% else %}
-                <blockquote>
-                <p class="lead"><i class="zmdi zmdi-close zmdi-hc-fw"></i> No hay comentarios hechos por el <usuario></usuario></p>
+            <blockquote>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <p class="lead"><small>Comentario en <cite title="Source Title">"Derecho 1"</cite> el 3/10/2016</small></p>
             </blockquote>
-                {% endif %}
-       
+            <hr>
+            <blockquote>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <p class="lead"><small>Comentario en <cite title="Source Title">"Derecho 1"</cite> el 3/10/2016</small></p>
+            </blockquote>
+            <hr>
         </div>
     </div>
 </div>

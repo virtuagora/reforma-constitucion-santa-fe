@@ -10,9 +10,18 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 <head>
     <meta charset="utf-8">
     <title>Asistente de instalación Virtuágora</title>
-    <link rel="stylesheet" href="assets/css/app.css" />
+    <link rel="stylesheet" href="assets-lpe/css/lpe.css" />
 </head>
 <body>
+<div class="container" style="margin-top:20px";>
+<div class="row">
+<div class="col-sm-6 col-sm-offset-3">
+<div class="panel panel-primary">
+<div class="panel-heading">
+    <h3 class="panel-title">Instalar Virtuagora (LPE)</h3>
+  </div>
+  <div class="panel-body">
+
 <?php if(isset($_POST['submit'])) {
 $titulo = '¡Virtuágora se ha instalado exitosamente!';
 $descrp = 'Ya puede comenzar a utilizar la plataforma, pero primero elimine este archivo para evitar inconvenientes de seguridad.';
@@ -388,33 +397,50 @@ try {
     $descrp = 'No puede establecerse conexión con la base de datos. Revise el archivo de configuracion.';
     $exito = false;
 }?>
-    <div class="row"><div class="small-6 small-centered columns panel callout radius">
-        <h4><?php echo $titulo ?></h4>
-        <p><?php echo $descrp ?></p>
-    </div></div>
-    <?php if ($exito) { ?>
-    <div class="row"><div class="small-6 small-centered columns panel callout radius">
-        <a class="button expand" href='./'>Ir a Virtuágora</a>
-    </div></div>
+<h2><strong><?php echo $titulo ?></strong></h2>
+<p class="lead"><?php echo $descrp ?></p>
+<?php if ($exito) { ?>
+        <hr>
+        <a class="btn btn-primary btn-block" href='./'>Comenzar</a>
     <?php } ?>
 <?php } else { ?>
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <div class="row"><div class="small-6 small-centered columns panel callout radius">
-        <h4>¡Bienvenido!</h4>
-        <p>Muchas gracias por elegir Virtuágora. Por favor complete los siguientes datos para crear
+    <form method="post" class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <h2><strong>¡Bienvenido!</strong></h2>
+<p class="lead">Muchas gracias por elegir Virtuágora. Por favor complete los siguientes datos para crear
             la cuenta de administrador principal de la plataforma.</p>
-    </div></div>
-    <div class="row"><div class="small-6 small-centered columns panel callout radius">
-        <h4>Crear cuenta de administrador:</h4>
-        <label for="subject">Email: <input name="usr_email" type="text"></label>
-        <label for="subject">Nombre: <input name="usr_nombre" type="text"></label>
-        <label for="subject">Apellido: <input name="usr_apellido" type="text"></label>
-        <label for="subject">Contraseña: <input name="usr_password" type="password"></label>
-    </div></div>
-    <div class="row"><div class="small-6 small-centered columns panel callout radius">
-        <input class="button expand" type="submit" name="submit" value="Instalar">
-    </div></div>
+            <hr>
+            <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-10">
+        <input type="text" name="usr_email" class="form-control" id="inputEmail" placeholder="miemail@dominio.com">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputNombre" class="col-lg-2 control-label">Nombre</label>
+      <div class="col-lg-10">
+        <input type="text" name="usr_nombre" class="form-control" id="inputNombre" placeholder="Juan">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputApellido" class="col-lg-2 control-label">Apellido</label>
+      <div class="col-lg-10">
+        <input type="text" name="usr_apellido" class="form-control" id="inputApellido" placeholder="Perez">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Contraseña</label>
+      <div class="col-lg-10">
+        <input type="password" name="usr_password" class="form-control" id="inputPassword" placeholder="">
+      </div>
+    </div>
+    <hr>
+    <button type="submit" class="btn btn-primary btn-block" name="submit" value="Instalar">Instalar</button>
     </form>
 <?php } ?>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

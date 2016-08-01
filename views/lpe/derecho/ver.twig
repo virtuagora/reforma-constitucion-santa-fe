@@ -41,14 +41,8 @@
                     <div class="clearfix">
                         <div class="pull-right">
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" style="margin: 0 10px">Comentar</i></a>
-                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1"
-                                alt="Avatar">
-                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1"
-                                alt="Avatar">
-                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1"
-                                alt="Avatar">
-                            <img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1"
-                                alt="Avatar">
+                            <!--<img src="https://unsplash.it/300/300/?random" class="img-circle size32" data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1"
+                                alt="Avatar">-->
                             <a href="javascript:void(0)" class="btn btn-link btn-sm" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" data-toggle="tooltip" data-placement="bottom" data-original-title="Ver comentarios"><i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i> 1</a>
                         </div>
                     </div>
@@ -90,11 +84,6 @@
         $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 })
-$('#nav-derechos').affix({
-    offset: {
-        top: 400,
-        bottom:250
-    }
-});
+
     })     
 </script> {% endblock %}

@@ -1,43 +1,20 @@
-{# VARIBLES #}
-{% set footer = false %}
-{% set barraNav = false %}
-{% set notificaciones = false %}
-{% set html_class = 'registro-exito-bg' %}
-{% set body_class = 'no-body-bg' %}
-
-{% extends "master.twig" %}
-
-{# ----------------------------------------------------------- #}
-{% block titulo %}Registro exitoso{% endblock %}
-{# ----------------------------------------------------------- #}
-{% block linkhead %}{% endblock %}
-{# ----------------------------------------------------------- #}
+{% extends "lpe/master.twig" %} 
+{# ----------------------------------------------------------- #} 
+{% block titulo %}Verifique su correo electronico{% endblock %} 
 {% block body %}
 
-<div class="registro row">
-	<div class="medium-8 medium-centered columns no-padding-small-only">
-		<div class="panel text-center">
-			<div class="row">
-				<div class="small-12 columns">
-					<h1><i class="fa fa-envelope fa-fw fa-lg" style="color: #61bf26"></i></h1>
-					<h5 class="seccion" ><b>Verifique su correo electronico</b></h5>
-					<hr>
-					<div class="descripcion">
-						Antes de comenzar, es necesario que <b>verifique su direccion de correo electrónico</b>. Para ello, le hemos enviado a su dirección de email <b>{{ email }}</b> un correo para realizar la verificación de su cuenta.
-					</div>
-					<div class="descripcion" style="margin: 15px 0;">
-						Le pedimos que ingrese a su email y realice la verificación. Una vez hecho, ya podrá comenzar a utilizar el portal.
-					</div>
-					<a href="{{ urlFor('shwPortal') }}" class="button small negative radius"><i class="fa fa-home fa-fw"></i>Ir al portal</a>
-				</div>
-			</div>
+<div class="container">
+	<div class="row">
+		<div class="panel-inicio col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 ">
+			<h2><strong>Verifique su correo electronico</strong></h2>
+			<p>Antes de comenzar, es necesario que <b>verifique su direccion de correo electrónico</b>. Para ello, le hemos enviado a su dirección de email <b>{{ email }}</b> un correo para realizar la verificación de su cuenta.</p>
+			<p>Le pedimos que ingrese a su email y realice la verificación. Una vez hecho, ya podrá comenzar a utilizar el portal.</p>
+						<a href="{{ urlFor('shwPortal') }}" class="button large negative radius"><i class="fa fa-sign-in fa-fw"></i> Volver al portal</a>
 		</div>
 	</div>
 </div>
 
+{% endblock %} 
+{# ----------------------------------------------------------- #} 
+{% block scripts %}
 {% endblock %}
-{# ----------------------------------------------------------- #}
-{% block modals %}{% endblock %}
-{# ----------------------------------------------------------- #}
-{% block scripts %}{% endblock %}
-{# ----------------------------------------------------------- #}
