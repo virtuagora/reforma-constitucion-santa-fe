@@ -1,7 +1,7 @@
 {% extends "lpe/master.twig" %} {% block linkhead %}
 <link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
 %} {% block body %}
-<form id="crearDerecho" action="{# urlFor() #}" type="POST" enctype="multipart/form-data">
+<form id="crearDerecho" action="{{ urlFor('runCrearDerecho') }}" type="POST" enctype="multipart/form-data">
 
     <div class="titulo-derecho-background">
         <div class="overlay">
@@ -159,5 +159,6 @@
         });
         secciones.join('&&');
         $('input[name=secciones]').val(secciones);
+        return true;
 });
 </script> {% endblock %}
