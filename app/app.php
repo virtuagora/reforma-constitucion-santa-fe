@@ -144,6 +144,11 @@ $app->get('/test', function () use ($app) {
 });
 });
 
+$app->group('/derecho', function () use ($app, $checkRole, $checkModifyAuth) {
+    $app->get('/crear', $checkRole('usr'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
+    $app->post('/crear', $checkRole('usr'), 'DerechoCtrl:crear')->name('runCrearDerecho');
+    $app->get('/:idDer', 'DerechoCtrl:ver')->name('shwDerecho');
+});
 
 $app->get('/', 'PortalCtrl:verIndex')->name('shwIndex');
 $app->get('/portal', 'PortalCtrl:verPortal')->name('shwPortal');
