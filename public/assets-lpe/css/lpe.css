@@ -9965,6 +9965,11 @@ figure:hover:before {
   background-image: linear-gradient(to bottom, #563d7c 0, #6f5499 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
 }
+/* line 231, ../scss/lpe.scss */
+.grid-sizer h4,
+.grid-item h4 {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
 @media (max-width: 767px) {
   /* line 219, ../scss/lpe.scss */
   .grid-sizer,
@@ -9991,18 +9996,18 @@ figure:hover:before {
 }
 
 /* 2 columns */
-/* line 248, ../scss/lpe.scss */
+/* line 249, ../scss/lpe.scss */
 .grid-item--width2 {
   width: 50%;
 }
 
-/* line 254, ../scss/lpe.scss */
+/* line 255, ../scss/lpe.scss */
 #body-editor {
   font-size: 14px;
   line-height: 21px;
 }
 
-/* line 261, ../scss/lpe.scss */
+/* line 262, ../scss/lpe.scss */
 input[type=text].form-control.input-lg, .input-group-lg > input[type=text].form-control,
 .input-group-lg > .input-group-btn > input[type=text].form-control.btn,
 textarea.form-control.input-lg,
@@ -10011,12 +10016,12 @@ textarea.form-control.input-lg,
   font-size: 30px;
 }
 
-/* line 266, ../scss/lpe.scss */
+/* line 267, ../scss/lpe.scss */
 .bolder {
   font-weight: 700;
 }
 
-/* line 271, ../scss/lpe.scss */
+/* line 272, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background {
   background-color: #6f5499;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#563d7c), to(#6f5499));
@@ -10027,11 +10032,11 @@ textarea.form-control.input-lg,
   background-repeat: repeat-x;
   margin-bottom: 40px;
 }
-/* line 280, ../scss/lpe.scss */
+/* line 281, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background .overlay {
   padding: 30px 0;
 }
-/* line 284, ../scss/lpe.scss */
+/* line 285, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background textarea {
   color: #FFF;
   background-color: none;
@@ -10043,19 +10048,19 @@ textarea.form-control.input-lg,
   resize: none;
   margin: 23px 0 11.5px;
 }
-/* line 296, ../scss/lpe.scss */
+/* line 297, ../scss/lpe.scss */
 #crearDerecho textarea.accion {
   font-size: 19.5px;
   line-height: 27.3px;
   font-weight: 300;
   padding: 0 0 10px;
 }
-/* line 302, ../scss/lpe.scss */
+/* line 303, ../scss/lpe.scss */
 #crearDerecho .btn-file {
   position: relative;
   overflow: hidden;
 }
-/* line 306, ../scss/lpe.scss */
+/* line 307, ../scss/lpe.scss */
 #crearDerecho .btn-file input[type=file] {
   position: absolute;
   top: 0;
@@ -10072,7 +10077,7 @@ textarea.form-control.input-lg,
   display: block;
 }
 
-/* line 325, ../scss/lpe.scss */
+/* line 326, ../scss/lpe.scss */
 article .titulo-derecho-background {
   color: #cdbfe3;
   text-align: center;
@@ -10081,92 +10086,97 @@ article .titulo-derecho-background {
   margin-bottom: 40px;
   background-size: cover;
 }
-/* line 338, ../scss/lpe.scss */
+/* line 339, ../scss/lpe.scss */
 article .titulo-derecho-background h1 {
   color: #FFF;
 }
-/* line 339, ../scss/lpe.scss */
+/* line 340, ../scss/lpe.scss */
 article .titulo-derecho-background .overlay {
   background: rgba(0, 0, 0, 0.3);
   padding: 30px 0;
 }
-/* line 344, ../scss/lpe.scss */
+/* line 345, ../scss/lpe.scss */
+article #derecho #descripcion {
+  font-size: 14px;
+  line-height: 21px;
+}
+/* line 349, ../scss/lpe.scss */
 article span.badge {
   background-color: #2196F3;
 }
-/* line 347, ../scss/lpe.scss */
+/* line 352, ../scss/lpe.scss */
 article #nav-derechos.affix {
   top: 30px;
 }
-/* line 351, ../scss/lpe.scss */
+/* line 356, ../scss/lpe.scss */
 article #nav-derechos > a {
   padding: 10px;
 }
-/* line 354, ../scss/lpe.scss */
+/* line 359, ../scss/lpe.scss */
 article p {
   font-size: 14px;
   line-height: 21px;
 }
-/* line 358, ../scss/lpe.scss */
+/* line 363, ../scss/lpe.scss */
 article img.size32 {
   width: 32px;
 }
-/* line 361, ../scss/lpe.scss */
+/* line 366, ../scss/lpe.scss */
 article p.comentario {
   font-size: 12px;
   line-height: 1.5;
 }
-/* line 365, ../scss/lpe.scss */
+/* line 370, ../scss/lpe.scss */
 article textarea.comentario {
   resize: vertical;
 }
 
-/* line 405, ../scss/lpe.scss */
+/* line 410, ../scss/lpe.scss */
 .tag-opinion {
   padding: 0;
   text-align: center;
 }
-/* line 408, ../scss/lpe.scss */
+/* line 413, ../scss/lpe.scss */
 .tag-opinion img {
   left: 0;
 }
-/* line 412, ../scss/lpe.scss */
+/* line 417, ../scss/lpe.scss */
 .tag-opinion .overlay {
   background: rgba(0, 0, 0, 0.4);
   padding: 15px;
 }
-/* line 416, ../scss/lpe.scss */
+/* line 421, ../scss/lpe.scss */
 .tag-opinion h5 {
   color: #FFF;
 }
-/* line 419, ../scss/lpe.scss */
+/* line 424, ../scss/lpe.scss */
 .tag-opinion a:hover {
   text-decoration: none;
 }
 
-/* line 429, ../scss/lpe.scss */
+/* line 434, ../scss/lpe.scss */
 .header-opinion {
   border-radius: 5px;
   background-size: cover;
   margin-bottom: 20px;
 }
-/* line 433, ../scss/lpe.scss */
+/* line 438, ../scss/lpe.scss */
 .header-opinion .overlay {
   background: rgba(0, 0, 0, 0.4);
   padding: 40px 0 55px;
   border-radius: 5px;
 }
-/* line 438, ../scss/lpe.scss */
+/* line 443, ../scss/lpe.scss */
 .header-opinion h3 {
   color: #FFF;
 }
 
-/* line 446, ../scss/lpe.scss */
+/* line 451, ../scss/lpe.scss */
 .editor-area {
   font-size: 14px;
 }
 
-/* line 451, ../scss/lpe.scss */
+/* line 456, ../scss/lpe.scss */
 #modificarInicio textarea[name=titulo] {
   font-size: 56px;
   font-weight: 700;
@@ -10177,7 +10187,7 @@ article textarea.comentario {
   margin-bottom: 15px;
   color: #444;
 }
-/* line 461, ../scss/lpe.scss */
+/* line 466, ../scss/lpe.scss */
 #modificarInicio textarea[name=descripcion] {
   font-size: 19.5px;
   line-height: 27.3px;

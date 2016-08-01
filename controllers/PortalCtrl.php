@@ -3,21 +3,21 @@
 class PortalCtrl extends Controller {
 
     public function verIndex() {
-        //$derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-        //$this->render('portal/inicio.twig', $derechos);
-        if ($this->session->check()) {
-            $this->render('portal/inicio.twig');
-        } else {
-            $this->render('portal/introduccion.twig');
-        }
+        $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
+        $this->render('lpe/portal/inicio.twig',  ['derechos' => $derechos]);
+        // if ($this->session->check()) {
+        //     $this->render('portal/inicio.twig');
+        // } else {
+            // $this->render('lpe/portal/inicio.twig');
+        // }
     }
 
     public function verPortal() {
-        $this->render('portal/contenidos.twig');
+        $this->render('lpe/portal/inicio.twig');
     }
 
     public function verLogin() {
-        $this->render('registro/login-static.twig');
+        $this->render('lpe/registro/login-static.twig');
     }
 
     public function verTos() {
@@ -32,7 +32,7 @@ class PortalCtrl extends Controller {
             ->addRule('password', new Validate\Rule\MaxLength(128));
         $req = $this->request;
         if ($vdt->validate($req->post()) && $this->session->login($vdt->getData('email'), $vdt->getData('password'))) {
-            $this->redirectTo('shwPortal');
+            $this->redirectTo('shwIndex');
         } else {
             $this->flash('errors', array('Datos de ingreso incorrectos. Por favor vuelva a intentarlo.'));
             $this->redirectTo('shwLogin');
@@ -45,7 +45,7 @@ class PortalCtrl extends Controller {
     }
 
     public function verRegistrar() {
-        $this->render('registro/registro.twig');
+        $this->render('lpe/registro/registro.twig');
     }
 
     public function registrar() {

@@ -1,7 +1,7 @@
 {% extends "lpe/master.twig" %} {% block linkhead %}
 <link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
 %} {% block body %}
-<form id="crearDerecho" action="{{ urlFor('runCrearDerecho') }}" type="POST" enctype="multipart/form-data">
+<form id="crearDerecho" action="{{ urlFor('runCrearDerecho') }}" method="POST" enctype="multipart/form-data">
 
     <div class="titulo-derecho-background">
         <div class="overlay">
@@ -36,9 +36,9 @@
                     <button type="submit" class="btn btn-lg btn-primary pull-right">Subir nuevo derecho</button>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-xs-12 col-sm-12 col-md-4">
                 <div id="youtubeVideo" class="embed-responsive embed-responsive-16by9" style="margin-bottom: 20px;">
-                    <iframe class="embed-responsive-item" id="youtubeVideo" src="https://www.youtube.com/embed/Mtf7pocKg-E" frameborder="0" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" id="youtubeVideo" src="https://www.youtube.com/embed/7uulVAHwXi0" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Imagen de Cabecera</label><br>
@@ -58,17 +58,17 @@
                     <label class="control-label">Video de Youtube</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="zmdi zmdi-youtube-play zmdi-hc-lg"></i></span>
-                        <input name="video" class="form-control" placeholder="Ej: Mtf7pocKg-E" type="text">
+                        <input name="video" class="form-control" placeholder="Ej: 7uulVAHwXi0" type="text">
                     </div>
                 </div>
                 <div class="alert alert-dismissible alert-info">
-                    Debe colocar el codigo que aparece en la URL del video, luego de la porcion "?v=". Por ejemplo, de <i>https://www.youtube.com/watch?v=Mtf7pocKg-E</i>
-                    la porcion seria <code>Mtf7pocKg-E</code><br>De ser correcto, el video tendria que mostrarse.
+                    Debe colocar el codigo que aparece en la URL del video, luego de la porcion "?v=". Por ejemplo, de <i>https://www.youtube.com/watch?v=7uulVAHwXi0</i>
+                    la porcion seria <code>7uulVAHwXi0</code><br>De ser correcto, el video tendria que mostrarse.
                 </div>
                 <h6 class="text-info"><b>Nota:</b> Las opiniones se podran cargar LUEGO que el derecho haya sido creado</h6>
             </div>
             <input type="text" name="secciones" value="" hidden>
-            <input type="text" name="categoria" value="0" hidden>
+            <input type="text" name="categoria" value="1" hidden>
             <input type="text" name="tags" value="" hidden>
              <div class="clearfix hidden-md hidden-lg">
                     <a href="#" class="btn btn-large btn-default ">Cancelar</a>
@@ -149,16 +149,18 @@
             style: "{{ baseUrl() }}/assets-lpe/css/lpe.css",
             resizeEnabled: false,
             resizeHeight: true,
-            autoExpand: true
+            autoExpand: true,
+            enablePasteFiltering: true
         });
     }
-    $( "form" ).on( "submit", function( event ) {
+    $( "form" ).submit(function( event ) {
         var secciones = [];        
         $( "textarea[name=cuerpo]" ).each(function( index ) {
         secciones.push($( this ).val());
         });
-        secciones.join('&&');
-        $('input[name=secciones]').val(secciones);
+        var seccionesString = secciones.join("&&")
+        alert(seccionesString)
+        $('input[name=secciones]').val(seccionesString);
         return true;
 });
 </script> {% endblock %}

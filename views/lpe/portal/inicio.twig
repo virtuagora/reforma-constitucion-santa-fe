@@ -26,7 +26,7 @@ endblock %} {% block body %}
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
                         <div class="embed-responsive embed-responsive-16by9" style="margin: 80px 0;">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/RcmfJGyd-ak" frameborder="0" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" width="853" height="480"  src="https://www.youtube.com/embed/7uulVAHwXi0" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ endblock %} {% block body %}
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
                         <div class="embed-responsive embed-responsive-16by9" style="margin: 80px 0;">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/RcmfJGyd-ak" frameborder="0" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" width="853" height="480"  src="https://www.youtube.com/embed/Pgbd9U1DSlw" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ endblock %} {% block body %}
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
                         <div class="embed-responsive embed-responsive-16by9" style="margin: 80px 0;">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/RcmfJGyd-ak" frameborder="0" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" width="853" height="480"  src="https://www.youtube.com/embed/0bjGYHMeX38" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@ endblock %} {% block body %}
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
                         <div class="embed-responsive embed-responsive-16by9" style="margin: 80px 0;">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/RcmfJGyd-ak" frameborder="0" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" width="853" height="480"  src="https://www.youtube.com/embed/qE4Q02CTuDg" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -90,19 +90,20 @@ endblock %} {% block body %}
                 <h2><b>Los derechos a debatir</b></h2>
                 <hr>
             </div>
+            {% if derechos|length > 0 %}
             <div class="grid">
                 <div class="grid-sizer"></div>
                 {% for derecho in derechos %}
-                <a href="">
-                    <div class="grid-item">
-                        <figure class="cap-bot">
+                <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
+                    <div class="grid-item" style="background-image: url('https://unsplash.it/200/200/?random={{ random(1000) }}'); background-size:cover;">
+                        <figure class="cap-bot" style="background-color:rgba(0,0,0, 0.20);">
                             <div class="text-center">
-                                <h4 class="">{{ derecho.titulo }}/h4>
+                                <h4>{{ derecho.titulo }}</h4>
                                 {% set numComents = 0 %}
                                 {% for seccion in derecho.secciones %}
                                 {% set numComents = numComents + seccion.comentarios|length %}
                                 {% endfor %}
-                                <div class="btn btn-xs btn-default"><i class="mdi mdi-comment-multiple-outline"></i> {{ numComents }}</div>
+                                <div class="btn btn-xs btn-default"><i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i>{{ numComents }}</div>
                             </div>
                             <figcaption>
                                 Haga clic para saber mas del derecho.
@@ -111,6 +112,12 @@ endblock %} {% block body %}
                     </div>
                 </a>
                 {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center">
+
+                <p>ERROR CRITICO</p>
+            {% endif %}
             </div>
         </div>
     </div>

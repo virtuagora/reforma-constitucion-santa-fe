@@ -4,9 +4,9 @@ class DerechoCtrl extends Controller {
 
     public function ver($idDer) {
         $vdt = new Validate\QuickValidator(array($this, 'notFound'));
-        $vdt->test($idDoc, new Validate\Rule\NumNatural());
-        $derecho = Documento::with('contenido.tags')->findOrFail($idDer);
-        $contenido = $documento->contenido;
+        $vdt->test($idDer, new Validate\Rule\NumNatural());
+        $derecho = Derecho::with('contenido.tags')->findOrFail($idDer);
+        $contenido = $derecho->contenido;
         $datosDer = array_merge($contenido->toArray(), $derecho->toArray());
         $this->render('lpe/contenido/derecho/ver.twig', [
             'derecho' => $datosDer,
@@ -21,7 +21,7 @@ class DerechoCtrl extends Controller {
 
     public function crear() {
         $req = $this->request;
-        $vdt = $this->validarDorecho($req->post());
+        $vdt = $this->validarDerecho($req->post());
         $autor = $this->session->getUser();
         $derecho = new Derecho;
         $derecho->descripcion = $vdt->getData('descripcion');
@@ -32,6 +32,7 @@ class DerechoCtrl extends Controller {
         foreach ($acciones as $accion) {
             $newAccion = new Seccion;
             $newAccion->descripcion = $accion;
+            $newAccion->derecho()->associate($derecho);
             $newAccion->save();
         }
         $contenido = new Contenido;
@@ -42,7 +43,7 @@ class DerechoCtrl extends Controller {
         $contenido->contenible()->associate($derecho);
         $contenido->save();
         TagCtrl::updateTags($contenido, TagCtrl::getTagIds($vdt->getData('tags')));
-        UserlogCtrl::createLog('newDocumen', $autor->id, $documento);
+        UserlogCtrl::createLog('newDocumen', $autor->id, $derecho);
         $autor->increment('puntos', 25);
         $this->flash('success', 'El derecho se creó exitosamente.');
         $this->redirectTo('shwDerecho', array('idDer' => $derecho->id));
@@ -53,14 +54,14 @@ class DerechoCtrl extends Controller {
         $vdt->addRule('titulo', new Validate\Rule\MinLength(8))
             ->addRule('titulo', new Validate\Rule\MaxLength(128))
             ->addRule('descripcion', new Validate\Rule\MinLength(8))
-            ->addRule('descripcion', new Validate\Rule\MaxLength(2048))
+            // ->addRule('descripcion', new Validate\Rule\MaxLength(2048))
             ->addRule('categoria', new Validate\Rule\NumNatural())
             ->addRule('categoria', new Validate\Rule\Exists('categorias'))
             ->addRule('video', new Validate\Rule\MinLength(8))
             ->addRule('video', new Validate\Rule\MaxLength(16))
             ->addRule('secciones', new Validate\Rule\MinLength(4))
-            ->addRule('secciones', new Validate\Rule\MaxLength(512))
-            ->addFilter('secciones', FilterFactory::explode('|'))
+            // ->addRule('secciones', new Validate\Rule\MaxLength(512))
+            ->addFilter('secciones', FilterFactory::explode('&&'))
             ->addFilter('tags', FilterFactory::explode(','));
         if (!$vdt->validate($data)) {
             throw new TurnbackException($vdt->getErrors());

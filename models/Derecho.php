@@ -1,7 +1,7 @@
 <?php
 
 class Derecho extends Contenible {
-    //protected $table = 'derecho';
+    protected $table = 'derechos';
     protected $dates = ['deleted_at'];
     protected $visible = ['id', 'descripcion', 'secciones', 'video'];
     protected $with = ['secciones'];
