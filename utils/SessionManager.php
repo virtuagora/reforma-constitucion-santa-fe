@@ -10,7 +10,7 @@ class SessionManager {
     public function login($email, $password) {
         $success = false;
         $usuario = Usuario::where('email', $email)->first();
-        if ($usuario && password_verify($password, $usuario->password)) {
+        if ($usuario && md5($password) == $usuario->password) {
             if ($usuario->suspendido) {
                 if (is_null($usuario->fin_suspension) || Carbon\Carbon::now()->lt($usuario->fin_suspension)) {
                     throw new TurnbackException('Su cuenta se encuentra suspendida.');

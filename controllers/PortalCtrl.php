@@ -3,6 +3,8 @@
 class PortalCtrl extends Controller {
 
     public function verIndex() {
+        //$derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
+        //$this->render('portal/inicio.twig', $derechos);
         if ($this->session->check()) {
             $this->render('portal/inicio.twig');
         } else {

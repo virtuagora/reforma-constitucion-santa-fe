@@ -4,7 +4,7 @@ $capsule = new Illuminate\Database\Capsule\Manager;
 $capsule->addConnection([
     'driver' => 'mysql',
     'host' => 'localhost',
-    'database' => 'virtuagora',
+    'database' => 'nlpe',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',

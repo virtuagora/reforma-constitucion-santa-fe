@@ -201,6 +201,31 @@ try {
             $table->integer('tag_id')->unsigned();
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
         });
+        Capsule::schema()->create('derechos', function($table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->text('descripcion');
+            $table->string('video');
+            $table->boolean('imagen');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+        Capsule::schema()->create('secciones', function($table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('descripcion');
+            $table->timestamps();
+        });
+        Capsule::schema()->create('seccion_votos', function($table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->integer('postura');
+            $table->integer('usuario_id')->unsigned();
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
+            $table->integer('seccion_id')->unsigned();
+            $table->foreign('seccion_id')->references('id')->on('secciones')->onDelete('cascade');
+            $table->timestamps();
+        });
         Capsule::schema()->create('propuestas', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -311,6 +336,19 @@ try {
             $table->foreign('comentario_id')->references('id')->on('comentarios')->onDelete('cascade');
             $table->timestamps();
         });
+        Capsule::schema()->create('opiniones', function($table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->text('cuerpo');
+            $table->integer('partido_id')->unsigned();
+            $table->integer('derecho_id')->unsigned();
+            $table->integer('evento_id')->unsigned()->nullable();
+            $table->foreign('partido_id')->references('id')->on('partidos');
+            $table->foreign('derecho_id')->references('id')->on('derechos');
+            $table->foreign('evento_id')->references('id')->on('eventos');
+            $table->timestamps();
+            $table->softDeletes();
+        });
         $ajuste = new Ajuste;
         $ajuste->key = 'tos';
         $ajuste->value_type = 'txt';
@@ -322,7 +360,7 @@ try {
         $categoria->save();
         $usuario = new Usuario;
         $usuario->email = $_POST['usr_email'];
-        $usuario->password = password_hash($_POST['usr_password'], PASSWORD_DEFAULT);
+        $usuario->password = md5($_POST['usr_password']);
         $usuario->nombre = $_POST['usr_nombre'];
         $usuario->apellido = $_POST['usr_apellido'];
         $usuario->img_tipo = 1;
