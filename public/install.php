@@ -222,7 +222,9 @@ try {
         Capsule::schema()->create('secciones', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('descripcion');
+            $table->string('descripcion', 1024);
+            $table->integer('derecho_id')->unsigned();
+            $table->foreign('derecho_id')->references('id')->on('derechos');
             $table->timestamps();
         });
         Capsule::schema()->create('seccion_votos', function($table) {
