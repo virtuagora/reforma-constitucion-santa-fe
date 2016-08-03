@@ -3,20 +3,31 @@
 class DerechoCtrl extends Controller {
 
     public function ver($idDer) {
-        $vdt = new Validate\QuickValidator(array($this, 'notFound'));
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idDer, new Validate\Rule\NumNatural());
         $derecho = Derecho::with('contenido.tags')->findOrFail($idDer);
         $contenido = $derecho->contenido;
         $datosDer = array_merge($contenido->toArray(), $derecho->toArray());
+        
+        $votosUsr = [];
+        if ($this->session->user('id')) {
+            $votos = $derecho->votos()->where('usuario_id', $this->session->user('id'))->get();
+            foreach ($votos as $voto) {
+                $votosUsr[$voto->seccion_id] = $voto->postura;
+            }
+        }
+        
         $this->render('lpe/contenido/derecho/ver.twig', [
             'derecho' => $datosDer,
-            'voto' => [] // [idSeccion => postura]
+            'voto' => $votosUsr
         ]);
     }
 
     public function verCrear() {
         $categorias = Categoria::all();
-        $this->render('lpe/contenido/derecho/crear.twig', array('categorias' => $categorias->toArray()));
+        $this->render('lpe/contenido/derecho/crear.twig', [
+            'categorias' => $categorias->toArray()
+        ]);
     }
 
     public function crear() {
@@ -43,10 +54,30 @@ class DerechoCtrl extends Controller {
         $contenido->contenible()->associate($derecho);
         $contenido->save();
         TagCtrl::updateTags($contenido, TagCtrl::getTagIds($vdt->getData('tags')));
-        UserlogCtrl::createLog('newDocumen', $autor->id, $derecho);
         $autor->increment('puntos', 25);
         $this->flash('success', 'El derecho se creó exitosamente.');
         $this->redirectTo('shwDerecho', array('idDer' => $derecho->id));
+    }
+    
+    public function votar($idSec) {
+        $vdt = new Validate\Validator();
+        $vdt->addRule('postura', new Validate\Rule\InArray([1,2,3]))
+            ->addRule('idSec', new Validate\Rule\NumNatural());
+        $req = $this->request;
+        $data = array_merge(['idSec' => $idSec], $req->post());
+        if (!$vdt->validate($data)) {
+            throw new TurnbackException($vdt->getErrors());
+        }
+        $usuario = $this->session->getUser();
+        $seccion = Seccion::with('derecho')->findOrFail($idSec);
+        $voto = VotoSeccion::firstOrNew([
+            'seccion_id' => $seccion->id,
+            'usuario_id' => $usuario->id
+        ]);
+        $voto->postura = $vdt->getData('postura');
+        $voto->save();
+        $this->flash('success', 'Su voto fue registrado exitosamente.');
+        $this->redirectTo('shwDerecho', ['idDer' => $seccion->derecho->id]);
     }
 
     private function validarDerecho($data) {
@@ -60,7 +91,7 @@ class DerechoCtrl extends Controller {
             ->addRule('video', new Validate\Rule\MinLength(8))
             ->addRule('video', new Validate\Rule\MaxLength(16))
             ->addRule('secciones', new Validate\Rule\MinLength(4))
-            // ->addRule('secciones', new Validate\Rule\MaxLength(512))
+            ->addRule('secciones', new Validate\Rule\MaxLength(1024))
             ->addFilter('secciones', FilterFactory::explode('&&'))
             ->addFilter('tags', FilterFactory::explode(','));
         if (!$vdt->validate($data)) {

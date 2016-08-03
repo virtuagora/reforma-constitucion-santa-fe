@@ -13,6 +13,10 @@ class Derecho extends Contenible {
     public function opiniones() {
         return $this->hasMany('Opinion');
     }
+    
+    public function votos() {
+        return $this->hasManyThrough('VotoSeccion', 'Seccion', 'derecho_id', 'seccion_id');
+    }
 
     /*public static function boot() {
         parent::boot();

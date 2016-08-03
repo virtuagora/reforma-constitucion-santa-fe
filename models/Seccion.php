@@ -6,7 +6,7 @@ class Seccion extends Eloquent {
     protected $with = array('comentarios');
     protected $appends = array('votos_baja', 'votos_media', 'votos_alta');
 
-    public function Derecho() {
+    public function derecho() {
         return $this->belongsTo('derecho');
     }
 
