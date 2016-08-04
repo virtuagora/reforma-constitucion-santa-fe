@@ -157,6 +157,7 @@ $app->group('/opinion', function () use ($app, $checkRole) {
 });
 
 $app->group('/evento', function () use ($app, $checkRole) {
+    $app->get('', 'EventoCtrl:listar')->name('shwListaEvento');
     $app->get('/crear', $checkRole('mod'), 'EventoCtrl:verCrear')->name('shwCrearEvento');
     $app->post('/crear', $checkRole('mod'), 'EventoCtrl:crear')->name('runCrearEvento');
     $app->get('/:idEve', 'EventoCtrl:ver')->name('shwEvento');

@@ -19,6 +19,13 @@ class EventoCtrl extends Controller {
             'participantes' => $participantes
         ]);
     }
+    
+    public function listar() {
+        $eventos = Evento::all()->sortBy('fecha');
+        $this->render('contenido/evento/listar.twig', [
+            'eventos' => $eventos
+        ]);
+    }
 
     public function participar($idEve) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
@@ -103,7 +110,7 @@ class EventoCtrl extends Controller {
             ->addRule('fecha', new Validate\Rule\Date('Y-m-d H:i:s'))
             ->addRule('cuerpo', new Validate\Rule\MinLength(8))
             ->addRule('cuerpo', new Validate\Rule\MaxLength(8192))
-            ->addFilter('cuerpo', FilterFactory::escapeHTML())
+            ->addFilter('cuerpo', FilterFactory::escapeHTML());
         if (!$vdt->validate($data)) {
             throw new TurnbackException($vdt->getErrors());
         }
