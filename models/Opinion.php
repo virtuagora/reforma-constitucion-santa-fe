@@ -4,7 +4,15 @@ class Opinion extends Eloquent {
     protected $table = 'opiniones';
     protected $visible = array('id', 'cuerpo');
 
-    public function Derecho() {
+    public function derecho() {
         return $this->belongsTo('Derecho');
+    }
+    
+    public function participante() {
+        return $this->belongsTo('Participante');
+    }
+    
+    public function evento() {
+        return $this->belongsTo('Evento');
     }
 }

@@ -144,11 +144,26 @@ $app->get('/test', function () use ($app) {
 });
 });
 
-$app->group('/derecho', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('usr'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
-    $app->post('/crear', $checkRole('usr'), 'DerechoCtrl:crear')->name('runCrearDerecho');
+$app->group('/derecho', function () use ($app, $checkRole) {
+    $app->get('/crear', $checkRole('mod'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
+    $app->post('/crear', $checkRole('mod'), 'DerechoCtrl:crear')->name('runCrearDerecho');
     $app->get('/:idDer', 'DerechoCtrl:ver')->name('shwDerecho');
     $app->post('/votar/:idSec', $checkRole('usr'), 'DerechoCtrl:votar')->name('runVotarSeccion');
+});
+
+$app->group('/opinion', function () use ($app, $checkRole) {
+    $app->get('/crear', $checkRole('mod'), 'OpinionCtrl:verCrear')->name('shwCrearOpinion');
+    $app->post('/crear', $checkRole('mod'), 'OpinionCtrl:crear')->name('runCrearOpinion');
+});
+
+$app->group('/evento', function () use ($app, $checkRole) {
+    $app->get('/crear', $checkRole('mod'), 'EventoCtrl:verCrear')->name('shwCrearEvento');
+    $app->post('/crear', $checkRole('mod'), 'EventoCtrl:crear')->name('runCrearEvento');
+    $app->get('/:idEve', 'EventoCtrl:ver')->name('shwEvento');
+    $app->post('/:idEve/participar', $checkRole('usr'), 'EventoCtrl:participar')->name('runPartiEvento');
+    $app->get('/:idEve/modificar', $checkRole('mod'), 'EventoCtrl:verModificar')->name('shwModifEvento');
+    $app->post('/:idEve/modificar', $checkRole('mod'), 'EventoCtrl:modificar')->name('runModifEvento');
+    $app->post('/:idEve/eliminar', $checkRole('mod'), 'EventoCtrl:eliminar')->name('runElimiEvento');
 });
 
 $app->get('/', 'PortalCtrl:verIndex')->name('shwIndex');
@@ -269,16 +284,6 @@ $app->group('/novedad', function () use ($app, $checkRole, $checkModifyAuth) {
     $app->get('/:idNov/modificar', $checkModifyAuth('Novedad'), 'NovedadCtrl:verModificar')->name('shwModifNovedad');
     $app->post('/:idNov/modificar', $checkModifyAuth('Novedad'), 'NovedadCtrl:modificar')->name('runModifNovedad');
     $app->post('/:idNov/eliminar', $checkModifyAuth('Novedad'), 'NovedadCtrl:eliminar')->name('runElimiNovedad');
-});
-
-$app->group('/evento', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('fnc'), 'EventoCtrl:verCrear')->name('shwCrearEvento');
-    $app->post('/crear', $checkRole('fnc'), 'EventoCtrl:crear')->name('runCrearEvento');
-    $app->get('/:idEve', 'EventoCtrl:ver')->name('shwEvento');
-    $app->post('/:idEve/participar', $checkRole('usr'), 'EventoCtrl:participar')->name('runPartiEvento');
-    $app->get('/:idEve/modificar', $checkModifyAuth('Evento'), 'EventoCtrl:verModificar')->name('shwModifEvento');
-    $app->post('/:idEve/modificar', $checkModifyAuth('Evento'), 'EventoCtrl:modificar')->name('runModifEvento');
-    $app->post('/:idEve/eliminar', $checkModifyAuth('Evento'), 'EventoCtrl:eliminar')->name('runElimiEvento');
 });
 
 $app->group('/partido', function () use ($app, $checkRole, $checkModifyAuth) {

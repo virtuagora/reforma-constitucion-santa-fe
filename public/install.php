@@ -50,6 +50,9 @@ try {
             $table->string('password');
             $table->string('nombre');
             $table->string('apellido');
+            $table->dateTime('birthday')->nullable();
+            $table->string('address')->nullable();
+            $table->string('title')->nullable();
             $table->integer('img_tipo')->unsigned();
             $table->string('img_hash');
             $table->string('huella')->nullable();
@@ -88,6 +91,15 @@ try {
             $table->string('fundador')->nullable();
             $table->date('fecha_fundacion')->nullable();
             $table->integer('creador_id')->unsigned();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+        Capsule::schema()->create('participantes', function($table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('nombre')->unique();
+            $table->text('descripcion');
+            $table->string('huella')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -311,21 +323,23 @@ try {
         Capsule::schema()->create('eventos', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('titulo');
+            $table->string('huella')->nullable();
+            $table->integer('autor_id')->unsigned();
+            $table->foreign('autor_id')->references('id')->on('usuarios')->onDelete('cascade');
             $table->text('cuerpo');
             $table->string('lugar');
-            $table->timestamp('fecha');
+            $table->string('coordenadas');
+            $table->dateTime('fecha');
             $table->timestamps();
             $table->softDeletes();
         });
         Capsule::schema()->create('evento_usuario', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->boolean('presente');
-            $table->boolean('publico');
             $table->integer('usuario_id')->unsigned();
             $table->integer('evento_id')->unsigned();
             $table->foreign('evento_id')->references('id')->on('eventos')->onDelete('cascade');
-            $table->timestamps();
         });
         Capsule::schema()->create('comentarios', function($table) {
             $table->engine = 'InnoDB';
@@ -351,10 +365,10 @@ try {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->text('cuerpo');
-            $table->integer('partido_id')->unsigned();
+            $table->integer('participante_id')->unsigned();
             $table->integer('derecho_id')->unsigned();
             $table->integer('evento_id')->unsigned()->nullable();
-            $table->foreign('partido_id')->references('id')->on('partidos');
+            $table->foreign('participante_id')->references('id')->on('participantes');
             $table->foreign('derecho_id')->references('id')->on('derechos');
             $table->foreign('evento_id')->references('id')->on('eventos');
             $table->timestamps();
