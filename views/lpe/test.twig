@@ -1,59 +1,155 @@
-{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{% endblock %} {% block body %}
-<div class="container" style=" ">
-    <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
-            <div class="text-center">
-                <h2 class="text-center"><strong>Cronograma</strong>
-              {% if user and (user.patrulla_id != null) %}
-        <a href="#" class="btn-warning btn"><i class="zmdi zmdi-plus zmdi-hc-lg"></i></a>
-        {% endif %}
-        </h2>
-                <br>
-            </div>
-            <div class="list-group">
-                {% set tackle = true %}
-                {% for evento in eventos %}
-                <li class="list-group-item {{ (not evento.finalizado) and tackle ? 'active' : ''}}">
-                    <div class="pull-right text-center">
-                        <h3><span class="{{ evento.finalizado and tackle ? 'text-success' : ''}}" style="{{ (not evento.finalizado) and tackle ? 'color:#FFF' : ''}}">
-                            <i class="zmdi {{ evento.finalizado and tackle ? 'zmdi-badge-check' : ''}}
-                            {{ (not evento.finalizado) and tackle ? 'zmdi-calendar' : ''}}
-                            {{ (not evento.finalizado) and (not tackle) ? 'zmdi-time-countdown' : ''}}
-                             zmdi-hc-fw zmdi-hc-lg"></i>
-                            </span></h3>
-                            {% if user and (user.patrulla_id != null) %}
-                        <a href="#" class="btn btn-warning btn-sm"><i class="zmdi zmdi-close zmdi-hc-fw zmdi-hc-lg"></i> Eliminar</a>
-                        {% endif %}
+{% extends "lpe/master.twig" %} {% block linkhead %}
+<link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
+%} {% block body %}
+<form id="crearDerecho" action="{# urlFor('runModifDerecho') #}" method="POST" enctype="multipart/form-data">
+    <div class="titulo-derecho-background">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <textarea name="titulo" class="form-control" rows="1" placeholder="Escriba el título"></textarea>
                     </div>
-                    <h4 class="list-group-item-heading"><strong>{{ evento.titulo }}</strong></h4>
-                    <h5 class="list-group-item-heading">{{evento.fecha|date("d/m/Y")}} - {{evento.fecha|date("H:i")}}Hs.</h5>
-                    <h6 class="list-group-item-heading">{{ evento.lugar }}</h6>
-                    <p class="list-group-item-text lead">{{ evento.descripcion }}</p>
-                    <h5><span class="text-primary"><b>Opiniones de interes</b></span></h5>
-                    <ul class="list-inline">
-                        {% if evento.opiniones|length > 0 %}
-                        {% for opinion in evento.opiniones %}
-                        <li><a href="javascript:void(0)" data-toggle="modal" data-target="#opinion{{loop.index}}"><i class="zmdi zmdi-mic-outline zmdi-hc-lg zmdi-hc-fw"></i>José Carlos</a></li>
-                        {% include 'lpe/contenido/opinion/ver.twig' %}
-                        {% endfor %}
-                        {% else %}
-                        <li class="text-info"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i> No hay opiniones registradas</li>
-                        {% endif%}
-                    </ul>
-                </li>
-                {% if (not evento.finalizado) and tackle %}
-                {% set tackle = false %}
-                {% endif %}
-                {% endfor %}
-                <li class="list-group-item">
-                    <h6>No hay eventos agregados al cronograma...</h6>
-                </li>
+                </div>
             </div>
         </div>
     </div>
-</div>
-{% include 'lpe/contenido/opinion/ver.twig' %}
+    <div class="container">
+        <div class="row">
+            <div id="derecho" class="col-xs-12 col-sm-12 col-md-8 text-justify">
+                <div id="descripcion">
+                    <textarea name="descripcion"></textarea>
+                </div>
+                <hr>
+                <div class="lista-acciones">
+                    {% for seccion in derecho.secciones %}
+                    <div class="accion-container">
+                        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la accion...">{{seccion.descripcion|nl2br}}</textarea>
+                        <hr>
+                    </div>
+                    {% endfor %}
+                </div>
+                <hr>
+                
+                <div class="clearfix hidden-sm hidden-xs">
+                    <a href="#" class="btn btn-large btn-default ">Cancelar</a>
+                    <button type="submit" class="btn btn-lg btn-primary pull-right">Modificar derecho</button>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <div id="youtubeVideo" class="embed-responsive embed-responsive-16by9" style="margin-bottom: 20px;">
+                    <iframe class="embed-responsive-item" id="youtubeVideo" src="https://www.youtube.com/embed/7uulVAHwXi0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Imagen de Cabecera</label><br>
+                    <div class="input-group">
+                        <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Explorar <input name="archivo" type="file" style="display: none;">
+                    </span>
+                </label>
+                        <input type="text" class="form-control" readonly style="padding-left:10px">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Video de Youtube</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="zmdi zmdi-youtube-play zmdi-hc-lg"></i></span>
+                        <input name="video" class="form-control" type="text" value="{{ derecho.video }}">
+                    </div>
+                </div>
+                <div class="alert alert-dismissible alert-info">
+                    Debe colocar el codigo que aparece en la URL del video, luego de la porcion "?v=". Por ejemplo, de <i>https://www.youtube.com/watch?v=7uulVAHwXi0</i>
+                    la porcion seria <code>7uulVAHwXi0</code><br>De ser correcto, el video tendria que mostrarse.
+                </div>
+            </div>
+            <input type="text" name="secciones" value="" hidden>
+            <input type="text" name="categoria" value="1" hidden>
+            <input type="text" name="tags" value="" hidden>
+             <div class="clearfix hidden-md hidden-lg">
+                    <a href="#" class="btn btn-large btn-default ">Cancelar</a>
+                    <button type="submit" class="btn btn-lg btn-primary pull-right">Modificar derecho</button>
+                </div>
+        </div>
+    </div>
+</form>
 
-{% endblock body %} {# -------------------------------------------- #} {% block scripts %}
+{% endblock %} {# ----------------------------------------------------------- #} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-lpe/js/autosize.min.js"></script>
+<script src="{{ baseUrl() }}/assets-lpe/js/sceditor/jquery.sceditor.js"></script>
+<script id="accionTemplate" type="text/template">
+    <div class="accion-container">
+        <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:20px;"><i class="mdi mdi-close"></i></a>
+        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
+        <hr>
+    </div>
+</script>
 <script>
-</script> {% endblock scripts %}
+    var numeroAccion = 2;
+    $(document).ready(function() {
+        $('[name=titulo]').val('{{ derecho.titulo }}')
+        $("textarea[name='descripcion']").sceditor({
+            plugins: "bbcode",
+            emoticonsEnabled: false,
+            toolbarExclude: "font,color,table,horizontalrule,subscript,superscript",
+            height: '100',
+            width: '100%',
+            style: "{{ baseUrl() }}/assets-lpe/css/lpe.css",
+            resizeEnabled: false,
+            resizeHeight: true,
+            autoExpand: true,
+            enablePasteFiltering: true
+        }).val('{{ novedad.cuerpo|bbCode }}', false);
+         autosize($('textarea'));
+
+    $(':file').on('fileselect', function(event, numFiles, label) {
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+        if(numFiles > 1 || numFiles == 0){
+            alert('Por favor, seleccione solo 1 archivo');
+        } else if(numFiles == 1){
+            input.val(log);
+        }
+    });
+    $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+    });
+    $('input[name=video]').change(function() {
+        $("#youtubeVideo iframe").remove();
+        $('<iframe class="embed-responsive-item" id="youtubeVideo" frameborder="0" allowfullscreen></iframe>')
+            .attr("src", "https://www.youtube.com/embed/" + $(this).val())
+            .appendTo("#youtubeVideo");
+    });
+    $(document).on('change', ':file', function() {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+    });
+    var iniciarEditor = function(nombre) {
+        $("textarea[name='" + nombre + "']").sceditor({
+            plugins: "bbcode",
+            emoticonsEnabled: false,
+            toolbarExclude: "font,color,table,horizontalrule,subscript,superscript",
+            height: '100',
+            width: '100%',
+            style: "{{ baseUrl() }}/assets-lpe/css/lpe.css",
+            resizeEnabled: false,
+            resizeHeight: true,
+            autoExpand: true,
+            enablePasteFiltering: true
+        }).val('{{ novedad.cuerpo|bbCode }}', false);
+    }
+    $( "form" ).submit(function( event ) {
+        var secciones = [];        
+        $( "textarea[name=cuerpo]" ).each(function( index ) {
+        secciones.push($( this ).val());
+        });
+        var seccionesString = secciones.join("&&")
+        $('input[name=secciones]').val(seccionesString);
+        return true;
+});
+</script> {% endblock %}

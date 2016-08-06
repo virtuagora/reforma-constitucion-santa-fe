@@ -20,6 +20,14 @@
                     <textarea name="descripcion"></textarea>
                 </div>
                 <hr>
+                <div class="lista-acciones">
+                    <div class="accion-container">
+                        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
+                        <hr>
+                    </div>
+                </div>
+                <hr>
+                
                 <div class="clearfix hidden-sm hidden-xs">
                     <a href="#" class="btn btn-large btn-default ">Cancelar</a>
                     <button type="submit" class="btn btn-lg btn-primary pull-right">Modificar derecho</button>
@@ -119,20 +127,7 @@
             label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
         input.trigger('fileselect', [numFiles, label]);
     });
-    var iniciarEditor = function(nombre) {
-        $("textarea[name='" + nombre + "']").sceditor({
-            plugins: "bbcode",
-            emoticonsEnabled: false,
-            toolbarExclude: "font,color,table,horizontalrule,subscript,superscript",
-            height: '100',
-            width: '100%',
-            style: "{{ baseUrl() }}/assets-lpe/css/lpe.css",
-            resizeEnabled: false,
-            resizeHeight: true,
-            autoExpand: true,
-            enablePasteFiltering: true
-        }).val('{{ novedad.cuerpo|bbCode }}', false);
-    }
+   
     $( "form" ).submit(function( event ) {
         var secciones = [];        
         $( "textarea[name=cuerpo]" ).each(function( index ) {
