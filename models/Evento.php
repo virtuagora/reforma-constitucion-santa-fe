@@ -3,7 +3,8 @@
 class Evento {
     protected $table = 'eventos';
     protected $dates = ['deleted_at', 'fecha'];
-    protected $visible = ['id', 'titulo', 'cuerpo', 'fecha', 'lugar'];
+    protected $visible = ['id', 'titulo', 'cuerpo', 'fecha', 'lugar', 'finalizado'];
+    protected $appends = ['finalizado'];
 
     public function usuarios() {
         return $this->belongsToMany('Usuario', 'evento_usuario');
@@ -19,6 +20,11 @@ class Evento {
 
     public function getRaizAttribute() {
         return $this;
+    }
+    
+    public function getFinalizadoAttribute() {
+        $hoy = Carbon\Carbon::now();
+        return $hoy->gt($this->fecha);
     }
     
     public function setTituloAttribute($value) {

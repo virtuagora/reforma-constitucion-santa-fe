@@ -37,7 +37,7 @@ class DerechoCtrl extends Controller {
         $derecho = new Derecho;
         $derecho->descripcion = $vdt->getData('descripcion');
         $derecho->video = $vdt->getData('video');
-        $derecho->imagen = false;
+        $derecho->imagen = $_FILES['archivo'];
         $derecho->save();
         $acciones = $vdt->getData('secciones');
         foreach ($acciones as $accion) {
@@ -53,10 +53,24 @@ class DerechoCtrl extends Controller {
         $contenido->autor()->associate($autor);
         $contenido->contenible()->associate($derecho);
         $contenido->save();
-        TagCtrl::updateTags($contenido, TagCtrl::getTagIds($vdt->getData('tags')));
-        $autor->increment('puntos', 25);
+        
+        if (isset($_FILES['archivo'])) {
+            $dir = __DIR__ . '/../public/img';
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
+            $storage = new \Upload\Storage\FileSystem($dir, true);
+            $file = new \Upload\File('archivo', $storage);
+            $file->setName($derecho->id);
+            $file->addValidations([
+                new \Upload\Validation\Mimetype(['image/jpg', 'image/jpeg']),
+                new \Upload\Validation\Size('2M')
+            ]);
+            $file->upload();
+        }
+        
         $this->flash('success', 'El derecho se creó exitosamente.');
-        $this->redirectTo('shwDerecho', array('idDer' => $derecho->id));
+        $this->redirectTo('shwDerecho', ['idDer' => $derecho->id]);
     }
     
     public function votar($idSec) {

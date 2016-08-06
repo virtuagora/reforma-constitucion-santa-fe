@@ -2,6 +2,22 @@
 
 class OpinionCtrl extends Controller {
 
+    public function ver($idOpi) {
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+        $vdt->test($idOpi, new Validate\Rule\NumNatural());
+        $opinion = Opinion::with('derecho')->findOrFail($idOpi);
+        
+        $datosEven = $evento->toArray();
+        $datosEven['interesados'] = $evento->usuarios()->count();
+        $datosPart = $participe? $participe->toArray(): null;
+        $this->render('contenido/evento/ver.twig', [
+            'evento' => $datosEven,
+            'comentarios' =>  $comentarios,
+            'participacion' => $datosPart,
+            'participantes' => $participantes
+        ]);
+    }
+
     public function verCrear() {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get();
         // $eventos = Evento::all();
