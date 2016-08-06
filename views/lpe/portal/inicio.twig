@@ -1,79 +1,86 @@
-{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{%
-endblock %} {% block body %}
-<div class="container" style="margin-bottom:40px">
+{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{% endblock %} {% block body %}
+<div class="container-fluid" style="margin-bottom:40px">
     <div class="row">
-        <div class="col-xs-12 text-center">
-            <a href="#" class="btn btn-warning"><i class="zmdi zmdi-edit zmdi-hc-lg"></i> Editar pagina</a>
-            <h1><strong>Nueva Ley de Educacion Provincial</strong></h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio asperiores optio soluta, eos, impedit quia
-                atque repellendus maiores deserunt aperiam et consequuntur minima dolor id, earum dolorem ab iusto nobis.</p>
-            <a href="#derechos" class="btn btn-primary btn-lg">Comenzar a participar</a>
-        </div>
-    </div>
-</div>
-
-
-<div class="" style="background-image: url('https://unsplash.it/1200/400/?random'); background-size:cover;margin-bottom:40px;">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                        <div class="embed-responsive embed-responsive-16by9" style="margin: 80px 0;">
-                            <iframe class="embed-responsive-item" width="853" height="480"  src="https://www.youtube.com/embed/7uulVAHwXi0" frameborder="0" allowfullscreen></iframe>
+        <div class="col-xs-12 col-md-7 col-md-offset-1 text-center">
+            <br>
+            <h2><strong>Nueva Ley de Educacion Provincial</strong></h2>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio asperiores optio soluta, eos, impedit quia atque repellendus maiores deserunt aperiam et consequuntur minima dolor id, earum dolorem ab iusto nobis.</p>
+            <div id="derechos" class="" style="margin-top:60px">
+                {% if derechos|length > 0 %}
+                <div class="grid">
+                    <div class="grid-sizer"></div>
+                    {% for derecho in derechos %}
+                    <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
+                        <div class="grid-item" style="background-image: url('https://unsplash.it/200/200/?random={{ random(1000) }}'); background-size:cover;">
+                            <figure class="cap-bot" style="background-color:rgba(0,0,0, 0.20);">
+                                <div class="text-center">
+                                    <h6>{{ derecho.titulo }}</h6> {% set numComents = 0 %} {% for seccion in derecho.secciones %} {% set numComents = numComents + seccion.comentarios|length %} {% endfor %}
+                                </div>
+                                <figcaption>
+                                    Haga clic para saber mas del derecho.
+                                </figcaption>
+                            </figure>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                        <div class="embed-responsive embed-responsive-16by9" style="margin: 80px 0;">
-                            <iframe class="embed-responsive-item" width="853" height="480"  src="https://www.youtube.com/embed/Pgbd9U1DSlw" frameborder="0" allowfullscreen></iframe>
+                    </a>
+                    {% endfor %} {% for derecho in derechos %}
+                    <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
+                        <div class="grid-item" style="background-image: url('https://unsplash.it/200/200/?random={{ random(1000) }}'); background-size:cover;">
+                            <figure class="cap-bot" style="background-color:rgba(0,0,0, 0.20);">
+                                <div class="text-center">
+                                    <h6>{{ derecho.titulo }}</h6> {% set numComents = 0 %} {% for seccion in derecho.secciones %} {% set numComents = numComents + seccion.comentarios|length %} {% endfor %}
+                                </div>
+                                <figcaption>
+                                    Haga clic para saber mas del derecho.
+                                </figcaption>
+                            </figure>
                         </div>
-                    </div>
+                    </a>
+                    {% endfor %}
                 </div>
-            </div>
-
-            <div class="item">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                        <div class="embed-responsive embed-responsive-16by9" style="margin: 80px 0;">
-                            <iframe class="embed-responsive-item" width="853" height="480"  src="https://www.youtube.com/embed/0bjGYHMeX38" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
+                {% else %}
+                <div class="text-center">
+                    <p>ERROR CRITICO</p>
                 </div>
-            </div>
-
-            <div class="item">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                        <div class="embed-responsive embed-responsive-16by9" style="margin: 80px 0;">
-                            <iframe class="embed-responsive-item" width="853" height="480"  src="https://www.youtube.com/embed/qE4Q02CTuDg" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
+                {% endif %}
             </div>
         </div>
+        <div class="col-xs-12 col-md-3">
+            <div class="" style="background-image: url('https://unsplash.it/1200/400/?random'); background-size:cover;margin-bottom:40px; margin-top: 20px;">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <h4 class="conoce text-center"><strong>Conoce mas</strong></h4>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" width="853" height="480" src="https://www.youtube.com/embed/7uulVAHwXi0" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" width="853" height="480" src="https://www.youtube.com/embed/7uulVAHwXi0" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="icon-prev" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="icon-next" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-    <!--<div class="row">
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="icon-prev" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="icon-next" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!--<div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
             <div class="embed-responsive embed-responsive-16by9" style="">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/RcmfJGyd-ak" frameborder="0" allowfullscreen></iframe>
@@ -81,47 +88,30 @@ endblock %} {% block body %}
         </div>
     </div>-->
 
-</div>
-
-<div id="derechos" class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
-            <div class="text-center">
-                <h2><b>Los derechos a debatir</b></h2>
-                <hr>
             </div>
-            {% if derechos|length > 0 %}
-            <div class="grid">
-                <div class="grid-sizer"></div>
-                {% for derecho in derechos %}
-                <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
-                    <div class="grid-item" style="background-image: url('https://unsplash.it/200/200/?random={{ random(1000) }}'); background-size:cover;">
-                        <figure class="cap-bot" style="background-color:rgba(0,0,0, 0.20);">
-                            <div class="text-center">
-                                <h4>{{ derecho.titulo }}</h4>
-                                {% set numComents = 0 %}
-                                {% for seccion in derecho.secciones %}
-                                {% set numComents = numComents + seccion.comentarios|length %}
-                                {% endfor %}
-                                <div class="btn btn-xs btn-default"><i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i>{{ numComents }}</div>
-                            </div>
-                            <figcaption>
-                                Haga clic para saber mas del derecho.
-                            </figcaption>
-                        </figure>
-                    </div>
+            <hr>
+            <h3><strong>Cronograma <small><a href="#" class="btn btn-xs btn-primary">Ver todo</a></small></strong></h3>
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                    <div class="pull-right">
+                        <h3><span class="text-primary"><i class="zmdi zmdi-calendar zmdi-hc-fw zmdi-hc-lg"></i></span></h3></div>
+                    <h4 class="list-group-item-heading"><strong>Jornada de Participación Ciudadana</strong></h4>
+                    <h5 class="list-group-item-heading">19/10/2016 - 16Hs.</h5>
+                    <h6 class="list-group-item-heading">Escuela San José (Vicente Lopez 2344)</h6>
+                    <p class="list-group-item-text lead">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
                 </a>
-                {% endfor %}
-            </div>
-            {% else %}
-            <div class="text-center">
-                <p>ERROR CRITICO</p>
-            {% endif %}
+                <a href="#" class="list-group-item">
+                    <div class="pull-right">
+                        <h3><span class="text-primary"><i class="zmdi zmdi-calendar zmdi-hc-fw zmdi-hc-lg"></i></span></h3></div>
+                    <h4 class="list-group-item-heading"><strong>Acto inagural del nuevo centro de convenciones provincial</strong></h4>
+                    <h5 class="list-group-item-heading">19/10/2016 - 14Hs.</h5>
+                    <h6 class="list-group-item-heading">Escuela San José</h6>
+                    <p class="list-group-item-text lead">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                </a>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock body %} {# -------------------------------------------- #} {% block scripts %}
 <script src="{{ baseUrl() }}/assets-lpe/js/masonry.pkgd.min.js"></script>
 <script>
@@ -133,17 +123,17 @@ endblock %} {% block body %}
         percentPosition: true
     })
     $(function() {
-  $('a[href="#derechos"]').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: target.offset().top
-        }, 1000);
-        return false;
-      }
-    }
-  });
-});
+        $('a[href="#derechos"]').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
 </script> {% endblock scripts %}

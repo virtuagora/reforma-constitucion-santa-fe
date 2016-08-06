@@ -6,8 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    		<meta property="og:url"                content="{{ baseUrl() }}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="Nueva Ley Provincial de Educacion" />
+<meta property="og:description"        content="o" />
+<meta property="og:image"              content="{{ baseUrl() }}/assets/img/ceut-share.png" />
+<link rel="shortcut icon" href="{{ baseUrl() }}/assets-lpe/img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="{{ baseUrl() }}/assets-lpe/img/favicon.ico" type="image/x-icon">
     <title>{% block titulo %}Nueva Ley de Educación Provincial - Gobierno de Santa Fe{% endblock titulo %}</title>
-
+    <link rel="" type="" href="">
     <!-- Bootstrap -->
     {% block linkhead %}{% endblock %}
     <link href="{{ baseUrl() }}/assets-lpe/css/lpe.css" rel="stylesheet">
@@ -69,8 +76,8 @@
 	<li><a href="{{ urlFor('shwCrearDerecho') }}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-plus"></i> Nuevo evento</a></li>
 
     
-	{% endif %}
                                     <li class="divider"></li>
+	{% endif %}
                                     <form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST">
                                     <li><button type="submit" class="btn btn-link btn-sm btn-block text-danger"><b><i class="zmdi zmdi-close-circle zmdi-hc-fw zmdi-hc-lg"></i>Salir</b></button></li>
                                     </form>

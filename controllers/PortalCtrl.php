@@ -73,7 +73,7 @@ class PortalCtrl extends Controller {
             throw new TurnbackException($vdt->getErrors());
         }
         $preuser = Preusuario::firstOrNew(['email' => $vdt->getData('email')]);
-        $preuser->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
+        $preuser->password = md5($vdt->getData('password'));
         $preuser->nombre = $vdt->getData('nombre');
         $preuser->apellido = $vdt->getData('apellido');
         $preuser->emailed_token = bin2hex(openssl_random_pseudo_bytes(16));
@@ -85,7 +85,7 @@ class PortalCtrl extends Controller {
                        $this->urlFor('runValidUsuario', array('idUsu' => $preuser->id, 'token' => $preuser->emailed_token));
             mail($to, $subject, $message);
         }
-        $this->render('registro/registro-exito.twig', array('email' => $preuser->email));
+        $this->render('lpe/registro/registro-exito.twig', array('email' => $preuser->email));
     }
 
     public function verificarEmail($idPre, $token) {
@@ -108,15 +108,15 @@ class PortalCtrl extends Controller {
             $usuario->img_hash = md5($preuser->email);
             $usuario->save();
             $preuser->delete();
-            $this->render('registro/validar-correo.twig', array('usuarioValido' => true,
+            $this->render('lpe/registro/validar-correo.twig', array('usuarioValido' => true,
                                                                 'email' => $usuario->email));
         } else {
-            $this->render('registro/validar-correo.twig', array('usuarioValido' => false));
+            $this->render('lpe/registro/validar-correo.twig', array('usuarioValido' => false));
         }
     }
 
     public function verRecuperarClave() {
-        $this->render('registro/recuperar-clave.twig');
+        $this->render('lpe/registro/recuperar-clave.twig');
     }
     
     public function recuperarClave() {
@@ -152,7 +152,7 @@ class PortalCtrl extends Controller {
         $vdt->test($idUsu, new Validate\Rule\NumNatural());
         $vdt->test($token, new Validate\Rule\AlphaNumeric());
         $vdt->test($token, new Validate\Rule\ExactLength(32));
-        $this->render('registro/reiniciar-clave.twig', ['idUsu' => $idUsu, 'token' => $token]);
+        $this->render('lpe/registro/reiniciar-clave.twig', ['idUsu' => $idUsu, 'token' => $token]);
     }
     
     public function reiniciarClave($idUsu, $token) {
@@ -176,12 +176,12 @@ class PortalCtrl extends Controller {
             throw new TurnbackException('El link ha expirado o es inválido. Recordá que solamente es válido por una hora.');
         }
         $usuario->token = null;
-        $usuario->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
+        $usuario->password = md5($vdt->getData('password'));
         $usuario->save();
         $this->redirectTo('endReiniciarClave');
     }
     
     public function finReiniciarClave() {
-        $this->render('registro/reiniciar-completo.twig');
+        $this->render('lpe/registro/reiniciar-completo.twig');
     }
 }
