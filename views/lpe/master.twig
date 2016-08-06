@@ -65,6 +65,10 @@
                                 <ul class="dropdown-menu" role="menu">
                                     {% if user and (user.patrulla_id != null) %}
 	<li><a href="{{ urlFor('shwCrearDerecho') }}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-plus"></i> Nuevo derecho</a></li>
+	<li><a href="{{ urlFor('shwCrearDerecho') }}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-plus"></i> Nuevo participante</a></li>
+	<li><a href="{{ urlFor('shwCrearDerecho') }}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-plus"></i> Nuevo evento</a></li>
+
+    
 	{% endif %}
                                     <li class="divider"></li>
                                     <form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST">

@@ -8,12 +8,14 @@
                 <div class="header-opinion" style="background-image: url('https://unsplash.it/500/300/?random');">
                     <div class="overlay text-center">
                         <!--<img src="https://unsplash.it/300/200/?random" class="img-rounded" style="width:180px" alt="">-->
-                        <h3><small>La opinión de..</small><br><b>##TODO##</b></h3>
+                        <h3><small>La opinión de..</small><br><b>{{opinion.participante.nombre}}</b></h3>
+                       	{% if user and (user.patrulla_id != null) %}
                         <h6><a href="#" class="btn btn-default btn-sm"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar opinion</a>                            <a href="#" class="btn btn-warning btn-sm"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Eliminar</a></h6>
+                        {% endif %}                    
                     </div>
                 </div>
                 <hr>
-                <p>TODO</p>
+                <p>{{ opinion.cuerpo|bbCode }}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class=" btn btn-link btn-block btn-sm" data-dismiss="modal" aria-label="Close"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Cerrar</button>
