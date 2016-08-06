@@ -4,8 +4,9 @@
         <div class="col-xs-10 col-xs-offset-1">
             <div class="text-center">
                 <h2 class="text-center"><strong>Cronograma</strong>
+                {% if user and (user.patrulla_id != null) %}
         <a href="#" class="btn-warning btn"><i class="zmdi zmdi-plus zmdi-hc-lg"></i></a>
-        
+        {% endif %}
         </h2>
                 <br>
             </div>
