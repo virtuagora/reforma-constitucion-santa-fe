@@ -79,6 +79,9 @@ try {
             $table->string('nombre');
             $table->string('apellido');
             $table->string('emailed_token');
+            $table->dateTime('birthday')->nullable();
+            $table->string('address')->nullable();
+            $table->string('title')->nullable();
             $table->timestamps();
         });
         Capsule::schema()->create('partidos', function($table) {

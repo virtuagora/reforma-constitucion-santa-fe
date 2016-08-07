@@ -173,6 +173,20 @@ $app->group('/evento', function () use ($app, $checkRole) {
     $app->post('/:idEve/eliminar', $checkRole('mod'), 'EventoCtrl:eliminar')->name('runElimiEvento');
 });
 
+$app->group('/admin', function () use ($app, $checkRole, $checkAdminAuth) {
+    $app->get('/upload', $checkRole('mod'), 'AdminCtrl:verSubirImagen')->name('shwCrearImagen');
+    $app->post('/upload', $checkRole('mod'), 'AdminCtrl:crear')->name('runCrearImagen');
+    $app->get('/imagen/:idEve', 'AdminCtrl:verImagen')->name('shwImagen');
+    
+    $app->post('/sancionar/:idUsu', $checkAdminAuth(1), 'AdminCtrl:sancUsuario')->name('runSanUsuario');
+    $app->get('/verificar', $checkAdminAuth(7), 'AdminCtrl:verVerifCiudadano')->name('shwAdmVrfUsuario');
+    $app->post('/verificar', $checkAdminAuth(7), 'AdminCtrl:verifCiudadano')->name('runAdmVrfUsuario');
+    $app->get('/ajustes', $checkAdminAuth(2), 'AdminCtrl:verAdminAjustes')->name('shwAdmAjuste');
+    $app->post('/ajustes', $checkAdminAuth(2), 'AdminCtrl:adminAjustes')->name('runAdmAjuste');
+    $app->get('/moderador/crear', $checkAdminAuth(6), 'PatrullaCtrl:verCrearModeradores')->name('shwCrearModerad');
+    $app->post('/moderador/crear', $checkAdminAuth(6), 'PatrullaCtrl:crearModeradores')->name('runCrearModerad');
+});
+
 $app->get('/', 'PortalCtrl:verIndex')->name('shwIndex');
 $app->get('/portal', 'PortalCtrl:verPortal')->name('shwPortal');
 $app->get('/tos', 'PortalCtrl:verTos')->name('shwTos');
@@ -218,37 +232,6 @@ $app->group('/perfil', function () use ($app, $checkRole) {
     $app->post('/cambiar-clave', $checkRole('usr'), 'UsuarioCtrl:cambiarClave')->name('runModifClvUsuario');
     $app->get('/eliminar', $checkRole('usr'), 'UsuarioCtrl:verEliminar')->name('shwElimiUsuario');
     $app->post('/eliminar', $checkRole('usr'), 'UsuarioCtrl:eliminar')->name('runElimiUsuario');
-});
-
-$app->group('/admin', function () use ($app, $checkRole, $checkAdminAuth) {
-    $app->get('/organismo', $checkRole('mod'), 'OrganismoCtrl:listarInterno')->name('shwAdmOrganis');
-    $app->get('/organismo/:idOrg/modificar', $checkAdminAuth(3), 'OrganismoCtrl:verModificar')->name('shwModifOrganis');
-    $app->post('/organismo/:idOrg/modificar', $checkAdminAuth(3), 'OrganismoCtrl:modificar')->name('runModifOrganis');
-    $app->post('/organismo/:idOrg/cambiar-imagen', $checkAdminAuth(3), 'OrganismoCtrl:cambiarImagen')->name('runModifImgOrganis');
-    $app->post('/organismo/:idOrg/eliminar', $checkAdminAuth(3), 'OrganismoCtrl:eliminar')->name('runElimiOrganis');
-    $app->get('/organismo/crear', $checkAdminAuth(3), 'OrganismoCtrl:verCrear')->name('shwCrearOrganis');
-    $app->post('/organismo/crear', $checkAdminAuth(3), 'OrganismoCtrl:crear')->name('runCrearOrganis');
-    $app->get('/organismo/:idOrg/funcionario', $checkAdminAuth(4), 'AdminCtrl:verAdminFuncionarios')->name('shwAdmFuncion');
-    $app->post('/organismo/:idOrg/funcionario', $checkAdminAuth(4), 'AdminCtrl:adminFuncionarios')->name('runAdmFuncion');
-
-    $app->post('/sancionar/:idUsu', $checkAdminAuth(1), 'AdminCtrl:sancUsuario')->name('runSanUsuario');
-    $app->get('/verificar', $checkAdminAuth(7), 'AdminCtrl:verVerifCiudadano')->name('shwAdmVrfUsuario');
-    $app->post('/verificar', $checkAdminAuth(7), 'AdminCtrl:verifCiudadano')->name('runAdmVrfUsuario');
-    $app->get('/ajustes', $checkAdminAuth(2), 'AdminCtrl:verAdminAjustes')->name('shwAdmAjuste');
-    $app->post('/ajustes', $checkAdminAuth(2), 'AdminCtrl:adminAjustes')->name('runAdmAjuste');
-    $app->get('/moderador/crear', $checkAdminAuth(6), 'PatrullaCtrl:verCrearModeradores')->name('shwCrearModerad');
-    $app->post('/moderador/crear', $checkAdminAuth(6), 'PatrullaCtrl:crearModeradores')->name('runCrearModerad');
-
-    $app->get('/patrulla', $checkRole('mod'), 'PatrullaCtrl:listar')->name('shwAdmPatrull');
-    $app->get('/patrulla/crear', $checkAdminAuth(5), 'PatrullaCtrl:verCrear')->name('shwCrearPatrull');
-    $app->post('/patrulla/crear', $checkAdminAuth(5), 'PatrullaCtrl:crear')->name('runCrearPatrull');
-    $app->get('/patrulla/:idPat', $checkRole('mod'), 'PatrullaCtrl:ver')->name('shwPatrull'); // TODO crear funcionalidad de vista
-    $app->post('/patrulla/:idPat/modificar', $checkAdminAuth(5), 'PatrullaCtrl:modificar')->name('runModifPatrull');
-    $app->post('/patrulla/:idPat/eliminar', $checkAdminAuth(5), 'PatrullaCtrl:eliminar')->name('runElimiPatrull');
-    $app->get('/patrulla/:idPat/cambiar-poder', $checkAdminAuth(5), 'PatrullaCtrl:verCambiarPoder')->name('shwModifPodPatrull');
-    $app->post('/patrulla/:idPat/cambiar-poder', $checkAdminAuth(5), 'PatrullaCtrl:cambiarPoder')->name('runModifPodPatrull');
-    $app->get('/patrulla/:idPat', $checkAdminAuth(6), 'PatrullaCtrl:ver')->name('shwAdmModerad');
-    $app->post('/patrulla/:idPat/moderador', $checkAdminAuth(6), 'PatrullaCtrl:adminModeradores')->name('runAdmModerad');
 });
 
 $app->group('/propuesta', function () use ($app, $checkRole, $checkModifyAuth) {

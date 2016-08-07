@@ -1,6 +1,6 @@
 <?php
 
-class BearableException {
+class BodyConverter {
     private $search = array('[i]', '[/i]', '[s]', '[/s]', '[hr]',
                              '[/size]', '[/color]', '[/font]');
     private $replace = array('<em>', '</em>', '<del>', '</del>', '<hr>',

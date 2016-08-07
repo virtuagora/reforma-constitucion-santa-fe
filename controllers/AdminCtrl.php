@@ -150,5 +150,34 @@ class AdminCtrl extends Controller {
         $this->flash('success', 'Se han verificado los ciudadanos seleccionados exitosamente.');
         $this->redirectTo('shwAdmVrfUsuario');
     }
-
+    
+    public function verSubirImagen() {
+        $this->render('lpe/ruta-loca');
+    }
+    
+    public function subirImagen() {
+        if (isset($_FILES['archivo'])) {
+            $dir = __DIR__ . '/../public/img/uploads';
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
+            $storage = new \Upload\Storage\FileSystem($dir, true);
+            $id = time();
+            $file = new \Upload\File('archivo', $storage);
+            $file->setName($id);
+            $file->addValidations([
+                new \Upload\Validation\Mimetype(['image/jpg', 'image/jpeg', 'image/png']),
+                new \Upload\Validation\Size('2M')
+            ]);
+            $file->upload();
+        } else {
+            throw new TurnbackException('No seleccionó imagen.');
+        }
+        $this->flash('success', 'La imagen se cargó exitosamente.');
+        $this->redirectTo('shwImagen', ['idIma' => $id]);
+    }
+    
+    public function verImagen($idIma) {
+        $this->render('lpe/ruta-loca', ['id'=>$idIma]);
+    }
 }

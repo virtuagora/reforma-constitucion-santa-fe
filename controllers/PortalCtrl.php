@@ -4,12 +4,8 @@ class PortalCtrl extends Controller {
 
     public function verIndex() {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-        $this->render('lpe/portal/inicio.twig',  ['derechos' => $derechos]);
-        // if ($this->session->check()) {
-        //     $this->render('portal/inicio.twig');
-        // } else {
-            // $this->render('lpe/portal/inicio.twig');
-        // }
+        $eventos = Evento::whereDate('fecha', '>=', date('Y-m-d'))->orderBy('fecha', 'desc')->take(2)->get()->toArray();
+        $this->render('lpe/portal/inicio.twig',  ['derechos' => $derechos, 'eventos' => $eventos]);
     }
 
     public function verPortal() {
@@ -62,21 +58,34 @@ class PortalCtrl extends Controller {
             ->addRule('email', new Validate\Rule\Email())
             ->addRule('email', new Validate\Rule\MaxLength(128))
             ->addRule('email', new Validate\Rule\Unique('usuarios'))
+            ->addRule('birthday', new Validate\Rule\Date('Y-m-d H:i:s'))
+            ->addRule('address', new Validate\Rule\InArray(['Santa Fe']))
+            ->addRule('title', new Validate\Rule\InArray(['Estudiante']))
             ->addFilter('email', 'strtolower')
             ->addFilter('email', 'trim');
-        if ($this->getMode() != 'testing') {
-            $phrase = isset($this->flashData()['captcha'])? $this->flashData()['captcha']: null;
-            $vdt->addRule('captcha', new Validate\Rule\Equal($phrase));
-        }
         $req = $this->request;
         if (!$vdt->validate($req->post())) {
             throw new TurnbackException($vdt->getErrors());
+        }
+        $recaptcha = new \ReCaptcha\ReCaptcha('6LcF-CYTAAAAACfCi_a60IK5E57PGC0xDp4Ko5ex');
+        $resp = $recaptcha->verify($vdt->getData('g-recaptcha-response'));
+        if (!$resp->isSuccess()) {
+            throw new TurnbackException('El CAPTCHA es inválido.');
+        }
+        $cumple = Carbon\Carbon::parse($vdt->getData('birthday'));
+        $limInf = Carbon::create(1900, 1, 1, 0, 0, 0);
+        $limSup = Carbon\Carbon::now();
+        if (!$cumple->between($limInf, $limSup)) {
+            throw new TurnbackException('Fecha inválida.');
         }
         $preuser = Preusuario::firstOrNew(['email' => $vdt->getData('email')]);
         $preuser->password = md5($vdt->getData('password'));
         $preuser->nombre = $vdt->getData('nombre');
         $preuser->apellido = $vdt->getData('apellido');
         $preuser->emailed_token = bin2hex(openssl_random_pseudo_bytes(16));
+        $preuser->birthday = $cumple;
+        $preuser->title = $vdt->getData('title');
+        $preuser->address = $vdt->getData('address');
         $preuser->save();
         if ($this->getMode() != 'testing') {
             $to = $preuser->email;
@@ -106,6 +115,9 @@ class PortalCtrl extends Controller {
             $usuario->es_jefe = false;
             $usuario->img_tipo = 1;
             $usuario->img_hash = md5($preuser->email);
+            $usuario->birthday = $preuser->birthday;
+            $usuario->title = $preuser->title;
+            $usuario->address = $preuser->address;
             $usuario->save();
             $preuser->delete();
             $this->render('lpe/registro/validar-correo.twig', array('usuarioValido' => true,
