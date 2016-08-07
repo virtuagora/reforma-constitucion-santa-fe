@@ -41,7 +41,10 @@ class PortalCtrl extends Controller {
     }
 
     public function verRegistrar() {
-        $this->render('lpe/registro/registro.twig');
+        $this->render('lpe/registro/registro.twig', [
+            'localidades' => ['Santa Fe'],
+            'ocupaciones' => ['Estudiante']
+        ]);
     }
 
     public function registrar() {

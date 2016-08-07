@@ -4,7 +4,7 @@ class Usuario extends Eloquent {
     use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
     //protected $table = 'usuarios';
-    protected $dates = ['deleted_at', 'fin_advertencia', 'fin_suspension'];
+    protected $dates = ['deleted_at', 'fin_advertencia', 'fin_suspension', 'birthday'];
     protected $hidden = ['password', 'emailed_token', 'updated_at', 'deleted_at'];
 
     public function partido() {
