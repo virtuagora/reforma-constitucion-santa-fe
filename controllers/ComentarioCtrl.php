@@ -65,4 +65,13 @@ class ComentarioCtrl extends RMRController {
         $this->redirect($req->getReferrer());
     }
 
+    public function eliminar() {
+        $req = $this->request;
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+        $vdt->test($req->post('id'), new Validate\Rule\NumNatural());
+        $comentario = Comentario::findOrFail($vdt->getData('id'));
+        $comentario->delete();
+        $this->flash('success', 'El comentario se ha eliminado exitosamente.');
+        $this->redirectTo('shwIndex');
+    }
 }

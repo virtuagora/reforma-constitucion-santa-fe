@@ -187,6 +187,14 @@ $app->group('/admin', function () use ($app, $checkRole, $checkAdminAuth) {
     $app->post('/moderador/crear', $checkRole('mod'), 'AdminCtrl:crearModerador')->name('runCrearModerad');
 });
 
+$app->group('/comentario', function () use ($app, $checkRole) {
+    $app->get('', 'ComentarioCtrl:listar')->name('shwListaComenta');
+    $app->post('/comentar/:tipoRaiz/:idRaiz', $checkRole('usr'), 'ComentarioCtrl:comentar')->name('runComentar');
+    $app->get('/:idCom', 'ComentarioCtrl:ver')->name('shwComenta');
+    $app->post('/:idCom/votar', $checkRole('usr'), 'ComentarioCtrl:votar')->name('runVotarComenta');
+    $app->post('/eliminar', $checkRole('usr'), 'ComentarioCtrl:eliminar')->name('runElimiComenta');
+});
+
 $app->get('/', 'PortalCtrl:verIndex')->name('shwIndex');
 $app->get('/portal', 'PortalCtrl:verPortal')->name('shwPortal');
 $app->get('/tos', 'PortalCtrl:verTos')->name('shwTos');
@@ -216,13 +224,6 @@ $app->get('/organismo/:idOrg', 'OrganismoCtrl:ver')->name('shwOrganis');
 $app->get('/usuario/:idUsu', 'UsuarioCtrl:ver')->name('shwUsuario');
 $app->get('/usuario/:idUsu/imagen/:res', 'UsuarioCtrl:verImagen')->name('shwImgUsuario');
 $app->get('/usuario', 'UsuarioCtrl:listar')->name('shwListaUsuario');
-
-$app->group('/comentario', function () use ($app, $checkRole) {
-    $app->get('', 'ComentarioCtrl:listar')->name('shwListaComenta');
-    $app->post('/comentar/:tipoRaiz/:idRaiz', $checkRole('usr'), 'ComentarioCtrl:comentar')->name('runComentar');
-    $app->get('/:idCom', 'ComentarioCtrl:ver')->name('shwComenta');
-    $app->post('/:idCom/votar', $checkRole('usr'), 'ComentarioCtrl:votar')->name('runVotarComenta');
-});
 
 $app->group('/perfil', function () use ($app, $checkRole) {
     $app->get('/modificar', $checkRole('usr'), 'UsuarioCtrl:verModificar')->name('shwModifUsuario');

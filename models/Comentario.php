@@ -7,7 +7,11 @@ class Comentario extends Eloquent {
     protected $dates = ['deleted_at'];
     protected $visible = ['id', 'cuerpo', 'comentable_type', 'comentable_id', 'votos',
                           'created_at', 'updated_at', 'autor', 'respuestas'];
-    protected $with = ['autor', 'respuestas'];
+    protected $with = ['autor', 'respuestas', 'votos'];
+    
+    public function scopeModifiableBy($query, $id) {
+        return $query->where('autor_id', $id);
+    }
 
     public function comentable() {
         return $this->morphTo();
