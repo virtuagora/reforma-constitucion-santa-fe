@@ -52,7 +52,14 @@ http://ryanfait.com/
 
 */
 
+.g-recaptcha{
+    margin: 0 auto;
+    width: 50%;
+}
 
+.ui-datepicker-year, .ui-datepicker-month{
+    color: #000
+}
 
 #listaSecciones .form-group textarea {
     margin-bottom: 15px;

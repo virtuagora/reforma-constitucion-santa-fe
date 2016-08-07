@@ -31,17 +31,13 @@
                 <li class="list-group-item">
                     <div class="clearfix">
                         <div class="pull-right text-center">
-                            <form action="" method="POST">
-                                <input type="hidden" name="nombre" value="{{imagen.nombre}}">
-                                <a href="javascript:void(0)" class="btn btn-success" onclick="copyToClipboard('{{ baseUrl() + '/img/uploads/' + imagen }}')"><i class="zmdi zmdi-copy"></i></a>
-                                <button type="submit" class="btn btn-danger"><i class="zmdi zmdi-close zmdi-hc-lg"></i></button>
-                            </form>
+                                <a href="javascript:void(0)" class="btn btn-success" onclick="copyToClipboard('{{ baseUrl() }}/img/uploads/{{imagen}}')"><i class="zmdi zmdi-copy"></i></a>
                         </div>
                         <div class="pull-left">
-                            <img src="{{ baseUrl() + '/img/uploads/' + imagen }}" class="img-thumbnail" style="height:100px">
+                            <img src="{{ baseUrl() }}/img/uploads/{{imagen}}" class="img-thumbnail" style="height:100px">
                         </div>
-                        <h4><strong><i class="zmdi zmdi-image zmdi-hc-lg zmdi-hc-fw"></i>{{ imagen.nombre }}</strong></h4>
-                        <h6>&nbsp;&nbsp;&nbsp;{{ baseUrl() + '/img/uploads/' + imagen.nombre }}</h6>
+                        <h4><strong><i class="zmdi zmdi-image zmdi-hc-lg zmdi-hc-fw"></i>{{ imagen }}</strong></h4>
+                        <h6>&nbsp;&nbsp;&nbsp;{{ baseUrl() }}/img/uploads/{{imagen}}</h6>
                     </div>
                 </li>
                 {% endfor %} {% else %}

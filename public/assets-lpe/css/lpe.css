@@ -9781,12 +9781,23 @@ Sticky Footer by Ryan Fait
 http://ryanfait.com/
 
 */
-/* line 57, ../scss/lpe.scss */
+/* line 55, ../scss/lpe.scss */
+.g-recaptcha {
+  margin: 0 auto;
+  width: 50%;
+}
+
+/* line 60, ../scss/lpe.scss */
+.ui-datepicker-year, .ui-datepicker-month {
+  color: #000;
+}
+
+/* line 64, ../scss/lpe.scss */
 #listaSecciones .form-group textarea {
   margin-bottom: 15px;
 }
 
-/* line 61, ../scss/lpe.scss */
+/* line 68, ../scss/lpe.scss */
 .navbar {
   margin-top: 10px;
   box-shadow: none;
@@ -9794,25 +9805,25 @@ http://ryanfait.com/
   margin-bottom: 0;
 }
 
-/* line 68, ../scss/lpe.scss */
+/* line 75, ../scss/lpe.scss */
 .navbar-bottom-colors {
   background-image: url("../img/barra-header.png");
   height: 10px;
   margin-bottom: 30px;
 }
 
-/* line 83, ../scss/lpe.scss */
+/* line 90, ../scss/lpe.scss */
 a.navbar-brand img {
   height: 100%;
 }
 
-/* line 88, ../scss/lpe.scss */
+/* line 95, ../scss/lpe.scss */
 .cuadro1 {
   background-image: url("https://material-design.storage.googleapis.com/publish/material_v_8/material_ext_publish/0Bx4BSt6jniD7OFZFR1ZOUmFWTEE/style_icons_system_intro.png");
   height: 100px;
 }
 
-/* line 94, ../scss/lpe.scss */
+/* line 101, ../scss/lpe.scss */
 figure {
   display: block;
   position: relative;
@@ -9822,7 +9833,7 @@ figure {
   height: 100%;
   padding: 10px;
 }
-/* line 103, ../scss/lpe.scss */
+/* line 110, ../scss/lpe.scss */
 figure h1,
 figure h2,
 figure h3,
@@ -9832,7 +9843,7 @@ figure h6 {
   color: #FFF;
 }
 
-/* line 113, ../scss/lpe.scss */
+/* line 120, ../scss/lpe.scss */
 .cuadro2 {
   background-color: #2e2e2e;
   height: 200px;
@@ -9840,7 +9851,7 @@ figure h6 {
   border: 1px solid rgba(255, 255, 255, 0.75);
 }
 
-/* line 121, ../scss/lpe.scss */
+/* line 128, ../scss/lpe.scss */
 figcaption {
   position: absolute;
   background: black;
@@ -9855,12 +9866,12 @@ figcaption {
   -o-transition: all 0.6s ease;
 }
 
-/* line 135, ../scss/lpe.scss */
+/* line 142, ../scss/lpe.scss */
 figure:hover figcaption {
   opacity: 1;
 }
 
-/* line 139, ../scss/lpe.scss */
+/* line 146, ../scss/lpe.scss */
 figure:before {
   content: "?";
   position: absolute;
@@ -9881,86 +9892,86 @@ figure:before {
   opacity: 0.75;
 }
 
-/* line 159, ../scss/lpe.scss */
+/* line 166, ../scss/lpe.scss */
 figure:hover:before {
   opacity: 0;
 }
 
-/* line 163, ../scss/lpe.scss */
+/* line 170, ../scss/lpe.scss */
 .cap-left:before {
   bottom: 10px;
   left: 10px;
 }
 
-/* line 168, ../scss/lpe.scss */
+/* line 175, ../scss/lpe.scss */
 .cap-left figcaption {
   bottom: 0;
   left: -30%;
 }
 
-/* line 173, ../scss/lpe.scss */
+/* line 180, ../scss/lpe.scss */
 .cap-left:hover figcaption {
   left: 0;
 }
 
-/* line 177, ../scss/lpe.scss */
+/* line 184, ../scss/lpe.scss */
 .cap-right:before {
   bottom: 10px;
   right: 10px;
 }
 
-/* line 182, ../scss/lpe.scss */
+/* line 189, ../scss/lpe.scss */
 .cap-right figcaption {
   bottom: 0;
   right: -30%;
 }
 
-/* line 187, ../scss/lpe.scss */
+/* line 194, ../scss/lpe.scss */
 .cap-right:hover figcaption {
   right: 0;
 }
 
-/* line 191, ../scss/lpe.scss */
+/* line 198, ../scss/lpe.scss */
 .cap-top:before {
   top: 10px;
   left: 10px;
 }
 
-/* line 196, ../scss/lpe.scss */
+/* line 203, ../scss/lpe.scss */
 .cap-top figcaption {
   left: 0;
   top: -30%;
 }
 
-/* line 201, ../scss/lpe.scss */
+/* line 208, ../scss/lpe.scss */
 .cap-top:hover figcaption {
   top: 0;
 }
 
-/* line 205, ../scss/lpe.scss */
+/* line 212, ../scss/lpe.scss */
 .cap-bot:before {
   bottom: 10px;
   left: 10px;
 }
 
-/* line 210, ../scss/lpe.scss */
+/* line 217, ../scss/lpe.scss */
 .cap-bot figcaption {
   left: 0;
   bottom: -30%;
 }
 
-/* line 214, ../scss/lpe.scss */
+/* line 221, ../scss/lpe.scss */
 .cap-bot {
   padding: 20px 0;
   height: 150px;
 }
 
-/* line 219, ../scss/lpe.scss */
+/* line 226, ../scss/lpe.scss */
 .cap-bot:hover figcaption {
   bottom: 0;
 }
 
-/* line 223, ../scss/lpe.scss */
+/* line 230, ../scss/lpe.scss */
 .grid-sizer,
 .grid-item {
   border: 2px solid #FFF;
@@ -9971,34 +9982,34 @@ figure:hover:before {
   background-image: linear-gradient(to bottom, #563d7c 0, #6f5499 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
 }
-/* line 235, ../scss/lpe.scss */
+/* line 242, ../scss/lpe.scss */
 .grid-sizer h6,
 .grid-item h6 {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 @media (max-width: 767px) {
-  /* line 223, ../scss/lpe.scss */
+  /* line 230, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
     width: 100%;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  /* line 223, ../scss/lpe.scss */
+  /* line 230, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  /* line 223, ../scss/lpe.scss */
+  /* line 230, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
     width: 20%;
   }
 }
 @media (min-width: 992px) {
-  /* line 247, ../scss/lpe.scss */
+  /* line 254, ../scss/lpe.scss */
   .grid-sizer.w2,
   .grid-item.w2 {
     width: 20%;
@@ -10006,18 +10017,18 @@ figure:hover:before {
 }
 
 /* 2 columns */
-/* line 258, ../scss/lpe.scss */
+/* line 265, ../scss/lpe.scss */
 .grid-item--width2 {
   width: 20%;
 }
 
-/* line 264, ../scss/lpe.scss */
+/* line 271, ../scss/lpe.scss */
 #body-editor {
   font-size: 14px;
   line-height: 21px;
 }
 
-/* line 271, ../scss/lpe.scss */
+/* line 278, ../scss/lpe.scss */
 input[type=text].form-control.input-lg, .input-group-lg > input[type=text].form-control,
 .input-group-lg > .input-group-btn > input[type=text].form-control.btn,
 textarea.form-control.input-lg,
@@ -10026,12 +10037,12 @@ textarea.form-control.input-lg,
   font-size: 30px;
 }
 
-/* line 276, ../scss/lpe.scss */
+/* line 283, ../scss/lpe.scss */
 .bolder {
   font-weight: 700;
 }
 
-/* line 281, ../scss/lpe.scss */
+/* line 288, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background {
   background-color: #6f5499;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#563d7c), to(#6f5499));
@@ -10042,11 +10053,11 @@ textarea.form-control.input-lg,
   background-repeat: repeat-x;
   margin-bottom: 40px;
 }
-/* line 290, ../scss/lpe.scss */
+/* line 297, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background .overlay {
   padding: 30px 0;
 }
-/* line 294, ../scss/lpe.scss */
+/* line 301, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background textarea {
   color: #FFF;
   background-color: none;
@@ -10058,19 +10069,19 @@ textarea.form-control.input-lg,
   resize: none;
   margin: 23px 0 11.5px;
 }
-/* line 306, ../scss/lpe.scss */
+/* line 313, ../scss/lpe.scss */
 #crearDerecho textarea.accion {
   font-size: 19.5px;
   line-height: 27.3px;
   font-weight: 300;
   padding: 0 0 10px;
 }
-/* line 312, ../scss/lpe.scss */
+/* line 319, ../scss/lpe.scss */
 #crearDerecho .btn-file {
   position: relative;
   overflow: hidden;
 }
-/* line 316, ../scss/lpe.scss */
+/* line 323, ../scss/lpe.scss */
 #crearDerecho .btn-file input[type=file] {
   position: absolute;
   top: 0;
@@ -10087,7 +10098,7 @@ textarea.form-control.input-lg,
   display: block;
 }
 
-/* line 335, ../scss/lpe.scss */
+/* line 342, ../scss/lpe.scss */
 article .titulo-derecho-background {
   color: #cdbfe3;
   text-align: center;
@@ -10102,103 +10113,103 @@ article .titulo-derecho-background {
   margin-bottom: 40px;
   background-size: cover;
 }
-/* line 348, ../scss/lpe.scss */
+/* line 355, ../scss/lpe.scss */
 article .titulo-derecho-background h1 {
   color: #FFF;
 }
-/* line 349, ../scss/lpe.scss */
+/* line 356, ../scss/lpe.scss */
 article .titulo-derecho-background .overlay {
   background: rgba(0, 0, 0, 0.3);
   padding: 30px 0;
 }
-/* line 354, ../scss/lpe.scss */
+/* line 361, ../scss/lpe.scss */
 article #derecho #descripcion {
   font-size: 14px;
   line-height: 21px;
 }
-/* line 358, ../scss/lpe.scss */
+/* line 365, ../scss/lpe.scss */
 article span.badge {
   background-color: #2196F3;
 }
-/* line 361, ../scss/lpe.scss */
+/* line 368, ../scss/lpe.scss */
 article #nav-derechos.affix {
   top: 30px;
 }
-/* line 365, ../scss/lpe.scss */
+/* line 372, ../scss/lpe.scss */
 article #nav-derechos > a {
   padding: 10px;
 }
-/* line 368, ../scss/lpe.scss */
+/* line 375, ../scss/lpe.scss */
 article p {
   font-size: 14px;
   line-height: 21px;
 }
-/* line 372, ../scss/lpe.scss */
+/* line 379, ../scss/lpe.scss */
 article img.size32 {
   width: 32px;
 }
-/* line 375, ../scss/lpe.scss */
+/* line 382, ../scss/lpe.scss */
 article p.comentario {
   font-size: 12px;
   line-height: 1.5;
 }
-/* line 379, ../scss/lpe.scss */
+/* line 386, ../scss/lpe.scss */
 article textarea.comentario {
   resize: vertical;
 }
 
-/* line 419, ../scss/lpe.scss */
+/* line 426, ../scss/lpe.scss */
 .tag-opinion {
   padding: 0;
   text-align: center;
 }
-/* line 422, ../scss/lpe.scss */
+/* line 429, ../scss/lpe.scss */
 .tag-opinion img {
   left: 0;
 }
-/* line 426, ../scss/lpe.scss */
+/* line 433, ../scss/lpe.scss */
 .tag-opinion .overlay {
   background: rgba(0, 0, 0, 0.4);
   padding: 15px;
 }
-/* line 430, ../scss/lpe.scss */
+/* line 437, ../scss/lpe.scss */
 .tag-opinion h5 {
   color: #FFF;
 }
-/* line 433, ../scss/lpe.scss */
+/* line 440, ../scss/lpe.scss */
 .tag-opinion a:hover {
   text-decoration: none;
 }
 
-/* line 441, ../scss/lpe.scss */
+/* line 448, ../scss/lpe.scss */
 .opinionModal .descripcion {
   font-size: 14px;
   line-height: 21px;
 }
 
-/* line 449, ../scss/lpe.scss */
+/* line 456, ../scss/lpe.scss */
 .header-opinion {
   border-radius: 5px;
   background-size: cover;
   margin-bottom: 20px;
 }
-/* line 453, ../scss/lpe.scss */
+/* line 460, ../scss/lpe.scss */
 .header-opinion .overlay {
   background: rgba(0, 0, 0, 0.4);
   padding: 40px 0 55px;
   border-radius: 5px;
 }
-/* line 458, ../scss/lpe.scss */
+/* line 465, ../scss/lpe.scss */
 .header-opinion h3 {
   color: #FFF;
 }
 
-/* line 466, ../scss/lpe.scss */
+/* line 473, ../scss/lpe.scss */
 .editor-area {
   font-size: 14px;
 }
 
-/* line 471, ../scss/lpe.scss */
+/* line 478, ../scss/lpe.scss */
 #modificarInicio textarea[name=titulo] {
   font-size: 56px;
   font-weight: 700;
@@ -10209,7 +10220,7 @@ article textarea.comentario {
   margin-bottom: 15px;
   color: #444;
 }
-/* line 481, ../scss/lpe.scss */
+/* line 488, ../scss/lpe.scss */
 #modificarInicio textarea[name=descripcion] {
   font-size: 19.5px;
   line-height: 27.3px;
@@ -10219,19 +10230,19 @@ article textarea.comentario {
   resize: none;
 }
 
-/* line 492, ../scss/lpe.scss */
+/* line 499, ../scss/lpe.scss */
 #myCarousel .conoce {
   color: #FFF;
   padding-top: 20px;
   margin: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 497, ../scss/lpe.scss */
+/* line 504, ../scss/lpe.scss */
 #myCarousel .embed-responsive {
   margin: 20px 0 40px;
 }
 
-/* line 504, ../scss/lpe.scss */
+/* line 511, ../scss/lpe.scss */
 .twitter-typeahead {
   width: 100%;
 }

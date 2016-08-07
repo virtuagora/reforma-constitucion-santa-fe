@@ -1,5 +1,7 @@
-{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Login{%
-endblock %} {% block body %}
+{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block linkhead %}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/jquery-ui/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/timepicker/jquery.timepicker.css" /> {% endblock %} {% block titulo %}Login{% endblock %} {% block body %}
 
 <div class="container">
     <div class="row">
@@ -12,21 +14,24 @@ endblock %} {% block body %}
                         <div class="form-group">
                             <label for="inputNombre" class="col-md-2 control-label">Nombre</label>
                             <div class="col-md-10">
-                                <input name="nombre" type="text"  data-error="Complete el campo con un nombre valido" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"" placeholder="Escriba aquí su nombre" id="inputNombre" class="form-control" required>
-                                <div class="help-block with-errors"></div>
+                                <input name="nombre" type="text" data-error="Complete el campo con un nombre valido" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" placeholder="Escriba aquí su nombre " id="inputNombre
+                                    " class="form-control " required>
+                                <div class="help-block with-errors "></div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group ">
                             <label for="inputApellido" class="col-md-2 control-label">Apellido</label>
                             <div class="col-md-10">
-                                <input name="apellido" type="text"  data-error="Complete el campo con un apellido valido" pattern="^^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" placeholder="Escriba aquí su apellido" id="inputApellido" class="form-control" required>
+                                <input name="apellido" type="text" data-error="Complete el campo con un apellido valido" pattern="^^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" placeholder="Escriba aquí su apellido" id="inputApellido"
+                                    class="form-control" required>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail" class="col-md-2 control-label">Email</label>
                             <div class="col-md-10">
-                                <input name="email" type="email"  data-error="Complete el campo con un email valido" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" placeholder="Escriba aquí su email" id="inputEmail" class="form-control" required>
+                                <input name="email" type="email" data-error="Complete el campo con un email valido" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" placeholder="Escriba aquí su email"
+                                    id="inputEmail" class="form-control" required>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -39,36 +44,99 @@ endblock %} {% block body %}
                         <div class="form-group">
                             <label class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <input name="password2" type="password" placeholder="Reingrese su contraseña" class="form-control" data-match="#inputPassword"  data-error="Reingrese la contraseña que ha ingresado en el campo anterior" data-match-error="Las contraseñas no son iguales. Revisé" required>
+                                <input name="password2" type="password" placeholder="Reingrese su contraseña" class="form-control" data-match="#inputPassword" data-error="Reingrese la contraseña que ha ingresado en el campo anterior" data-match-error="Las contraseñas no son iguales. Revisé"
+                                    required>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputEmail" class="col-md-2 control-label">CAPTCHA</label>
+                            <label for="inputEmail" class="col-md-2 control-label">Ocupacion</label>
                             <div class="col-md-10">
-                                <img src="{{ urlFor('shwCaptcha') }}?_={{ date().timestamp }}">
-                                <input type="textfield" name="captcha" class="form-control" placeholder="Ingrese el código">
+                                <input name="email" type="email" data-error="Complete el campo con un email valido" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" placeholder="Escriba aquí su email"
+                                    id="inputEmail" class="form-control" required>
+                                <div class="help-block with-errors"></div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Fecha Nacimiento</label>
+                            <div class="col-md-10">
+                                <input id="datepicker" class="form-control" placeholder="Haga clic para seleccionar la fecha">
+                                <input id="guardarFecha" type="hidden">
+                                <input id="fecha-final" name="birthday" type="hidden" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLocalidad" class="col-md-2 control-label">Localidad</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="inputLocalidad" name="address" data-error="Elija su localidad" required>
+                                        {% for localidad in localidades %}
+                                            <option value="{{ localidad }}">{{ localidad }}</option>
+                                        {% endfor %}
+                                    </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputOcupacion" class="col-md-2 control-label">Ocupacion</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="inputOcupacion" name="title" data-error="Elija su ocupacion" required>
+                                        {% for ocupacion in ocupaciones %}
+                                            <option value="{{ ocupacion }}">{{ ocupacion }}</option>
+                                        {% endfor %}
+                                    </select>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="captcha-cont g-recaptcha" data-sitekey="6LcF-CYTAAAAAOdQ_mLyGnTl6uqw1FGj7yrpfW_F"></div>
                         </div>
                         <div class="form-group text-justify">
                             <div class="col-md-12">
                                 Al hacer clic en <b>Registrarse</b>, usted acepta los
-                                <a href="{{ urlFor('shwTos') }}"><i class="fa fa-file-text-o fa-fw"></i> Terminos y Condiciones de uso</a>                                y confirma que ha leído nuestra Política de uso de datos, incluido el uso de cookies.
+                                <a href="{{ urlFor('shwTos') }}"><i class="fa fa-file-text-o fa-fw"></i> Terminos y Condiciones de uso</a> y confirma que ha leído nuestra Política de uso de datos, incluido el uso de cookies.
                             </div>
                         </div>
-                    </fieldset>     
-                <div class="text-center">
-                    <a href="{{ urlFor('shwPortal') }}" class="btn btn-link">Volver</a>
-                    <button type="submit" class="btn btn-primary">Registrarse <i class="zmdi zmdi-account-add zmdi-hc-lg zmdi-hc-fw"></i></button>
-                </div>
+                    </fieldset>
+                    <div class="text-center">
+                        <a href="{{ urlFor('shwPortal') }}" class="btn btn-link">Volver</a>
+                        <button type="submit" class="btn btn-primary">Registrarse <i class="zmdi zmdi-account-add zmdi-hc-lg zmdi-hc-fw"></i></button>
+                    </div>
                 </form>
             </div>
         </div>
-
     </div>
 </div>
 
-{% endblock %} {# ----------------------------------------------------------- #} 
-{% block scripts %}
+{% endblock %} {# ----------------------------------------------------------- #} {% block scripts %}
 <script src="{{ baseUrl() }}/assets-lpe/js/validator.min.js"></script>
- {% endblock %}
+<script src="{{ baseUrl() }}/assets/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{ baseUrl() }}/assets/js/jquery-ui/datepicker-es.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'DD, dd MM yy',
+            altField: "#guardarFecha",
+            altFormat: "yy-mm-dd",
+            maxDate: "-14Y",
+
+        });
+    });
+
+
+    $('form').submit(function(e) {
+        var fecha = $("#guardarFecha").val()
+        fecha += ' ' + $('#timepicker').val() + ':00';
+        $('#fecha-final').val(fecha);
+    })
+
+
+    // Evito que agreguen un retorno de carro.
+    // $("textarea[name='titulo']").keypress(function(event) {
+    //     if (event.keyCode == 13) {
+    //         event.preventDefault();
+    //     }
+    // });
+</script>
+{% endblock %}
