@@ -13,7 +13,7 @@
         </p>
             {% if user %}
         <ul class="list-inline" style="border-bottom: 1px solid #83c8ff;">
-            <li><a href="javascript:votarComentario({{comentario.id}},1)" style="text-decoration:none;"><span class="text-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><b><i class="zmdi zmdi-long-arrow-up"></i> {{comentario.votos}}</a></b></li>
+            <li><a href="javascript:votarComentario({{comentario.id}},1)" style="text-decoration:none;"><span class="text-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><b><i class="zmdi zmdi-long-arrow-up"></i> {{comentario.votos|length}}</a></b></li>
             <li><a href="javascript:votarComentario({{comentario.id}},-1)" style="text-decoration:none;"><span class="text-danger" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><b><i class="zmdi zmdi-long-arrow-down"></i></a></b></li>
             <li><a href="javascript:verBoxResponder({{comentario.id}})"><small>Responder</small></a></li>
             {% if user and (user.patrulla_id != null) %}
@@ -57,7 +57,7 @@
                 </p>
                     {% if user %}
                 <ul class="list-inline" style="border-bottom: 1px solid #83c8ff;">
-            <li><a href="javascript:votarComentario({{respuesta.id}},1)" style="text-decoration:none;"><span class="text-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><b><i class="zmdi zmdi-long-arrow-up"></i> {{respuesta.votos}}</a></b></li>
+            <li><a href="javascript:votarComentario({{respuesta.id}},1)" style="text-decoration:none;"><span class="text-success" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><b><i class="zmdi zmdi-long-arrow-up"></i> {{respuesta.votos|length }}</a></b></li>
             <li><a href="javascript:votarComentario({{respuesta.id}},-1)" style="text-decoration:none;"><span class="text-danger" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><b><i class="zmdi zmdi-long-arrow-down"></i></a></b></li>
             <li><a href="javascript:verBoxResponder({{comentario.id}})"><small>Responder</small></a></li>
                     {% if user and (user.patrulla_id != null) %}

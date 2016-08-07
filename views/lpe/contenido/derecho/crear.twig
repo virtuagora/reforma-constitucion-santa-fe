@@ -2,8 +2,7 @@
 <link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
 %} {% block body %}
 <form id="crearDerecho" action="{{ urlFor('runCrearDerecho') }}" method="POST" enctype="multipart/form-data">
-
-    <div class="titulo-derecho-background">
+    <div class="titulo-derecho-background bgcolor{{random(3)}}">
         <div class="overlay">
             <div class="container">
                 <div class="row">
@@ -29,6 +28,7 @@
                     </div>
                 </div>
                 <a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>
+                                <br>
                 <div class="clearfix hidden-sm hidden-xs">
                     <a href="#" class="btn btn-large btn-default ">Cancelar</a>
                     <button type="submit" class="btn btn-lg btn-primary pull-right">Subir nuevo derecho</button>

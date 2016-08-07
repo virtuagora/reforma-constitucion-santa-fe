@@ -1,12 +1,10 @@
 {% extends "lpe/master.twig" %} {% block linkhead %} {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}{{ derecho.titulo }}{% endblock %} {% block body %}
 <article>
-    
-{% if derecho.imagen == true %}
-{% set linkImagen = baseUrl() + 'img/derecho' + derecho.id + '.jpg' %}
-{% else %}
-{% set linkImagen = 'https://unsplash.it/1200/400/?random' %}
+{% set colorSeleccionado = random(3) %}
+{% if derecho.imagen == 1 %}
+{% set linkImagen = baseUrl() ~ '/img/derecho/' ~ derecho.id ~ '.jpg' %}
 {% endif %}
-    <div class="titulo-derecho-background" style="background-image: url('{{ linkImagen }})">
+    <div class="titulo-derecho-background bgcolor{{colorSeleccionado}}" style="{{ derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''}}">
         <div class="overlay">
             <div class="container">
                 <div class="row">
@@ -22,7 +20,6 @@
         <div class="row">
             <div id="derecho" class="col-xs-12 col-sm-12 col-md-8 text-justify">
                 <div id="descripcion">
-                    {{ derecho.imagen }}
                     <p>{{ derecho.descripcion|bbCode }}</p>
                 </div>
                 {% for seccion in derecho.secciones %}
@@ -57,7 +54,7 @@
                 </div>
                 {% endif %} {% for opinion in derecho.opiniones %}
                 <div class="panel">
-                    <div class="panel-body tag-opinion" style="background-image: url('https://unsplash.it/505/300/?random');">
+                    <div class="panel-body tag-opinion bgcolor{{colorSeleccionado}}">
                         <a href="javascript:void(0)" data-toggle="modal" data-target="#opinion{{loop.index}}">
                             <div class="overlay">
                                 <h5><small>La opinión de..</small><br><b>{{opinion.participante.nombre}}</b></h5>

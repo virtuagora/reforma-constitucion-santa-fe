@@ -2,17 +2,21 @@
 <div class="container-fluid" style="margin-bottom:40px">
     <div class="row">
         <div class="col-xs-12 col-md-7 col-md-offset-1 text-center">
-            <br>
-            <h2><strong>Nueva Ley de Educacion Provincial</strong></h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio asperiores optio soluta, eos, impedit quia atque repellendus maiores deserunt aperiam et consequuntur minima dolor id, earum dolorem ab iusto nobis.</p>
+            <h2><strong>{{ titulo }}</strong></h2>
+            <div style="font-size: 14px;line-height: 21px;">
+                {{ intro|bbCode }}
+            </div>
             <div id="derechos" class="" style="margin-top:60px">
                 {% if derechos|length > 0 %}
-                <div class="grid">
+                <div class="grid" >
                     <div class="grid-sizer"></div>
                     {% for derecho in derechos %}
+                    {% if derecho.imagen == 1 %}
+                    {% set linkImagen = baseUrl() ~ '/img/derecho/' ~ derecho.id ~ '.jpg' %}
+                    {% endif %}
                     <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
-                        <div class="grid-item" style="background-image: url('https://unsplash.it/200/200/?random={{ random(1000) }}'); background-size:cover;">
-                            <figure class="cap-bot" style="background-color:rgba(0,0,0, 0.20);">
+                        <div class="grid-item bgcolor{{random(3)}}" style="">
+                            <figure class="cap-bot" style="{{ derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''}}">
                                 <div class="text-center">
                                     <h6>{{ derecho.titulo }}</h6> {% set numComents = 0 %} {% for seccion in derecho.secciones %} {% set numComents = numComents + seccion.comentarios|length %} {% endfor %}
                                 </div>
@@ -32,29 +36,22 @@
             </div>
         </div>
         <div class="col-xs-12 col-md-3">
-            <div class="" style="background-image: url('https://unsplash.it/1200/400/?random'); background-size:cover;margin-bottom:40px; margin-top: 20px;">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                     <h4 class="conoce text-center"><strong>Conoce mas</strong></h4>
+            <div class="" style=" background-size:cover;">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                        <div class="item active">
+                        {% for video in videos %}
+                        <div class="item {{ loop.first ? 'active':''}}">
                             <div class="row">
                                 <div class="col-xs-12 text-center">
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" width="853" height="480" src="https://www.youtube.com/embed/7uulVAHwXi0" frameborder="0" allowfullscreen></iframe>
+                                        <iframe class="embed-responsive-item" width="853" height="480" src="https://www.youtube.com/embed/{{video}}" frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-xs-12 text-center">
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" width="853" height="480" src="https://www.youtube.com/embed/7uulVAHwXi0" frameborder="0" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
 
                     <!-- Left and right controls -->

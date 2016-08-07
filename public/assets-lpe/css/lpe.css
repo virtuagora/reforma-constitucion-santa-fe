@@ -10044,20 +10044,13 @@ textarea.form-control.input-lg,
 
 /* line 288, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background {
-  background-color: #6f5499;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#563d7c), to(#6f5499));
-  background-image: -webkit-linear-gradient(top, #563d7c 0, #6f5499 100%);
-  background-image: -o-linear-gradient(top, #563d7c 0, #6f5499 100%);
-  background-image: linear-gradient(to bottom, #563d7c 0, #6f5499 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
-  background-repeat: repeat-x;
   margin-bottom: 40px;
 }
-/* line 297, ../scss/lpe.scss */
+/* line 290, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background .overlay {
   padding: 30px 0;
 }
-/* line 301, ../scss/lpe.scss */
+/* line 294, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background textarea {
   color: #FFF;
   background-color: none;
@@ -10069,19 +10062,19 @@ textarea.form-control.input-lg,
   resize: none;
   margin: 23px 0 11.5px;
 }
-/* line 313, ../scss/lpe.scss */
+/* line 306, ../scss/lpe.scss */
 #crearDerecho textarea.accion {
   font-size: 19.5px;
   line-height: 27.3px;
   font-weight: 300;
   padding: 0 0 10px;
 }
-/* line 319, ../scss/lpe.scss */
+/* line 312, ../scss/lpe.scss */
 #crearDerecho .btn-file {
   position: relative;
   overflow: hidden;
 }
-/* line 323, ../scss/lpe.scss */
+/* line 316, ../scss/lpe.scss */
 #crearDerecho .btn-file input[type=file] {
   position: absolute;
   top: 0;
@@ -10098,118 +10091,111 @@ textarea.form-control.input-lg,
   display: block;
 }
 
-/* line 342, ../scss/lpe.scss */
+/* line 335, ../scss/lpe.scss */
 article .titulo-derecho-background {
   color: #cdbfe3;
   text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  background-color: #6f5499;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#563d7c), to(#6f5499));
-  background-image: -webkit-linear-gradient(top, #563d7c 0, #6f5499 100%);
-  background-image: -o-linear-gradient(top, #563d7c 0, #6f5499 100%);
-  background-image: linear-gradient(to bottom, #563d7c 0, #6f5499 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
-  background-repeat: repeat-x;
   margin-bottom: 40px;
   background-size: cover;
 }
-/* line 355, ../scss/lpe.scss */
+/* line 341, ../scss/lpe.scss */
 article .titulo-derecho-background h1 {
   color: #FFF;
 }
-/* line 356, ../scss/lpe.scss */
+/* line 342, ../scss/lpe.scss */
 article .titulo-derecho-background .overlay {
   background: rgba(0, 0, 0, 0.3);
   padding: 30px 0;
 }
-/* line 361, ../scss/lpe.scss */
+/* line 347, ../scss/lpe.scss */
 article #derecho #descripcion {
   font-size: 14px;
   line-height: 21px;
 }
-/* line 365, ../scss/lpe.scss */
+/* line 351, ../scss/lpe.scss */
 article span.badge {
   background-color: #2196F3;
 }
-/* line 368, ../scss/lpe.scss */
+/* line 354, ../scss/lpe.scss */
 article #nav-derechos.affix {
   top: 30px;
 }
-/* line 372, ../scss/lpe.scss */
+/* line 358, ../scss/lpe.scss */
 article #nav-derechos > a {
   padding: 10px;
 }
-/* line 375, ../scss/lpe.scss */
+/* line 361, ../scss/lpe.scss */
 article p {
   font-size: 14px;
   line-height: 21px;
 }
-/* line 379, ../scss/lpe.scss */
+/* line 365, ../scss/lpe.scss */
 article img.size32 {
   width: 32px;
 }
-/* line 382, ../scss/lpe.scss */
+/* line 368, ../scss/lpe.scss */
 article p.comentario {
   font-size: 12px;
   line-height: 1.5;
 }
-/* line 386, ../scss/lpe.scss */
+/* line 372, ../scss/lpe.scss */
 article textarea.comentario {
   resize: vertical;
 }
 
-/* line 426, ../scss/lpe.scss */
+/* line 412, ../scss/lpe.scss */
 .tag-opinion {
   padding: 0;
   text-align: center;
 }
-/* line 429, ../scss/lpe.scss */
+/* line 415, ../scss/lpe.scss */
 .tag-opinion img {
   left: 0;
 }
-/* line 433, ../scss/lpe.scss */
+/* line 419, ../scss/lpe.scss */
 .tag-opinion .overlay {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   padding: 15px;
 }
-/* line 437, ../scss/lpe.scss */
+/* line 423, ../scss/lpe.scss */
 .tag-opinion h5 {
   color: #FFF;
 }
-/* line 440, ../scss/lpe.scss */
+/* line 426, ../scss/lpe.scss */
 .tag-opinion a:hover {
   text-decoration: none;
 }
 
-/* line 448, ../scss/lpe.scss */
+/* line 434, ../scss/lpe.scss */
 .opinionModal .descripcion {
   font-size: 14px;
   line-height: 21px;
 }
 
-/* line 456, ../scss/lpe.scss */
+/* line 442, ../scss/lpe.scss */
 .header-opinion {
   border-radius: 5px;
   background-size: cover;
   margin-bottom: 20px;
 }
-/* line 460, ../scss/lpe.scss */
+/* line 446, ../scss/lpe.scss */
 .header-opinion .overlay {
   background: rgba(0, 0, 0, 0.4);
   padding: 40px 0 55px;
   border-radius: 5px;
 }
-/* line 465, ../scss/lpe.scss */
+/* line 451, ../scss/lpe.scss */
 .header-opinion h3 {
   color: #FFF;
 }
 
-/* line 473, ../scss/lpe.scss */
+/* line 459, ../scss/lpe.scss */
 .editor-area {
   font-size: 14px;
 }
 
-/* line 478, ../scss/lpe.scss */
+/* line 464, ../scss/lpe.scss */
 #modificarInicio textarea[name=titulo] {
   font-size: 56px;
   font-weight: 700;
@@ -10220,7 +10206,7 @@ article textarea.comentario {
   margin-bottom: 15px;
   color: #444;
 }
-/* line 488, ../scss/lpe.scss */
+/* line 474, ../scss/lpe.scss */
 #modificarInicio textarea[name=descripcion] {
   font-size: 19.5px;
   line-height: 27.3px;
@@ -10230,19 +10216,59 @@ article textarea.comentario {
   resize: none;
 }
 
-/* line 499, ../scss/lpe.scss */
+/* line 485, ../scss/lpe.scss */
 #myCarousel .conoce {
   color: #FFF;
   padding-top: 20px;
   margin: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 504, ../scss/lpe.scss */
-#myCarousel .embed-responsive {
-  margin: 20px 0 40px;
-}
 
-/* line 511, ../scss/lpe.scss */
+/* line 497, ../scss/lpe.scss */
 .twitter-typeahead {
   width: 100%;
+}
+
+/* line 507, ../scss/lpe.scss */
+.bgcolor0 {
+  background-color: #6f5499;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3f3057, to(#6f5499)));
+  background-image: -webkit-linear-gradient(top, #3f3057 0, #6f5499 100%);
+  background-image: -o-linear-gradient(top, #3f3057 0, #6f5499 100%);
+  background-image: linear-gradient(to bottom, #3f3057 0, #6f5499 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($c1,20%)', endColorstr='$c1', GradientType=0);
+  background-repeat: repeat-x;
+}
+
+/* line 516, ../scss/lpe.scss */
+.bgcolor1 {
+  background-color: #00a73d;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#004118, to(#00a73d)));
+  background-image: -webkit-linear-gradient(top, #004118 0, #00a73d 100%);
+  background-image: -o-linear-gradient(top, #004118 0, #00a73d 100%);
+  background-image: linear-gradient(to bottom, #004118 0, #00a73d 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($c2,20%)', endColorstr='$c2', GradientType=0);
+  background-repeat: repeat-x;
+}
+
+/* line 525, ../scss/lpe.scss */
+.bgcolor2 {
+  background-color: #00cbdc;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#006d76, to(#00cbdc)));
+  background-image: -webkit-linear-gradient(top, #006d76 0, #00cbdc 100%);
+  background-image: -o-linear-gradient(top, #006d76 0, #00cbdc 100%);
+  background-image: linear-gradient(to bottom, #006d76 0, #00cbdc 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($c3,20%)', endColorstr='$c3', GradientType=0);
+  background-repeat: repeat-x;
+}
+
+/* line 534, ../scss/lpe.scss */
+.bgcolor3 {
+  background-color: #ff5400;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#993200, to(#ff5400)));
+  background-image: -webkit-linear-gradient(top, #993200 0, #ff5400 100%);
+  background-image: -o-linear-gradient(top, #993200 0, #ff5400 100%);
+  background-image: linear-gradient(to bottom, #993200 0, #ff5400 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($c4,20%)', endColorstr='$c4', GradientType=0);
+  background-repeat: repeat-x;
 }

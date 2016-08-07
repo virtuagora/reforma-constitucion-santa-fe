@@ -111,15 +111,14 @@
             dateFormat: 'DD, dd MM yy',
             altField: "#guardarFecha",
             altFormat: "yy-mm-dd",
-            maxDate: "-14Y",
-
+            yearRange: '1920:2010'
         });
     });
 
 
     $('form').submit(function(e) {
         var fecha = $("#guardarFecha").val()
-        fecha += ' ' + $('#timepicker').val() + ':00';
+        fecha += ' ' + $('#timepicker').val() + '00:00';
         $('#fecha-final').val(fecha);
     })
 

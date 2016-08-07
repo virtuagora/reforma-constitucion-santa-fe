@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/timepicker/jquery.timepicker.css" /> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear Evento{% endblock %} {% block body %}
 <form action="{{ urlFor('runCrearEvento') }}" method="POST">
     <article>
-        <div class="titulo-derecho-background">
+        <div class="titulo-derecho-background bgcolor{{random(3)}}">
             <div class="overlay">
                 <div class="container">
                     <div class="row">

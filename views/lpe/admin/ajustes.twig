@@ -15,21 +15,29 @@
 	{% for ajuste in ajustes %}
 		{% if (ajuste.value_type == 'int') or (ajuste.value_type == 'str') %}
         {% if ajuste.key != 'video' %}
-        <h6><strong>{{ ajuste.key|capitalize }}</strong></h6>
+        <h6><strong><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>{{ ajuste.key|capitalize }}</strong></h6>
 		<p>{{ ajuste.description }}</p>
         {% endif %}
         {% if ajuste.value_type == 'int' %}
 				<input type="number" class="form-control" name="{{ ajuste.key }}" >
 				{% elseif ajuste.value_type == 'str' %}
-                {% if ajuste.key == 'video' %}
+                {% if ajuste.key == 'videos' %}
 				<input type="hidden" name="{{ ajuste.key }}" >
+				{% set videos = ajuste.value|split('&&') %}
+				{% for video in videos %}
+				<input type="text" class="form-control idvideo" value="{{ video }}" >
+				{% endfor %}
+				<div class="lista-nuevos-videos">
+				</div>
+				<a href="javascript:agregarVideo()" class="btn btn-xs btn-info">+ nuevo video</a>
+				<span class="text-info">Para borrar un video deje el campo vacio</span>
 				 {% else %}
-				<input type="text"  class="form-control" name="{{ ajuste.key }}" >
+				<input type="text" class="form-control input-lg" name="{{ ajuste.key }}" >
 				 {% endif %}
 				{% endif%}
         <hr>
 		{% elseif ajuste.value_type == 'txt' %}
-		<h6><strong>{{ ajuste.key|capitalize }}</strong></h6>
+		<h6><strong><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>{{ ajuste.key|capitalize }}</strong></h6>
 		<p>{{ ajuste.description }}</p>
 		<textarea name="{{ ajuste.key }}"></textarea>
         <hr>
@@ -72,9 +80,9 @@
 		$('input[name="{{ ajuste.key }}"]').val({{ ajuste.value }});
 		 {% elseif ajuste.value_type == 'str' %}
          {% if ajuste.key == 'video' %}
-		 $('input[name="{{ ajuste.key }}"]')val({{ ajuste.value }});
+		 $('input[name="{{ ajuste.key }}"]')val('{{ ajuste.value }}');
 		 {% else %}
-		 $('input[name="{{ ajuste.key }}"]').val({{ ajuste.value }});
+		 $('input[name="{{ ajuste.key }}"]').val('{{ ajuste.value }}');
 		 {% endif %}
 		  {% elseif ajuste.value_type == 'txt' %}
 		  $('textarea[name={{ ajuste.key }}]').sceditor('instance').val('{{ ajuste.value|bbCode }}', false);
@@ -82,5 +90,20 @@
 		   {% endfor %}
 		   });
 
+		   var agregarVideo = function(){
+			   $('.lista-nuevos-videos').append($('<input type="text" class="form-control idvideo" value="" placeholder="7uulVAHwXi0">'))
+		   }
+	$( "form" ).submit(function( event ) {
+        var videos = [];        
+        $(".idvideo").each(function( index ) {
+			if($( this ).val() != ''){
+        videos.push($( this ).val());
+			}
+        });
+        var videosString = videos.join("&&")
+        $('input[name=videos]').val(videosString);
+		alert(videosString)
+        return true;
+});
 </script>
 {% endblock scripts %}
