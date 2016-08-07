@@ -10170,29 +10170,35 @@ article textarea.comentario {
   text-decoration: none;
 }
 
-/* line 443, ../scss/lpe.scss */
+/* line 441, ../scss/lpe.scss */
+.opinionModal .descripcion {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+/* line 449, ../scss/lpe.scss */
 .header-opinion {
   border-radius: 5px;
   background-size: cover;
   margin-bottom: 20px;
 }
-/* line 447, ../scss/lpe.scss */
+/* line 453, ../scss/lpe.scss */
 .header-opinion .overlay {
   background: rgba(0, 0, 0, 0.4);
   padding: 40px 0 55px;
   border-radius: 5px;
 }
-/* line 452, ../scss/lpe.scss */
+/* line 458, ../scss/lpe.scss */
 .header-opinion h3 {
   color: #FFF;
 }
 
-/* line 460, ../scss/lpe.scss */
+/* line 466, ../scss/lpe.scss */
 .editor-area {
   font-size: 14px;
 }
 
-/* line 465, ../scss/lpe.scss */
+/* line 471, ../scss/lpe.scss */
 #modificarInicio textarea[name=titulo] {
   font-size: 56px;
   font-weight: 700;
@@ -10203,7 +10209,7 @@ article textarea.comentario {
   margin-bottom: 15px;
   color: #444;
 }
-/* line 475, ../scss/lpe.scss */
+/* line 481, ../scss/lpe.scss */
 #modificarInicio textarea[name=descripcion] {
   font-size: 19.5px;
   line-height: 27.3px;
@@ -10213,19 +10219,19 @@ article textarea.comentario {
   resize: none;
 }
 
-/* line 486, ../scss/lpe.scss */
+/* line 492, ../scss/lpe.scss */
 #myCarousel .conoce {
   color: #FFF;
   padding-top: 20px;
   margin: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 491, ../scss/lpe.scss */
+/* line 497, ../scss/lpe.scss */
 #myCarousel .embed-responsive {
   margin: 20px 0 40px;
 }
 
-/* line 498, ../scss/lpe.scss */
+/* line 504, ../scss/lpe.scss */
 .twitter-typeahead {
   width: 100%;
 }

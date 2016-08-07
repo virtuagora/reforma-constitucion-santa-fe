@@ -35,7 +35,7 @@
                     <ul class="list-inline">
                         {% if evento.opiniones|length > 0 %}
                         {% for opinion in evento.opiniones %}
-                        <li><a href="javascript:void(0)" data-toggle="modal" data-target="#opinion{{loop.index}}"><i class="zmdi zmdi-mic-outline zmdi-hc-lg zmdi-hc-fw"></i>José Carlos</a></li>
+                        <li><a href="javascript:void(0)" data-toggle="modal" data-target="#opinion{{loop.index}}"><i class="zmdi zmdi-mic-outline zmdi-hc-lg zmdi-hc-fw"></i>{{opinion.participante.nombre}}</a></li>
                         {% include 'lpe/contenido/opinion/ver.twig' %}
                         {% endfor %}
                         {% else %}

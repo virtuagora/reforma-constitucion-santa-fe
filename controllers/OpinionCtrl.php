@@ -31,10 +31,10 @@ class OpinionCtrl extends Controller {
 
     public function crear() {
         $req = $this->request;
-        $vdt = $this->validarDerecho($req->post());
+        $vdt = $this->validarOpinion($req->post());
         $autor = $this->session->getUser();
         $opinion = new Opinion;
-        $opinion->cuerpo = $vdt->getData('descripcion');
+        $opinion->cuerpo = $vdt->getData('cuerpo');
         $opinion->derecho_id = $vdt->getData('derecho');
         $opinion->evento_id = $vdt->getData('evento');
         $opinion->participante_id = $vdt->getData('participante');

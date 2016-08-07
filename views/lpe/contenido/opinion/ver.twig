@@ -1,4 +1,4 @@
-<div class="modal fade" id="opinion{{loop.index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade opinionModal" id="opinion{{loop.index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,7 +15,9 @@
                     </div>
                 </div>
                 <hr>
-                <p>{{ opinion.cuerpo|bbCode }}</p>
+                <div class="descripcion">
+                    {{ opinion.cuerpo|bbCode  }}
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class=" btn btn-link btn-block btn-sm" data-dismiss="modal" aria-label="Close"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Cerrar</button>

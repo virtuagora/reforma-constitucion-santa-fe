@@ -63,7 +63,7 @@
             </span>
                 </div>
             <hr>
-            <textarea name="descripcion">Escriba la opinion</textarea>
+            <textarea name="cuerpo">Escriba la opinion</textarea>
             <hr>
             <div class="clearfix">
                 <a href="#" class="pull-left btn btn-link">Cancelar</a>
@@ -80,7 +80,7 @@
 <script src="{{ baseUrl() }}/assets-lpe/js/sceditor/jquery.sceditor.js"></script>
 <script>
     $(document).ready(function() {
-    iniciarEditor('descripcion');
+    iniciarEditor('cuerpo');
     $(':file').on('fileselect', function(event, numFiles, label) {
         var input = $(this).parents('.input-group').find(':text'),
             log = numFiles > 1 ? numFiles + ' files selected' : label;

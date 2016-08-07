@@ -2,7 +2,8 @@
 
 class Opinion extends Eloquent {
     protected $table = 'opiniones';
-    protected $visible = array('id', 'cuerpo');
+    protected $visible = array('id', 'cuerpo', 'participante');
+    protected $with = ['participante'];
 
     public function derecho() {
         return $this->belongsTo('Derecho');
