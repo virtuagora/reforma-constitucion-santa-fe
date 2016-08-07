@@ -53,6 +53,9 @@ try {
             $table->dateTime('birthday')->nullable();
             $table->string('address')->nullable();
             $table->string('title')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('extra')->nullable();
             $table->integer('img_tipo')->unsigned();
             $table->string('img_hash');
             $table->string('huella')->nullable();
