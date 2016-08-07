@@ -1,8 +1,12 @@
 {% extends "lpe/master.twig" %} {% block linkhead %} {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}{{ derecho.titulo }}{% endblock %} {% block body %}
-
 <article>
-
-    <div class="titulo-derecho-background" style="background-image: url('https://unsplash.it/1200/400/?random');">
+    
+{% if derecho.imagen == true %}
+{% set linkImagen = baseUrl() + 'img/derecho' + derecho.id + '.jpg' %}
+{% else %}
+{% set linkImagen = 'https://unsplash.it/1200/400/?random' %}
+{% endif %}
+    <div class="titulo-derecho-background" style="background-image: url('{{ linkImagen }})">
         <div class="overlay">
             <div class="container">
                 <div class="row">
@@ -18,6 +22,7 @@
         <div class="row">
             <div id="derecho" class="col-xs-12 col-sm-12 col-md-8 text-justify">
                 <div id="descripcion">
+                    {{ derecho.imagen }}
                     <p>{{ derecho.descripcion|bbCode }}</p>
                 </div>
                 {% for seccion in derecho.secciones %}
@@ -30,7 +35,7 @@
                             <a href="javascript:votarSeccion({{seccion.id}},3)" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 3)) ? 'btn-primary disabled' : 'btn-default'}}">Urgente</a>
                             <a href="javascript:votarSeccion({{seccion.id}},2)" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 2)) ? 'btn-primary disabled' : 'btn-default'}}">Importante</a>
                             <a href="javascript:votarSeccion({{seccion.id}},1)" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 1)) ? 'btn-primary disabled' : 'btn-default'}}">Poco importante</a>
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" class="btn btn-info">5 <i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i></a>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" class="btn btn-info">{{ seccion.comentarios|length }} <i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i></a>
                         </div>
                     </div>
                     <p class="lead"><span class="text-success">&nbsp;{{ptj}}<i class="zmdi zmdi-long-arrow-up zmdi-hc-fw zmdi-hc-lg"></i></span>{{seccion.descripcion|nl2br}}</p>
@@ -65,7 +70,9 @@
             </div>
         </div>
 </article>
-{% if user and (user.patrulla_id != null) %} {% include 'lpe/contenido/moderar.twig' %} {% endif %}
+{% if user and (user.patrulla_id != null) %}
+ {% include 'lpe/contenido/moderar.twig' %}
+  {% endif %}
 <form id="votarSeccion" method="POST">
     <input type="hidden" type="text" name="postura">
 </form>

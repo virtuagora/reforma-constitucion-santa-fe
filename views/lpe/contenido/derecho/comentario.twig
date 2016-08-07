@@ -20,7 +20,7 @@
             <li><a href="javascript:sancionar({{comentario.autor.id}})"><small><i class="zmdi zmdi-alert-triangle zmdi-hc-fw zmdi-hc-lg"></i>Moderar</small></a></li>
             {% endif %} 
             {% if user and (user.patrulla_id != null) %}
-            <li><a href=""><small><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Eliminar</small></a></li>
+            <li><a href="javascript:eliminarComentario({{comentario.id}})"><small><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Eliminar</small></a></li>
             {% endif %}
         </ul>
             {% endif %} 

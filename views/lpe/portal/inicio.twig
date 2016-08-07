@@ -22,19 +22,6 @@
                             </figure>
                         </div>
                     </a>
-                    {% endfor %} {% for derecho in derechos %}
-                    <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
-                        <div class="grid-item" style="background-image: url('https://unsplash.it/200/200/?random={{ random(1000) }}'); background-size:cover;">
-                            <figure class="cap-bot" style="background-color:rgba(0,0,0, 0.20);">
-                                <div class="text-center">
-                                    <h6>{{ derecho.titulo }}</h6> {% set numComents = 0 %} {% for seccion in derecho.secciones %} {% set numComents = numComents + seccion.comentarios|length %} {% endfor %}
-                                </div>
-                                <figcaption>
-                                    Haga clic para saber mas del derecho.
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </a>
                     {% endfor %}
                 </div>
                 {% else %}
