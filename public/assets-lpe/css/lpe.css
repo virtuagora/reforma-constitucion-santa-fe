@@ -10224,3 +10224,8 @@ article textarea.comentario {
 #myCarousel .embed-responsive {
   margin: 20px 0 40px;
 }
+
+/* line 498, ../scss/lpe.scss */
+.twitter-typeahead {
+  width: 100%;
+}

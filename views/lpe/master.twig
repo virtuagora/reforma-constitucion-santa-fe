@@ -48,8 +48,8 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="{{ urlFor('shwIndex') }}"><i class="zmdi zmdi-home zmdi-hc-fw zmdi-hc-lg"></i>Inicio</a></li>
-                            <li><a href="{{urlFor('shwCrearEvento')}}">Propuesta</a></li>
-                            <li><a href="{{urlFor('shwCrearEvento')}}">Antecedentes</a></li>
+                            <li><a href="#">Propuesta</a></li>
+                            <li><a href="#">Antecedentes</a></li>
                             <li><a href="{{urlFor('shwListaEvento')}}">Cronograma</a></li>
                             <!--<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -72,8 +72,8 @@
                                 <ul class="dropdown-menu" role="menu">
                                     {% if user and (user.patrulla_id != null) %}
 	<li><a href="{{ urlFor('shwCrearDerecho') }}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-plus"></i> Nuevo derecho</a></li>
-	<li><a href="{{urlFor('shwCrearPartici')}}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-plus"></i> Nuevo participante</a></li>
 	<li><a href="{{urlFor('shwCrearEvento')}}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-plus"></i> Nuevo evento</a></li>
+	<li><a href="{{urlFor('shwIndexAdmin')}}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-gear"></i> Administrar</a></li>
 
     
                                     <li class="divider"></li>

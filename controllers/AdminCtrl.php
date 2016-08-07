@@ -4,7 +4,7 @@ class AdminCtrl extends Controller {
 
     public function verAdminAjustes() {
         $ajustes = Ajuste::all();
-        $this->render('admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
+        $this->render('lpe/admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
     }
 
     public function adminAjustes() {
@@ -152,9 +152,13 @@ class AdminCtrl extends Controller {
     }
     
     public function verSubirImagen() {
-        $this->render('lpe/ruta-loca');
+        $this->render('lpe/admin/subirImagenes.twig');
     }
-    
+
+    public function verIndexAdmin() {
+        $this->render('lpe/admin/indexAdmin.twig');
+    }
+
     public function subirImagen() {
         if (isset($_FILES['archivo'])) {
             $dir = __DIR__ . '/../public/img/uploads';

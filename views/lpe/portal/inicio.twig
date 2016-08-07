@@ -90,24 +90,41 @@
 
             </div>
             <hr>
-            <h3><strong>Cronograma <small><a href="#" class="btn btn-xs btn-primary">Ver todo</a></small></strong></h3>
+            <h3><strong>Cronograma <small><a href="{{ urlFor('shwListaEvento')}}" class="btn btn-xs btn-primary">Ver todo</a></small></strong></h3>
             <div class="list-group">
-                <a href="#" class="list-group-item">
+                {% if eventos|length > 0%}
+                {% set contador = 1 %}
+                {% set tackle = true %}
+                {% for evento in eventos %}
+                    {% if contador >= 1 and contador < 3 and not evento.finalizado %}
+                    <li class="list-group-item {{ (not evento.finalizado) and tackle ? 'active' : ''}}">
+                    <div class="pull-right text-center">
+                        <h3><span class="{{ evento.finalizado and tackle ? 'text-success' : ''}}" style="{{ (not evento.finalizado) and tackle ? 'color:#FFF' : ''}}">
+                            <i class="zmdi {{ evento.finalizado and tackle ? 'zmdi-badge-check' : ''}}
+                            {{ (not evento.finalizado) and tackle ? 'zmdi-calendar' : ''}}
+                            {{ (not evento.finalizado) and (not tackle) ? 'zmdi-time-countdown' : ''}}
+                             zmdi-hc-fw zmdi-hc-lg"></i>
+                            </span></h3>
+                    </div>
+                    <h4 class="list-group-item-heading"><strong>{{ evento.titulo }}</strong></h4>
+                    <h5 class="list-group-item-heading">{{evento.fecha|date("d/m/Y")}} - {{evento.fecha|date("H:i")}}Hs.</h5>
+                    <h6 class="list-group-item-heading">{{ evento.lugar }}</h6>
+                    <p class="list-group-item-text lead">{{ evento.cuerpo }}</p>
+                    </li>
+                    {% endif %}
+                    {% if tackle %}
+                {% set tackle = false %}
+                {% endif %}
+                    {% if not evento.finalizado %}
+                    {% set contador = contador + 1 %}
+                    {% endif %}
+                    {% endfor %}
+                {% else %}
+                <li  class="list-group-item">
                     <div class="pull-right">
-                        <h3><span class="text-primary"><i class="zmdi zmdi-calendar zmdi-hc-fw zmdi-hc-lg"></i></span></h3></div>
-                    <h4 class="list-group-item-heading"><strong>Jornada de Participación Ciudadana</strong></h4>
-                    <h5 class="list-group-item-heading">19/10/2016 - 16Hs.</h5>
-                    <h6 class="list-group-item-heading">Escuela San José (Vicente Lopez 2344)</h6>
-                    <p class="list-group-item-text lead">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                </a>
-                <a href="#" class="list-group-item">
-                    <div class="pull-right">
-                        <h3><span class="text-primary"><i class="zmdi zmdi-calendar zmdi-hc-fw zmdi-hc-lg"></i></span></h3></div>
-                    <h4 class="list-group-item-heading"><strong>Acto inagural del nuevo centro de convenciones provincial</strong></h4>
-                    <h5 class="list-group-item-heading">19/10/2016 - 14Hs.</h5>
-                    <h6 class="list-group-item-heading">Escuela San José</h6>
-                    <p class="list-group-item-text lead">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                </a>
+                    <h5 class="list-group-item-heading">No hay eventos proximos</h5>
+                </li>
+                {% endif %}
             </div>
         </div>
     </div>

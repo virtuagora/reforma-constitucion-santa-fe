@@ -174,10 +174,10 @@ $app->group('/evento', function () use ($app, $checkRole) {
 });
 
 $app->group('/admin', function () use ($app, $checkRole, $checkAdminAuth) {
+    $app->get('/', $checkRole('mod'), 'AdminCtrl:verIndexAdmin')->name('shwIndexAdmin');    
     $app->get('/upload', $checkRole('mod'), 'AdminCtrl:verSubirImagen')->name('shwCrearImagen');
     $app->post('/upload', $checkRole('mod'), 'AdminCtrl:crear')->name('runCrearImagen');
     $app->get('/imagen/:idEve', 'AdminCtrl:verImagen')->name('shwImagen');
-    
     $app->post('/sancionar/:idUsu', $checkAdminAuth(1), 'AdminCtrl:sancUsuario')->name('runSanUsuario');
     $app->get('/verificar', $checkAdminAuth(7), 'AdminCtrl:verVerifCiudadano')->name('shwAdmVrfUsuario');
     $app->post('/verificar', $checkAdminAuth(7), 'AdminCtrl:verifCiudadano')->name('runAdmVrfUsuario');

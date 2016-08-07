@@ -4,7 +4,7 @@ class PortalCtrl extends Controller {
 
     public function verIndex() {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-        $eventos = Evento::whereDate('fecha', '>=', date('Y-m-d'))->orderBy('fecha', 'desc')->take(2)->get()->toArray();
+        $eventos = Evento::whereDate('fecha', '>=', date('Y-m-d'))->orderBy('fecha', 'asc')->take(2)->get()->toArray();
         $this->render('lpe/portal/inicio.twig',  ['derechos' => $derechos, 'eventos' => $eventos]);
     }
 

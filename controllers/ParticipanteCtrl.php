@@ -4,7 +4,7 @@ class ParticipanteCtrl extends Controller {
 
     public function verCrear() {
         $categorias = Categoria::all();
-        $this->render('lpe/contenido/participante/crear.twig', [
+        $this->render('lpe/admin/participantes.twig', [
             'categorias' => $categorias->toArray()
         ]);
     }
@@ -23,7 +23,7 @@ class ParticipanteCtrl extends Controller {
     
     public function listar() {
         $participantes = Participante::all();
-        $this->render('lpe/contenido/participante/listar.twig', [
+        $this->render('lpe/admin/participantes.twig', [
             'participantes' => $participantes
         ]);
     }
