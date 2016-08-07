@@ -3,23 +3,21 @@
 class Evento  extends Eloquent {
     protected $table = 'eventos';
     protected $dates = ['deleted_at', 'fecha'];
-    protected $visible = ['id', 'titulo', 'cuerpo', 'fecha', 'lugar', 'finalizado'];
+    protected $visible = ['id', 'titulo', 'cuerpo', 'fecha', 'lugar', 'finalizado', 'opiniones'];
+    protected $with = ['opiniones'];
     protected $appends = ['finalizado'];
 
+    //no se usaria por ahora
     public function usuarios() {
         return $this->belongsToMany('Usuario', 'evento_usuario');
     }
     
-    public function comentarios() {
-        return $this->morphMany('Comentario', 'comentable');
+    public function opiniones() {
+        return $this->hasMany('Opinion');
     }
     
     public function getIdentidadAttribute() {
         return $this->titulo;
-    }
-
-    public function getRaizAttribute() {
-        return $this;
     }
     
     public function getFinalizadoAttribute() {
@@ -39,9 +37,6 @@ class Evento  extends Eloquent {
     public static function boot() {
         parent::boot();
         static::deleting(function($evento) {
-            foreach ($evento->comentarios as $comentario) {
-                $comentario->delete();
-            }
             $evento->usuarios()->detach();
             return true;
         });

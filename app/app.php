@@ -176,15 +176,15 @@ $app->group('/evento', function () use ($app, $checkRole) {
 $app->group('/admin', function () use ($app, $checkRole, $checkAdminAuth) {
     $app->get('/', $checkRole('mod'), 'AdminCtrl:verIndexAdmin')->name('shwIndexAdmin');    
     $app->get('/upload', $checkRole('mod'), 'AdminCtrl:verSubirImagen')->name('shwCrearImagen');
-    $app->post('/upload', $checkRole('mod'), 'AdminCtrl:crear')->name('runCrearImagen');
+    $app->post('/upload', $checkRole('mod'), 'AdminCtrl:subirImagen')->name('runCrearImagen');
     $app->get('/imagen/:idEve', 'AdminCtrl:verImagen')->name('shwImagen');
     $app->post('/sancionar/:idUsu', $checkAdminAuth(1), 'AdminCtrl:sancUsuario')->name('runSanUsuario');
     $app->get('/verificar', $checkAdminAuth(7), 'AdminCtrl:verVerifCiudadano')->name('shwAdmVrfUsuario');
     $app->post('/verificar', $checkAdminAuth(7), 'AdminCtrl:verifCiudadano')->name('runAdmVrfUsuario');
     $app->get('/ajustes', $checkAdminAuth(2), 'AdminCtrl:verAdminAjustes')->name('shwAdmAjuste');
     $app->post('/ajustes', $checkAdminAuth(2), 'AdminCtrl:adminAjustes')->name('runAdmAjuste');
-    $app->get('/moderador/crear', $checkAdminAuth(6), 'PatrullaCtrl:verCrearModeradores')->name('shwCrearModerad');
-    $app->post('/moderador/crear', $checkAdminAuth(6), 'PatrullaCtrl:crearModeradores')->name('runCrearModerad');
+    $app->get('/moderador/crear', $checkRole('mod'), 'AdminCtrl:verCrearModerador')->name('shwCrearModerad');
+    $app->post('/moderador/crear', $checkRole('mod'), 'AdminCtrl:crearModerador')->name('runCrearModerad');
 });
 
 $app->get('/', 'PortalCtrl:verIndex')->name('shwIndex');

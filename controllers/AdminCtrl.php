@@ -29,62 +29,24 @@ class AdminCtrl extends Controller {
         $this->flash('success', 'Los ajustes se han modificado exitosamente.');
         $this->redirectTo('shwAdmAjuste');
     }
-
-    public function verAdminFuncionarios($idOrg) {
-        $vdt = new Validate\QuickValidator(array($this, 'notFound'));
-        $vdt->test($idOrg, new Validate\Rule\NumNatural());
-        $organismo = Organismo::findOrFail($idOrg);
-        $this->render('admin/funcionarios.twig', array('organismo' => $organismo->toArray(),
-                                                       'funcionarios' => $organismo->usuarios->toArray()));
+    
+    public function verCrearModerador() {
+        $mods = Usuario::whereNotNull('patrulla_id')->get()->toArray();
+        $this->render('lpe/admin/moderadores.twig', ['moderadores' => $mods]);
     }
-
-    public function adminFuncionarios($id) {
-        $vdt = new Validate\Validator();
-        $vdt->addRule('id', new Validate\Rule\NumNatural())
-            ->addRule('entrantes', new Validate\Rule\Regex('/^\[\d*(?:,\d+)*\]$/'))
-            ->addRule('salientes', new Validate\Rule\Regex('/^\[\d*(?:,\d+)*\]$/'));
+    
+    public function crearModerardor() {
         $req = $this->request;
-        $data = array_merge(array('id' => $id), $req->post());
-        if (!$vdt->validate($data)) {
-            throw new TurnbackException('Configuración inválida.');
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+        $vdt->test($req->post('id'), new Validate\Rule\NumNatural());
+        $usuario = Usuario::findOrFail($vdt->getData('id'));
+        if ($usuario->patrulla_id) {
+            throw new TurnbackException('Ese usuario ya es moderador.');
         }
-        $organismo = Organismo::findOrFail($id);
-        $funcionarios = $organismo->funcionarios;
-        $actuales = array();
-        foreach ($funcionarios as $funcionario) {
-            $actuales[] = (int) $funcionario->usuario_id;
-        }
-        $entrantes = json_decode($vdt->getData('entrantes'));
-        $salientes = json_decode($vdt->getData('salientes'));
-        if (array_intersect($actuales, $entrantes)) {
-            throw new TurnbackException('Configuración inválida.');
-        }
-        if (array_diff($salientes, $actuales)) {
-            throw new TurnbackException('Configuración inválida.');
-        }
-        if ($salientes) {
-            Funcionario::whereIn('usuario_id', $salientes)->delete();
-            Usuario::whereIn('id', $salientes)->update(array('es_funcionario' => false));
-            AdminlogCtrl::createLog(implode(',', $salientes), 4, 'del', $this->session->user('id'), $organismo);
-            foreach ($salientes as $saliente) {
-                $log = UserlogCtrl::createLog('delFuncion', $saliente, $organismo);
-                NotificacionCtrl::createNotif($saliente, $log);
-            }
-        }
-        if ($entrantes) {
-            Usuario::whereIn('id', $entrantes)->increment('puntos', 30);
-            AdminlogCtrl::createLog(implode(',', $entrantes), 4, 'new', $this->session->user('id'), $organismo);
-            foreach ($entrantes as $entrante) {
-                $funcionario = new Funcionario;
-                $funcionario->usuario_id = $entrante;
-                $funcionario->organismo_id = $id;
-                $funcionario->save();
-                $log = UserlogCtrl::createLog('newFuncion', $entrante, $organismo);
-                NotificacionCtrl::createNotif($entrante, $log);
-            }
-        }
-        $this->flash('success', 'Se han modificado los funcionarios del organismo exitosamente.');
-        $this->redirectTo('shwAdmOrganis');
+        $usuario->patrulla_id = 1;
+        $usuario->save();
+        $this->flash('success', 'El usuario ya es moderador.');
+        $this->redirectTo('shwCrearModerad');
     }
 
     public function sancUsuario($idUsu) {
@@ -129,34 +91,17 @@ class AdminCtrl extends Controller {
         $this->redirect($req->getReferrer());
     }
 
-    public function verVerifCiudadano() {
-        $this->render('admin/verificar-usuarios.twig');
-    }
-
-    public function verifCiudadano() {
-        $vdt = new Validate\Validator();
-        $vdt->addRule('entrantes', new Validate\Rule\Regex('/^\[\d+(?:,\d+)*\]$/'));
-        $req = $this->request;
-        if (!$vdt->validate($req->post())) {
-            throw new TurnbackException('Configuración inválida.');
-        }
-        $entrantes = json_decode($vdt->getData('entrantes'));
-        Usuario::whereIn('id', $entrantes)->whereNull('verified_at')
-            ->increment('puntos', 100, array('verified_at' => Carbon\Carbon::now()));
-        foreach ($entrantes as $entrante) {
-            $log = AdminlogCtrl::createLog('', 7, 'new', $this->session->user('id'), $entrante, 'Usuario');
-            NotificacionCtrl::createNotif($entrante, $log);
-        }
-        $this->flash('success', 'Se han verificado los ciudadanos seleccionados exitosamente.');
-        $this->redirectTo('shwAdmVrfUsuario');
+    public function verIndexAdmin() {
+        $this->render('lpe/admin/indexAdmin.twig');
     }
     
     public function verSubirImagen() {
-        $this->render('lpe/admin/subirImagenes.twig');
-    }
-
-    public function verIndexAdmin() {
-        $this->render('lpe/admin/indexAdmin.twig');
+        $dir = __DIR__ . '/../public/img/uploads';
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        $files = array_diff(scandir($dir), ['..', '.']);
+        $this->render('lpe/admin/subirImagenes.twig', ['imagenes' => $files]);
     }
 
     public function subirImagen() {
@@ -178,10 +123,6 @@ class AdminCtrl extends Controller {
             throw new TurnbackException('No seleccionó imagen.');
         }
         $this->flash('success', 'La imagen se cargó exitosamente.');
-        $this->redirectTo('shwImagen', ['idIma' => $id]);
-    }
-    
-    public function verImagen($idIma) {
-        $this->render('lpe/ruta-loca', ['id'=>$idIma]);
+        $this->redirectTo('shwCrearImagen');
     }
 }
