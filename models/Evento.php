@@ -1,6 +1,6 @@
-<?php
+<?php use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Evento {
+class Evento  extends Eloquent {
     protected $table = 'eventos';
     protected $dates = ['deleted_at', 'fecha'];
     protected $visible = ['id', 'titulo', 'cuerpo', 'fecha', 'lugar', 'finalizado'];
@@ -27,6 +27,10 @@ class Evento {
         return $hoy->gt($this->fecha);
     }
     
+    public function autor() {
+        return $this->belongsTo('Usuario');
+    }
+
     public function setTituloAttribute($value) {
         $this->attributes['titulo'] = $value;
         $this->attributes['huella'] = FilterFactory::calcHuella($value);

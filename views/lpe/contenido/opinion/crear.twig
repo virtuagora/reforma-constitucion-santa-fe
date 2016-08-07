@@ -1,7 +1,7 @@
 {% extends "lpe/master.twig" %} {% block linkhead %}
 <link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
 %} {% block body %}
-<form>
+<form action="{{ urlFor('runCrearOpinion') }}" method="POST">
 <article>
     <div class="titulo-derecho-background" >
         <div class="overlay">
@@ -24,7 +24,7 @@
             <select name="participante" class="form-control">
                 <option value="" disabled selected>Seleccione un participante</option>            
                 {% for participante in participantes %}
-                <option value="{{participante.id}}">{{participante.descripcion}}</option>
+                <option value="{{participante.id}}">{{participante.nombre}}</option>
                 {% endfor %}
             </select>
             <div class="form-group">
@@ -32,7 +32,9 @@
                 <select name="evento" class="form-control">
                 <option value="" disabled selected>Seleccione el evento</option>     
                 {% for evento in eventos %}
+                {% if evento.finalizado %}
                 <option value="{{evento.id}}">{{evento.titulo}}</option>
+                {% endif %}
                 {% endfor %}
             </select>
             </div>

@@ -1,6 +1,6 @@
 {% extends "lpe/master.twig" %} {% block linkhead %}
 {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock %} {% block body %}
-<form action="#" method="POST">
+<form action="{{ urlFor('runCrearPartici') }}" method="POST">
     <article>
         <div class="titulo-derecho-background">
             <div class="overlay">
@@ -21,11 +21,11 @@
                 <div class="form-group text-center">
                     <i class="zmdi zmdi-accounts-list-alt zmdi-hc-4x"></i>
                     <h5><b>Nombre</b></h5>
-                    <input type="text" class="form-control input-lg" style="text-align: center" placeholder="Juan Alberto">
+                    <input type="text" name="nombre" class="form-control input-lg" style="text-align: center" placeholder="Juan Alberto">
                 </div>
                 <div class="form-group">
                     <h5><b>Descripcion</b></h5>
-                    <textarea rows="2" class="form-control"></textarea>
+                    <textarea rows="1" name="descripcion" class="form-control" placeholder="Escriba una descripcion"></textarea>
                 </div>
                 <div class="clearfix">
                     <a href="#" class="pull-left btn btn-link">Cancelar</a>

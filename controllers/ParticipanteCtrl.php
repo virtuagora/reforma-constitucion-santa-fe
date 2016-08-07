@@ -4,7 +4,7 @@ class ParticipanteCtrl extends Controller {
 
     public function verCrear() {
         $categorias = Categoria::all();
-        $this->render('lpe/contenido/derecho/crear.twig', [
+        $this->render('lpe/contenido/participante/crear.twig', [
             'categorias' => $categorias->toArray()
         ]);
     }

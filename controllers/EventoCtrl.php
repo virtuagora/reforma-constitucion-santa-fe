@@ -12,7 +12,7 @@ class EventoCtrl extends Controller {
         $datosEven = $evento->toArray();
         $datosEven['interesados'] = $evento->usuarios()->count();
         $datosPart = $participe? $participe->toArray(): null;
-        $this->render('contenido/evento/ver.twig', [
+        $this->render('lpe/contenido/evento/ver.twig', [
             'evento' => $datosEven,
             'comentarios' =>  $comentarios,
             'participacion' => $datosPart,
@@ -22,7 +22,7 @@ class EventoCtrl extends Controller {
     
     public function listar() {
         $eventos = Evento::all()->sortBy('fecha');
-        $this->render('contenido/evento/listar.twig', [
+        $this->render('lpe/contenido/evento/listar.twig', [
             'eventos' => $eventos
         ]);
     }
@@ -48,7 +48,7 @@ class EventoCtrl extends Controller {
     }
 
     public function verCrear() {
-        $this->render('contenido/evento/crear.twig');
+        $this->render('lpe/contenido/evento/crear.twig');
     }
 
     public function crear() {
@@ -59,12 +59,12 @@ class EventoCtrl extends Controller {
         $evento->cuerpo = $vdt->getData('cuerpo');
         $evento->lugar = $vdt->getData('lugar');
         $evento->fecha = Carbon\Carbon::parse($vdt->getData('fecha'));
-        $evento->save();
         $evento->titulo = $vdt->getData('titulo');
+        $evento->coordenadas = '';
         $evento->autor()->associate($autor);
         $evento->save();
         $this->flash('success', 'Su evento fue creado exitosamente.');
-        $this->redirectTo('shwEvento', ['idEve' => $evento->id]);
+        $this->redirectTo('shwListaEvento');
     }
 
     public function verModificar($idEve) {
@@ -72,7 +72,7 @@ class EventoCtrl extends Controller {
         $vdt->test($idEve, new Validate\Rule\NumNatural());
         $evento = Evento::findOrFail($idEve);
         $datos = $evento->toArray();
-        $this->render('contenido/evento/modificar.twig', ['evento' => $datos]);
+        $this->render('lpe/contenido/evento/modificar.twig', ['evento' => $datos]);
     }
 
     public function modificar($idEve) {

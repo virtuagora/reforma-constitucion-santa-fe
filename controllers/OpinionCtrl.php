@@ -20,11 +20,11 @@ class OpinionCtrl extends Controller {
 
     public function verCrear() {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get();
-        // $eventos = Evento::all();
+        $eventos = Evento::all();
         $participantes = Participante::all();
         $this->render('lpe/contenido/opinion/crear.twig', [
             'derechos' => $derechos->toArray(),
-            // 'eventos' => $eventos->toArray(),
+            'eventos' => $eventos->toArray(),
             'participantes' => $participantes->toArray(),
         ]);
     }

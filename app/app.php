@@ -158,6 +158,7 @@ $app->group('/opinion', function () use ($app, $checkRole) {
 
 $app->group('/participante', function () use ($app, $checkRole) {
     $app->get('/', $checkRole('mod'), 'ParticipanteCtrl:listar')->name('shwListaPartici');
+    $app->get('/crear', $checkRole('mod'), 'ParticipanteCtrl:verCrear')->name('shwCrearPartici');    
     $app->post('/crear', $checkRole('mod'), 'ParticipanteCtrl:crear')->name('runCrearPartici');
 });
 

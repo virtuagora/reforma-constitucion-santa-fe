@@ -5,12 +5,13 @@
             <div class="text-center">
                 <h2 class="text-center"><strong>Cronograma</strong>
                 {% if user and (user.patrulla_id != null) %}
-        <a href="#" class="btn-warning btn"><i class="zmdi zmdi-plus zmdi-hc-lg"></i></a>
+        <a href="{{urlFor('shwCrearEvento')}}" class="btn-warning btn"><i class="zmdi zmdi-plus zmdi-hc-lg"></i></a>
         {% endif %}
         </h2>
                 <br>
             </div>
             <div class="list-group">
+                {% if eventos|length > 0 %}
                 {% set tackle = true %}
                 {% for evento in eventos %}
                 <li class="list-group-item {{ (not evento.finalizado) and tackle ? 'active' : ''}}">
@@ -28,8 +29,9 @@
                     <h4 class="list-group-item-heading"><strong>{{ evento.titulo }}</strong></h4>
                     <h5 class="list-group-item-heading">{{evento.fecha|date("d/m/Y")}} - {{evento.fecha|date("H:i")}}Hs.</h5>
                     <h6 class="list-group-item-heading">{{ evento.lugar }}</h6>
-                    <p class="list-group-item-text lead">{{ evento.descripcion }}</p>
-                    <h5><span class="text-primary"><b>Opiniones de interes</b></span></h5>
+                    <p class="list-group-item-text lead">{{ evento.cuerpo }}</p>
+                    {% if evento.finalizado %}
+                    <h5><span class="{{ (not evento.finalizado) and tackle ? '' : 'text-primary'}}" style="{{ (not evento.finalizado) and tackle ? 'color:#FFF' : ''}}"><b>Opiniones de interes</b></span></h5>
                     <ul class="list-inline">
                         {% if evento.opiniones|length > 0 %}
                         {% for opinion in evento.opiniones %}
@@ -40,14 +42,17 @@
                         <li class="text-info"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i> No hay opiniones registradas</li>
                         {% endif%}
                     </ul>
+                    {% endif %}
                 </li>
                 {% if (not evento.finalizado) and tackle %}
                 {% set tackle = false %}
                 {% endif %}
                 {% endfor %}
+                {% else %}
                 <li class="list-group-item">
                     <h6>No hay eventos agregados al cronograma...</h6>
                 </li>
+                {% endif %}
             </div>
         </div>
     </div>
