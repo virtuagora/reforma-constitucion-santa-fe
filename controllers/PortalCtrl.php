@@ -5,7 +5,23 @@ class PortalCtrl extends Controller {
     public function verIndex() {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
         $eventos = Evento::whereDate('fecha', '>=', date('Y-m-d'))->orderBy('fecha', 'asc')->take(2)->get()->toArray();
-        $this->render('lpe/portal/inicio.twig',  ['derechos' => $derechos, 'eventos' => $eventos]);
+        $ajustes = Ajuste::whereIn('key', ['titulo', 'intro', 'videos'])->get();
+        foreach ($ajustes as $aju) {
+            if ($aju->key == 'titulo') {
+                $titulo = $aju->value;
+            } elseif ($aju->key == 'intro') {
+                $intro = $aju->value;
+            } elseif ($aju->key == 'videos') {
+                $videos = explode('&&', $aju->value);
+            }
+        }
+        $this->render('lpe/portal/inicio.twig',  [
+            'derechos' => $derechos,
+            'eventos' => $eventos,
+            'titulo' => $titulo,
+            'intro' => $intro,
+            'videos' => $videos,
+        ]);
     }
 
     public function verPortal() {
