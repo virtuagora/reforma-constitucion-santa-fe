@@ -14,6 +14,7 @@
                 {% if eventos|length > 0 %}
                 {% set tackle = true %}
                 {% for evento in eventos %}
+                {% set colorSeleccionado = random(3) %}
                 <li class="list-group-item {{ (not evento.finalizado) and tackle ? 'active' : ''}}">
                     <div class="pull-right text-center">
                         <h3><span class="{{ evento.finalizado and tackle ? 'text-success' : ''}}" style="{{ (not evento.finalizado) and tackle ? 'color:#FFF' : ''}}">
@@ -23,7 +24,9 @@
                              zmdi-hc-fw zmdi-hc-lg"></i>
                             </span></h3>
                             {% if user and (user.patrulla_id != null) %}
-                        <a href="#" class="btn btn-warning btn-sm"><i class="zmdi zmdi-close zmdi-hc-fw zmdi-hc-lg"></i> Eliminar</a>
+                            <form action="{{ urlFor('runElimiEvento', {'idEve': evento.id }) }}" method="POST">
+                                <button type="submit" class="btn btn-warning btn-sm"><i class="zmdi zmdi-close zmdi-hc-fw zmdi-hc-lg"></i> Eliminar</a>
+                            </form>
                         {% endif %}
                     </div>
                     <h4 class="list-group-item-heading"><strong>{{ evento.titulo }}</strong></h4>

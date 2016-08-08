@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    {% block opengraph %}
     		<meta property="og:url"                content="{{ baseUrl() }}" />
-<meta property="og:type"               content="article" />
+<meta property="og:type"               content="website" />
 <meta property="og:title"              content="Nueva Ley Provincial de Educacion" />
-<meta property="og:description"        content="o" />
-<meta property="og:image"              content="{{ baseUrl() }}/assets/img/ceut-share.png" />
+<meta property="og:description"        content="Aqui va una descripcion del portal" />
+<meta property="og:image"              content="{{ baseUrl() }}/assets/img/" />
+    {% endblock %}
 <link rel="shortcut icon" href="{{ baseUrl() }}/assets-lpe/img/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="{{ baseUrl() }}/assets-lpe/img/favicon.ico" type="image/x-icon">
     <title>{% block titulo %}Nueva Ley de Educación Provincial - Gobierno de Santa Fe{% endblock titulo %}</title>
@@ -134,16 +136,16 @@
     </div>
     </div>
     <div class="footer">
-        <img class="img-logo" src="{{ baseUrl() }}/assets-lpe/img/logo-footer.png" alt="">
-        <div class="inside-footer text-center">
-            <img style="height:20px" src="{{ baseUrl() }}/assets/img/bigwhitelogo.png" alt="">
+        <img class="img-logo" src="{{ baseUrl() }}/assets-lpe/img/logo-footer.jpg" alt="">
+        <div class="inside-footer text-right" style="padding-top: 60px;">
+            <span style="color: #e0e0e0; font-size: 9px;">Desarrollado con </span><a href="http://www.virtuagora.org"><img style="height: 17px;margin-right: 8px;" src="{{ baseUrl() }}/assets/img/bigwhitelogo.png" alt=""></a>
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="{{ baseUrl() }}/assets/js/jquery/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ baseUrl() }}/assets/js/bootstrap.min.js"></script>
-    <!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+    <!--=======================-->
     {% block scripts %}{% endblock %}
 </body>
 

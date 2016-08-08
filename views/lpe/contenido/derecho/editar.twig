@@ -1,8 +1,9 @@
 {% extends "lpe/master.twig" %} {% block linkhead %}
-<link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
+<link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} 
+{# ----------------------------------------------------------- #} {% block titulo %}Editar derecho{% endblock
 %} {% block body %}
 <form id="crearDerecho" action="{{ urlFor('runModifDerecho') }}" method="POST" enctype="multipart/form-data">
-    <div class="titulo-derecho-background">
+    <div class="titulo-derecho-background bgcolor{{random(3)}}">
         <div class="overlay">
             <div class="container">
                 <div class="row">
@@ -20,17 +21,19 @@
                     <textarea name="descripcion"></textarea>
                 </div>
                 <hr>
-                <div class="lista-acciones">
+                <div class="lista-acciones">                   
+                    {% for seccion in derecho.secciones %}
                     <div class="accion-container">
-                        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la accion..."></textarea>
-                        <hr>
+                        <textarea name="cuerpo" class="accion form-control" rows="1" placeholder="Describa la accion...">{{seccion.descripcion|nl2br}}</textarea>
+                        <br>
                     </div>
+                    {% endfor %}
                 </div>
                 <hr>
                 
                 <div class="clearfix hidden-sm hidden-xs">
                     <a href="#" class="btn btn-large btn-default ">Cancelar</a>
-                    <button type="submit" class="btn btn-lg btn-primary pull-right">Modificar derecho</button>
+                    <button type="submit" class="btn btn-lg btn-primary pull-right">Editar derecho</button>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4">
@@ -65,7 +68,7 @@
             <input type="text" name="tags" value="" hidden>
              <div class="clearfix hidden-md hidden-lg">
                     <a href="#" class="btn btn-large btn-default ">Cancelar</a>
-                    <button type="submit" class="btn btn-lg btn-primary pull-right">Modificar derecho</button>
+                    <button type="submit" class="btn btn-lg btn-primary pull-right">Editar derecho</button>
                 </div>
         </div>
     </div>
@@ -96,7 +99,7 @@
             resizeHeight: true,
             autoExpand: true,
             enablePasteFiltering: true
-        }).val('{{ novedad.cuerpo|bbCode }}', false);
+        }).val('{{ derecho.descripcion|bbCode }}', false)
          autosize($('textarea'));
 
     $(':file').on('fileselect', function(event, numFiles, label) {

@@ -286,10 +286,11 @@ textarea.form-control.input-lg {
 
 #crearDerecho{
 .titulo-derecho-background{
+    background-position: center center;
 margin-bottom:40px;
 .overlay{
     // background: rgba(0,0,0,0.3); 
-    padding: 30px 0;
+    padding: 80px 0;
 }
 textarea{
     color:#FFF;
@@ -338,10 +339,11 @@ text-align: center;
 text-shadow: 0 1px 0 rgba(0,0,0,.1);
 margin-bottom:40px;
 background-size: cover;
+background-position: center center;
 h1{color:#FFF;}
 .overlay{
     background: rgba(0,0,0,0.3); 
-    padding: 30px 0;
+    padding: 80px 0;
 }
 }
 #derecho #descripcion{
