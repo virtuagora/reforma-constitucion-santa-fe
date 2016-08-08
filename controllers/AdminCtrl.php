@@ -11,7 +11,7 @@ class AdminCtrl extends Controller {
         $vdt = new Validate\Validator();
         $vdt->addRule('tos', new Validate\Rule\MinLength(8))
             ->addRule('tos', new Validate\Rule\MaxLength(8192))
-            ->addFilter('tos', FilterFactory::escapeHTML());
+            ;
         $req = $this->request;
         if (!$vdt->validate($req->post())) {
             throw new TurnbackException($vdt->getErrors());

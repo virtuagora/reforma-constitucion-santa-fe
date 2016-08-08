@@ -71,22 +71,24 @@
             resizeEnabled: false,
             resizeHeight: true,
             autoExpand: true,
+			autoUpdate: true,
             enablePasteFiltering: true
 		});
 	});
+	
 	$(document).ready(function(){
 		{% for ajuste in ajustes %}
-		{% if ajuste.value_type == 'int' %}
-		$('input[name="{{ ajuste.key }}"]').val({{ ajuste.value }});
-		 {% elseif ajuste.value_type == 'str' %}
-         {% if ajuste.key == 'video' %}
-		 $('input[name="{{ ajuste.key }}"]')val('{{ ajuste.value }}');
-		 {% else %}
-		 $('input[name="{{ ajuste.key }}"]').val('{{ ajuste.value }}');
-		 {% endif %}
-		  {% elseif ajuste.value_type == 'txt' %}
-		  $('textarea[name={{ ajuste.key }}]').sceditor('instance').val('{{ ajuste.value|bbCode }}', false);
-		   {% endif %}
+			{% if ajuste.value_type == 'int' %}
+				$('input[name="{{ ajuste.key }}"]').val({{ ajuste.value }});
+			{% elseif ajuste.value_type == 'str' %}
+				{% if ajuste.key == 'video' %}
+				$('input[name="{{ ajuste.key }}"]')val('{{ ajuste.value }}');
+				{% else %}
+				$('input[name="{{ ajuste.key }}"]').val('{{ ajuste.value }}');
+				{% endif %}
+			{% elseif ajuste.value_type == 'txt' %}
+				$('textarea[name={{ ajuste.key }}]').sceditor('instance').val('{{ ajuste.value|bbCode }}', false);
+			{% endif %}
 		   {% endfor %}
 		   });
 
