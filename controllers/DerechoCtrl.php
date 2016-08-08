@@ -95,8 +95,8 @@ class DerechoCtrl extends Controller {
         $accOld = $derecho->secciones;
         $i = 0;
         foreach ($accOld as $accion) {
-            if (isset(accNew[$i])) {
-                $accion->descripcion = accNew[$i];
+            if (isset($accNew[$i])) {
+                $accion->descripcion = $accNew[$i];
                 $i++;
                 $accion->save();
             }
