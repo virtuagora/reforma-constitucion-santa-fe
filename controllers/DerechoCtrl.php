@@ -54,7 +54,7 @@ class DerechoCtrl extends Controller {
         $contenido->contenible()->associate($derecho);
         $contenido->save();
         if ($derecho->imagen) {
-            $subida = subirImagen($derecho->id);
+            $subida = $this->subirImagen($derecho->id);
             if (!$subida) {
                 throw new TurnbackException('Error al cargar la imagen');
             }
@@ -102,7 +102,7 @@ class DerechoCtrl extends Controller {
             }
         }
         if ($imagenSubida) {
-            $subida = subirImagen($derecho->id);
+            $subida = $this->subirImagen($derecho->id);
             if (!$subida) {
                 throw new TurnbackException('Error al cargar la imagen');
             }
