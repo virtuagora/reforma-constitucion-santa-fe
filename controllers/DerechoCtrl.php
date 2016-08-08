@@ -37,7 +37,7 @@ class DerechoCtrl extends Controller {
         $derecho = new Derecho;
         $derecho->descripcion = $vdt->getData('descripcion');
         $derecho->video = $vdt->getData('video');
-        $derecho->imagen = isset($_FILES['archivo']);
+        $derecho->imagen = is_uploaded_file($_FILES['archivo']['tmp_name']);
         $derecho->save();
         $acciones = $vdt->getData('secciones');
         foreach ($acciones as $accion) {
@@ -54,7 +54,7 @@ class DerechoCtrl extends Controller {
         $contenido->contenible()->associate($derecho);
         $contenido->save();
         
-        if (isset($_FILES['archivo'])) {
+        if ($derecho->imagen) {
             $dir = __DIR__ . '/../public/img/derecho';
             if (!is_dir($dir)) {
                 mkdir($dir, 0777, true);

@@ -77,7 +77,7 @@ class PortalCtrl extends Controller {
             ->addRule('email', new Validate\Rule\Email())
             ->addRule('email', new Validate\Rule\MaxLength(128))
             ->addRule('email', new Validate\Rule\Unique('usuarios'))
-            ->addRule('birthday', new Validate\Rule\Date('Y-m-d H:i:s'))
+            ->addRule('birthday', new Validate\Rule\Date('Y-m-d'))
             ->addRule('address', new Validate\Rule\InArray(['Santa Fe']))
             ->addRule('title', new Validate\Rule\InArray(['Estudiante']))
             ->addFilter('email', 'strtolower')
@@ -92,7 +92,7 @@ class PortalCtrl extends Controller {
             throw new TurnbackException('El CAPTCHA es inválido.');
         }
         $cumple = Carbon\Carbon::parse($vdt->getData('birthday'));
-        $limInf = Carbon::create(1900, 1, 1, 0, 0, 0);
+        $limInf = Carbon\Carbon::create(1900, 1, 1, 0, 0, 0);
         $limSup = Carbon\Carbon::now();
         if (!$cumple->between($limInf, $limSup)) {
             throw new TurnbackException('Fecha inválida.');
