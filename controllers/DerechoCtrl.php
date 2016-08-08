@@ -96,9 +96,9 @@ class DerechoCtrl extends Controller {
 
     private function validarDerecho($data) {
         $vdt = new Validate\Validator();
-        $vdt->addRule('titulo', new Validate\Rule\MinLength(8))
+        $vdt->addRule('titulo', new Validate\Rule\MinLength(1))
             ->addRule('titulo', new Validate\Rule\MaxLength(128))
-            ->addRule('descripcion', new Validate\Rule\MinLength(8))
+            ->addRule('descripcion', new Validate\Rule\MinLength(4))
             // ->addRule('descripcion', new Validate\Rule\MaxLength(2048))
             ->addRule('categoria', new Validate\Rule\NumNatural())
             ->addRule('categoria', new Validate\Rule\Exists('categorias'))

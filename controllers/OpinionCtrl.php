@@ -45,7 +45,7 @@ class OpinionCtrl extends Controller {
 
     private function validarOpinion($data) {
         $vdt = new Validate\Validator();
-        $vdt->addRule('cuerpo', new Validate\Rule\MinLength(8))
+        $vdt->addRule('cuerpo', new Validate\Rule\MinLength(2))
             ->addRule('participante', new Validate\Rule\Exists('participantes'))
             ->addRule('evento', new Validate\Rule\Exists('eventos'))
             ->addRule('derecho', new Validate\Rule\Exists('derechos'));

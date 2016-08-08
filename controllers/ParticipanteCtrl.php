@@ -30,9 +30,9 @@ class ParticipanteCtrl extends Controller {
 
     private function validarParticipante($data) {
         $vdt = new Validate\Validator();
-        $vdt->addRule('nombre', new Validate\Rule\MinLength(2))
+        $vdt->addRule('nombre', new Validate\Rule\MinLength(1))
             ->addRule('titulo', new Validate\Rule\MaxLength(128))
-            ->addRule('descripcion', new Validate\Rule\MinLength(8))
+            ->addRule('descripcion', new Validate\Rule\MinLength(1))
             ->addRule('descripcion', new Validate\Rule\MaxLength(1024));
         if (!$vdt->validate($data)) {
             throw new TurnbackException($vdt->getErrors());

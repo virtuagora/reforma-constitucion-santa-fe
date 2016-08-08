@@ -104,7 +104,7 @@ try {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('nombre')->unique();
-            $table->text('descripcion');
+            $table->text('descripcion')->nullable();
             $table->string('huella')->nullable();
             $table->timestamps();
             $table->softDeletes();
