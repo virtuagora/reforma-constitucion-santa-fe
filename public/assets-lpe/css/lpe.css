@@ -10042,13 +10042,15 @@ textarea.form-control.input-lg,
 /* line 288, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background {
   background-position: center center;
+  background-size: cover;
   margin-bottom: 40px;
 }
-/* line 291, ../scss/lpe.scss */
+/* line 292, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background .overlay {
-  padding: 80px 0;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 100px 0;
 }
-/* line 295, ../scss/lpe.scss */
+/* line 296, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background textarea {
   color: #FFF;
   background-color: none;
@@ -10060,19 +10062,19 @@ textarea.form-control.input-lg,
   resize: none;
   margin: 23px 0 11.5px;
 }
-/* line 307, ../scss/lpe.scss */
+/* line 308, ../scss/lpe.scss */
 #crearDerecho textarea.accion {
   font-size: 19.5px;
   line-height: 27.3px;
   font-weight: 300;
   padding: 0 0 10px;
 }
-/* line 313, ../scss/lpe.scss */
+/* line 314, ../scss/lpe.scss */
 #crearDerecho .btn-file {
   position: relative;
   overflow: hidden;
 }
-/* line 317, ../scss/lpe.scss */
+/* line 318, ../scss/lpe.scss */
 #crearDerecho .btn-file input[type=file] {
   position: absolute;
   top: 0;
@@ -10089,7 +10091,7 @@ textarea.form-control.input-lg,
   display: block;
 }
 
-/* line 336, ../scss/lpe.scss */
+/* line 337, ../scss/lpe.scss */
 article .titulo-derecho-background {
   color: #cdbfe3;
   text-align: center;
@@ -10098,103 +10100,103 @@ article .titulo-derecho-background {
   background-size: cover;
   background-position: center center;
 }
-/* line 343, ../scss/lpe.scss */
+/* line 345, ../scss/lpe.scss */
 article .titulo-derecho-background h1 {
   color: #FFF;
 }
-/* line 344, ../scss/lpe.scss */
+/* line 346, ../scss/lpe.scss */
 article .titulo-derecho-background .overlay {
   background: rgba(0, 0, 0, 0.3);
-  padding: 80px 0;
+  padding: 100px 0;
 }
-/* line 349, ../scss/lpe.scss */
+/* line 351, ../scss/lpe.scss */
 article #derecho #descripcion {
   font-size: 14px;
   line-height: 21px;
 }
-/* line 353, ../scss/lpe.scss */
+/* line 355, ../scss/lpe.scss */
 article span.badge {
   background-color: #2196F3;
 }
-/* line 356, ../scss/lpe.scss */
+/* line 358, ../scss/lpe.scss */
 article #nav-derechos.affix {
   top: 30px;
 }
-/* line 360, ../scss/lpe.scss */
+/* line 362, ../scss/lpe.scss */
 article #nav-derechos > a {
   padding: 10px;
 }
-/* line 363, ../scss/lpe.scss */
+/* line 365, ../scss/lpe.scss */
 article p {
   font-size: 14px;
   line-height: 21px;
 }
-/* line 367, ../scss/lpe.scss */
+/* line 369, ../scss/lpe.scss */
 article img.size32 {
   width: 32px;
 }
-/* line 370, ../scss/lpe.scss */
+/* line 372, ../scss/lpe.scss */
 article p.comentario {
   font-size: 12px;
   line-height: 1.5;
 }
-/* line 374, ../scss/lpe.scss */
+/* line 376, ../scss/lpe.scss */
 article textarea.comentario {
   resize: vertical;
 }
 
-/* line 414, ../scss/lpe.scss */
+/* line 416, ../scss/lpe.scss */
 .tag-opinion {
   padding: 0;
   text-align: center;
 }
-/* line 417, ../scss/lpe.scss */
+/* line 419, ../scss/lpe.scss */
 .tag-opinion img {
   left: 0;
 }
-/* line 421, ../scss/lpe.scss */
+/* line 423, ../scss/lpe.scss */
 .tag-opinion .overlay {
   background: rgba(0, 0, 0, 0.2);
   padding: 15px;
 }
-/* line 425, ../scss/lpe.scss */
+/* line 427, ../scss/lpe.scss */
 .tag-opinion h5 {
   color: #FFF;
 }
-/* line 428, ../scss/lpe.scss */
+/* line 430, ../scss/lpe.scss */
 .tag-opinion a:hover {
   text-decoration: none;
 }
 
-/* line 436, ../scss/lpe.scss */
+/* line 438, ../scss/lpe.scss */
 .opinionModal .descripcion {
   font-size: 14px;
   line-height: 21px;
 }
 
-/* line 444, ../scss/lpe.scss */
+/* line 446, ../scss/lpe.scss */
 .header-opinion {
   border-radius: 5px;
   background-size: cover;
   margin-bottom: 20px;
 }
-/* line 448, ../scss/lpe.scss */
+/* line 450, ../scss/lpe.scss */
 .header-opinion .overlay {
   background: rgba(0, 0, 0, 0.4);
   padding: 40px 0 55px;
   border-radius: 5px;
 }
-/* line 453, ../scss/lpe.scss */
+/* line 455, ../scss/lpe.scss */
 .header-opinion h3 {
   color: #FFF;
 }
 
-/* line 461, ../scss/lpe.scss */
+/* line 463, ../scss/lpe.scss */
 .editor-area {
   font-size: 14px;
 }
 
-/* line 466, ../scss/lpe.scss */
+/* line 468, ../scss/lpe.scss */
 #modificarInicio textarea[name=titulo] {
   font-size: 56px;
   font-weight: 700;
@@ -10205,7 +10207,7 @@ article textarea.comentario {
   margin-bottom: 15px;
   color: #444;
 }
-/* line 476, ../scss/lpe.scss */
+/* line 478, ../scss/lpe.scss */
 #modificarInicio textarea[name=descripcion] {
   font-size: 19.5px;
   line-height: 27.3px;
@@ -10215,7 +10217,7 @@ article textarea.comentario {
   resize: none;
 }
 
-/* line 487, ../scss/lpe.scss */
+/* line 489, ../scss/lpe.scss */
 #myCarousel .conoce {
   color: #FFF;
   padding-top: 20px;
@@ -10223,12 +10225,12 @@ article textarea.comentario {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 499, ../scss/lpe.scss */
+/* line 501, ../scss/lpe.scss */
 .twitter-typeahead {
   width: 100%;
 }
 
-/* line 509, ../scss/lpe.scss */
+/* line 511, ../scss/lpe.scss */
 .bgcolor0 {
   background-color: #6f5499;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#3f3057, to(#6f5499)));
@@ -10239,7 +10241,7 @@ article textarea.comentario {
   background-repeat: repeat-x;
 }
 
-/* line 518, ../scss/lpe.scss */
+/* line 520, ../scss/lpe.scss */
 .bgcolor1 {
   background-color: #00a73d;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#004118, to(#00a73d)));
@@ -10250,7 +10252,7 @@ article textarea.comentario {
   background-repeat: repeat-x;
 }
 
-/* line 527, ../scss/lpe.scss */
+/* line 529, ../scss/lpe.scss */
 .bgcolor2 {
   background-color: #00cbdc;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#006d76, to(#00cbdc)));
@@ -10261,7 +10263,7 @@ article textarea.comentario {
   background-repeat: repeat-x;
 }
 
-/* line 536, ../scss/lpe.scss */
+/* line 538, ../scss/lpe.scss */
 .bgcolor3 {
   background-color: #ff5400;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#993200, to(#ff5400)));

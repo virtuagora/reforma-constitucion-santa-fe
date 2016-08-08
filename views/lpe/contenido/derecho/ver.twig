@@ -1,4 +1,6 @@
+{% if derecho.imagen == 1 %}
 {% set linkImagen = baseUrl() ~ '/img/derecho/' ~ derecho.id ~ '.jpg' %}
+{% endif %}
 
 {% extends "lpe/master.twig" %} 
 
@@ -11,20 +13,21 @@
 <meta property="og:title"              content="{{ derecho.titulo}} - Nueva Ley Provincial de Educación" />
 <meta property="og:description"        content="{{ derecho.descripcion|bbCode|slice(0,180)|replace({'<br>': " ", '<b>': "",'</b>': "",'<i>': "",'</i>': "",'<u>': "",'</u>': ""}) }} ... [Leer Mas]" />
 <meta property="og:image"              content="{{linkImagen}}" />
+{% if derecho.imagen == 1 %}
+<meta property="og:image"              content="{{linkImagen}}" />
+{% endif %}
 <meta property="og:video"              content="https://www.youtube.com/watch?v={{derecho.video}}" />
     {% endblock %}
 {% block linkhead %} {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}{{ derecho.titulo }}{% endblock %} {% block body %}
 <article>
 {% set colorSeleccionado = random(3) %}
-{% if derecho.imagen == 1 %}
-{% endif %}
     <div class="titulo-derecho-background bgcolor{{colorSeleccionado}}" style="{{ derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''}}">
         <div class="overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
                         <h1><strong>{{ derecho.titulo }}</strong></h1> {% if user and (user.patrulla_id != null) %}
-                        <h6><a href="#" class="btn btn-default"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar derecho</a> <a href="#" class="btn btn-warning"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Eliminar</a></h6> {% endif %}
+                        <h6><a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="btn btn-default"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar derecho</a></h6> {% endif %}
                     </div>
                 </div>
             </div>
@@ -32,7 +35,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div id="derecho" class="col-xs-12 col-sm-12 col-md-8 text-justify">
+            <div id="derecho" class="col-xs-12 col-sm-12 col-md-8">
                 <div id="descripcion">
                     
                     <p>{{ derecho.descripcion|bbCode }}</p>
@@ -62,7 +65,7 @@
                 <hr>
                 {% endfor %}
             </div>
-            <div class="col-md-4 hidden-sm hidden-xs">
+            <div class="col-xs-12 col-md-4">
                 {% if derecho.video is not null %}
                 <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 20px;">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{derecho.video}}" frameborder="0" allowfullscreen></iframe>

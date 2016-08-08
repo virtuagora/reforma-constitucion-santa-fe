@@ -57,7 +57,7 @@ class OpinionCtrl extends Controller {
         $opinion = Opinion::findOrFail($idOpi);
         $usuario = $this->session->getUser();
         $req = $this->request;
-        $opinion->cuerpo = $vdt->getData('cuerpo');
+        $opinion->cuerpo = $req->post('cuerpo');
         $opinion->save();
         $this->flash('success', 'Los datos de la opinion fueron modificados exitosamente.');
         $this->redirectTo('shwOpinion', ['idOpi' => $idOpi]);

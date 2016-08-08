@@ -1,14 +1,20 @@
-{% extends "lpe/master.twig" %} {% block linkhead %}
+{% if derecho.imagen == 1 %}
+{% set linkImagen = baseUrl() ~ '/img/derecho/' ~ derecho.id ~ '.jpg' %}
+{% endif %}
+
+{% extends "lpe/master.twig" %}
+
+ {% block linkhead %}
 <link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} 
 {# ----------------------------------------------------------- #} {% block titulo %}Editar derecho{% endblock
 %} {% block body %}
-<form id="crearDerecho" action="{{ urlFor('runModifDerecho') }}" method="POST" enctype="multipart/form-data">
-    <div class="titulo-derecho-background bgcolor{{random(3)}}">
+<form id="crearDerecho" action="{{ urlFor('runModifDerecho', {'idDer':derecho.id}) }}" method="POST" enctype="multipart/form-data">
+    <div class="titulo-derecho-background bgcolor{{random(3)}}" style="{{ derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''}}">
         <div class="overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <textarea name="titulo" class="form-control" rows="1" placeholder="Escriba el título"></textarea>
+                        <textarea name="titulo" class="form-control" rows="1" placeholder="Escriba el título">{{ derecho.titulo }}</textarea>
                     </div>
                 </div>
             </div>
@@ -38,7 +44,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <div id="youtubeVideo" class="embed-responsive embed-responsive-16by9" style="margin-bottom: 20px;">
-                    <iframe class="embed-responsive-item" id="youtubeVideo" src="https://www.youtube.com/embed/7uulVAHwXi0" frameborder="0" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" id="youtubeVideo" src="https://www.youtube.com/embed/{{derecho.video}}" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Imagen de Cabecera</label><br>
@@ -85,21 +91,20 @@
     </div>
 </script>
 <script>
-    var numeroAccion = 2;
     $(document).ready(function() {
-        $('[name=titulo]').val('{{ derecho.titulo }}')
         $("textarea[name=descripcion]").sceditor({
             plugins: "bbcode",
             emoticonsEnabled: false,
             toolbarExclude: "font,color,table,horizontalrule,subscript,superscript",
-            height: '100',
+            height: '100%',
             width: '100%',
             style: "{{ baseUrl() }}/assets-lpe/css/lpe.css",
             resizeEnabled: false,
             resizeHeight: true,
             autoExpand: true,
             enablePasteFiltering: true
-        }).val('{{ derecho.descripcion|bbCode }}', false)
+        });
+        $("textarea[name=descripcion]").sceditor('instance').val('{{ derecho.descripcion|bbCode }}', false)
          autosize($('textarea'));
 
     $(':file').on('fileselect', function(event, numFiles, label) {

@@ -1,14 +1,16 @@
-{% extends "lpe/master.twig" %} {% block linkhead %}
+{% extends "lpe/master.twig" %} 
+
+{% block linkhead %}
 <link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
 %} {% block body %}
-<form action="{{ urlFor('runCrearOpinion') }}" method="POST">
+<form action="{{ urlFor('runModifOpinion',{'idOpi':opinion.id}) }}" method="POST">
 <article>
     <div class="titulo-derecho-background bgcolor{{random(3)}}" >
         <div class="overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h1><strong>Nueva opinion</strong></h1>
+                        <h1><small>La opinión de...</small><br><strong>{{opinion.participante.nombre}}</strong></h1>
                     </div>
                 </div>
             </div>
@@ -19,18 +21,6 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-            <h5>La opinion de...</h5>
-            <!--<input type="text" class="form-control input-lg" style="text-align: center" placeholder="¿De quien es?">-->
-            <input type="text" class="form-control" value="{{participante.nombre}}" readonly>
-            <div class="form-group">
-            <h5>Dicho en...</h5>
-                <input type="text" class="form-control" value="{{evento.titulo}}" readonly>
-            </div>
-            <div class="form-group">
-            <h5>Acerca de..</h5>
-            <input type="text" class="form-control" value="{{derecho.titulo}}" readonly>
-            </div>
-            <hr>
             <textarea name="cuerpo"></textarea>
             <hr>
             <div class="clearfix">
@@ -52,13 +42,14 @@
             plugins: "bbcode",
             emoticonsEnabled: false,
             toolbarExclude: "font,color,table,horizontalrule,subscript,superscript",
-            height: '100',
+            height: '100%',
             width: '100%',
             style: "{{ baseUrl() }}/assets-lpe/css/lpe.css",
             resizeEnabled: false,
             resizeHeight: true,
             autoExpand: true    
-        }).val('{{ opinion.cuerpo|bbCode }}', false);
+        });
+        $("textarea[name='cuerpo']").sceditor('instance').val('{{ opinion.cuerpo|bbCode }}', false);
     });
 
 </script> {% endblock %}

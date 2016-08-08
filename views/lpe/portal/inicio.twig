@@ -21,7 +21,7 @@
                                     <h6>{{ derecho.titulo }}</h6> {% set numComents = 0 %} {% for seccion in derecho.secciones %} {% set numComents = numComents + seccion.comentarios|length %} {% endfor %}
                                 </div>
                                 <figcaption>
-                                    Haga clic para saber mas del derecho.
+                                    ¡Participá! <i class="zmdi zmdi-thumb-up zmdi-hc-lg zmdi-hc-fw"></i>
                                 </figcaption>
                             </figure>
                         </div>
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-md-3">
-                    <h4 class="conoce text-center"><strong>Conocé mas</strong></h4>
+                    <h4 class="conoce text-center"><strong>Conocé más</strong></h4>
             <div class="" style=" background-size:cover;">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                     <!-- Wrapper for slides -->
@@ -80,11 +80,11 @@
                 {% set contador = 1 %}
                 {% set tackle = true %}
                 {% for evento in eventos %}
-                    {% if contador >= 1 and contador < 3 and not evento.finalizado %}
-                    <li class="list-group-item {{ (not evento.finalizado) and tackle ? 'active' : ''}}">
+                    {% if contador >= 1 and contador < 3 %}
+                    <li class="list-group-item {{ tackle ? 'active' : ''}}">
                     <div class="pull-right text-center">
-                        <h3><span class="{{ evento.finalizado and tackle ? 'text-success' : ''}}" style="{{ (not evento.finalizado) and tackle ? 'color:#FFF' : ''}}">
-                            <i class="zmdi {{ evento.finalizado and tackle ? 'zmdi-badge-check' : ''}}
+                        <h3><span style="{{ tackle ? 'color:#FFF' : ''}}">
+                            <i class="zmdi  {{ (evento.finalizado) and tackle ? 'zmdi-badge-check' : ''}}
                             {{ (not evento.finalizado) and tackle ? 'zmdi-calendar' : ''}}
                             {{ (not evento.finalizado) and (not tackle) ? 'zmdi-time-countdown' : ''}}
                              zmdi-hc-fw zmdi-hc-lg"></i>
@@ -97,8 +97,8 @@
                     </li>
                     {% endif %}
                     {% if tackle %}
-                {% set tackle = false %}
-                {% endif %}
+                    {% set tackle = false %}
+                    {% endif %}
                     {% if not evento.finalizado %}
                     {% set contador = contador + 1 %}
                     {% endif %}
