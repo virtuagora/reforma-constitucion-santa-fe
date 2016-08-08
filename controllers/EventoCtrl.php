@@ -95,7 +95,7 @@ class EventoCtrl extends Controller {
     public function eliminar($idEve) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idEve, new Validate\Rule\NumNatural());
-        $evento = Evento::with('comentarios.votos')->findOrFail($idEve);
+        $evento = Evento::findOrFail($idEve);
         $evento->delete();
         $this->flash('success', 'El evento ha sido eliminado exitosamente.');
         $this->redirectTo('shwIndex');

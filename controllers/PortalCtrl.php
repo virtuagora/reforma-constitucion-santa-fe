@@ -58,7 +58,9 @@ class PortalCtrl extends Controller {
 
     public function verRegistrar() {
         $this->render('lpe/registro/registro.twig', [
-            'localidades' => ['Santa Fe'],
+            'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
+                'San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
+                'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay'],
             'ocupaciones' => ['Estudiante']
         ]);
     }
@@ -78,7 +80,9 @@ class PortalCtrl extends Controller {
             ->addRule('email', new Validate\Rule\MaxLength(128))
             ->addRule('email', new Validate\Rule\Unique('usuarios'))
             ->addRule('birthday', new Validate\Rule\Date('Y-m-d'))
-            ->addRule('address', new Validate\Rule\InArray(['Santa Fe']))
+            ->addRule('address', new Validate\Rule\InArray(['Rosario','La Capital','General López','Castellanos',
+                'General Obligado','San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
+                'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay']))
             ->addRule('title', new Validate\Rule\InArray(['Estudiante']))
             ->addFilter('email', 'strtolower')
             ->addFilter('email', 'trim');

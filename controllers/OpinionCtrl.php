@@ -42,6 +42,26 @@ class OpinionCtrl extends Controller {
         $this->flash('success', 'La opinión se creó exitosamente.');
         $this->redirectTo('shwDerecho', array('idDer' => $opinion->derecho_id));
     }
+    
+    public function verModificar($idOpi) {
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+        $vdt->test($idOpi, new Validate\Rule\NumNatural());
+        $opinion = Opinion::findOrFail($idOpi);
+        $datos = $opinion->toArray();
+        $this->render('lpe/contenido/opinion/modificar.twig', ['opinion' => $datos]);
+    }
+
+    public function modificar($idOpi) {
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+        $vdt->test($idEve, new Validate\Rule\NumNatural());
+        $opinion = Opinion::findOrFail($idOpi);
+        $usuario = $this->session->getUser();
+        $req = $this->request;
+        $opinion->cuerpo = $vdt->getData('cuerpo');
+        $opinion->save();
+        $this->flash('success', 'Los datos de la opinion fueron modificados exitosamente.');
+        $this->redirectTo('shwOpinion', ['idOpi' => $idOpi]);
+    }
 
     private function validarOpinion($data) {
         $vdt = new Validate\Validator();
