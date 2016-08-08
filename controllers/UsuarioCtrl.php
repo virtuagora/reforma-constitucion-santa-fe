@@ -25,10 +25,14 @@ class UsuarioCtrl extends RMRController {
         $acciones = $paginator->rows;
         $nav = $paginator->links;
         $datos = $usuario->toArray();
+        $comentarios = $usuario->comentarios()->orderBy('created_at', 'desc')->take(5)->get()->toArray();
+        $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
         $datos['contenidos_count'] = $usuario->contenidos()->count();
         $datos['comentarios_count'] = $usuario->comentarios()->count();
-        $this->render('usuario/ver.twig', array('usuario' => $datos,
+        $this->render('lpe/usuario/ver.twig', array('usuario' => $datos,
                                                 'acciones' => $acciones,
+                                                'comentarios' => $comentarios,
+                                                'derechos' => $derechos,
                                                 'nav' => $nav));
     }
 

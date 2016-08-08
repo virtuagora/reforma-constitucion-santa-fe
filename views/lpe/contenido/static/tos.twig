@@ -1,0 +1,18 @@
+{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{% endblock %} {% block body %}
+<div class="container" style=" ">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+            <h1><strong>
+             Terminos y condiciones de la plataforma
+                </strong></h1>
+            <div>
+                {{ tos.value|bbCode }}
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'lpe/contenido/opinion/ver.twig' %}
+
+{% endblock body %} {# -------------------------------------------- #} {% block scripts %}
+<script>
+</script> {% endblock scripts %}

@@ -32,9 +32,17 @@ class PortalCtrl extends Controller {
         $this->render('lpe/registro/login-static.twig');
     }
 
+public function verAntecedentes() {
+        $this->render('lpe/contenido/static/antecedentes.twig');
+    }
+
+    public function verPropuesta() {
+        $this->render('lpe/contenido/static/propuesta.twig');
+    }
+
     public function verTos() {
         $tos = Ajuste::where('key', 'tos')->firstOrFail();
-        $this->render('portal/tos.twig', ['tos' => $tos->toArray()]);
+        $this->render('lpe/contenido/static/tos.twig', ['tos' => $tos->toArray()]);
     }
 
     public function login() {

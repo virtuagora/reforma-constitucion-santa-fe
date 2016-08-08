@@ -10,7 +10,7 @@
                         <!--<img src="https://unsplash.it/300/200/?random" class="img-rounded" style="width:180px" alt="">-->
                         <h3><small>La opinión de..</small><br><b>{{opinion.participante.nombre}}</b></h3>
                        	{% if user and (user.patrulla_id != null) %}
-                        <h6><a href="{{ urlFor('shwModifOpinion', {'idOpi': opinion.id }) }}" class="btn btn-default btn-sm"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar opinion</a>                            <a href="#" class="btn btn-warning btn-sm"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i>Eliminar</a></h6>
+                        <h6><a href="{{ urlFor('shwModifOpinion', {'idOpi': opinion.id }) }}" class="btn btn-default btn-sm"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar opinion</a></h6>
                         {% endif %}                    
                     </div>
                 </div>
