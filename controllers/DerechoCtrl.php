@@ -71,7 +71,7 @@ class DerechoCtrl extends Controller {
         $contenido = $derecho->contenido;
         $datos = array_merge($contenido->toArray(), $derecho->toArray());
         $this->render('lpe/contenido/derecho/editar.twig', [
-            'derecho' => $derecho,
+            'derecho' => $datos,
             'categorias' => $categorias
         ]);
     }
