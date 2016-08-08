@@ -48,12 +48,12 @@ class OpinionCtrl extends Controller {
         $vdt->test($idOpi, new Validate\Rule\NumNatural());
         $opinion = Opinion::findOrFail($idOpi);
         $datos = $opinion->toArray();
-        $this->render('lpe/contenido/opinion/modificar.twig', ['opinion' => $datos]);
+        $this->render('lpe/contenido/opinion/editar.twig', ['opinion' => $datos]);
     }
 
     public function modificar($idOpi) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
-        $vdt->test($idEve, new Validate\Rule\NumNatural());
+        $vdt->test($idOpi, new Validate\Rule\NumNatural());
         $opinion = Opinion::findOrFail($idOpi);
         $usuario = $this->session->getUser();
         $req = $this->request;
