@@ -11,7 +11,7 @@
                 data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1" alt="Avatar">
             <h2><strong>{{ usuario.nombre }} {{ usuario.apellido }}</strong></h2>
             <ul class="list-inline">
-                <li><strong>Fecha de nacimiento:</strong> {{ usuario.birthday|date("m/Y")}}</li>
+                <li><strong>Fecha de nacimiento:</strong> {{ usuario.birthday|date("d/m/Y")}}</li>
                 <li><strong>Localidad:</strong> {{ usuario.address }}</li>
                 <li><strong>Ocupacion:</strong> {{ usuario.title }}</li>
             </ul>

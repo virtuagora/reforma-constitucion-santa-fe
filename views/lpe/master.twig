@@ -75,11 +75,12 @@
                                     {% if user and (user.patrulla_id != null) %}
 	<li><a href="{{ urlFor('shwCrearDerecho') }}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-plus"></i> Nuevo derecho</a></li>
 	<li><a href="{{urlFor('shwCrearEvento')}}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-plus"></i> Nuevo evento</a></li>
-	<li><a href="{{urlFor('shwIndexAdmin')}}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-gear"></i> Administrar</a></li>
+	<li><a href="{{urlFor('shwIndexAdmin')}}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-settings"></i> Administrar</a></li>
 
-    
-                                    <li class="divider"></li>
+    <li class="divider"></li>
 	{% endif %}
+    <li><a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}"><i class="zmdi zmdi-hc-lg zmdi-hc-fw zmdi-assignment-account"></i> Ver Perfil</a></li>
+                                    <li class="divider"></li>
                                     <form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST">
                                     <li><button type="submit" class="btn btn-link btn-sm btn-block text-danger"><b><i class="zmdi zmdi-close-circle zmdi-hc-fw zmdi-hc-lg"></i>Salir</b></button></li>
                                     </form>
