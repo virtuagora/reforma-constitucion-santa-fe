@@ -120,9 +120,10 @@ public function verAntecedentes() {
         $preuser->save();
         if ($this->getMode() != 'testing') {
             $to = $preuser->email;
-            $subject = 'Confirma tu registro en Virtuagora';
-            $message = 'Hola, te registraste en virtuagora. Entra a este link para confirmar tu email: ' . $req->getUrl() .
-                       $this->urlFor('runValidUsuario', array('idUsu' => $preuser->id, 'token' => $preuser->emailed_token));
+            $subject = 'Confirmá tu registro - Ley Provincial de Educación';
+            $message = 'Bienvenido al diálogo para una nueva Ley Provincial de Educación.' .
+                'Ingresá a este link para confirmar tu email: ' . $req->getUrl() .
+                $this->urlFor('runValidUsuario', array('idUsu' => $preuser->id, 'token' => $preuser->emailed_token));
             mail($to, $subject, $message);
         }
         $this->render('lpe/registro/registro-exito.twig', array('email' => $preuser->email));
@@ -180,8 +181,8 @@ public function verAntecedentes() {
         $usuario->save();
         if ($this->getMode() != 'testing') {
             $to = $usuario->email;
-            $subject = 'Virtuagora - Reiniciar clave';
-            $message = 'Hola, solicitaste reiniciar tu contraseña de Virtuágora. En caso de no haberlo hecho, ' .
+            $subject = 'Reiniciar clave';
+            $message = 'Solicitaste reiniciar tu contraseña de Virtuágora. En caso de no haberlo hecho, ' .
                 'simplemente ignora este email. Pero si realmente lo hiciste, ingresá a ' . $req->getUrl() .
                 $this->urlFor('shwReiniciarClave', ['idUsu' => $usuario->id, 'token' => $usuario->token]) .
                 ' para continuar con el proceso.';
