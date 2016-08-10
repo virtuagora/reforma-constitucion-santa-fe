@@ -5,7 +5,7 @@
 {% extends "lpe/master.twig" %} 
 
 {% set share_link = derecho.link %}
-{% set twitter_txt = 'Lee mas acerca del ' ~ derecho.titulo|lower  %}
+{% set twitter_txt = 'Estoy debatiendo acerca del derecho "' ~ derecho.titulo|lower ~ '" ¡Animate vos tambien! ' %}
 
 {% block opengraph %}
 <meta property="og:url"                content="{{ baseUrl() }}/derecho/{{derecho.id}}" />

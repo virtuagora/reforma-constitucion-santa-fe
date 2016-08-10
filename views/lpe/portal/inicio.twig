@@ -2,7 +2,7 @@
 <div class="container-fluid" style="margin-bottom:40px">
     <div class="row">
         <div class="col-xs-12 col-md-7 col-md-offset-1 text-center">
-            <h2><strong>{{ titulo }}</strong></h2>
+            <h2 style="text-transform: uppercase"><strong>{{ titulo }}</strong></h2>
             <div style="font-size: 14px;line-height: 21px;">
                 {{ intro|bbCode }}
             </div>
@@ -74,7 +74,7 @@
 
             </div>
             <hr>
-            <h3><strong>Cronograma <small><a href="{{ urlFor('shwListaEvento')}}" class="btn btn-xs btn-primary">Ver todo</a></small></strong></h3>
+            <h3><strong>CRONOGRAMA <small><a href="{{ urlFor('shwListaEvento')}}" class="btn btn-xs btn-primary">Ver mas</a></small></strong></h3>
             <div class="list-group">
                 {% if eventos|length > 0%}
                 {% set contador = 1 %}
@@ -90,10 +90,9 @@
                              zmdi-hc-fw zmdi-hc-lg"></i>
                             </span></h3>
                     </div>
-                    <h4 class="list-group-item-heading"><strong>{{ evento.titulo }}</strong></h4>
-                    <h5 class="list-group-item-heading">{{evento.fecha|date("d/m/Y")}} - {{evento.fecha|date("H:i")}}Hs.</h5>
+                    <h5 class="list-group-item-heading"><strong>{{ evento.titulo }}</strong></h5>
+                    <h6 class="list-group-item-heading">{{evento.fecha|date("d/m/Y")}} - {{evento.fecha|date("H:i")}}Hs.</h6>
                     <h6 class="list-group-item-heading">{{ evento.lugar }}</h6>
-                    <p class="list-group-item-text lead">{{ evento.cuerpo }}</p>
                     </li>
                     {% endif %}
                     {% if tackle %}

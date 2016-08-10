@@ -39,7 +39,7 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">Ver/Esconder Menú</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -137,14 +137,28 @@
     </div>
     </div>
     <div class="footer">
+        <div class="barra-footer"></div>
         <img class="img-logo" src="{{ baseUrl() }}/assets-lpe/img/logo-footer.jpg" alt="">
         <div class="text-center" style="color: #e0e0e0; font-size: 11px;">
-            2016
-            <ul class="list-inline">
-                <li><a href="{{ urlFor('shwTos') }}" style="color: #e0e0e0">Terminos y condiciones</a></li>
+            <ul class="list-inline socialmedia">
+                <li><a target="_blank" href="http://www.twitter.com/GobSantaFe"><i class="icon-footertwitter"></i></a></li>
+                <li><a target="_blank" href="http://www.facebook.com/GobSantaFe"><i class="icon-footerfacebook"></i></a></li>
+                <li><a target="_blank" href="http://gplus.to/GobSantaFe"><i class="icon-footerg"></i></a></li>
+                <li><a target="_blank" href="http://gobsantafe.tumblr.com/"><i class="icon-footertumblr"></i></a></li>
+                <li><a target="_blank" href="http://www.youtube.com/GobSantaFe"><i class="icon-footeryoutube"></i></a></li>
+                <li><a target="_blank" href="http://instagram.com/gobsantafe"><i class="icon-footerinstagram"></i></a></li>
+                <li><a target="_blank" href="https://es.foursquare.com/gobsantafe"><i class="icon-footerfoursquare"></i></a></li>
+                <li><a target="_blank" href="https://storify.com/GobSantaFe"><i class="icon-footerstorify"></i></a></li>
+                <li><a target="_blank" href="http://www.linkedin.com/company/gobierno-de-la-provincia-de-santa-fe"><i class="icon-footerlinkedin"></i></a></li>
             </ul>
+            
+            <div class="lastfoot">
+                <a href="{{ urlFor('shwTos') }}" style="color: #FFF">Leer terminos y condiciones</a>
+                <br> Atención telefónica: 0800-777-0801
+                <br> Lunes a viernes de 8 a 18 hs
+            </div>
         </div>
-        <div class="inside-footer text-right" style="padding-top: 10px;">
+        <div class="inside-footer text-right">
             <a href="http://www.virtuagora.org" style="color: #e0e0e0"><span style="font-size: 9px;">Desarrollado con </span><img style="height: 17px;margin-right: 8px;" src="{{ baseUrl() }}/assets/img/bigwhitelogo.png" alt=""></a>
         </div>
     </div>

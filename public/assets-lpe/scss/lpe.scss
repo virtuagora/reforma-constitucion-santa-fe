@@ -4,6 +4,44 @@
 @import "../css/materialdesignicons.css";
 @import "../css/material-design-iconic-font.css";
 @import 'https://fonts.googleapis.com/css?family=Slabo+27px';
+@import 'https://www.santafe.gob.ar/assets/standard/css/fonts.css';
+
+// @font-face {
+//     font-family: 'PF Beau Sans Pro';
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bold.eot?78703725");
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bold.eot?78703725#iefix") format("embedded-opentype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bold.woff?78703725") format("woff"), url("../fonts/pfbeausanspro/PFBeauSansPro-Bold.ttf?78703725") format("truetype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bold.svg?78703725#pfbeausanspro") format("svg");
+//     font-weight: 700;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'PF Beau Sans Pro';
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-SemiBold.eot?78703725");
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-SemiBold.eot?78703725#iefix") format("embedded-opentype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-SemiBold.woff?78703725") format("woff"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-SemiBold.ttf?78703725") format("truetype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-SemiBold.svg?78703725#pfbeausanspro") format("svg");
+//     font-weight: 600;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'PF Beau Sans Pro';
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bbook.eot?78703725");
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bbook.eot?78703725#iefix") format("embedded-opentype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bbook.woff?78703725") format("woff"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bbook.ttf?78703725") format("truetype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bbook.svg?78703725#pfbeausanspro") format("svg");
+//     font-weight: 500;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'PF Beau Sans Pro';
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Regular.eot?78703725");
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Regular.eot?78703725#iefix") format("embedded-opentype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Regular.woff?78703725") format("woff"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Regular.ttf?78703725") format("truetype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Regular.svg?78703725#pfbeausanspro") format("svg");
+//     font-weight: 400;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'PF Beau Sans Pro';
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Light.eot?78703725");
+//     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Light.eot?78703725#iefix") format("embedded-opentype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Light.woff?78703725") format("woff"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Light.ttf?78703725") format("truetype"), url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Light.svg?78703725#pfbeausanspro") format("svg");
+//     font-weight: 300;
+//     font-style: normal;
+// }
+
 
 * {
     margin: 0;
@@ -12,6 +50,7 @@
 html,
 body {
     height: 100%;
+    font-family:"PF Beau Sans Pro"
 }
 
 .wrapper {
@@ -19,17 +58,17 @@ body {
     height: auto !important;
     /* This line and the next line are not necessary unless you need IE6 support */
     height: 100%;
-    margin: 0 auto -225px;
+    margin: 0 auto -265px;
     /* the bottom margin is the negative value of the footer's height */
 }
 
 .push {
-    height: 225px;
+    height: 265px;
     /* .push must be the same height as .footer */
 }
 
 .footer {
-    height: 145px;
+    height: 185px;
     // border-top: 50px solid #FFF;
     margin-top: 80px;
     text-align: center;
@@ -74,8 +113,23 @@ http://ryanfait.com/
 
 .navbar-bottom-colors {
     background-image: url("../img/barra-header.png");
-    height: 10px;
+    height: 3px;
     margin-bottom: 30px;
+    background-repeat: repeat-x;
+    background-position: left bottom;
+}
+.barra-footer{
+    background-image: url("../img/barra-header.png");
+    height: 3px;
+    background-repeat: repeat-x;
+    background-position: left bottom;
+}
+
+@media (min-width: 768px){
+.navbar-nav > li > a {
+    padding-top: 30.5px;
+    padding-bottom: 10.5px;
+}
 }
 
 // @media (min-width: 768px){
@@ -87,8 +141,16 @@ http://ryanfait.com/
 // .navbar-nav li a {
 //     line-height: 34px;
 // }
-a.navbar-brand img {
-    height: 100%
+a.navbar-brand {
+    padding: 16px 15px 14px;
+}
+ul.nav.navbar-nav{
+    text-transform: uppercase;
+    font-size: 14px;
+}
+ul.nav.navbar-nav.navbar-right{
+    text-transform: capitalize;
+    font-size: 13px;
 }
 
 
@@ -239,7 +301,7 @@ background-image: -webkit-linear-gradient(top,#563d7c 0,#6f5499 100%);
 background-image: -o-linear-gradient(top,#563d7c 0,#6f5499 100%);
 background-image: linear-gradient(to bottom,#563d7c 0,#6f5499 100%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
-    h6{text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5)}
+    h6{text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); font-weight: 100;}
     @media (max-width: $screen-xs-max) {
         width: 100%;
         
@@ -543,4 +605,24 @@ background-image: -o-linear-gradient(top,darken($c4,20%) 0,$c4 100%);
 background-image: linear-gradient(to bottom,darken($c4,20%) 0,$c4 100%);
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($c4,20%)', endColorstr='$c4', GradientType=0);
 background-repeat: repeat-x;
+}
+
+.list-group-item.active .list-group-item-text{
+    color: #FFF;
+}
+.list-group-item .list-group-item-text{
+    color: #999;
+}
+
+ul.socialmedia li a{
+    color: #757575;
+    font-size:24px;
+}
+ul.socialmedia{
+    margin-bottom: 0;
+}
+.lastfoot{
+        font-size: 14px;
+    line-height: normal;
+    color: #FFF;
 }
