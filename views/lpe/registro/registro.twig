@@ -1,12 +1,12 @@
 {% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block linkhead %}
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/jquery-ui/jquery-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/timepicker/jquery.timepicker.css" /> {% endblock %} {% block titulo %}Login{% endblock %} {% block body %}
+<link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/timepicker/jquery.timepicker.css" /> {% endblock %} {% block titulo %}Registro{% endblock %} {% block body %}
 
 <div class="container">
     <div class="row">
         <div class="panel-inicio col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 ">
-            <h2><strong>Registro</strong></h2>
+            <h2><strong>REGISTRO</strong></h2>
             <p>En caso que ya tenga una cuenta, <a href="{{ urlFor('shwLogin') }}"><i class="fa fa-sign-in fa-fw"></i> Inicie Sesión</a></p>
             <div class="well well-lg">
                 <form action="{{ urlFor('runCrearUsuario') }}" method="POST" class="form-horizontal" data-toggle="validator">

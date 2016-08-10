@@ -1,7 +1,7 @@
 {% extends "lpe/master.twig" %} 
 
 {% block linkhead %}
-<link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Crear derecho{% endblock
+<link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}Editar opinion{% endblock
 %} {% block body %}
 <form action="{{ urlFor('runModifOpinion',{'idOpi':opinion.id}) }}" method="POST">
 <article>
