@@ -6,17 +6,17 @@
             <div style="font-size: 14px;line-height: 21px;">
                 {{ intro|bbCode }}
             </div>
-            <div id="derechos" class="" style="margin-top:60px">
+            {% set linkImagen = baseUrl() ~ '/img/banner.jpg' %}
+            <img src="{{linkImagen}}" style="width:100%; margin-top:20px" alt="">
+            <div id="derechos" class="" style="margin-top:40px">
                 {% if derechos|length > 0 %}
                 <div class="grid" >
                     <div class="grid-sizer"></div>
                     {% for derecho in derechos %}
-                    {% if derecho.imagen == 1 %}
-                    {% set linkImagen = baseUrl() ~ '/img/derecho/' ~ derecho.id ~ '.jpg' %}
-                    {% endif %}
+                    {% set linkImagen = baseUrl() ~ '/img/bloque/' ~ derecho.id ~ '.jpg' %}
                     <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
                         <div class="grid-item bgcolor{{random(3)}}" style="">
-                            <figure class="cap-bot" style="{{ derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''}}">
+                            <figure class="cap-bot" style="background-image: url('{{linkImagen}}');background-position:center center; background-size:cover;">
                                 <div class="text-center">
                                     <h6>{{ derecho.titulo }}</h6> {% set numComents = 0 %} {% for seccion in derecho.secciones %} {% set numComents = numComents + seccion.comentarios|length %} {% endfor %}
                                 </div>

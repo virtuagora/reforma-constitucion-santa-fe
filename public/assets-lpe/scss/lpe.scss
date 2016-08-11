@@ -5,7 +5,7 @@
 @import "../css/material-design-iconic-font.css";
 @import "../css/font-awesome.css";
 @import 'https://fonts.googleapis.com/css?family=Slabo+27px';
-@import 'https://www.santafe.gob.ar/assets/standard/css/fonts.css';
+@import "../css/fontslpe.css";
 
 // @font-face {
 //     font-family: 'PF Beau Sans Pro';
@@ -60,17 +60,17 @@ body {
     height: auto !important;
     /* This line and the next line are not necessary unless you need IE6 support */
     height: 100%;
-    margin: 0 auto -265px;
+    margin: 0 auto -268px;
     /* the bottom margin is the negative value of the footer's height */
 }
 
 .push {
-    height: 265px;
+    height: 268px;
     /* .push must be the same height as .footer */
 }
 
 .footer {
-    height: 185px;
+    height: 188px;
     // border-top: 50px solid #FFF;
     margin-top: 80px;
     text-align: center;
@@ -114,17 +114,17 @@ http://ryanfait.com/
 }
 
 .navbar-bottom-colors {
-    background-image: url("../img/barra-header.png");
-    height: 3px;
+    background-image: url("../img/tramasf.png");
+    height: 6px;
     margin-bottom: 30px;
     background-repeat: repeat-x;
-    background-position: left bottom;
+    background-position: center top;
 }
 .barra-footer{
-    background-image: url("../img/barra-header.png");
-    height: 3px;
+    background-image: url("../img/tramasf.png");
+    height: 6px;
     background-repeat: repeat-x;
-    background-position: left bottom;
+    background-position: top top;
 }
 
 @media (min-width: 768px){

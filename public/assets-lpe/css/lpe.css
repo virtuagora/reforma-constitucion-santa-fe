@@ -10,7 +10,7 @@
 @import url(../css/material-design-iconic-font.css);
 @import url(../css/font-awesome.css);
 @import "https://fonts.googleapis.com/css?family=Slabo+27px";
-@import "https://www.santafe.gob.ar/assets/standard/css/fonts.css";
+@import url(../css/fontslpe.css);
 /* line 9, ../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_normalize.scss */
 html {
   font-family: sans-serif;
@@ -9746,19 +9746,19 @@ body {
   height: auto !important;
   /* This line and the next line are not necessary unless you need IE6 support */
   height: 100%;
-  margin: 0 auto -265px;
+  margin: 0 auto -268px;
   /* the bottom margin is the negative value of the footer's height */
 }
 
 /* line 67, ../scss/lpe.scss */
 .push {
-  height: 265px;
+  height: 268px;
   /* .push must be the same height as .footer */
 }
 
 /* line 72, ../scss/lpe.scss */
 .footer {
-  height: 185px;
+  height: 188px;
   margin-top: 80px;
   text-align: center;
   background-color: #ababab;
@@ -9807,19 +9807,19 @@ http://ryanfait.com/
 
 /* line 116, ../scss/lpe.scss */
 .navbar-bottom-colors {
-  background-image: url("../img/barra-header.png");
-  height: 3px;
+  background-image: url("../img/tramasf.png");
+  height: 6px;
   margin-bottom: 30px;
   background-repeat: repeat-x;
-  background-position: left bottom;
+  background-position: center top;
 }
 
 /* line 123, ../scss/lpe.scss */
 .barra-footer {
-  background-image: url("../img/barra-header.png");
-  height: 3px;
+  background-image: url("../img/tramasf.png");
+  height: 6px;
   background-repeat: repeat-x;
-  background-position: left bottom;
+  background-position: top top;
 }
 
 @media (min-width: 768px) {
