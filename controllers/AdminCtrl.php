@@ -105,13 +105,27 @@ class AdminCtrl extends Controller {
     }
 
     public function subirImagen() {
-        if (isset($_FILES['archivo'])) {
+        $req = $this->request;
+        $asociar = $req->post('asociar');
+        $vdt = new Validate\QuickValidator([$this, 'notFound']);
+        $vdt->test($asociar, new Validate\Rule\InArray([
+            '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'no', 'banner'
+        ]));
+        if (in_array($asociar, ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'])) {
+            $dir = __DIR__ . '/../public/img/bloque';
+            $id = $asociar;
+        } elseif ($asociar == 'banner') {
+            $dir = __DIR__ . '/../public/img';
+            $id = 'banner';
+        } else {
             $dir = __DIR__ . '/../public/img/uploads';
+            $id = time();
+        }
+        if (isset($_FILES['archivo'])) {
             if (!is_dir($dir)) {
                 mkdir($dir, 0777, true);
             }
             $storage = new \Upload\Storage\FileSystem($dir, true);
-            $id = time();
             $file = new \Upload\File('archivo', $storage);
             $file->setName($id);
             $file->addValidations([

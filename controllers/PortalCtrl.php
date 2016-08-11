@@ -118,14 +118,18 @@ public function verAntecedentes() {
         $preuser->title = $vdt->getData('title');
         $preuser->address = $vdt->getData('address');
         $preuser->save();
-        if ($this->getMode() != 'testing') {
-            $to = $preuser->email;
-            $subject = 'Confirmá tu registro - Ley Provincial de Educación';
-            $message = 'Bienvenido al diálogo para una nueva Ley Provincial de Educación.' .
-                'Ingresá a este link para confirmar tu email: ' . $req->getUrl() .
-                $this->urlFor('runValidUsuario', array('idUsu' => $preuser->id, 'token' => $preuser->emailed_token));
-            mail($to, $subject, $message);
-        }
+        
+        $dominio = $req->headers->get('x-forwarded-host')?: $req->getUrl();
+        $to = $preuser->email;
+        $subject = 'Confirmá tu registro - Ley Provincial de Educación - Santa Fe';
+        $message = 'Bienvenido a “Santa Fe construye Educación y Futuro. Diálogos para ' .
+            'la Ley Provincial de Educación”. Ingresá a este link para confirmar tu email ' .
+            $dominio . $this->urlFor('runValidUsuario', [
+                'idUsu' => $preuser->id,
+                'token' => $preuser->emailed_token
+            ]);
+        mail($to, $subject, $message);
+        
         $this->render('lpe/registro/registro-exito.twig', array('email' => $preuser->email));
     }
 
@@ -179,15 +183,17 @@ public function verAntecedentes() {
         }
         $usuario->token = bin2hex(openssl_random_pseudo_bytes(16));
         $usuario->save();
-        if ($this->getMode() != 'testing') {
-            $to = $usuario->email;
-            $subject = 'Reiniciar clave';
-            $message = 'Solicitaste reiniciar tu contraseña de Virtuágora. En caso de no haberlo hecho, ' .
-                'simplemente ignora este email. Pero si realmente lo hiciste, ingresá a ' . $req->getUrl() .
-                $this->urlFor('shwReiniciarClave', ['idUsu' => $usuario->id, 'token' => $usuario->token]) .
-                ' para continuar con el proceso.';
-            mail($to, $subject, $message);
-        }
+        
+        $dominio = $req->headers->get('x-forwarded-host')?: $req->getUrl();
+        $to = $usuario->email;
+        $subject = 'Reiniciar clave - Santa Fe Construye Educación y Futuro. Diálogos para la ley provincial de educación';
+        $message = 'Solicitaste reiniciar tu contraseña ingresá al siguiente enlace: ' .
+            $dominio . $this->urlFor('shwReiniciarClave', [
+                'idUsu' => $usuario->id,
+                'token' => $usuario->token
+            ]);
+        mail($to, $subject, $message);
+        
         $this->redirectTo('shwRecuperarClave');
     }
     

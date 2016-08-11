@@ -8,7 +8,7 @@ $app->view->parserOptions = array(
     'strict_variables' => false,
     'autoescape' => true
 );
-$app->view->parserExtensions = array(new \Slim\Views\TwigExtension(), new ExtendedTwig());
+$app->view->parserExtensions = array(new ExtendedTwig());
 
 // Prepare singletons
 $app->container->singleton('session', function () use ($app) {
@@ -96,29 +96,12 @@ $checkModifyAuth = function ($resource, $moderable = true) use ($app) {
     };
 };
 
-/* NO ES NECESARIO POR AHORA
-function checkUserAuth($action, $checkMod = false) {
-    global $app;
-    $roles = $app->session->rolesAllowedTo($action);
-    if ($checkMod && count($roles) == 1 && $roles[0] == 'mod') {
-        return $checkAdminAuth('admConteni');
-    } else {
-        return checkRole($roles);
-    }
-}
-*/
-
 // Prepare dispatcher
-$app->get('/captcha', function () use ($app) {
-    $builder = new Gregwar\Captcha\CaptchaBuilder;
-    $builder->build();
-    $app->response->headers->set('Content-Type', 'image/jpeg');
-    $app->response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate');
-    $app->flash('captcha', $builder->getPhrase());
-    $builder->output();
-})->name('shwCaptcha');
-
-//$app->get('/userlog', 'UserlogCtrl:listar')->name('shwListaUserlog');
+$app->get('/test', function () use ($app) {
+    $req = $app->request;
+    $uri = $req->headers->get('x-forwarded-host')?: $req->getUrl();
+    var_dump($uri);
+});
 
 $app->group('/derecho', function () use ($app, $checkRole) {
     $app->get('/crear', $checkRole('mod'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
@@ -192,16 +175,8 @@ $app->get('/reiniciar-clave/:idUsu/:token', $checkNoSession, 'PortalCtrl:verRein
 $app->post('/reiniciar-clave/:idUsu/:token', $checkNoSession, 'PortalCtrl:reiniciarClave')->name('runReiniciarClave');
 $app->get('/reiniciar-clave', $checkNoSession, 'PortalCtrl:finReiniciarClave')->name('endReiniciarClave');
 
-$app->get('/notificacion', $checkRole('usr'), 'NotificacionCtrl:listar')->name('shwListaNotific');
-$app->post('/notificacion/eliminar', $checkRole('usr'), 'NotificacionCtrl:eliminar')->name('runElimiNotific');
-
-$app->get('/tag', 'TagCtrl:listar')->name('shwTag');
-
 $app->get('/contenido/:idCon', 'ContenidoCtrl:ver')->name('shwConteni');
 $app->get('/contenido', 'ContenidoCtrl:listar')->name('shwListaConteni');
-
-$app->get('/organismo', 'OrganismoCtrl:listar')->name('shwListaOrganis');
-$app->get('/organismo/:idOrg', 'OrganismoCtrl:ver')->name('shwOrganis');
 
 $app->get('/usuario/:idUsu', 'UsuarioCtrl:ver')->name('shwUsuario');
 $app->get('/usuario/:idUsu/imagen/:res', 'UsuarioCtrl:verImagen')->name('shwImgUsuario');
@@ -216,61 +191,3 @@ $app->get('/usuario', 'UsuarioCtrl:listar')->name('shwListaUsuario');
 //     $app->get('/eliminar', $checkRole('usr'), 'UsuarioCtrl:verEliminar')->name('shwElimiUsuario');
 //     $app->post('/eliminar', $checkRole('usr'), 'UsuarioCtrl:eliminar')->name('runElimiUsuario');
 // });
-
-$app->group('/propuesta', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('fnc'), 'PropuestaCtrl:verCrear')->name('shwCrearPropues');
-    $app->post('/crear', $checkRole('fnc'), 'PropuestaCtrl:crear')->name('runCrearPropues');
-    $app->get('/:idPro', 'PropuestaCtrl:ver')->name('shwPropues');
-    $app->post('/:idPro/votar', $checkRole('usr'), 'PropuestaCtrl:votar')->name('runVotarPropues');
-    $app->post('/:idPro/cambiar-privacidad', $checkRole('usr'), 'PropuestaCtrl:cambiarPrivacidad')->name('runModifPrvPropues');
-    $app->get('/:idPro/modificar', $checkModifyAuth('Propuesta'), 'PropuestaCtrl:verModificar')->name('shwModifPropues');
-    $app->post('/:idPro/modificar', $checkModifyAuth('Propuesta'), 'PropuestaCtrl:modificar')->name('runModifPropues');
-    $app->post('/:idPro/eliminar', $checkModifyAuth('Propuesta'), 'PropuestaCtrl:eliminar')->name('runElimiPropues');
-});
-
-$app->group('/problematica', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('usr'), 'ProblematicaCtrl:verCrear')->name('shwCrearProblem');
-    $app->post('/crear', $checkRole('usr'), 'ProblematicaCtrl:crear')->name('runCrearProblem');
-    $app->get('/:idPro', 'ProblematicaCtrl:ver')->name('shwProblem');
-    $app->post('/:idPro/votar', $checkRole('usr'), 'ProblematicaCtrl:votar')->name('runVotarProblem');
-    $app->get('/:idPro/modificar', $checkModifyAuth('Problematica'), 'ProblematicaCtrl:verModificar')->name('shwModifProblem');
-    $app->post('/:idPro/modificar', $checkModifyAuth('Problematica'), 'ProblematicaCtrl:modificar')->name('runModifProblem');
-    $app->post('/:idPro/eliminar', $checkModifyAuth('Problematica'), 'ProblematicaCtrl:eliminar')->name('runElimiProblem');
-});
-
-$app->group('/documento', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('fnc'), 'DocumentoCtrl:verCrear')->name('shwCrearDocumen');
-    $app->post('/crear', $checkRole('fnc'), 'DocumentoCtrl:crear')->name('runCrearDocumen');
-    $app->get('/:idDoc', 'DocumentoCtrl:ver')->name('shwDocumen');
-    $app->get('/:idDoc/v/:idVer', 'DocumentoCtrl:ver')->name('shwVerDocumen');
-    $app->get('/:idDoc/modificar', $checkModifyAuth('Documento'), 'DocumentoCtrl:verModificar')->name('shwModifDocumen');
-    $app->post('/:idDoc/modificar', $checkModifyAuth('Documento'), 'DocumentoCtrl:modificar')->name('runModifDocumen');
-    $app->get('/:idDoc/nueva-version', $checkModifyAuth('Documento', false), 'DocumentoCtrl:verNuevaVersion')->name('shwNuVerDocumen');
-    $app->post('/:idDoc/nueva-version', $checkModifyAuth('Documento', false), 'DocumentoCtrl:nuevaVersion')->name('runNuVerDocumen');
-    $app->post('/:idDoc/eliminar', $checkModifyAuth('Documento'), 'DocumentoCtrl:eliminar')->name('runElimiDocumen');
-});
-
-$app->group('/novedad', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('/crear', $checkRole('fnc'), 'NovedadCtrl:verCrear')->name('shwCrearNovedad');
-    $app->post('/crear', $checkRole('fnc'), 'NovedadCtrl:crear')->name('runCrearNovedad');
-    $app->get('/:idNov', 'NovedadCtrl:ver')->name('shwNovedad');
-    $app->get('/:idNov/modificar', $checkModifyAuth('Novedad'), 'NovedadCtrl:verModificar')->name('shwModifNovedad');
-    $app->post('/:idNov/modificar', $checkModifyAuth('Novedad'), 'NovedadCtrl:modificar')->name('runModifNovedad');
-    $app->post('/:idNov/eliminar', $checkModifyAuth('Novedad'), 'NovedadCtrl:eliminar')->name('runElimiNovedad');
-});
-
-$app->group('/partido', function () use ($app, $checkRole, $checkModifyAuth) {
-    $app->get('', 'PartidoCtrl:listar')->name('shwListaPartido');
-    $app->get('/crear', $checkRole('usr'), 'PartidoCtrl:verCrear')->name('shwCrearPartido');
-    $app->post('/crear', $checkRole('usr'), 'PartidoCtrl:crear')->name('runCrearPartido');
-    $app->post('/dejar', $checkRole('usr'), 'PartidoCtrl:dejar')->name('runDejarPartido');
-    $app->get('/:idPar', 'PartidoCtrl:ver')->name('shwPartido');
-    $app->post('/:idPar/unirse', $checkRole('usr'), 'PartidoCtrl:unirse')->name('runUnirsePartido');
-    $app->get('/:idPar/modificar', $checkModifyAuth('Partido'), 'PartidoCtrl:verModificar')->name('shwModifPartido');
-    $app->post('/:idPar/modificar', $checkModifyAuth('Partido'), 'PartidoCtrl:modificar')->name('runModifPartido');
-    $app->post('/:idPar/cambiar-imagen', $checkModifyAuth('Partido'), 'PartidoCtrl:cambiarImagen')->name('runModifImgPartido');
-    $app->get('/:idPar/cambiar-rol', $checkModifyAuth('Partido', false), 'PartidoCtrl:verCambiarRol')->name('shwModifRolPartido');
-    $app->post('/:idPar/cambiar-rol', $checkModifyAuth('Partido', false), 'PartidoCtrl:cambiarRol')->name('runModifRolPartido');
-    $app->get('/:idPar/eliminar', $checkModifyAuth('Partido', false), 'PartidoCtrl:verEliminar')->name('shwElimiPartido');
-    $app->post('/:idPar/eliminar', $checkModifyAuth('Partido', false), 'PartidoCtrl:eliminar')->name('runElimiPartido');
-});

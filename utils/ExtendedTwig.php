@@ -1,7 +1,8 @@
 <?php
 
-class ExtendedTwig extends Twig_Extension {
+use Slim\Slim;
 
+class ExtendedTwig extends Twig_Extension {
     private $search  = array('[i]', '[/i]', '[s]', '[/s]', '[hr]',
                              '[/size]', '[/color]', '[/font]');
     private $replace = array('<em>', '</em>', '<del>', '</del>', '<hr>',
@@ -34,7 +35,11 @@ class ExtendedTwig extends Twig_Extension {
 
     public function getFunctions() {
         return array(
-            new Twig_SimpleFunction('avatarUrl', array($this, 'avatarUrlFunction'))
+            new Twig_SimpleFunction('avatarUrl', array($this, 'avatarUrlFunction')),
+            new Twig_SimpleFunction('urlFor', array($this, 'urlFor')),
+            new Twig_SimpleFunction('baseUrl', array($this, 'base')),
+            new Twig_SimpleFunction('siteUrl', array($this, 'site')),
+            new Twig_SimpleFunction('currentUrl', array($this, 'currentUrl')),
         );
     }
 
@@ -49,8 +54,39 @@ class ExtendedTwig extends Twig_Extension {
             case 2:
                 return 'http://graph.facebook.com/'.$hash.'/picture?width='.$size;
             default:
-                return Slim\Slim::getInstance()->request()->getRootUri().'/img/usuario/'.$hash.'/'.$size.'.png';
+                return Slim::getInstance()->request()->getRootUri().'/img/usuario/'.$hash.'/'.$size.'.png';
         }
+    }
+    
+    public function urlFor($name, $params = array(), $appName = 'default') {
+        return Slim::getInstance($appName)->urlFor($name, $params);
+    }
+
+    public function site($url, $withUri = true, $appName = 'default') {
+        return $this->base($withUri, $appName) . '/' . ltrim($url, '/');
+    }
+
+    public function base($withUri = true, $appName = 'default') {
+        $req = Slim::getInstance($appName)->request();
+        $uri = $req->headers->get('x-forwarded-host')?: $req->getUrl();
+        if ($withUri) {
+            $uri .= $req->getRootUri();
+        }
+        return $uri;
+    }
+
+    public function currentUrl($withQueryString = true, $appName = 'default') {
+        $app = Slim::getInstance($appName);
+        $req = $app->request();
+        $uri = $req->getUrl() . $req->getPath();
+        if ($withQueryString) {
+            $env = $app->environment();
+
+            if ($env['QUERY_STRING']) {
+                $uri .= '?' . $env['QUERY_STRING'];
+            }
+        }
+        return $uri;
     }
 
     public function getName() {
