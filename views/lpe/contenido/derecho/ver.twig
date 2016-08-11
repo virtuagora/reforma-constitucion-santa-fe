@@ -10,14 +10,15 @@
 {% block opengraph %}
 <meta property="og:url"                content="{{ baseUrl() }}/derecho/{{derecho.id}}" />
 <meta property="og:type"               content="article" />
-<meta property="og:title"              content="{{ derecho.titulo}} - Nueva Ley Provincial de Educación" />
-<meta property="og:description"        content="Enterate más acerca de este derecho en el nuevo portal de participación para la Nueva Ley Provincial de Educación de la Provincia de Santa Fe" />
-<meta property="og:image"              content="{{linkImagen}}" />
+<meta property="og:title"              content="{{ derecho.titulo}} - Ley de Educación de Santa Fe" />
+<meta property="og:description"        content="Enterate más acerca de este derecho. Santa Fe Construye Educación y Futuro. Diálogos para la ley provincial de educación. Un espacio de debate amplio, profundo y diverso, en clave de derecho, sobre la educación que la sociedad santafesina necesita." />
 {% if derecho.imagen == 1 %}
 <meta property="og:image"              content="{{linkImagen}}" />
+{% else %}
+<meta property="og:image"              content="{{ baseUrl() }}/assets-lpe/img/sharer.png"/>
 {% endif %}
 <meta property="og:video"              content="https://www.youtube.com/watch?v={{derecho.video}}" />
-    {% endblock %}
+{% endblock %}
 {% block linkhead %} {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}{{ derecho.titulo }}{% endblock %} {% block body %}
 <article>
 {% set colorSeleccionado = random(3) %}
