@@ -22,23 +22,26 @@
 {% block linkhead %} {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}{{ derecho.titulo }}{% endblock %} {% block body %}
 <article>
 {% set colorSeleccionado = random(3) %}
-    <div class="titulo-derecho-background bgcolor{{colorSeleccionado}}" style="{{ derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''}}">
+    {% if derecho.imagen == 1 %}
+    <img src="{{linkImagen}}" class="img-responsive" style="width:100%;margin-bottom: 30px;" alt="">
+    {% else %}
+    <div class="titulo-derecho-background bgcolor{{colorSeleccionado}}" style="{# derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''#}">
         <div class="overlay">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
                         <h1><strong>{{ derecho.titulo }}</strong></h1> {% if user and (user.patrulla_id != null) %}
-                        <h6><a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="btn btn-default"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar derecho</a></h6> {% endif %}
+                        {#<h6><a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="btn btn-default"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar derecho</a></h6>#} {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    {% endif %}
     <div class="container">
         <div class="row">
             <div id="derecho" class="col-xs-12 col-sm-12 col-md-8">
                 <div id="descripcion">
-                    
                     <p>{{ derecho.descripcion|bbCode }}</p>
                 </div>
                 {% for seccion in derecho.secciones %}
@@ -88,7 +91,10 @@
                     </div>
                 </div>
                 {% include 'lpe/contenido/opinion/ver.twig' %} {% endfor %} {% if user and (user.patrulla_id != null) %}
-                <a href="{{ urlFor('shwCrearOpinion')}}" class="btn btn-primary btn-block"><i class="zmdi zmdi-plus zmdi-hc-lg zmdi-hc-fw"></i>Nueva Opinion</a> {% endif %}
+                <a href="{{ urlFor('shwCrearOpinion')}}" class="btn btn-primary btn-block"><i class="zmdi zmdi-plus zmdi-hc-lg zmdi-hc-fw"></i>Nueva Opinion</a>
+                <br>
+                <a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="btn btn-default btn-block"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar derecho</a> {% endif %}
+
             </div>
         </div>
 </article>
