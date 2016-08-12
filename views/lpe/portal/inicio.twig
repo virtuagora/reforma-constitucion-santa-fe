@@ -16,9 +16,9 @@
                     {% set linkImagen = baseUrl() ~ '/img/bloque/' ~ derecho.id ~ '.jpg' %}
                     <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
                         <div class="grid-item bgcolor{{random(3)}}" style="">
-                            <figure class="cap-bot" style="background-image: url('{{linkImagen}}');background-position:center center; background-size:cover;">
+                            <figure class="cap-bot" style="background-image: url('{{linkImagen}}');background-position:center top; background-size:cover;">
                                 <div class="text-center">
-                                    <h6>{{ derecho.titulo }}</h6> {% set numComents = 0 %} {% for seccion in derecho.secciones %} {% set numComents = numComents + seccion.comentarios|length %} {% endfor %}
+                                    <h6>{# derecho.titulo #}</h6> {% set numComents = 0 %} {% for seccion in derecho.secciones %} {% set numComents = numComents + seccion.comentarios|length %} {% endfor %}
                                 </div>
                                 <figcaption>
                                     ¡Participá! <i class="fa fa-hand-paper-o fa-lg fa-fw"></i>
