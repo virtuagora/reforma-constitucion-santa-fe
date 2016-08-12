@@ -69,7 +69,11 @@ public function verAntecedentes() {
             'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
                 'San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
                 'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay'],
-            'ocupaciones' => ['Estudiante', 'Docente', 'Otro']
+            'ocupaciones' => ['Estudiante','Docente Nivel Inicial','Docente Nivel Primario',
+                'Docente Nivel Secundario','Docente Nivel Terciario','Docente Universitario','Asistente escolar',
+                'Representante gremial','Profesional','Empleado/a en relación de dependencia','Comerciante',
+                'Funcionario/a, legislador/a y autoridad gubernamental','Representante de organización social',
+                'Trabajador/a doméstico/a no remunerado/a','Otro']
         ]);
     }
 
@@ -91,7 +95,11 @@ public function verAntecedentes() {
             ->addRule('address', new Validate\Rule\InArray(['Rosario','La Capital','General López','Castellanos',
                 'General Obligado','San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
                 'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay']))
-            ->addRule('title', new Validate\Rule\InArray(['Estudiante', 'Docente', 'Otro']))
+            ->addRule('title', new Validate\Rule\InArray(['Estudiante','Docente Nivel Inicial','Docente Nivel Primario',
+                'Docente Nivel Secundario','Docente Nivel Terciario','Docente Universitario','Asistente escolar',
+                'Representante gremial','Profesional','Empleado/a en relación de dependencia','Comerciante',
+                'Funcionario/a, legislador/a y autoridad gubernamental','Representante de organización social',
+                'Trabajador/a doméstico/a no remunerado/a','Otro']))
             ->addFilter('email', 'strtolower')
             ->addFilter('email', 'trim');
         $req = $this->request;
