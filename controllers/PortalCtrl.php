@@ -69,7 +69,7 @@ public function verAntecedentes() {
             'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
                 'San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
                 'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay'],
-            'ocupaciones' => ['Estudiante']
+            'ocupaciones' => ['Estudiante', 'Docente', 'Otro']
         ]);
     }
 
@@ -91,7 +91,7 @@ public function verAntecedentes() {
             ->addRule('address', new Validate\Rule\InArray(['Rosario','La Capital','General López','Castellanos',
                 'General Obligado','San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
                 'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay']))
-            ->addRule('title', new Validate\Rule\InArray(['Estudiante']))
+            ->addRule('title', new Validate\Rule\InArray(['Estudiante', 'Docente', 'Otro']))
             ->addFilter('email', 'strtolower')
             ->addFilter('email', 'trim');
         $req = $this->request;
