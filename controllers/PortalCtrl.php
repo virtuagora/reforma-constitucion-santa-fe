@@ -128,7 +128,7 @@ public function verAntecedentes() {
         $preuser->save();
         
         $to = $preuser->email;
-        $subject = 'Confirmá tu registro - Ley Provincial de Educación - Santa Fe';
+        $subject = 'Confirma tu registro - Ley Provincial de Educacion - Santa Fe';
         $message = $this->view->fetch('email/registro.twig', [
             'id' => $preuser->id,
             'token' => $preuser->emailed_token
@@ -190,7 +190,7 @@ public function verAntecedentes() {
         $usuario->save();
         
         $to = $usuario->email;
-        $subject = 'Reiniciar clave - Santa Fe Construye Educación y Futuro. Diálogos para la ley provincial de educación';
+        $subject = 'Reiniciar clave - Santa Fe Construye Educacion y Futuro. Dialogos para la ley provincial de educacion';
         $message = $this->view->fetch('email/recuperar.twig', [
             'id' => $usuario->id,
             'token' => $usuario->token
