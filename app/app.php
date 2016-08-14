@@ -66,7 +66,8 @@ $checkNoSession = function () use ($app) {
 $checkRole = function ($role) use ($app) {
     return function () use ($role, $app) {
         if (is_array($role)) {
-            $rejected = empty($app->session->grantedRoles($role));
+            $userRoles = $app->session->grantedRoles($role);
+            $rejected = empty($userRoles);
         } else {
             $rejected = !$app->session->hasRole($role);
         }

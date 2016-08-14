@@ -127,15 +127,12 @@ public function verAntecedentes() {
         $preuser->address = $vdt->getData('address');
         $preuser->save();
         
-        $dominio = $req->headers->get('x-forwarded-host')?: $req->getUrl();
         $to = $preuser->email;
         $subject = 'Confirmá tu registro - Ley Provincial de Educación - Santa Fe';
-        $message = 'Bienvenido a “Santa Fe construye Educación y Futuro. Diálogos para ' .
-            'la Ley Provincial de Educación”. Ingresá a este link para confirmar tu email ' .
-            $dominio . $this->urlFor('runValidUsuario', [
-                'idUsu' => $preuser->id,
-                'token' => $preuser->emailed_token
-            ]);
+        $message = $this->view->fetch('email/registro.twig', [
+            'id' => $preuser->id,
+            'token' => $preuser->emailed_token
+        ]);
         mail($to, $subject, $message);
         
         $this->render('lpe/registro/registro-exito.twig', array('email' => $preuser->email));
@@ -192,14 +189,12 @@ public function verAntecedentes() {
         $usuario->token = bin2hex(openssl_random_pseudo_bytes(16));
         $usuario->save();
         
-        $dominio = $req->headers->get('x-forwarded-host')?: $req->getUrl();
         $to = $usuario->email;
         $subject = 'Reiniciar clave - Santa Fe Construye Educación y Futuro. Diálogos para la ley provincial de educación';
-        $message = 'Solicitaste reiniciar tu contraseña ingresá al siguiente enlace: ' .
-            $dominio . $this->urlFor('shwReiniciarClave', [
-                'idUsu' => $usuario->id,
-                'token' => $usuario->token
-            ]);
+        $message = $this->view->fetch('email/recuperar.twig', [
+            'id' => $usuario->id,
+            'token' => $usuario->token
+        ]);
         mail($to, $subject, $message);
         
         $this->redirectTo('shwRecuperarClave');
