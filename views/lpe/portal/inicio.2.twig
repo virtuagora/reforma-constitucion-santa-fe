@@ -1,60 +1,42 @@
-{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{%
-endblock %} {% block body %}
-<div class="container-fluid inicio-banner" >
-    <div class="overlay-banner">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <!--<a href="#" class="btn btn-warning"><i class="zmdi zmdi-edit zmdi-hc-lg"></i> Editar pagina</a>-->
-                <h1 style="text-transform: uppercase"><strong>{{ titulo }}</strong></h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
-                <div class="descripcion" style="font-size: 14px;line-height: 21px;">
+{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{% endblock %} {% block body %}
+<div class="container-fluid" style="margin-bottom:40px">
+    <div class="row">
+        <div class="col-xs-12 col-md-7 col-md-offset-1 text-center">
+            <!--<h2 style="text-transform: uppercase"><strong>{{ titulo }}</strong></h2>
+            <div style="font-size: 14px;line-height: 21px;">
                 {{ intro|bbCode }}
-            </div>
-                <!--<a href="#derechos" class="btn btn-primary btn-lg">Comenzar a participar</a>-->
+            </div>-->
+            {% set linkImagen = baseUrl() ~ '/img/banner.jpg' %}
+            <img src="{{linkImagen}}" style="width:100%; margin-top:20px" alt="">
+            <div id="derechos" class="" style="margin-top:40px">
+                {% if derechos|length > 0 %}
+                <div class="grid" >
+                    <div class="grid-sizer"></div>
+                    {% for derecho in derechos %}
+                    {% set linkImagen = baseUrl() ~ '/img/bloque/' ~ derecho.id ~ '.jpg' %}
+                    <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
+                        <div class="grid-item bgcolor{{random(3)}}" style="">
+                            <figure class="cap-bot" style="background-image: url('{{linkImagen}}');background-position:center top; background-size:cover;">
+                                <div class="text-center">
+                                    <h6>{# derecho.titulo #}</h6> {% set numComents = 0 %} {% for seccion in derecho.secciones %} {% set numComents = numComents + seccion.comentarios|length %} {% endfor %}
+                                </div>
+                                <figcaption>
+                                    ¡Participá! <i class="fa fa-hand-paper-o fa-lg fa-fw"></i>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center">
+                    <p>ERROR CRITICO</p>
+                </div>
+                {% endif %}
             </div>
         </div>
-    </div>
-</div>
-
-
-
-
-<div id="derechos" class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
-            {% if derechos|length > 0 %}
-            <div class="grid">
-                <div class="grid-sizer"></div>
-                {% for derecho in derechos %}
-                {% set linkImagen = baseUrl() ~ '/img/bloque/' ~ derecho.id ~ '.jpg' %}
-                <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
-                    <div class="grid-item" style="background-image: url('{{linkImagen}}');background-position:center top; background-size:cover;">
-                        <figure class="cap-bot">
-                            <!--<div class="text-center">
-                                <h6><strong>{{ derecho.titulo }}</strong></h6>
-                            </div>-->
-                            <figcaption>
-                                ¡Participá! <i class="fa fa-hand-paper-o fa-lg fa-fw"></i>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </a>
-                {% endfor %}
-            </div>
-            {% else %}
-            <div class="text-center">
-                <p>ERROR CRITICO</p>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-xs-12 col-md-4 col-md-offset-2">
-        <!--<h4 class="conoce text-center"><strong>Conocé más</strong></h4>-->
+        <div class="col-xs-12 col-md-3">
+                    <h4 class="conoce text-center"><strong>Conocé más</strong></h4>
             <div class="" style=" background-size:cover;">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                     <!-- Wrapper for slides -->
@@ -89,10 +71,10 @@ endblock %} {% block body %}
                 </div>
         </div>
     </div>-->
+
             </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <h5><strong>CRONOGRAMA</strong></h5>
+            <hr>
+            <h3><strong>CRONOGRAMA <small><a href="{{ urlFor('shwListaEvento')}}" class="btn btn-xs btn-primary">Ver mas</a></small></strong></h3>
             <div class="list-group">
                 {% if eventos|length > 0%}
                 {% set contador = 1 %}
@@ -122,16 +104,13 @@ endblock %} {% block body %}
                     {% endfor %}
                 {% else %}
                 <li class="list-group-item">
-                    <h6 class="list-group-item-heading">No hay eventos próximos</h6>
+                    <h5 class="list-group-item-heading">No hay eventos próximos</h5>
                 </li>
                 {% endif %}
-                <br>
-                <a href="{{ urlFor('shwListaEvento')}}" class="btn btn-xs btn-link">Ver mas eventos</a></small>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock body %} {# -------------------------------------------- #} {% block scripts %}
 <script src="{{ baseUrl() }}/assets-lpe/js/masonry.pkgd.min.js"></script>
 <script>
@@ -143,17 +122,17 @@ endblock %} {% block body %}
         percentPosition: true
     })
     $(function() {
-  $('a[href="#derechos"]').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: target.offset().top
-        }, 1000);
-        return false;
-      }
-    }
-  });
-});
+        $('a[href="#derechos"]').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
 </script> {% endblock scripts %}

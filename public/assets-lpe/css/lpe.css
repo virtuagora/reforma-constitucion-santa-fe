@@ -10043,7 +10043,7 @@ figure:hover:before {
   /* line 319, ../scss/lpe.scss */
   .grid-sizer.w2,
   .grid-item.w2 {
-    width: 20%;
+    width: 40%;
   }
 }
 
@@ -10334,4 +10334,35 @@ ul.socialmedia {
   font-size: 14px;
   line-height: normal;
   color: #FFF;
+}
+
+/* line 633, ../scss/lpe.scss */
+.inicio-banner {
+  background-image: url("../img/tramasf.png");
+  background-size: cover;
+  background-position: center center;
+  color: #FFF;
+  margin-bottom: 30px;
+  padding: 0 0;
+}
+/* line 640, ../scss/lpe.scss */
+.inicio-banner .overlay-banner {
+  padding: 50px 15px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.2)));
+  background-image: -webkit-linear-gradient(top, transparent 0, rgba(0, 0, 0, 0.2) 100%);
+  background-image: -o-linear-gradient(top, transparent 0, rgba(0, 0, 0, 0.2) 100%);
+  background-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.2) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.2)', GradientType=0);
+}
+/* line 649, ../scss/lpe.scss */
+.inicio-banner h1 {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  letter-spacing: -1.4px;
+  color: #FFF;
+}
+/* line 654, ../scss/lpe.scss */
+.inicio-banner .descripcion {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  color: white;
+  margin-bottom: 0;
 }
