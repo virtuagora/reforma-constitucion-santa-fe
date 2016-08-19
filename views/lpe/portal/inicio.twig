@@ -5,14 +5,13 @@ endblock %} {% block body %}
         <div class="row">
             <div class="col-xs-12 text-center">
                 <!--<a href="#" class="btn btn-warning"><i class="zmdi zmdi-edit zmdi-hc-lg"></i> Editar pagina</a>-->
-                <h1 style="text-transform: uppercase"><strong>LEY DE EDUCACIÓN DE SANTA FE</strong></h1>
+                <h1 style="text-transform: uppercase"><strong>{{ titulo }}</strong></h1>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
                 <div class="descripcion" style="font-size: 14px;line-height: 21px;">
-                Santa Fe construye Educación y Futuro
-                <br>Diálogos para la Ley Provincial de Educación
+                {{ intro|bbCode }}
             </div>
                 <!--<a href="#derechos" class="btn btn-primary btn-lg">Comenzar a participar</a>-->
             </div>
