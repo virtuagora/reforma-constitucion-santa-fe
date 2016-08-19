@@ -1,30 +1,35 @@
 {% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{%
 endblock %} {% block body %}
-<div class="container-fluid inicio-banner" >
+<div class="container-fluid inicio-banner">
     <div class="overlay-banner">
         <div class="row">
             <div class="col-xs-12 text-center">
                 <!--<a href="#" class="btn btn-warning"><i class="zmdi zmdi-edit zmdi-hc-lg"></i> Editar pagina</a>-->
-                <h1 style="text-transform: uppercase"><strong>{{ titulo }}</strong></h1>
+                <h1 style="text-transform: uppercase"><strong>LEY DE EDUCACIÓN DE SANTA FE</strong></h1>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
                 <div class="descripcion" style="font-size: 14px;line-height: 21px;">
-                {{ intro|bbCode }}
+                Santa Fe construye Educación y Futuro
+                <br>Diálogos para la Ley Provincial de Educación
             </div>
                 <!--<a href="#derechos" class="btn btn-primary btn-lg">Comenzar a participar</a>-->
             </div>
         </div>
     </div>
 </div>
-
-
-
+<!--<div class="" style="margin-bottom:30px">
+    <img src="{{baseUrl()}}/img/banner.jpg" alt="" style="width:100%;">
+</div>
+<div class="text-center" style="margin-bottom:30px">
+    <h4><b>Santa Fe construye Educación y Futuro. Diálogos para la Ley Provincial de Educación</b></h4>
+</div>-->
 
 <div id="derechos" class="container-fluid">
     <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1">
+            
             {% if derechos|length > 0 %}
             <div class="grid">
                 <div class="grid-sizer"></div>
@@ -53,7 +58,7 @@ endblock %} {% block body %}
     </div>
     <br>
     <div class="row">
-        <div class="col-xs-12 col-md-4 col-md-offset-2">
+        <div class="col-xs-12 col-md-5 col-md-offset-1">
         <!--<h4 class="conoce text-center"><strong>Conocé más</strong></h4>-->
             <div class="" style=" background-size:cover;">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -91,7 +96,7 @@ endblock %} {% block body %}
     </div>-->
             </div>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-md-5">
             <h5><strong>CRONOGRAMA</strong></h5>
             <div class="list-group">
                 {% if eventos|length > 0%}
