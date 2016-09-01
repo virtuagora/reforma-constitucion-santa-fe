@@ -1,10 +1,10 @@
 {% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{%
 endblock %} {% block body %}
-<div class="container-fluid inicio-banner">
+<div class="container-fluid inicio-banner" >
     <div class="overlay-banner">
         <div class="row">
             <div class="col-xs-12 text-center">
-
+                <!--<a href="#" class="btn btn-warning"><i class="zmdi zmdi-edit zmdi-hc-lg"></i> Editar pagina</a>-->
                 <h1 style="text-transform: uppercase"><strong>{{ titulo }}</strong></h1>
             </div>
         </div>
@@ -13,17 +13,18 @@ endblock %} {% block body %}
                 <div class="descripcion" style="font-size: 14px;line-height: 21px;">
                 {{ intro|bbCode }}
             </div>
-
+                <!--<a href="#derechos" class="btn btn-primary btn-lg">Comenzar a participar</a>-->
             </div>
         </div>
     </div>
 </div>
 
 
+
+
 <div id="derechos" class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
-            
+        <div class="col-xs-12 col-md-7 col-md-offset-1">
             {% if derechos|length > 0 %}
             <div class="grid">
                 <div class="grid-sizer"></div>
@@ -32,9 +33,9 @@ endblock %} {% block body %}
                 <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
                     <div class="grid-item" style="background-image: url('{{linkImagen}}');background-position:center top; background-size:cover;">
                         <figure class="cap-bot">
-                            <div class="text-center" style="">
-                                <h5 style="text-transform: uppercase"><strong>{{ derecho.titulo }}</strong></h5>
-                            </div>
+                            <!--<div class="text-center">
+                                <h6><strong>{{ derecho.titulo }}</strong></h6>
+                            </div>-->
                             <figcaption>
                                 ¡Participá! <i class="fa fa-hand-paper-o fa-lg fa-fw"></i>
                             </figcaption>
@@ -49,11 +50,8 @@ endblock %} {% block body %}
             </div>
             {% endif %}
         </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-xs-12 col-md-5 col-md-offset-1">
-
+        <div class="col-xs-12 col-md-3">
+        <!--<h4 class="conoce text-center"><strong>Conocé más</strong></h4>-->
             <div class="" style=" background-size:cover;">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                     <!-- Wrapper for slides -->
@@ -70,6 +68,7 @@ endblock %} {% block body %}
                         </div>
                         {% endfor %}
                     </div>
+
                     <!-- Left and right controls -->
                     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                         <span class="icon-prev" aria-hidden="true"></span>
@@ -80,10 +79,16 @@ endblock %} {% block body %}
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-              
-            </div>
+                <!--<div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
+            <div class="embed-responsive embed-responsive-16by9" style="">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/RcmfJGyd-ak" frameborder="0" allowfullscreen></iframe>
+                </div>
         </div>
-        <div class="col-xs-12 col-md-5">
+    </div>-->
+
+            </div>
+            <hr>
             <h5><strong>CRONOGRAMA</strong></h5>
             <div class="list-group">
                 {% if eventos|length > 0%}
