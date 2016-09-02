@@ -10352,7 +10352,7 @@ ul.socialmedia {
 .inicio-banner {
   background-image: url("../../img/banner.jpg");
   background-size: cover;
-  background-position: center center;
+  background-position: bottom center;
   color: #FFF;
   margin-bottom: 30px;
   padding: 0 0;
