@@ -9997,8 +9997,8 @@ figure:hover:before {
   background-image: -o-linear-gradient(top, transparent 0, rgba(0, 0, 0, 0.4) 100%);
   background-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.4) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.4)', GradientType=0);
-  padding: 0 3px 20px;
-  height: 150px;
+  padding: 20px 3px 20px;
+  height: 170px;
 }
 /* line 294, ../scss/lpe.scss */
 .cap-bot h5 {
@@ -10047,11 +10047,12 @@ figure:hover:before {
   /* line 305, ../scss/lpe.scss */
   .grid-sizer,
   .grid-item {
-    width: 20%;
+    width: 23%;
+    margin: 10px 1%;
   }
 }
 @media (min-width: 992px) {
-  /* line 329, ../scss/lpe.scss */
+  /* line 330, ../scss/lpe.scss */
   .grid-sizer.w2,
   .grid-item.w2 {
     width: 40%;
@@ -10059,18 +10060,18 @@ figure:hover:before {
 }
 
 /* 2 columns */
-/* line 340, ../scss/lpe.scss */
+/* line 341, ../scss/lpe.scss */
 .grid-item--width2 {
   width: 20%;
 }
 
-/* line 346, ../scss/lpe.scss */
+/* line 347, ../scss/lpe.scss */
 #body-editor {
   font-size: 14px;
   line-height: 21px;
 }
 
-/* line 353, ../scss/lpe.scss */
+/* line 354, ../scss/lpe.scss */
 input[type=text].form-control.input-lg, .input-group-lg > input[type=text].form-control,
 .input-group-lg > .input-group-btn > input[type=text].form-control.btn,
 textarea.form-control.input-lg,
@@ -10079,23 +10080,23 @@ textarea.form-control.input-lg,
   font-size: 30px;
 }
 
-/* line 358, ../scss/lpe.scss */
+/* line 359, ../scss/lpe.scss */
 .bolder {
   font-weight: 700;
 }
 
-/* line 363, ../scss/lpe.scss */
+/* line 364, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background {
   background-position: center center;
   background-size: cover;
   margin-bottom: 40px;
 }
-/* line 367, ../scss/lpe.scss */
+/* line 368, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background .overlay {
   background: rgba(0, 0, 0, 0.3);
   padding: 100px 0;
 }
-/* line 371, ../scss/lpe.scss */
+/* line 372, ../scss/lpe.scss */
 #crearDerecho .titulo-derecho-background textarea {
   color: #FFF;
   background-color: none;
@@ -10107,19 +10108,19 @@ textarea.form-control.input-lg,
   resize: none;
   margin: 23px 0 11.5px;
 }
-/* line 383, ../scss/lpe.scss */
+/* line 384, ../scss/lpe.scss */
 #crearDerecho textarea.accion {
   font-size: 19.5px;
   line-height: 27.3px;
   font-weight: 300;
   padding: 0 0 10px;
 }
-/* line 389, ../scss/lpe.scss */
+/* line 390, ../scss/lpe.scss */
 #crearDerecho .btn-file {
   position: relative;
   overflow: hidden;
 }
-/* line 393, ../scss/lpe.scss */
+/* line 394, ../scss/lpe.scss */
 #crearDerecho .btn-file input[type=file] {
   position: absolute;
   top: 0;
@@ -10136,7 +10137,7 @@ textarea.form-control.input-lg,
   display: block;
 }
 
-/* line 412, ../scss/lpe.scss */
+/* line 413, ../scss/lpe.scss */
 article .titulo-derecho-background {
   color: #cdbfe3;
   text-align: center;
@@ -10145,103 +10146,103 @@ article .titulo-derecho-background {
   background-size: cover;
   background-position: center center;
 }
-/* line 420, ../scss/lpe.scss */
+/* line 421, ../scss/lpe.scss */
 article .titulo-derecho-background h1 {
   color: #FFF;
 }
-/* line 421, ../scss/lpe.scss */
+/* line 422, ../scss/lpe.scss */
 article .titulo-derecho-background .overlay {
   background: rgba(0, 0, 0, 0.3);
   padding: 100px 0;
 }
-/* line 426, ../scss/lpe.scss */
+/* line 427, ../scss/lpe.scss */
 article #derecho #descripcion {
   font-size: 14px;
   line-height: 21px;
 }
-/* line 430, ../scss/lpe.scss */
+/* line 431, ../scss/lpe.scss */
 article span.badge {
   background-color: #2196F3;
 }
-/* line 433, ../scss/lpe.scss */
+/* line 434, ../scss/lpe.scss */
 article #nav-derechos.affix {
   top: 30px;
 }
-/* line 437, ../scss/lpe.scss */
+/* line 438, ../scss/lpe.scss */
 article #nav-derechos > a {
   padding: 10px;
 }
-/* line 440, ../scss/lpe.scss */
+/* line 441, ../scss/lpe.scss */
 article p {
   font-size: 14px;
   line-height: 21px;
 }
-/* line 444, ../scss/lpe.scss */
+/* line 445, ../scss/lpe.scss */
 article img.size32 {
   width: 32px;
 }
-/* line 447, ../scss/lpe.scss */
+/* line 448, ../scss/lpe.scss */
 article p.comentario {
   font-size: 12px;
   line-height: 1.5;
 }
-/* line 451, ../scss/lpe.scss */
+/* line 452, ../scss/lpe.scss */
 article textarea.comentario {
   resize: vertical;
 }
 
-/* line 491, ../scss/lpe.scss */
+/* line 492, ../scss/lpe.scss */
 .tag-opinion {
   padding: 0;
   text-align: center;
 }
-/* line 494, ../scss/lpe.scss */
+/* line 495, ../scss/lpe.scss */
 .tag-opinion img {
   left: 0;
 }
-/* line 498, ../scss/lpe.scss */
+/* line 499, ../scss/lpe.scss */
 .tag-opinion .overlay {
   background: rgba(0, 0, 0, 0.2);
   padding: 15px;
 }
-/* line 502, ../scss/lpe.scss */
+/* line 503, ../scss/lpe.scss */
 .tag-opinion h5 {
   color: #FFF;
 }
-/* line 505, ../scss/lpe.scss */
+/* line 506, ../scss/lpe.scss */
 .tag-opinion a:hover {
   text-decoration: none;
 }
 
-/* line 513, ../scss/lpe.scss */
+/* line 514, ../scss/lpe.scss */
 .opinionModal .descripcion {
   font-size: 14px;
   line-height: 21px;
 }
 
-/* line 521, ../scss/lpe.scss */
+/* line 522, ../scss/lpe.scss */
 .header-opinion {
   border-radius: 5px;
   background-size: cover;
   margin-bottom: 20px;
 }
-/* line 525, ../scss/lpe.scss */
+/* line 526, ../scss/lpe.scss */
 .header-opinion .overlay {
   background: rgba(0, 0, 0, 0.4);
   padding: 40px 0 55px;
   border-radius: 5px;
 }
-/* line 530, ../scss/lpe.scss */
+/* line 531, ../scss/lpe.scss */
 .header-opinion h3 {
   color: #FFF;
 }
 
-/* line 538, ../scss/lpe.scss */
+/* line 539, ../scss/lpe.scss */
 .editor-area {
   font-size: 14px;
 }
 
-/* line 543, ../scss/lpe.scss */
+/* line 544, ../scss/lpe.scss */
 #modificarInicio textarea[name=titulo] {
   font-size: 56px;
   font-weight: 700;
@@ -10252,7 +10253,7 @@ article textarea.comentario {
   margin-bottom: 15px;
   color: #444;
 }
-/* line 553, ../scss/lpe.scss */
+/* line 554, ../scss/lpe.scss */
 #modificarInicio textarea[name=descripcion] {
   font-size: 19.5px;
   line-height: 27.3px;
@@ -10262,7 +10263,7 @@ article textarea.comentario {
   resize: none;
 }
 
-/* line 564, ../scss/lpe.scss */
+/* line 565, ../scss/lpe.scss */
 #myCarousel .conoce {
   color: #FFF;
   padding-top: 20px;
@@ -10270,12 +10271,12 @@ article textarea.comentario {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 576, ../scss/lpe.scss */
+/* line 577, ../scss/lpe.scss */
 .twitter-typeahead {
   width: 100%;
 }
 
-/* line 586, ../scss/lpe.scss */
+/* line 587, ../scss/lpe.scss */
 .bgcolor0 {
   background-color: #6f5499;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#3f3057, to(#6f5499)));
@@ -10286,7 +10287,7 @@ article textarea.comentario {
   background-repeat: repeat-x;
 }
 
-/* line 595, ../scss/lpe.scss */
+/* line 596, ../scss/lpe.scss */
 .bgcolor1 {
   background-color: #00a73d;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#004118, to(#00a73d)));
@@ -10297,7 +10298,7 @@ article textarea.comentario {
   background-repeat: repeat-x;
 }
 
-/* line 604, ../scss/lpe.scss */
+/* line 605, ../scss/lpe.scss */
 .bgcolor2 {
   background-color: #00cbdc;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#006d76, to(#00cbdc)));
@@ -10308,7 +10309,7 @@ article textarea.comentario {
   background-repeat: repeat-x;
 }
 
-/* line 613, ../scss/lpe.scss */
+/* line 614, ../scss/lpe.scss */
 .bgcolor3 {
   background-color: #ff5400;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#993200, to(#ff5400)));
@@ -10319,44 +10320,44 @@ article textarea.comentario {
   background-repeat: repeat-x;
 }
 
-/* line 623, ../scss/lpe.scss */
+/* line 624, ../scss/lpe.scss */
 .list-group-item.active .list-group-item-text {
   color: #FFF;
 }
 
-/* line 626, ../scss/lpe.scss */
+/* line 627, ../scss/lpe.scss */
 .list-group-item .list-group-item-text {
   color: #999;
 }
 
-/* line 630, ../scss/lpe.scss */
+/* line 631, ../scss/lpe.scss */
 ul.socialmedia li a {
   color: #757575;
   font-size: 24px;
 }
 
-/* line 634, ../scss/lpe.scss */
+/* line 635, ../scss/lpe.scss */
 ul.socialmedia {
   margin-bottom: 0;
 }
 
-/* line 637, ../scss/lpe.scss */
+/* line 638, ../scss/lpe.scss */
 .lastfoot {
   font-size: 14px;
   line-height: normal;
   color: #FFF;
 }
 
-/* line 643, ../scss/lpe.scss */
+/* line 644, ../scss/lpe.scss */
 .inicio-banner {
-  background-image: url("../img/tramasf.png");
+  background-image: url("../../img/banner.jpg");
   background-size: cover;
   background-position: center center;
   color: #FFF;
   margin-bottom: 30px;
   padding: 0 0;
 }
-/* line 650, ../scss/lpe.scss */
+/* line 651, ../scss/lpe.scss */
 .inicio-banner .overlay-banner {
   padding: 50px 15px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.2)));
@@ -10365,13 +10366,13 @@ ul.socialmedia {
   background-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.2) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.2)', GradientType=0);
 }
-/* line 659, ../scss/lpe.scss */
+/* line 660, ../scss/lpe.scss */
 .inicio-banner h1 {
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
   letter-spacing: -1.4px;
   color: #FFF;
 }
-/* line 664, ../scss/lpe.scss */
+/* line 665, ../scss/lpe.scss */
 .inicio-banner .descripcion {
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
   color: white;
