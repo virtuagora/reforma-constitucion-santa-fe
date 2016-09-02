@@ -15,7 +15,7 @@
     {% endblock %}
 <link rel="shortcut icon" href="{{ baseUrl() }}/assets-lpe/img/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="{{ baseUrl() }}/assets-lpe/img/favicon.ico" type="image/x-icon">
-    <title>{% block titulo %}Nueva Ley del Arbol - Gobierno de Santa Fe{% endblock titulo %}</title>
+    <title>{% block titulo %}{% endblock titulo %}{{ titulo is not empty ? ' - '  : '' }}Nueva Ley del Arbol - Gobierno de Santa Fe</title>
     <link rel="" type="" href="">
     <!-- Bootstrap -->
     {% block linkhead %}{% endblock %}

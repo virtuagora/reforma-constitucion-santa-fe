@@ -4,7 +4,6 @@ endblock %} {% block body %}
     <div class="overlay-banner">
         <div class="row">
             <div class="col-xs-12 text-center">
-
                 <h1 style="text-transform: uppercase"><strong>{{ titulo }}</strong></h1>
             </div>
         </div>
@@ -30,7 +29,7 @@ endblock %} {% block body %}
                 {% for derecho in derechos %}
                 {% set linkImagen = baseUrl() ~ '/img/bloque/' ~ derecho.id ~ '.jpg' %}
                 <a href="{{ urlFor('shwDerecho', {'idDer': derecho.contenible_id})}}">
-                    <div class="grid-item" style="background-image: url('{{linkImagen}}');background-position:center top; background-size:cover;">
+                    <div class="grid-item" style="background-image: url('{{linkImagen}}');background-position:center center; background-size:cover;">
                         <figure class="cap-bot">
                             <div class="text-center" style="">
                                 <h5 style="text-transform: uppercase"><strong>{{ derecho.titulo }}</strong></h5>
