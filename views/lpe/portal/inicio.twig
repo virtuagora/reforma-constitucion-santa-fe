@@ -21,10 +21,10 @@ endblock %} {% block body %}
 
 <div id="derechos" class="container-fluid">
     <div class="row text-center">
-        <h4 class="text-primary" style="font-weight: 300;">CONOCÉ LOS DISTINTOS PUNTOS DE LA LEY Y PARTICIPÁ</h4>
+        <h5 style="font-weight: bold; margin: 40px auto; letter-spacing: -0.4px;">CONOCÉ LOS DISTINTOS PUNTOS DE LA LEY Y PARTICIPÁ:</h5>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
+        <div class="col-xs-12 col-md-10 col-md-offset-1" style="margin-bottom: 30px;">
             
             {% if derechos|length > 0 %}
             <div class="grid">
@@ -54,7 +54,7 @@ endblock %} {% block body %}
     </div>
     <br>
     <div class="row">
-        <div class="col-xs-12 col-md-5 col-md-offset-1">
+        <div class="col-xs-12 col-md-5 col-md-offset-1" style="margin-bottom: 30px;">
 
             <div class="" style=" background-size:cover;">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -124,6 +124,12 @@ endblock %} {% block body %}
             </div>
         </div>
     </div>
+    <div class="row">
+<div class="col-xs-12 text-center">
+    <h5 style="font-weight: bold; margin: 40px auto; letter-spacing: -0.4px;">COLABORARON:</h5>
+    <img src="{{ baseUrl() }}/img/logos.png" class="img-responsive" style="margin: auto;" alt="">
+</div>
+        </div>
 </div>
 
 {% endblock body %} {# -------------------------------------------- #} {% block scripts %}
