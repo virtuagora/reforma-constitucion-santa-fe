@@ -240,7 +240,7 @@ try {
         Capsule::schema()->create('secciones', function($table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('descripcion', 5120);
+            $table->text('descripcion');
             $table->integer('derecho_id')->unsigned();
             $table->foreign('derecho_id')->references('id')->on('derechos');
             $table->timestamps();

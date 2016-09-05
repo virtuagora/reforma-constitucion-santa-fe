@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
             <h1><strong>
-             Fundamentos
+             FUNDAMENTOS
                 </strong></h1>
              <p class="lead">
 Estamos convencidos que los árboles y sus servicios ambientales son estratégicos para  defender el derecho de la población a vivir en un ambiente sano, respetando  los derechos de la naturaleza y esta política pública va a jerarquizarlos.
@@ -17,8 +17,8 @@ Este proyecto de ley para el Árbol, se trata de un propuesta innovadora, que co
              <p class="lead">
 Se establecen mínimos porcentajes a forestar por parte de los privados entendiendo que los desafíos que implica el calentamiento global deben ser asumidos por todos. Por eso, desde el Estado Provincial, asumimos un fuerte compromiso para el cumplimiento de la ley, creando el fondo santafesino de arbolado para solventar los requerimientos del Sector público y privado.
              </p>
-              <p class="lead"><a href="#">Ver mas <i class="fa fa-plus fa-fw"></i></a></p>
-              <div class="text-justify">
+              <p class="lead"><a id="linkVerMas" href="javascript:void(0)">Ver mas <i class="fa fa-plus fa-fw"></i></a></p>
+              <div id="mas" class="text-justify" style="display:none;style=font-size: 14px; line-height: 21px;">
 <hr>
 <p><b><span class="text-info">“Todos los habitantes gozan del derecho a un ambiente sano, equilibrado y apto para el desarrollo humano”</span></b>, como lo preceptúa nuestra Constitución Nacional en el artículo 41. Para alcanzar dicho cometido es necesario llevar a cabo políticas de Estado
     con miras a garantizar un ambiente apto, por lo que contar con una legislación que se adelante o anticipe a los hechos que vendrán es necesario.</p>
@@ -110,4 +110,10 @@ en la temática, considerando al árbol como servicio público ambiental y promo
 
 {% endblock body %} {# -------------------------------------------- #} {% block scripts %}
 <script>
-</script> {% endblock scripts %}
+
+    $("#linkVerMas").click(function(e) {
+        $('#mas').toggle(200);
+        $('#linkVerMas').hide();
+    });
+
+</script>{% endblock scripts %}
