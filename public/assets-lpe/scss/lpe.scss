@@ -284,11 +284,11 @@ figure:hover:before {
     bottom: -30%;
 }
 .cap-bot{
-    background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(0, 0, 0, 0)),to(rgba(0, 0, 0, 0.4)));
-background-image: -webkit-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
-background-image: -o-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
-background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.4)', GradientType=0);
+//     background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(0, 0, 0, 0)),to(rgba(0, 0, 0, 0.4)));
+// background-image: -webkit-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
+// background-image: -o-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
+// background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
+// filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.4)', GradientType=0);
     padding: 20px 3px 20px;
     height:170px;
     h5{
@@ -420,7 +420,7 @@ background-size: cover;
 background-position: center center;
 h1{color:#FFF;}
 .overlay{
-    background: rgba(0,0,0,0.3); 
+    // background: rgba(0,0,0,0.3); 
     padding: 100px 0;
 }
 }

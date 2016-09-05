@@ -9992,11 +9992,6 @@ figure:hover:before {
 
 /* line 286, ../scss/lpe.scss */
 .cap-bot {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.4)));
-  background-image: -webkit-linear-gradient(top, transparent 0, rgba(0, 0, 0, 0.4) 100%);
-  background-image: -o-linear-gradient(top, transparent 0, rgba(0, 0, 0, 0.4) 100%);
-  background-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.4) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.4)', GradientType=0);
   padding: 20px 3px 20px;
   height: 170px;
 }
@@ -10152,7 +10147,6 @@ article .titulo-derecho-background h1 {
 }
 /* line 422, ../scss/lpe.scss */
 article .titulo-derecho-background .overlay {
-  background: rgba(0, 0, 0, 0.3);
   padding: 100px 0;
 }
 /* line 427, ../scss/lpe.scss */
