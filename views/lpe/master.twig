@@ -15,7 +15,7 @@
     {% endblock %}
 <link rel="shortcut icon" href="{{ baseUrl() }}/assets-lpe/img/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="{{ baseUrl() }}/assets-lpe/img/favicon.ico" type="image/x-icon">
-    <title>{% block titulo %}{% endblock titulo %}{{ titulo is not empty ? ' - '  : '' }}Nueva Ley del Arbol - Gobierno de Santa Fe</title>
+    <title>{% block titulo %}{% endblock titulo %} - Nueva Ley del Arbol - Gobierno de Santa Fe</title>
     <link rel="" type="" href="">
     <!-- Bootstrap -->
     {% block linkhead %}{% endblock %}
@@ -66,8 +66,8 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="{{ urlFor('shwIndex') }}"><i class="zmdi zmdi-home zmdi-hc-fw zmdi-hc-lg"></i>Inicio</a></li>
-                            <li><a href="{{ urlFor('shwProp') }}">Propuesta</a></li>
-                            <li><a href="{{ urlFor('shwAnteced') }}">Antecedentes</a></li>
+                            <li><a href="{{ urlFor('shwHistoria') }}">Historia</a></li>
+                            <li><a href="{{ urlFor('shwFundamen') }}">Fundamentos</a></li>
                             <li><a href="{{urlFor('shwListaEvento')}}">Cronograma</a></li>
                         </ul>
                         
