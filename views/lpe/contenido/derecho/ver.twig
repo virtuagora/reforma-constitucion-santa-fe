@@ -47,7 +47,7 @@
                 </div>
                 {% for seccion in derecho.secciones %}
                 <div class="accion clearfix">
-                    <div class="pull-left" style="margin-right:20px">
+                    <div  style="margin-left:20px" class="pull-right">
                         {% set ptj = (seccion.votos_alta * 3) + (seccion.votos_media * 2) + (seccion.votos_baja * 1) %}
                         <span class="label label-primary" style="padding: 10px 8px 8px; font-size: 10px;">&nbsp;{{ptj}}<i class="zmdi zmdi-long-arrow-up zmdi-hc-fw zmdi-hc-lg"></i></span>
                     </div>
