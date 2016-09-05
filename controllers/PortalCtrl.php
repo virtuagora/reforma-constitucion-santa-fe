@@ -44,6 +44,10 @@ class PortalCtrl extends Controller {
         $this->render('lpe/contenido/static/historia.twig');
     }
 
+    public function verTutorial() {
+        $this->render('lpe/contenido/static/tutorial.twig');
+    }
+
 
  public function verFundamentos() {
         $this->render('lpe/contenido/static/fundamentos.twig');

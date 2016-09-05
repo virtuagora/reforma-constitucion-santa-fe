@@ -166,6 +166,7 @@ $app->get('/tos', 'PortalCtrl:verTos')->name('shwTos');
 // $app->get('/propuesta', 'PortalCtrl:verPropuesta')->name('shwProp');
 $app->get('/historia', 'PortalCtrl:verHistoria')->name('shwHistoria');
 $app->get('/fundamentos', 'PortalCtrl:verFundamentos')->name('shwFundamen');
+$app->get('/tutorial', 'PortalCtrl:verTutorial')->name('shwTutorial');
 $app->get('/login', $checkNoSession, 'PortalCtrl:verLogin')->name('shwLogin');
 $app->post('/login', $checkNoSession, 'PortalCtrl:login')->name('runLogin');
 $app->post('/logout', 'PortalCtrl:logout')->name('runLogout');
