@@ -106,22 +106,9 @@
         $("#datepicker").val(strDateTime)
     });
 
-    // var tiempo = new Date( '{{ usuario.birthday }}' );
-    // var tiempo = new Date(1992,9,03);
-    // $( "#datepicker" ).datepicker( "defaultDate", tiempo );
-		// $('#txt-fecha').html($( "#datepicker" ).val());
-
-
     $('form').submit(function(e) {
         var fecha = $("#guardarFecha").val();
         $('#fecha-final').val(fecha);
     })
 
-
-    // Evito que agreguen un retorno de carro.
-    // $("textarea[name='titulo']").keypress(function(event) {
-    //     if (event.keyCode == 13) {
-    //         event.preventDefault();
-    //     }
-    // });
 </script> {% endblock scripts %}
