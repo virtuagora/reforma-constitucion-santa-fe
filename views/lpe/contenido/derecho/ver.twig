@@ -24,7 +24,7 @@
 {% set colorSeleccionado = random(3) %}
     {% if derecho.imagen == 1 %}
     <!--<img src="{{linkImagen}}" class="img-responsive" style="width:100%;margin-bottom: 30px;" alt="">-->
- <div class="titulo-derecho-background bgcolor{{colorSeleccionado}}" style="{{ derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''}}">
+ <div class="titulo-derecho-background bgcolor{{colorSeleccionado}}" style="{{ derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''}}; background-position: center bottom;">
         <div class="overlay">
             <div class="container">
                 <div class="row">
@@ -71,10 +71,29 @@
                         <a href="javascript:votarSeccion({{seccion.id}},1)" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 1)) ? 'btn-primary disabled' : 'btn-default'}}">Baja</a>
                     </div>-->
                     <div class="btn-group btn-group-justified btn-group-sm" style="margin-top: 15px;">
-                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',3)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 3)) ? 'btn-primary disabled' : 'btn-default'}}">Muy importante</a>
-                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',2)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 2)) ? 'btn-primary disabled' : 'btn-default'}}">Importante</a>
-                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',1)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 1)) ? 'btn-primary disabled' : 'btn-default'}}">Poco importante</a>
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" class="btn btn-info"> Participá <i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i> {{ seccion.comentarios|length }}</a>
+                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',3)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 3)) ? 'btn-primary disabled' : 'btn-default'}}">
+                                Muy importante
+                                {% if user and (user.patrulla_id != null) %}
+                                &nbsp;<span class="badge" style="padding-top: 3px; padding-bottom: 1px;">{{seccion.votos_alta}}</span>
+                                {% endif %}
+                                </a>
+                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',2)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 2)) ? 'btn-primary disabled' : 'btn-default'}}">
+                                Importante
+                                {% if user and (user.patrulla_id != null) %}
+                                &nbsp;<span class="badge" style="padding-top: 3px; padding-bottom: 1px;">{{seccion.votos_media}}</span>
+                                {% endif %}
+                                </a>
+                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',1)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 1)) ? 'btn-primary disabled' : 'btn-default'}}">
+                                Poco importante
+                                {% if user and (user.patrulla_id != null) %}
+                                &nbsp;<span class="badge" style="padding-top: 3px; padding-bottom: 1px;">{{seccion.votos_baja}}</span>
+                                {% endif %}
+                                </a>
+                                {% set comentariosSeccion = seccion.comentarios|length %}
+                                {% for comentario in seccion.comentarios %}
+                                {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %}
+                                {% endfor %}
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" class="btn btn-info"> Participá <i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i> {{ comentariosSeccion }}</a>
                         </div>
                     {% include 'lpe/contenido/derecho/comentarioModal.twig' %}
                 </div>
