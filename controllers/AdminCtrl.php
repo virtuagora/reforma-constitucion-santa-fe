@@ -7,6 +7,11 @@ class AdminCtrl extends Controller {
         $this->render('lpe/admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
     }
 
+public function verEstadisticas() {
+        $usuarios = Usuario::all();
+        $this->render('lpe/admin/estadisticas.twig', array('usuarios' => $usuarios->toArray()));
+    }
+
     public function adminAjustes() {
         $vdt = new Validate\Validator();
         $vdt->addRule('tos', new Validate\Rule\MinLength(8))
