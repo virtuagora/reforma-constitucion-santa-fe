@@ -93,7 +93,7 @@
                                 {% for comentario in seccion.comentarios %}
                                 {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %}
                                 {% endfor %}
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" class="btn btn-info"> Participá <i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i> {{ comentariosSeccion }}</a>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" class="btn btn-info">Participá <i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i> {{ comentariosSeccion }}</a>
                         </div>
                     {% include 'lpe/contenido/derecho/comentarioModal.twig' %}
                 </div>
