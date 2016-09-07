@@ -101,7 +101,7 @@
             yearRange: '1920:2010',
             defaultDate: tiempo
         });
-        $("#datepicker").val({{ usuario.birthday|date("d/m/Y")}})
+        $("#datepicker").val('{{ usuario.birthday|date("d/m/Y")}}')
     });
 
     $('form').submit(function(e) {
