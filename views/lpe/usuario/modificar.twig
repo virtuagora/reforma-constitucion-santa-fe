@@ -46,7 +46,7 @@
                             <div class="col-lg-10">
                                 <select class="form-control" id="inputLocalidad" name="address" data-error="Elija su localidad" required>
                                         {% for localidad in localidades %}
-                                            <option value="{{ localidad }}">{{ localidad }}</option>
+                                            <option value="{{ localidad }}" {{localidad == usuario.address ? 'selected="selected"' : ''}}>{{ localidad }}</option>
                                         {% endfor %}
                                     </select>
                             </div>
@@ -56,7 +56,7 @@
                             <div class="col-lg-10">
                                 <select class="form-control" id="inputOcupacion" name="title" data-error="Elija su ocupacion" required>
                                         {% for ocupacion in ocupaciones %}
-                                            <option value="{{ ocupacion }}">{{ ocupacion }}</option>
+                                            <option value="{{ ocupacion }}" {{ocupacion == usuario.title ? 'selected="selected"' : ''}}>{{ ocupacion }}</option>
                                         {% endfor %}
                                     </select>
                             </div>
@@ -72,8 +72,6 @@
                                 <button type="submit" href="#" class="btn btn-success btn-sm">Modificar datos</button>
                             </div>
                         </div>
-                        {{ usuario.title }} - 
-                        {{ usuario.address }} - {{ usuario.birthday }} 
                     </form>
                 </li>
             </div>
@@ -103,9 +101,7 @@
             yearRange: '1920:2010',
             defaultDate: tiempo
         });
-
-        var strDateTime =  tiempo.getDate() + "/" + (tiempo.getMonth()+1) + "/" + tiempo.getFullYear();
-        $("#datepicker").val(strDateTime)
+        $("#datepicker").val({{ usuario.birthday|date("d/m/Y")}})
     });
 
     $('form').submit(function(e) {
