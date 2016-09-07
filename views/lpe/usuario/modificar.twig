@@ -89,8 +89,8 @@
         $('input[name="email"]').val('{{ usuario.email }}');
         $('input[name="telefono"]').val('{{ usuario.telefono }}');
          $('input[name="birthday"]').val('{{ usuario.birthday }}');
-        $('[name="address"] select').val('{{ usuario.address }}');
-        $('[name="title"] select').val('{{ usuario.title }}');
+        $('select[name="address"]').val('{{ usuario.address }}');
+        $('select[name="title"]').val('{{ usuario.title }}');
         var tiempo = new Date('{{ usuario.birthday }}');
         $("#datepicker").datepicker({
             changeMonth: true,
