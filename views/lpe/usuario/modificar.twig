@@ -102,7 +102,7 @@
             defaultDate: tiempo
         });
 
-        var strDateTime =  tiempo.getDate() + "/" + tiempo.getMonth() + "/" + tiempo.getFullYear();
+        var strDateTime =  tiempo.getDate() + "/" + (tiempo.getMonth()+1) + "/" + tiempo.getFullYear();
         $("#datepicker").val(strDateTime)
     });
 
