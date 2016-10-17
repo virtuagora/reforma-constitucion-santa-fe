@@ -148,6 +148,7 @@ $app->group('/admin', function () use ($app, $checkRole, $checkAdminAuth) {
     $app->get('/ajustes', $checkAdminAuth(2), 'AdminCtrl:verAdminAjustes')->name('shwAdmAjuste');
     $app->post('/ajustes', $checkAdminAuth(2), 'AdminCtrl:adminAjustes')->name('runAdmAjuste');
     $app->get('/estadisticas', 'AdminCtrl:verEstadisticas')->name('shwEstadi');
+    $app->get('/exportar', 'AdminCtrl:verExportar')->name('shwExportar');
     $app->get('/moderador/crear', $checkRole('mod'), 'AdminCtrl:verCrearModerador')->name('shwCrearModerad');
     $app->post('/moderador/crear', $checkRole('mod'), 'AdminCtrl:crearModerador')->name('runCrearModerad');
 });

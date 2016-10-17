@@ -7,6 +7,10 @@ class AdminCtrl extends Controller {
         $this->render('lpe/admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
     }
 
+public function verExportar() {
+        $this->render('lpe/admin/exportar.twig');
+    }
+
 public function verEstadisticas() {
         $usuarios = Usuario::all();
         $this->render('lpe/admin/estadisticas.twig', array('usuarios' => $usuarios->toArray()));
