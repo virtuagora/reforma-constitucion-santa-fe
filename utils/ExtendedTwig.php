@@ -3,15 +3,15 @@
 use Slim\Slim;
 
 class ExtendedTwig extends Twig_Extension {
-    private $search  = array('[i]', '[/i]', '[s]', '[/s]', '[hr]',
-                             '[/size]', '[/color]', '[/font]');
-    private $replace = array('<em>', '</em>', '<del>', '</del>', '<hr>',
-                             '</font>', '</span>', '</span>');
+    private $search  = array('[i]', '[/i]', '[s]', '[/s]', '[hr]', '[/size]',
+                             '[/color]', '[/font]', '[table]', '[/table]');
+    private $replace = array('<em>', '</em>', '<del>', '</del>', '<hr>', '</font>',
+                             '</span>', '</span>', '<table class="table">', '</table>');
 
     private $searchRx  = array('~\[(/?)(b|u|sup|sub)\]~s',
                                '~\[(left|right|center|justify)\]~s',
                                '~\[/(?:left|right|center|justify)\](?:\R?)~s',
-                               '~\[(/?)(ul|ol|li|table|tr|td)\](?:\R?)~s',
+                               '~\[(/?)(ul|ol|li|tr|td)\](?:\R?)~s',
                                '~\[size=(.*?)\]~s', '~\[color=(.*?)\]~s', '~\[font=(.*?)\]~s',
                                '~\[url=(.*?)\](.*?)\[/url\]~s', '~\[url\](.*?)\[/url\]~s',
                                '~\[img=(.*?)\](.*?)\[/img\]~s', '~\[img\](.*?)\[/img\]~s',

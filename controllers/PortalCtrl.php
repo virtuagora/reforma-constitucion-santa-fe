@@ -142,7 +142,7 @@ class PortalCtrl extends Controller {
         $preuser->save();
         
         $to = $preuser->email;
-        $subject = 'Confirma tu registro - Ley Provincial de Educacion - Santa Fe';
+        $subject = 'Confirma tu registro - Ley del Arbol - Santa Fe';
         $message = $this->view->fetch('email/registro.twig', [
             'id' => $preuser->id,
             'token' => $preuser->emailed_token
@@ -204,7 +204,7 @@ class PortalCtrl extends Controller {
         $usuario->save();
         
         $to = $usuario->email;
-        $subject = 'Reiniciar clave - Santa Fe Construye Educacion y Futuro. Dialogos para la ley provincial de educacion';
+        $subject = 'Reiniciar clave - Ley del Arbol - Santa Fe';
         $message = $this->view->fetch('email/recuperar.twig', [
             'id' => $usuario->id,
             'token' => $usuario->token
