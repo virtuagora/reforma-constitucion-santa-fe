@@ -45,8 +45,8 @@ $app->error(function (Exception $e) use ($app) {
         } else if ($e instanceof Illuminate\Database\QueryException && $e->getCode() == 23000) {
             $app->render('misc/error.twig', array('mensaje' => 'La información ingresada es inconsistente.'), 400);
         } else {
-            $app->render('misc/fatal-error.twig', array('type' => get_class($e), 'exception' => $e));
-            //$app->render('misc/error.twig', ['mensaje' => 'Ocurrió un error interno.'], 500);
+            //$app->render('misc/fatal-error.twig', array('type' => get_class($e), 'exception' => $e));
+            $app->render('misc/error.twig', ['mensaje' => 'Ocurrió un error interno.'], 500);
         }
     }
 });
@@ -77,26 +77,6 @@ $checkRole = function ($role) use ($app) {
     };
 };
 
-$checkAdminAuth = function ($action) use ($app) {
-    return function () use ($action, $app) {
-        if (!$app->session->isAdminAllowedTo($action)) {
-            throw new BearableException('No tiene permiso para realizar esta acción', 403);
-        }
-    };
-};
-
-$checkModifyAuth = function ($resource, $moderable = true) use ($app) {
-    return function ($route) use ($resource, $moderable, $app) {
-        $params = $route->getParams();
-        $idRes = reset($params);
-        $idUsr = $app->session->user('id');
-        $query = call_user_func($resource.'::modifiableBy', $idUsr);
-        if (is_null($query->find($idRes)) && !($moderable && $app->session->isAdminAllowedTo(1))) {
-            throw new BearableException('No tiene permiso para realizar esta acción', 403);
-        }
-    };
-};
-
 // Prepare dispatcher
 $app->get('/test', function () use ($app) {
     $req = $app->request;
@@ -108,33 +88,8 @@ $app->group('/derecho', function () use ($app, $checkRole) {
     $app->get('/crear', $checkRole('mod'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
     $app->post('/crear', $checkRole('mod'), 'DerechoCtrl:crear')->name('runCrearDerecho');
     $app->get('/:idDer', 'DerechoCtrl:ver')->name('shwDerecho');
-    $app->post('/votar/:idSec', $checkRole('usr'), 'DerechoCtrl:votar')->name('runVotarSeccion');
     $app->get('/:idDer/modificar', $checkRole('mod'), 'DerechoCtrl:verModificar')->name('shwModifDerecho');
     $app->post('/:idDer/modificar', $checkRole('mod'), 'DerechoCtrl:modificar')->name('runModifDerecho');
-});
-
-$app->group('/opinion', function () use ($app, $checkRole) {
-    $app->get('/crear', $checkRole('mod'), 'OpinionCtrl:verCrear')->name('shwCrearOpinion');
-    $app->post('/crear', $checkRole('mod'), 'OpinionCtrl:crear')->name('runCrearOpinion');
-    $app->get('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:verModificar')->name('shwModifOpinion');
-    $app->post('/:idOpi/modificar', $checkRole('mod'), 'OpinionCtrl:modificar')->name('runModifOpinion');
-});
-
-$app->group('/participante', function () use ($app, $checkRole) {
-    $app->get('/', $checkRole('mod'), 'ParticipanteCtrl:listar')->name('shwListaPartici');
-    $app->get('/crear', $checkRole('mod'), 'ParticipanteCtrl:verCrear')->name('shwCrearPartici');    
-    $app->post('/crear', $checkRole('mod'), 'ParticipanteCtrl:crear')->name('runCrearPartici');
-});
-
-$app->group('/evento', function () use ($app, $checkRole) {
-    $app->get('', 'EventoCtrl:listar')->name('shwListaEvento');
-    $app->get('/crear', $checkRole('mod'), 'EventoCtrl:verCrear')->name('shwCrearEvento');
-    $app->post('/crear', $checkRole('mod'), 'EventoCtrl:crear')->name('runCrearEvento');
-    $app->get('/:idEve', 'EventoCtrl:ver')->name('shwEvento');
-    $app->post('/:idEve/participar', $checkRole('usr'), 'EventoCtrl:participar')->name('runPartiEvento');
-    $app->get('/:idEve/modificar', $checkRole('mod'), 'EventoCtrl:verModificar')->name('shwModifEvento');
-    $app->post('/:idEve/modificar', $checkRole('mod'), 'EventoCtrl:modificar')->name('runModifEvento');
-    $app->post('/:idEve/eliminar', $checkRole('mod'), 'EventoCtrl:eliminar')->name('runElimiEvento');
 });
 
 $app->group('/admin', function () use ($app, $checkRole) {
@@ -143,8 +98,6 @@ $app->group('/admin', function () use ($app, $checkRole) {
     $app->post('/upload', $checkRole('mod'), 'AdminCtrl:subirImagen')->name('runCrearImagen');
     $app->get('/imagen/:idEve', 'AdminCtrl:verImagen')->name('shwImagen');
     $app->post('/sancionar/:idUsu', $checkRole('mod'), 'AdminCtrl:sancUsuario')->name('runSanUsuario');
-    $app->get('/verificar', $checkRole('mod'), 'AdminCtrl:verVerifCiudadano')->name('shwAdmVrfUsuario');
-    $app->post('/verificar', $checkRole('mod'), 'AdminCtrl:verifCiudadano')->name('runAdmVrfUsuario');
     $app->get('/ajustes', $checkRole('mod'), 'AdminCtrl:verAdminAjustes')->name('shwAdmAjuste');
     $app->post('/ajustes', $checkRole('mod'), 'AdminCtrl:adminAjustes')->name('runAdmAjuste');
     $app->get('/estadisticas', $checkRole('mod'), 'AdminCtrl:verEstadisticas')->name('shwEstadi');
@@ -165,12 +118,7 @@ $app->group('/comentario', function () use ($app, $checkRole) {
 
 $app->get('/', 'PortalCtrl:verIndex')->name('shwIndex');
 $app->get('/portal', 'PortalCtrl:verPortal')->name('shwPortal');
-$app->get('/tos', 'PortalCtrl:verTos')->name('shwTos');
-// $app->get('/antecedentes', 'PortalCtrl:verAntecedentes')->name('shwAnteced');
-// $app->get('/propuesta', 'PortalCtrl:verPropuesta')->name('shwProp');
-$app->get('/historia', 'PortalCtrl:verHistoria')->name('shwHistoria');
-$app->get('/fundamentos', 'PortalCtrl:verFundamentos')->name('shwFundamen');
-$app->get('/tutorial', 'PortalCtrl:verTutorial')->name('shwTutorial');
+$app->get('/tos', 'PortalCtrl:verTos')->name('shwTos');;
 $app->get('/login', $checkNoSession, 'PortalCtrl:verLogin')->name('shwLogin');
 $app->post('/login', $checkNoSession, 'PortalCtrl:login')->name('runLogin');
 $app->post('/logout', 'PortalCtrl:logout')->name('runLogout');
@@ -193,9 +141,6 @@ $app->get('/usuario', 'UsuarioCtrl:listar')->name('shwListaUsuario');
 $app->group('/perfil', function () use ($app, $checkRole) {
     $app->get('/modificar', $checkRole('usr'), 'UsuarioCtrl:verModificar')->name('shwModifUsuario');
     $app->post('/modificar', $checkRole('usr'), 'UsuarioCtrl:modificar')->name('runModifUsuario');
-//     $app->post('/cambiar-imagen', $checkRole('usr'), 'UsuarioCtrl:cambiarImagen')->name('runModifImgUsuario');
     $app->get('/cambiar-clave', $checkRole('usr'), 'UsuarioCtrl:verCambiarClave')->name('shwModifClvUsuario');
     $app->post('/cambiar-clave', $checkRole('usr'), 'UsuarioCtrl:cambiarClave')->name('runModifClvUsuario');
-//     $app->get('/eliminar', $checkRole('usr'), 'UsuarioCtrl:verEliminar')->name('shwElimiUsuario');
-//     $app->post('/eliminar', $checkRole('usr'), 'UsuarioCtrl:eliminar')->name('runElimiUsuario');
 });

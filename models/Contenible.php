@@ -3,14 +3,8 @@
 abstract class Contenible extends Eloquent {
     use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-    public function scopeModifiableBy($query, $id) {
-        return $query->whereHas('contenido', function($q) use ($id) {
-            $q->where('autor_id', $id);
-        });
-    }
-
     public function contenido() {
-        return $this->morphOne('Contenido', 'contenible')->withTrashed();
+        return $this->morphOne('Contenido', 'contenible');
     }
 
     public function comentarios() {

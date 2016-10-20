@@ -5,29 +5,16 @@ class DerechoCtrl extends Controller {
     public function ver($idDer) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idDer, new Validate\Rule\NumNatural());
-        $derecho = Derecho::with('contenido.tags')->findOrFail($idDer);
+        $derecho = Derecho::with('contenido')->findOrFail($idDer);
         $contenido = $derecho->contenido;
         $datosDer = array_merge($contenido->toArray(), $derecho->toArray());
-        
-        $votosUsr = [];
-        if ($this->session->user('id')) {
-            $votos = $derecho->votos()->where('usuario_id', $this->session->user('id'))->get();
-            foreach ($votos as $voto) {
-                $votosUsr[$voto->seccion_id] = $voto->postura;
-            }
-        }
-        
         $this->render('lpe/contenido/derecho/ver.twig', [
             'derecho' => $datosDer,
-            'voto' => $votosUsr
         ]);
     }
 
     public function verCrear() {
-        $categorias = Categoria::all();
-        $this->render('lpe/contenido/derecho/crear.twig', [
-            'categorias' => $categorias->toArray()
-        ]);
+        $this->render('lpe/contenido/derecho/crear.twig');
     }
 
     public function crear() {
@@ -66,13 +53,11 @@ class DerechoCtrl extends Controller {
     public function verModificar($idDer) {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($idDer, new Validate\Rule\NumNatural());
-        $categorias = Categoria::all()->toArray();
         $derecho = Derecho::with('contenido')->findOrFail($idDer);
         $contenido = $derecho->contenido;
         $datos = array_merge($contenido->toArray(), $derecho->toArray());
         $this->render('lpe/contenido/derecho/editar.twig', [
-            'derecho' => $datos,
-            'categorias' => $categorias
+            'derecho' => $datos
         ]);
     }
 
@@ -110,37 +95,15 @@ class DerechoCtrl extends Controller {
         $this->flash('success', 'Los datos del derecho fueron modificados exitosamente.');
         $this->redirectTo('shwDerecho', array('idDer' => $idDer));
     }
-    
-    public function votar($idSec) {
-        $vdt = new Validate\Validator();
-        $vdt->addRule('postura', new Validate\Rule\InArray([1,2,3]))
-            ->addRule('idSec', new Validate\Rule\NumNatural());
-        $req = $this->request;
-        $data = array_merge(['idSec' => $idSec], $req->post());
-        if (!$vdt->validate($data)) {
-            throw new TurnbackException($vdt->getErrors());
-        }
-        $usuario = $this->session->getUser();
-        $seccion = Seccion::with('derecho')->findOrFail($idSec);
-        $voto = VotoSeccion::firstOrNew([
-            'seccion_id' => $seccion->id,
-            'usuario_id' => $usuario->id
-        ]);
-        $voto->postura = $vdt->getData('postura');
-        $voto->save();
-        $this->flash('success', 'Su voto fue registrado exitosamente.');
-        $this->redirectTo('shwDerecho', ['idDer' => $seccion->derecho->id]);
-    }
 
     private function validarDerecho($data) {
         $vdt = new Validate\Validator();
         $vdt->addRule('titulo', new Validate\Rule\MinLength(1))
-            ->addRule('titulo', new Validate\Rule\MaxLength(256))
+            ->addRule('titulo', new Validate\Rule\MaxLength(255))
             ->addRule('descripcion', new Validate\Rule\MinLength(4))
             ->addRule('video', new Validate\Rule\MinLength(8))
             ->addRule('video', new Validate\Rule\MaxLength(16))
             ->addRule('secciones', new Validate\Rule\MinLength(4))
-            ->addRule('secciones', new Validate\Rule\MaxLength(5120))
             ->addFilter('secciones', FilterFactory::explode('&&'));
         if (!$vdt->validate($data)) {
             throw new TurnbackException($vdt->getErrors());

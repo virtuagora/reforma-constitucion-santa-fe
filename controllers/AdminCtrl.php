@@ -51,7 +51,6 @@ class AdminCtrl extends Controller {
             if (isset($newValue)) {
                 $ajuste->value = $newValue;
                 $ajuste->save();
-                AdminlogCtrl::createLog('', 1, 'mod', $this->session->user('id'), $ajuste);
             }
         }
 
@@ -60,7 +59,7 @@ class AdminCtrl extends Controller {
     }
     
     public function verCrearModerador() {
-        $mods = Usuario::whereNotNull('patrulla_id')->get()->toArray();
+        $mods = Usuario::where('es_moderador', false)->get()->toArray();
         $this->render('lpe/admin/moderadores.twig', ['moderadores' => $mods]);
     }
     
@@ -69,10 +68,10 @@ class AdminCtrl extends Controller {
         $vdt = new Validate\QuickValidator([$this, 'notFound']);
         $vdt->test($req->post('id'), new Validate\Rule\NumNatural());
         $usuario = Usuario::findOrFail($vdt->getData('id'));
-        if ($usuario->patrulla_id) {
+        if ($usuario->es_moderador) {
             throw new TurnbackException('Ese usuario ya es moderador.');
         }
-        $usuario->patrulla_id = 1;
+        $usuario->es_moderador = true;
         $usuario->save();
         $this->flash('success', 'El usuario ya es moderador.');
         $this->redirectTo('shwCrearModerad');
@@ -113,9 +112,6 @@ class AdminCtrl extends Controller {
                 $mensaje = "Se le han quitado los puntos al usuario.";
                 break;
         }
-        $subclase = strtolower(substr($vdt->getData('tipo'), 0, 3));
-        $log = AdminlogCtrl::createLog($vdt->getData('mensaje'), 1, $subclase, $this->session->user('id'), $usuario);
-        NotificacionCtrl::createNotif($usuario->id, $log);
         $this->flash('success', $mensaje);
         $this->redirect($req->getReferrer());
     }

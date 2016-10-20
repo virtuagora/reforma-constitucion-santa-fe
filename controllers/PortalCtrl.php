@@ -4,7 +4,6 @@ class PortalCtrl extends Controller {
 
     public function verIndex() {
         $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-        $eventos = Evento::whereDate('fecha', '>=', date('Y-m-d'))->orderBy('fecha', 'asc')->take(2)->get()->toArray();
         $ajustes = Ajuste::whereIn('key', ['titulo', 'intro', 'videos'])->get();
         foreach ($ajustes as $aju) {
             if ($aju->key == 'titulo') {
@@ -17,7 +16,6 @@ class PortalCtrl extends Controller {
         }
         $this->render('lpe/portal/inicio.twig',  [
             'derechos' => $derechos,
-            'eventos' => $eventos,
             'titulo' => $titulo,
             'intro' => $intro,
             'videos' => $videos,
@@ -132,7 +130,7 @@ class PortalCtrl extends Controller {
             throw new TurnbackException('Fecha inválida.');
         }
         $preuser = Preusuario::firstOrNew(['email' => $vdt->getData('email')]);
-        $preuser->password = md5($vdt->getData('password'));
+        $preuser->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
         $preuser->nombre = $vdt->getData('nombre');
         $preuser->apellido = $vdt->getData('apellido');
         $preuser->emailed_token = bin2hex(openssl_random_pseudo_bytes(16));
@@ -243,7 +241,7 @@ class PortalCtrl extends Controller {
             throw new TurnbackException('El link ha expirado o es inválido. Recordá que solamente es válido por una hora.');
         }
         $usuario->token = null;
-        $usuario->password = md5($vdt->getData('password'));
+        $usuario->password = password_hash($vdt->getData('password'), PASSWORD_DEFAULT);
         $usuario->save();
         $this->redirectTo('endReiniciarClave');
     }

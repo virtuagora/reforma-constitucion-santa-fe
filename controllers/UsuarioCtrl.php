@@ -2,9 +2,9 @@
 
 class UsuarioCtrl extends RMRController {
 
-    protected $mediaTypes = array('json', 'view');
-    protected $properties = array('id', 'nombre', 'apellido', 'es_funcionario', 'es_jefe', 'puntos', 'partido_id',
-                                  'patrulla_id', 'created_at', 'suspendido', 'advertencia', 'verified_at');
+    protected $mediaTypes = ['json', 'view'];
+    protected $properties = ['id', 'nombre', 'apellido', 'puntos', 'created_at', 
+                             'suspendido', 'advertencia', 'verified_at'];
     protected $searchable = true;
 
     public function queryModel($meth, $repr) {
@@ -21,19 +21,10 @@ class UsuarioCtrl extends RMRController {
     public function executeGetCtrl($usuario) {
         $req = $this->request;
         $url = $req->getUrl().$req->getPath();
-        $paginator = new Paginator($usuario->acciones(), $url, $req->get());
-        $acciones = $paginator->rows;
-        $nav = $paginator->links;
         $datos = $usuario->toArray();
         $comentarios = $usuario->comentarios()->orderBy('created_at', 'desc')->take(5)->get()->toArray();
-        $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-        $datos['contenidos_count'] = $usuario->contenidos()->count();
         $datos['comentarios_count'] = $usuario->comentarios()->count();
-        $this->render('lpe/usuario/ver.twig', array('usuario' => $datos,
-                                                'acciones' => $acciones,
-                                                'comentarios' => $comentarios,
-                                                'derechos' => $derechos,
-                                                'nav' => $nav));
+        $this->render('lpe/usuario/ver.twig', ['usuario' => $datos, 'comentarios' => $comentarios]);
     }
 
     public function verCambiarClave() {
@@ -81,15 +72,7 @@ class UsuarioCtrl extends RMRController {
             ->addRule('nombre', new Validate\Rule\MaxLength(32))
             ->addRule('apellido', new Validate\Rule\Alpha(array(' ')))
             ->addRule('apellido', new Validate\Rule\MinLength(1))
-            ->addRule('apellido', new Validate\Rule\MaxLength(32))
-            ->addRule('url', new Validate\Rule\URL())
-            ->addRule('email', new Validate\Rule\Email())
-            ->addRule('telefono', new Validate\Rule\Telephone())
-            ->addOptional('url')
-            ->addOptional('email')
-            ->addOptional('telefono')
-            ->addFilter('url', FilterFactory::emptyToNull())
-            ->addFilter('telefono', FilterFactory::emptyToNull());
+            ->addRule('apellido', new Validate\Rule\MaxLength(32));
         $req = $this->request;
         if (!$vdt->validate($req->post())) {
             throw new TurnbackException($vdt->getErrors());
@@ -98,12 +81,6 @@ class UsuarioCtrl extends RMRController {
         $usuario->nombre = $vdt->getData('nombre');
         $usuario->apellido = $vdt->getData('apellido');
         $usuario->save();
-        $contacto = $usuario->contacto ?: new Contacto;
-        $contacto->email = $vdt->getData('email');
-        $contacto->web = $vdt->getData('url');
-        $contacto->telefono = $vdt->getData('telefono');
-        $contacto->contactable()->associate($usuario);
-        $contacto->save();
         $this->flash('success', 'Sus datos fueron modificados exitosamente.');
         $this->redirect($this->request->getReferrer());
     }
@@ -149,5 +126,4 @@ class UsuarioCtrl extends RMRController {
         $this->flash('success', 'Su cuenta ha sido eliminada.');
         $this->redirectTo('shwIndex');
     }
-
 }

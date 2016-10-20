@@ -3,17 +3,9 @@
 class Usuario extends Eloquent {
     use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-    //protected $table = 'usuarios';
+    protected $table = 'usuarios';
     protected $dates = ['deleted_at', 'fin_advertencia', 'fin_suspension', 'birthday'];
     protected $hidden = ['password', 'emailed_token', 'updated_at', 'deleted_at'];
-
-    public function partido() {
-        return $this->belongsTo('Partido');
-    }
-
-    public function patrulla() {
-        return $this->belongsTo('Patrulla');
-    }
 
     public function contenidos() {
         return $this->hasMany('Contenido', 'autor_id');
@@ -21,14 +13,6 @@ class Usuario extends Eloquent {
 
     public function comentarios() {
         return $this->hasMany('Comentario', 'autor_id');
-    }
-
-    public function notificaciones() {
-        return $this->hasMany('Notificacion');
-    }
-
-    public function acciones() {
-        return $this->hasMany('Userlog', 'actor_id');
     }
 
     public function getIdentidadAttribute() {
@@ -55,9 +39,6 @@ class Usuario extends Eloquent {
             }
             foreach ($usuario->comentarios as $comentario) {
                 $comentario->delete();
-            }
-            if ($usuario->contacto) {
-                $usuario->contacto->delete();
             }
             return true;
         });

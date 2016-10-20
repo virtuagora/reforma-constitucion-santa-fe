@@ -3,15 +3,12 @@
 class Comentario extends Eloquent {
     use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-    //protected $table = 'comentarios';
+    protected $table = 'comentarios';
     protected $dates = ['deleted_at'];
-    protected $visible = ['id', 'cuerpo', 'comentable_type', 'comentable_id', 'votos',
-                          'created_at', 'updated_at', 'autor', 'respuestas'];
-    protected $with = ['autor', 'respuestas', 'votos'];
-    
-    public function scopeModifiableBy($query, $id) {
-        return $query->where('autor_id', $id);
-    }
+    protected $visible = ['id', 'cuerpo', 'comentable_type', 'comentable_id',
+                          'created_at', 'autor', 'respuestas', 'karma'];
+    protected $with = ['autor', 'respuestas'];
+    protected $appends = ['karma'];
 
     public function comentable() {
         return $this->morphTo();
@@ -31,6 +28,10 @@ class Comentario extends Eloquent {
 
     public function getRaizAttribute() {
         return $this->comentable->raiz;
+    }
+
+    public function getKarmaAttribute() {
+        return $this->votos()->sum('valor');
     }
 
     public static function boot() {

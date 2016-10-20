@@ -3,7 +3,7 @@
 class ComentarioCtrl extends RMRController {
 
     protected $mediaTypes = ['json'];
-    protected $properties = ['id', 'comentable_type', 'comentable_id', 'votos', 'created_at', 'updated_at', 'autor_id'];
+    protected $properties = ['id', 'comentable_type', 'comentable_id', 'created_at', 'autor_id'];
 
     public function queryModel($meth, $repr) {
         return Comentario::query();
@@ -12,9 +12,9 @@ class ComentarioCtrl extends RMRController {
     public function comentar($tipoRaiz, $idRaiz) {
         $vdt = new Validate\Validator();
         $vdt->addRule('idRaiz', new Validate\Rule\NumNatural())
-            ->addRule('tipoRaiz', new Validate\Rule\InArray(['Seccion', 'Comentario', 'Novedad', 'Evento']))
+            ->addRule('tipoRaiz', new Validate\Rule\InArray(['Seccion', 'Comentario']))
             ->addRule('cuerpo', new Validate\Rule\MinLength(4))
-            ->addRule('cuerpo', new Validate\Rule\MaxLength(2048))
+            ->addRule('cuerpo', new Validate\Rule\MaxLength(4096))
             ->addFilter('tipoRaiz', 'ucfirst');
         $req = $this->request;
         $data = array_merge($req->post(), ['idRaiz' => $idRaiz, 'tipoRaiz' => $tipoRaiz]);
@@ -34,8 +34,6 @@ class ComentarioCtrl extends RMRController {
         $raiz = $comentable->raiz;
         $raiz->contenido()->increment('puntos', 3);
         $autor->increment('puntos', 5);
-        $log = UserlogCtrl::createLog('newComenta', $autor->id, $raiz);
-        NotificacionCtrl::createNotif($raiz->contenido->autor_id, $log);
         $this->flash('success', 'Su comentario fue enviado exitosamente.');
         $this->redirect($req->getReferrer());
     }

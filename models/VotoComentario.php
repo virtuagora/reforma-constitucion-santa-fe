@@ -2,8 +2,8 @@
 
 class VotoComentario extends Eloquent {
     protected $table = 'comentario_votos';
-    protected $visible = array('id', 'cantidad', 'created_at', 'updated_at');
-    protected $fillable = array('comentario_id', 'usuario_id');
+    protected $visible = ['id', 'cantidad', 'created_at'];
+    protected $fillable = ['comentario_id', 'usuario_id'];
 
     public function comentario() {
         return $this->belongsTo('Comentario');
@@ -12,5 +12,4 @@ class VotoComentario extends Eloquent {
     public function usuario() {
         return $this->belongsTo('Usuario');
     }
-
 }

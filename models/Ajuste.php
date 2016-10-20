@@ -2,7 +2,7 @@
 
 class Ajuste extends Eloquent {
 
-    //protected $table = 'ajustes';
+    protected $table = 'ajustes';
     protected $visible = array('id', 'key', 'value_type', 'value', 'description');
     protected $appends = array('value');
 
