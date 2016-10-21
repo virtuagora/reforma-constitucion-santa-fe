@@ -89,6 +89,7 @@ try {
             $table->increments('id');
             $table->morphs('contenible');
             $table->string('titulo');
+            $table->text('descripcion')->nullable();
             $table->string('huella')->nullable();
             $table->integer('puntos')->unsigned()->default(0);
             $table->integer('orden')->default(0);
@@ -172,6 +173,7 @@ try {
 } catch (Exception $e) {
     $titulo = '¡Ha ocurrido un error!';
     $descrp = 'No puede establecerse conexión con la base de datos. Revise el archivo de configuracion.';
+    $descrp .= '<br>'.$e->getMessage();
     $exito = false;
 }?>
 <h2><strong><?php echo $titulo ?></strong></h2>
