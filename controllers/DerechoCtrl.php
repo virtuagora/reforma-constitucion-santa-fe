@@ -24,9 +24,6 @@ class DerechoCtrl extends Controller {
         $derecho = new Derecho;
         $derecho->descripcion = $vdt->getData('descripcion');
         $derecho->video = $vdt->getData('video');
-        if ($vdt->getData('orden')) {
-            $derecho->orden = $vdt->getData('orden');
-        }
         $derecho->save();
         $acciones = $vdt->getData('secciones');
         foreach ($acciones as $accion) {
@@ -39,6 +36,7 @@ class DerechoCtrl extends Controller {
         $contenido->titulo = $vdt->getData('titulo');
         $contenido->puntos = 0;
         $contenido->categoria_id = 1;
+        $contenido->orden = $vdt->getData('orden')?: 0;
         $contenido->autor()->associate($autor);
         $contenido->contenible()->associate($derecho);
         $contenido->save();
@@ -67,11 +65,9 @@ class DerechoCtrl extends Controller {
         $vdt = $this->validarDerecho($req->post());
         $derecho->descripcion = $vdt->getData('descripcion');
         $derecho->video = $vdt->getData('video');
-        if ($vdt->getData('orden')) {
-            $derecho->orden = $vdt->getData('orden');
-        }
         $derecho->save();
         $contenido->titulo = $vdt->getData('titulo');
+        $contenido->orden = $vdt->getData('orden')?: 0;
         $contenido->save();
         $accNew = $vdt->getData('secciones');
         $accOld = $derecho->secciones;
