@@ -24,7 +24,9 @@ class DerechoCtrl extends Controller {
         $derecho = new Derecho;
         $derecho->descripcion = $vdt->getData('descripcion');
         $derecho->video = $vdt->getData('video');
-        $derecho->imagen = is_uploaded_file($_FILES['archivo']['tmp_name']);
+        if ($vdt->getData('orden')) {
+            $derecho->orden = $vdt->getData('orden');
+        }
         $derecho->save();
         $acciones = $vdt->getData('secciones');
         foreach ($acciones as $accion) {
@@ -40,12 +42,6 @@ class DerechoCtrl extends Controller {
         $contenido->autor()->associate($autor);
         $contenido->contenible()->associate($derecho);
         $contenido->save();
-        if ($derecho->imagen) {
-            $subida = $this->subirImagen($derecho->id);
-            if (!$subida) {
-                throw new TurnbackException('Error al cargar la imagen');
-            }
-        }
         $this->flash('success', 'El derecho se creó exitosamente.');
         $this->redirectTo('shwDerecho', ['idDer' => $derecho->id]);
     }
@@ -71,8 +67,9 @@ class DerechoCtrl extends Controller {
         $vdt = $this->validarDerecho($req->post());
         $derecho->descripcion = $vdt->getData('descripcion');
         $derecho->video = $vdt->getData('video');
-        $imagenSubida = is_uploaded_file($_FILES['archivo']['tmp_name']);
-        $derecho->imagen = ($derecho->imagen || $imagenSubida);
+        if ($vdt->getData('orden')) {
+            $derecho->orden = $vdt->getData('orden');
+        }
         $derecho->save();
         $contenido->titulo = $vdt->getData('titulo');
         $contenido->save();
@@ -84,12 +81,6 @@ class DerechoCtrl extends Controller {
                 $accion->descripcion = $accNew[$i];
                 $i++;
                 $accion->save();
-            }
-        }
-        if ($imagenSubida) {
-            $subida = $this->subirImagen($derecho->id);
-            if (!$subida) {
-                throw new TurnbackException('Error al cargar la imagen');
             }
         }
         $this->flash('success', 'Los datos del derecho fueron modificados exitosamente.');
@@ -104,31 +95,13 @@ class DerechoCtrl extends Controller {
             ->addRule('video', new Validate\Rule\MinLength(8))
             ->addRule('video', new Validate\Rule\MaxLength(16))
             ->addRule('secciones', new Validate\Rule\MinLength(4))
-            ->addFilter('secciones', FilterFactory::explode('&&'));
+            ->addFilter('secciones', FilterFactory::explode('&&'))
+            ->addRule('orden', new Validate\Rule\NumNatural())
+            ->addOptional('video')
+            ->addOptional('orden');
         if (!$vdt->validate($data)) {
             throw new TurnbackException($vdt->getErrors());
         }
         return $vdt;
-    }
-    
-    private function subirImagen($nombre) {
-        $exito = true;
-        $dir = __DIR__ . '/../public/img/derecho';
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
-        }
-        $storage = new \Upload\Storage\FileSystem($dir, true);
-        $file = new \Upload\File('archivo', $storage);
-        $file->setName($nombre);
-        $file->addValidations([
-            new \Upload\Validation\Mimetype(['image/jpg', 'image/jpeg']),
-            new \Upload\Validation\Size('2M')
-        ]);
-        try {
-            $file->upload();
-        } catch (\Exception $e) {
-            $exito = false;
-        }
-        return $exito;
     }
 }

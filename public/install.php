@@ -103,8 +103,8 @@ try {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->text('descripcion');
-            $table->string('video');
-            $table->string('imagen');
+            $table->string('video')->nullable();
+            $table->string('imagen')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
