@@ -1,0 +1,62 @@
+{% extends "ref/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{%endblock
+%} {% block body %}
+<header class="titulo">
+	<div class="container">
+		<div class="row text-right">
+			<h1 class="blanco bold">La Constitución de Santa Fe</h1>
+		</div>
+	</div>
+</header>
+<div class="introParticipacion">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-7">
+				<h1 class="gris black grande">Plataforma digital de participación</h1>
+				<p>Todas las voces y todas las miradas serán escuchadas en este proceso -inédito en la provincia y en el país-, de modo
+					que la futura convención reformadora tenga la mayor legitimidad social posible.</p>
+				<p>Te invitamos a dejar tus opiniones en los 8 ejes principales a contemplarse en el proceso de reforma:</p>
+			</div>
+			<div class="col-xs-12 col-sm-5"></div>
+		</div>
+	</div>
+</div>
+<div class="listadoEjes">
+	{% for i in 1..8 %}
+	<div class="ejeIntro eje{{i}}">
+		<div class="container">
+			<div class="row">
+        <div class="parent">
+
+				<div class="col-xs-12 col-sm-5 child">
+					<h1 class="grande black blanco" style="margin:0;"><span style="color:#c40202">0{{i}}</span><br>Democracia y participación</h1>
+				</div>
+				<div class="col-xs-12 col-sm-5 child">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quas autem cumque, quasi reiciendis veniam ut tenetur
+						doloribus. Quis unde commodi nulla molestiae tenetur, quia deleniti fugiat non cupiditate ullam.</p>
+				</div>
+				<div class="col-xs-12 col-sm-2 child"><a href="#" class="btn btn-large btn-participar">PARTICIPAR</a></div>
+        </div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock body %} {# -------------------------------------------- #} {% block scripts %}
+
+<script>
+    $(function() {
+  $('a[href="#derechos"]').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
+</script> {% endblock scripts %}

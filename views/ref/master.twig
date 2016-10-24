@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<link rel="shortcut icon" href="{{ baseUrl() }}/assets-ref/img/favicon/16.png" type="image/x-icon" />
+	<!-- For iPhone -->
+	<link rel="apple-touch-icon-precomposed" href="{{ baseUrl() }}/assets-ref/img/favicon/57.png">
+	<!-- For iPhone 4 Retina display -->
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ baseUrl() }}/assets-ref/img/favicon/57.png">
+	<!-- For iPad -->
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ baseUrl() }}/assets-ref/img/favicon/72.png">
+	<!-- For iPad Retina display -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ baseUrl() }}/assets-ref/img/favicon/144.png">
+	<meta property="og:title" content="Inicio" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://basesparalareforma.digital/" />
+	<meta property="og:site_name" content="Bases para la Reforma" />
+	<meta property="og:description" content="Nuestra Constitución 
+La Constitución es la ley fundamental de un Estado, la de más alto rango en el ordenamiento político y jurídico, y con la cual deben guardar coherencia el resto de las leyes.
+Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la" />
+	<meta property="og:image" content="http://basesparalareforma.digital/wp-content/uploads/2016/08/logo2.png" />{% block opengraph %}
+	<meta property="og:url" content="{{ baseUrl() }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content=" " />
+	<meta property="og:description" content=" " />
+	<meta property="og:image" content="" /> {% endblock %}
+	<title>{% block titulo %}{% endblock titulo %} - Bases para la Reforma</title>
+
+	<!-- Bootstrap -->
+	{% block linkhead %}{% endblock %}
+	<link href="{{ baseUrl() }}/assets-ref/css/virtuagora-ref.css" rel="stylesheet">
+</head>
+<body data-spy="scroll">
+	<div class="wrapper">
+		<div class="container">
+			<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom affix">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header page-scroll">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+						<a class="navbar-brand blanco" href="http://basesparalareforma.digital/"><img src="{{ baseUrl() }}/assets-ref/img/logo.png" class="img-responsive" alt=""></a>
+						<a class="navbar-brand negro" href="http://basesparalareforma.digital/"><img src="{{ baseUrl() }}/assets-ref/img/logo2.png" class="img-responsive" alt=""></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="hidden active">
+								<a href="#page-top"></a>
+							</li>
+							<li class="page-scroll">
+								<a href="#about">Ejes</a>
+							</li>
+							<li class="page-scroll">
+								<a href="#contact"><i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión</a>
+							</li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
+
+			<!--HEADER-->
+
+			{% if flash['success'] is defined %}
+			<div class="row">
+				<div class="alert alert-dismissible alert-success">
+					<button type="button" class="close" data-dismiss="alert">&times;</button> {{ flash.success|capitalize }}
+				</div>
+			</div>
+
+			{% endif %} {% if flash['errors'] is defined %}
+			<div class="row">
+				<div class="alert alert-dismissible alert-danger">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<ul class="list-unstyled">
+						{% for error in flash['errors'] %}
+						<li><i class="zmdi zmdi-close zmdi-hc-fw zmdi-hc-lg"></i> {{ error|capitalize }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+
+			</div>
+
+			{% endif %} {% if flash['warning'] is defined %}
+			<div class="row">
+				<div class="alert alert-dismissible alert-warning">
+					<button type="button" class="close" data-dismiss="alert">&times;</button> {{ flash.warning|capitalize }}
+				</div>
+			</div>
+
+			{% endif %}
+		</div>
+		<!-- container-->
+		<!-- body -->
+		{% block body %}{% endblock %}
+
+
+		<div class="push"></div>
+	</div>
+	</div>
+	<div class="footer">
+		<h1><a href="https://twitter.com/intent/tweet?hashtags=BasesparalaReforma%2C&amp;original_referer=http%3A%2F%2Fbasesparalareforma.digital%2Fantecedentes%2F&amp;ref_src=twsrc%5Etfw&amp;text=Yo%20participo%20de%20las%20%23BasesparalaReforma%2C%20una%20Constituci%C3%B3n%20para%20Santa%20Fe.%20Sumate%20en&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fbasesparalareforma.digital" target="_blank">#BasesparalaReforma</a></h1>
+	</div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="{{ baseUrl() }}/assets-ref/js/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="{{ baseUrl() }}/assets-ref/js/bootstrap.min.js"></script>
+	<script src="{{ baseUrl() }}/assets-ref/js/main.js"></script>
+	<!--=======================-->
+	{% block scripts %}{% endblock %}
+</body>
+
+</html>

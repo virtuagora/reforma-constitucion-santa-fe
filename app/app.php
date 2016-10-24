@@ -6,7 +6,7 @@ $app->view->parserOptions = array(
     'cache' => false,
     'auto_reload' => true,
     'strict_variables' => false,
-    'autoescape' => true
+    'autoescape' => true,
 );
 $app->view->parserExtensions = array(new ExtendedTwig());
 
@@ -39,14 +39,14 @@ $app->error(function (Exception $e) use ($app) {
             ob_end_clean();
             $app->redirect($app->request->getReferrer());
         } else if ($e instanceof BearableException) {
-            $app->render('misc/error.twig', array('mensaje' => $e->getMessage()), $e->getCode());
+            $app->render('no-use/misc/error.twig', array('mensaje' => $e->getMessage()), $e->getCode());
         } else if ($e instanceof Illuminate\Database\Eloquent\ModelNotFoundException) {
             $app->notFound();
         } else if ($e instanceof Illuminate\Database\QueryException && $e->getCode() == 23000) {
-            $app->render('misc/error.twig', array('mensaje' => 'La información ingresada es inconsistente.'), 400);
+            $app->render('no-use/misc/error.twig', array('mensaje' => 'La información ingresada es inconsistente.'), 400);
         } else {
-            //$app->render('misc/fatal-error.twig', array('type' => get_class($e), 'exception' => $e));
-            $app->render('misc/error.twig', ['mensaje' => 'Ocurrió un error interno.'], 500);
+            $app->render('misc/fatal-error.twig', array('type' => get_class($e), 'exception' => $e));
+            // $app->render('no-use/misc/error.twig', ['mensaje' => 'Ocurrió un error interno.'], 500);
         }
     }
 });

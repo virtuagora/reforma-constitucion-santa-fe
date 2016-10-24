@@ -3,31 +3,32 @@
 class PortalCtrl extends Controller {
 
     public function verIndex() {
-        $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
-        $ajustes = Ajuste::whereIn('key', ['titulo', 'intro', 'videos'])->get();
-        foreach ($ajustes as $aju) {
-            if ($aju->key == 'titulo') {
-                $titulo = $aju->value;
-            } elseif ($aju->key == 'intro') {
-                $intro = $aju->value;
-            } elseif ($aju->key == 'videos') {
-                $videos = explode('&&', $aju->value);
-            }
-        }
-        $this->render('lpe/portal/inicio.twig',  [
-            'derechos' => $derechos,
-            'titulo' => $titulo,
-            'intro' => $intro,
-            'videos' => $videos,
-        ]);
+        // $derechos = Contenido::where('contenible_type', 'Derecho')->get()->toArray();
+        // $ajustes = Ajuste::whereIn('key', ['titulo', 'intro', 'videos'])->get();
+        // foreach ($ajustes as $aju) {
+        //     if ($aju->key == 'titulo') {
+        //         $titulo = $aju->value;
+        //     } elseif ($aju->key == 'intro') {
+        //         $intro = $aju->value;
+        //     } elseif ($aju->key == 'videos') {
+        //         $videos = explode('&&', $aju->value);
+        //     }
+        // }
+        // $this->render('ref/portal/inicio.twig',  [
+        //     'derechos' => $derechos,
+        //     'titulo' => $titulo,
+        //     'intro' => $intro,
+        //     'videos' => $videos,
+        // ]);
+        $this->render('ref/portal/inicio.twig');
     }
 
     public function verPortal() {
-        $this->render('lpe/portal/inicio.twig');
+        $this->render('ref/portal/inicio.twig');
     }
 
     public function verLogin() {
-        $this->render('lpe/registro/login-static.twig');
+        $this->render('ref/registro/login-static.twig');
     }
 
 // public function verAntecedentes() {
