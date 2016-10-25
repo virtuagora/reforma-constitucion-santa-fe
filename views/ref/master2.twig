@@ -28,10 +28,9 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 	<link href="{{ baseUrl() }}/assets-ref/css/virtuagora-ref.css" rel="stylesheet">
 </head>
 
-<body data-spy="scroll">
+<body data-spy="scroll" {% if body_class is defined %}class='{{ body_class }}'{% endif %} {% if body_style is defined %}style='{{ body_style }}'{% endif %}>
 	<div class="wrapper">
-		<div class="container">
-			<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom affix">
+			<nav id="mainNav" class="navbar navbar-default navbar-custom affix" style="width: 100%;position: relative;margin-bottom:0;border-radius: 0">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header page-scroll">
@@ -45,7 +44,7 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="page-scroll">
-								<a href="#about">Ejes</a>
+								<a href="{{urlFor('shwIndex')}}">Ejes</a>
 							</li>
 							<li class="page-scroll">
 								<a href="{{urlFor('shwLogin')}}"><i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión</a>
@@ -57,8 +56,6 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 				<!-- /.container-fluid -->
 			</nav>
 			<!--HEADER-->
-			
-		</div>
 		<!-- container-->
 		<!-- body -->
 		{% block body %}{% endblock %}
@@ -110,7 +107,7 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 	<script src="{{ baseUrl() }}/assets-ref/js/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="{{ baseUrl() }}/assets-ref/js/bootstrap.min.js"></script>
-	<script src="{{ baseUrl() }}/assets-ref/js/main.js"></script>
+	<!--=======================-->
 	<script>
 		$(document).ready(function() {
 			{% if flash['success'] is defined %}
@@ -122,7 +119,6 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 			{% endif %}
 		});
 	</script>
-	<!--=======================-->
 	{% block scripts %}{% endblock %}
 </body>
 

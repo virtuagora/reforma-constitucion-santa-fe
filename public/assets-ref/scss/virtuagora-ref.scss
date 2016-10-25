@@ -45,7 +45,9 @@ http://ryanfait.com/
 */
 
 .navbar-custom {
-  background: rgba(255, 255, 255, 0);
+  // background: rgba(255, 255, 255, 0);
+  background-color: #FFF;
+  box-shadow: rgba(0,0,0,0.11765) 0px 1px 3px;
   font-family: "Raleway", "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 300;
   border: none;
@@ -57,7 +59,18 @@ http://ryanfait.com/
 
 .navbar-custom .navbar-brand {
   color: white;
+  height:auto;
+  img{
+    height:100px;
+  }
+  &.blanco{
+    display:none;
+  }
 }
+
+.navbar-custom .navbar-right{
+    margin:0;
+  }
 
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus,
@@ -71,21 +84,33 @@ http://ryanfait.com/
 }
 
 .navbar-custom .navbar-nav li a {
-  color: white;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  color: #333;
+  background: #f6f6f6;
+  border:1px solid #dadada;
+  border-bottom: 1px solid transparent;
+  padding: 6px 30px;
+
+}
+.navbar-custom .navbar-nav li:first-child a {
+  border-top: 1px solid transparent;
 }
 
+.navbar-custom .navbar-collapse {
+  padding: 0
+}
 .navbar-custom .navbar-nav li a:hover {
-  color: #18BC9C;
+  color: #333;
   outline: none;
 }
 
 .navbar-custom .navbar-nav li a:focus,
 .navbar-custom .navbar-nav li a:active {
-  color: white;
+  color: 333;
 }
 
 .navbar-custom .navbar-nav li.active a {
-  color: white;
+  color: 333;
   background: #18BC9C;
 }
 
@@ -97,21 +122,23 @@ http://ryanfait.com/
 }
 
 .navbar-custom .navbar-toggle {
-  color: white;
-  text-transform: uppercase;
+  color:#ccc;
   font-size: 10px;
-  border-color: white;
+  border:0;
 }
 
 .navbar-custom .navbar-toggle:hover,
 .navbar-custom .navbar-toggle:focus {
-  background-color: #18BC9C;
-  color: white;
-  border-color: #18BC9C;
+  
+  background-color: #fff;
+  // color: white;
+  // border-color: #18BC9C;
 }
 
 @media (min-width: 768px) {
   .navbar-custom {
+    background-color: rgba(0,0,0,0);
+    box-shadow:none;
     padding: 0;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
@@ -170,6 +197,9 @@ http://ryanfait.com/
       color: #c10000;
       text-decoration: none;
     }
+    &:focus {
+       color: #333;
+    }
     }
   }
   .navbar-custom.affix .navbar-brand.negro {
@@ -178,6 +208,17 @@ http://ryanfait.com/
   }
   .navbar-custom.affix .navbar-brand.blanco {
     display: none;
+  }
+    .navbar-custom.affix .navbar-nav li a {
+    font-family: 'Raleway'; 
+    color: #333;
+    background: transparent;
+    border:0;
+    padding: 0;
+    padding-right: 35px;
+  }
+  .navbar-custom.affix .navbar-nav li:last-child a {
+    padding-right: 0;
   }
 }
 
@@ -202,9 +243,13 @@ p{
 }
 
 .child {
+  margin-bottom: 10px;
+  @media (min-width: $screen-md-min) {
+    margin-bottom: 0;
     display: table-cell;
-    vertical-align: middle;
     float: none;
+    vertical-align: middle;
+  }
     p{
       margin: 0;
     }
@@ -284,4 +329,19 @@ h6 {
   font-weight: 900;
   padding: 25px 25px;
   border-radius: 10px;
+}
+
+.registro-panel{
+  padding:30px;
+}
+.registro-panel .btn.btn-red{
+  background-color: #c40202;
+    color: #FFF;
+    font-size: 18px;
+    font-family: "Raleway";
+    font-weight: 900;
+}
+
+.ui-datepicker .ui-datepicker-title select{
+  color: #000;
 }

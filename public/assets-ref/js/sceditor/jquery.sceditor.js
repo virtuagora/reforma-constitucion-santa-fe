@@ -39,7 +39,7 @@
 					'<body id="body-editor" contenteditable="true" {spellcheck}></body>' +
 				'</html>',
 
-		toolbarButton:	'<a class="sceditor-button sceditor-button-{name}" data-sceditor-command="{name}" unselectable="on"><i class="mdi {icon}"></i></a>',
+		toolbarButton:	'<a class="sceditor-button sceditor-button-{name}" data-sceditor-command="{name}" unselectable="on"><i class="fa {icon}"></i></a>',
 
 		emoticon:	'<img src="{url}" data-sceditor-emoticon="{key}" alt="{key}" title="{tooltip}" />',
 
@@ -3206,7 +3206,7 @@
 		bold: {
 			exec: 'bold',
 			tooltip: 'Negrita',
-			icon: 'mdi-format-bold',
+			icon: 'fa-bold',
 			shortcut: 'ctrl+b'
 		},
 		// END_COMMAND
@@ -3214,7 +3214,7 @@
 		italic: {
 			exec: 'italic',
 			tooltip: 'Italic',
-			icon: 'mdi-format-italic',
+			icon: 'fa-italic',
 			shortcut: 'ctrl+i'
 		},
 		// END_COMMAND
@@ -3222,7 +3222,7 @@
 		underline: {
 			exec: 'underline',
 			tooltip: 'Subrayar',
-			icon: 'mdi-format-underline',
+			icon: 'fa-underline',
 			shortcut: 'ctrl+u'
 		},
 		// END_COMMAND
@@ -3230,21 +3230,21 @@
 		strike: {
 			exec: 'strikethrough',
 			tooltip: 'Tachar',
-			icon: 'mdi-format-strikethrough'
+			icon: 'fa-strikethrough'
 		},
 		// END_COMMAND
 		// START_COMMAND: Subscript
 		subscript: {
 			exec: 'subscript',
 			tooltip: 'Subscript',
-			icon: 'mdi-format-subscript'
+			icon: 'fa-subscript'
 		},
 		// END_COMMAND
 		// START_COMMAND: Superscript
 		superscript: {
 			exec: 'superscript',
 			tooltip: 'Superscript',
-			icon: 'mdi-format-superscript'
+			icon: 'fa-superscript'
 		},
 		// END_COMMAND
 
@@ -3252,28 +3252,28 @@
 		left: {
 			exec: 'justifyleft',
 			tooltip: 'Align left',
-			icon: 'mdi-format-align-left'
+			icon: 'fa-align-left'
 		},
 		// END_COMMAND
 		// START_COMMAND: Centre
 		center: {
 			exec: 'justifycenter',
 			tooltip: 'Centrar',
-			icon: 'mdi-format-align-center'
+			icon: 'fa-align-center'
 		},
 		// END_COMMAND
 		// START_COMMAND: Right
 		right: {
 			exec: 'justifyright',
 			tooltip: 'Align right',
-			icon: 'mdi-format-align-right'
+			icon: 'fa-align-right'
 		},
 		// END_COMMAND
 		// START_COMMAND: Justify
 		justify: {
 			exec: 'justifyfull',
 			tooltip: 'Justificar',
-			icon: 'mdi-format-align-justify'
+			icon: 'fa-align-justify'
 		},
 		// END_COMMAND
 
@@ -3306,7 +3306,7 @@
 				);
 			},
 			tooltip: 'Tipo de fuente',
-			icon: 'mdi-format-text'
+			icon: 'fa-font'
 		},
 		// END_COMMAND
 		// START_COMMAND: Size
@@ -3337,7 +3337,7 @@
 				);
 			},
 			tooltip: 'Tamaño de fuente',
-			icon: 'mdi-format-size'
+			icon: 'fa-text-height'
 		},
 		// END_COMMAND
 		// START_COMMAND: Colour
@@ -3415,14 +3415,14 @@
 				);
 			},
 			tooltip: 'Color de fuente',
-			icon: 'mdi-format-color-fill'
+			icon: 'fa-color-fill'
 		},
 		// END_COMMAND
 		// START_COMMAND: Remove Format
 		removeformat: {
 			exec: 'removeformat',
 			tooltip: 'Quitar estilo',
-			icon: 'mdi-format-clear'
+			icon: 'fa-eraser'
 		},
 		// END_COMMAND
 
@@ -3476,14 +3476,14 @@
 		bulletlist: {
 			exec: 'insertunorderedlist',
 			tooltip: 'Lista simple',
-			icon: 'mdi-format-list-bulleted'
+			icon: 'fa-list-ul'
 		},
 		// END_COMMAND
 		// START_COMMAND: Ordered List
 		orderedlist: {
 			exec: 'insertorderedlist',
 			tooltip: 'Lista ordenada',
-			icon: 'mdi-format-list-numbers'
+			icon: 'fa-list-ol'
 		},
 		// END_COMMAND
 
@@ -3579,7 +3579,7 @@
 				editor.createDropDown(caller, 'insertimage', content);
 			},
 			tooltip: 'Imagen',
-			icon: 'mdi-image'
+			icon: 'fa-image'
 		},
 		// END_COMMAND
 
@@ -3652,7 +3652,7 @@
 				editor.createDropDown(caller, 'insertlink', content);
 			},
 			tooltip: 'Link',
-			icon: 'mdi-link-variant'
+			icon: 'fa-chain'
 		},
 		// END_COMMAND
 
@@ -3670,7 +3670,7 @@
 					$anchor.replaceWith($anchor.contents());
 			},
 			tooltip: 'Quitar link',
-			icon: 'mdi-link-variant-off'
+			icon: 'fa-chain-broken'
 		},
 		// END_COMMAND
 
@@ -3800,7 +3800,7 @@
 				);
 			},
 			tooltip: 'Video de YouTube',
-			icon: 'mdi-youtube-play'
+			icon: 'fa-youtube-play'
 		},
 		// END_COMMAND
 
@@ -3943,7 +3943,7 @@
 				this.maximize(!this.maximize());
 			},
 			tooltip: 'Maximizar',
-			icon: 'mdi-arrow-expand',
+			icon: 'fa-expand',
 			shortcut: 'ctrl+shift+m'
 		},
 		// END_COMMAND
@@ -3957,7 +3957,7 @@
 				this.toggleSourceMode();
 			},
 			tooltip: 'Modo código',
-			icon: 'mdi-code-tags',
+			icon: 'fa-code',
 			shortcut: 'ctrl+shift+s'
 		},
 		// END_COMMAND

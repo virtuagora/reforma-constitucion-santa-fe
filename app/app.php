@@ -39,14 +39,14 @@ $app->error(function (Exception $e) use ($app) {
             ob_end_clean();
             $app->redirect($app->request->getReferrer());
         } else if ($e instanceof BearableException) {
-            $app->render('no-use/misc/error.twig', array('mensaje' => $e->getMessage()), $e->getCode());
+            $app->render('ref/misc/error.twig', array('mensaje' => $e->getMessage()), $e->getCode());
         } else if ($e instanceof Illuminate\Database\Eloquent\ModelNotFoundException) {
             $app->notFound();
         } else if ($e instanceof Illuminate\Database\QueryException && $e->getCode() == 23000) {
-            $app->render('no-use/misc/error.twig', array('mensaje' => 'La información ingresada es inconsistente.'), 400);
+            $app->render('ref/misc/error.twig', array('mensaje' => 'La información ingresada es inconsistente.'), 400);
         } else {
             $app->render('misc/fatal-error.twig', array('type' => get_class($e), 'exception' => $e));
-            // $app->render('no-use/misc/error.twig', ['mensaje' => 'Ocurrió un error interno.'], 500);
+            //  $app->render('ref/misc/error.twig', ['mensaje' => 'Ocurrió un error interno.'], 500);
         }
     }
 });
@@ -79,9 +79,10 @@ $checkRole = function ($role) use ($app) {
 
 // Prepare dispatcher
 $app->get('/test', function () use ($app) {
-    $req = $app->request;
-    $uri = $req->headers->get('x-forwarded-host')?: $req->getUrl();
-    var_dump($uri);
+    // $req = $app->request;
+    // $uri = $req->headers->get('x-forwarded-host')?: $req->getUrl();
+    // var_dump($uri);
+    $app->render('ref/test.twig');
 });
 
 $app->group('/derecho', function () use ($app, $checkRole) {

@@ -78,7 +78,7 @@ class PortalCtrl extends Controller {
     }
 
     public function verRegistrar() {
-        $this->render('lpe/registro/registro.twig', [
+        $this->render('ref/registro/registro.twig', [
             'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
                 'San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
                 'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay'],
@@ -148,7 +148,7 @@ class PortalCtrl extends Controller {
         ]);
         mail($to, $subject, $message);
         
-        $this->render('lpe/registro/registro-exito.twig', array('email' => $preuser->email));
+        $this->render('ref/registro/registro-exito.twig', array('email' => $preuser->email));
     }
 
     public function verificarEmail($idPre, $token) {
@@ -174,15 +174,15 @@ class PortalCtrl extends Controller {
             $usuario->address = $preuser->address;
             $usuario->save();
             $preuser->delete();
-            $this->render('lpe/registro/validar-correo.twig', array('usuarioValido' => true,
+            $this->render('ref/registro/validar-correo.twig', array('usuarioValido' => true,
                                                                 'email' => $usuario->email));
         } else {
-            $this->render('lpe/registro/validar-correo.twig', array('usuarioValido' => false));
+            $this->render('ref/registro/validar-correo.twig', array('usuarioValido' => false));
         }
     }
 
     public function verRecuperarClave() {
-        $this->render('lpe/registro/recuperar-clave.twig');
+        $this->render('ref/registro/recuperar-clave.twig');
     }
     
     public function recuperarClave() {
@@ -218,7 +218,7 @@ class PortalCtrl extends Controller {
         $vdt->test($idUsu, new Validate\Rule\NumNatural());
         $vdt->test($token, new Validate\Rule\AlphaNumeric());
         $vdt->test($token, new Validate\Rule\ExactLength(32));
-        $this->render('lpe/registro/reiniciar-clave.twig', ['idUsu' => $idUsu, 'token' => $token]);
+        $this->render('ref/registro/reiniciar-clave.twig', ['idUsu' => $idUsu, 'token' => $token]);
     }
     
     public function reiniciarClave($idUsu, $token) {
@@ -248,6 +248,6 @@ class PortalCtrl extends Controller {
     }
     
     public function finReiniciarClave() {
-        $this->render('lpe/registro/reiniciar-completo.twig');
+        $this->render('ref/registro/reiniciar-completo.twig');
     }
 }
