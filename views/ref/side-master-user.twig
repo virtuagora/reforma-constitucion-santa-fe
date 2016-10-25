@@ -14,7 +14,8 @@
 	<!-- For iPad -->
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ baseUrl() }}/assets-ref/img/favicon/72.png">
 	<!-- For iPad Retina display -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ baseUrl() }}/assets-ref/img/favicon/144.png"> {% block opengraph %}
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ baseUrl() }}/assets-ref/img/favicon/144.png">
+	{% block opengraph %}
 	<meta property="og:url" content="{{ baseUrl() }}" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Bases para la Reforma" />
@@ -23,67 +24,18 @@
 Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la" />
 	<meta property="og:image" content="" /> {% endblock %}
 	<title>{% block titulo %}{% endblock titulo %} - Bases para la Reforma</title>
-	<!-- Bootstrap -->
-	{% block linkhead %}{% endblock %}
-	<link href="{{ baseUrl() }}/assets-ref/css/virtuagora-ref.css" rel="stylesheet">
-</head>
 
-<body data-spy="scroll" {% if body_class is defined %}class='{{ body_class }}'{% endif %} {% if body_style is defined %}style='{{ body_style }}'{% endif %}>
-	<div class="wrapper">
-			<nav id="mainNav" class="navbar navbar-default navbar-custom affix" style="width: 100%;position: relative;margin-bottom:0;border-radius: 0">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header page-scroll">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span><i class="fa fa-bars fa-2x"></i>
-                </button>
-						<a class="navbar-brand blanco" href="http://basesparalareforma.digital/"><img src="{{ baseUrl() }}/assets-ref/img/logo.png" class="img-responsive" alt=""></a>
-						<a class="navbar-brand negro" href="http://basesparalareforma.digital/"><img src="{{ baseUrl() }}/assets-ref/img/logo2.png" class="img-responsive" alt=""></a>
-					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav navbar-right">
-							<li class="page-scroll">
-								<a href="{{urlFor('shwIndex')}}">Ejes</a>
-							</li>
-							{% if user is not empty %}
-							<li class="page-scroll">
-								<a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}"><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-circle" style="width:21px;margin-right:5px">{{
-									user.nombre }}
-								</a>
-							</li>
-							{% if user and (user.es_moderador == 1) %}
-							<li class="page-scroll">
-								<a href="{{urlFor('shwIndexAdmin')}}"><i class="fa fa-cog fa-lg fa-fw"></i> <span class="hidden-md hidden-lg">Ajustes</span></a>
-							</li>
-							{% endif %}
-							<li class="page-scroll">
-								<form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST">
-									<a href="javascript:void(0)" onclick="document.getElementById('form-salir').submit();"><i class="fa fa-sign-out fa-fw fa-lg"></i> <span class="hidden-md hidden-lg">Salir</span></a>
-								</form>
-							</li>
-							{% else %}
-							<li class="page-scroll">
-								<a href="{{urlFor('shwLogin')}}"><i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión</a>
-							</li>
-							{% endif %}
-						</ul>
-					</div>
-					<!-- /.navbar-collapse -->
-				</div>
-				<!-- /.container-fluid -->
-			</nav>
-			<!--HEADER-->
-		<!-- container-->
-		<!-- body -->
+	{% block linkhead %}{% endblock %}
+	<link href="{{ baseUrl() }}/assets-ref/css/virtuagora-ref-side.css" rel="stylesheet">
+</head>
+<body >
+	<div id="wrapper">
+		{% include 'ref/menu-side-user.twig' %}
+		<div id="page-content-wrapper">
 		{% block body %}{% endblock %}
-		<div class="push"></div>
+		</div>
 	</div>
-	<div class="footer">
-		<h1><a href="https://twitter.com/intent/tweet?hashtags=BasesparalaReforma%2C&amp;original_referer=http%3A%2F%2Fbasesparalareforma.digital%2Fantecedentes%2F&amp;ref_src=twsrc%5Etfw&amp;text=Yo%20participo%20de%20las%20%23BasesparalaReforma%2C%20una%20Constituci%C3%B3n%20para%20Santa%20Fe.%20Sumate%20en&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fbasesparalareforma.digital"
-							target="_blank">#BasesparalaReforma</a></h1>
-	</div>
-	{% if flash['success'] is defined %}
+		{% if flash['success'] is defined %}
 	<div id="modal-success" class="modal fade " tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -120,12 +72,12 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 			</div>
 		</div>
 	</div>
-	{% endif %}
+	{% endif %}	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="{{ baseUrl() }}/assets-ref/js/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="{{ baseUrl() }}/assets-ref/js/bootstrap.min.js"></script>
-	<!--=======================-->
+	<script src="{{ baseUrl() }}/assets-ref/js/main.js"></script>
 	<script>
 		$(document).ready(function() {
 			{% if flash['success'] is defined %}
@@ -136,7 +88,8 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 				$('#modal-warning').modal('show');
 			{% endif %}
 		});
-	</script>
+		</script>
+	<!--=======================-->
 	{% block scripts %}{% endblock %}
 </body>
 

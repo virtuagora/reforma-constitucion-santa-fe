@@ -1,15 +1,16 @@
-{% extends "lpe/master.twig" %}
+{% set body_style = 'background-color: #8ac9ff; color:#FFF;' %}
+{% extends "ref/master2.twig" %}
  {# ----------------------------------------------------------- #} 
  {% block titulo %}{{ usuario.nombre }} {{ usuario.apellido }}{%endblock %}
  {% block body %}
-
+<div style="padding:30px;"></div>
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
             <div class="text-center">
                  <img src="{{ avatarUrl(usuario.img_tipo, usuario.img_hash, 160) }}" class="img-circle img-responsive" style="margin: 0 auto;"
                 data-toggle="tooltip" data-placement="bottom" data-original-title="Usuario1" alt="Avatar">
-            <h2><strong>{{ usuario.nombre }} {{ usuario.apellido }}</strong></h2>
+            <h2 class="black grande">{{ usuario.nombre }} {{ usuario.apellido }}</h2>
             <ul class="list-inline">
                 <li><strong>Fecha de nacimiento:</strong> {{ usuario.birthday|date("d/m/Y")}}</li>
                 <li><strong>Localidad:</strong> {{ usuario.address }}</li>
@@ -19,7 +20,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <h4><strong>Comentarios <i class="zmdi zmdi-comment-outline zmdi-hc-fw"></i>({{usuario.comentarios_count}})</strong></h4>
+            <h4 class="black">Comentarios <i class="zmdi zmdi-comment-outline zmdi-hc-fw"></i>({{usuario.comentarios_count}})</h4>
               {% if comentarios|length > 0 %} {% for comentario in comentarios %}
                 <blockquote>
                 <p class="lead">{{ comentario.cuerpo }}</p>

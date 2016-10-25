@@ -1,24 +1,23 @@
-{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Moderadores{% endblock %} {% block body %}
-<div class="container" style=" ">
+{% extends "ref/side-master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Moderadores{%
+endblock %} {% block body %}
+<div class="container-fluid" style="">
     <div class="row">
-        {% set paginaAdmin = 3 %} {% include '/lpe/admin/listaSecciones.twig' %}
-        <div class="col-xs-12 col-sm-9">
-            <div class="text-center">
-                <h2 class="text-center"><strong>Moderadores</strong>
-        </h2>
-                <br>
-            </div>
+        <div class="col-xs-12 col-md-10 col-lg-8">
+            <h2>Moderadores</h2>
+            <hr>
             <div class="list-group">
                 <li class="list-group-item">
                     <form action="{{ urlFor('runCrearModerad') }}" method="POST">
                         <div class="form-group" style="margin-bottom:0;">
-                            <label class="control-label"><strong>Agregar nuevo moderador</strong><br><span id="mensajeAyuda">Comience escribiendo el nombre del nuevo moderador.</span></label>
+                            <label class="control-label"><strong>Agregar nuevo moderador</strong></label><br>
+                            <span id="mensajeAyuda" class="text-muted">Comience escribiendo el nombre del nuevo moderador.</span><br>
+                            <br>    
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="zmdi zmdi-account zmdi-hc-lg zmdi-hc-fw"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                                 <input id="typeahead" type="text" class="form-control" style="width:100%;">
                                 <input type="hidden" name="id" value="">
                                 <span class="input-group-btn">
-                                <button type="submit" class="btn btn-success"><i class="zmdi zmdi-plus zmdi-hc-lg"></i></button>
+                                <button type="submit" class="btn btn-success"><i class="fa fa-plus fa-fw"></i></button>
                                 </span>
                             </div>
                         </div>
@@ -32,7 +31,7 @@
                             <button type="submit" class="btn btn-danger btn-sm"><i class="zmdi zmdi-close zmdi-hc-lg"></i></button>
                         </form>
                     </div>
-                    <h4><strong><i class="zmdi zmdi-accounts-list-alt zmdi-hc-lg zmdi-hc-fw"></i> {{ moderador.nombre }} {{ moderador.apellido }}</strong> <small>{{ moderador.email}}</small></h4>
+                    <h4><strong><i class="zmdi zmdi-accounts-list-alt zmdi-hc-lg zmdi-hc-fw"></i> {{ moderador.nombre }} {{ moderador.apellido }}</strong>                        <small>{{ moderador.email}}</small></h4>
                 </li>
                 {% endfor %} {% else%}
                 <li class="list-group-item">
@@ -43,9 +42,8 @@
         </div>
     </div>
 </div>
-
 {% endblock body %} {# -------------------------------------------- #} {% block scripts %}
-<script src="{{ baseUrl() }}/assets-lpe/js/typeahead.bundle.min.js"></script>
+<script src="{{ baseUrl() }}/assets-ref/js/typeahead.bundle.min.js"></script>
 <script>
     var usuarios = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('usuarios'),

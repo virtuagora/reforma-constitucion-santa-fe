@@ -1,13 +1,10 @@
-{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Estadisticas{% endblock %} {% block body %}
-<div class="container" style=" ">
+{% extends "ref/side-master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Estadisticas{% endblock %} {% block body %}
+<div class="container-fluid" style=" ">
     <div class="row">
-        {% set paginaAdmin = 6 %} {% include '/lpe/admin/listaSecciones.twig' %}
-        <div class="col-xs-12 col-sm-9">
-            <div class="text-center">
-                <h2 class="text-center"><strong>Estadisticas</strong>
+        <div class="col-xs-12 col-md-10 col-lg-8">
+                <h2>Estadisticas
                 </h2>
-                <br>
-            </div>
+                <hr>
             <table class="table table-striped table-hover ">
   <thead>
     <tr>

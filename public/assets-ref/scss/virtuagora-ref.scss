@@ -281,7 +281,13 @@ header.titulo4 {
 .footer {
   h1 {
     font-weight: 900;
+        word-break: break-all;
+        font-size:25px;
+    @media (min-width: $screen-sm-min) {
+    
     font-size: 50px;
+  }
+
   }
   a {
     color: #BFBFBF;
@@ -345,3 +351,12 @@ h6 {
 .ui-datepicker .ui-datepicker-title select{
   color: #000;
 }
+
+.introParticipacion .btn-red{
+      font-family: "Raleway";
+    font-weight: 700;
+      background-color: #c40202;
+    color: #FFF;
+}
+
+

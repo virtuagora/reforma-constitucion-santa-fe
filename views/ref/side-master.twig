@@ -15,18 +15,13 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ baseUrl() }}/assets-ref/img/favicon/72.png">
 	<!-- For iPad Retina display -->
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ baseUrl() }}/assets-ref/img/favicon/144.png">
-	<meta property="og:title" content="Inicio" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="http://basesparalareforma.digital/" />
-	<meta property="og:site_name" content="Bases para la Reforma" />
-	<meta property="og:description" content="Nuestra Constitución 
-La Constitución es la ley fundamental de un Estado, la de más alto rango en el ordenamiento político y jurídico, y con la cual deben guardar coherencia el resto de las leyes.
-Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la" />
-	<meta property="og:image" content="http://basesparalareforma.digital/wp-content/uploads/2016/08/logo2.png" />{% block opengraph %}
+	{% block opengraph %}
 	<meta property="og:url" content="{{ baseUrl() }}" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content=" " />
-	<meta property="og:description" content=" " />
+	<meta property="og:title" content="Bases para la Reforma" />
+	<meta property="og:site_name" content="Bases para la Reforma" />
+	<meta property="og:description" content="La Constitución es la ley fundamental de un Estado, la de más alto rango en el ordenamiento político y jurídico, y con la cual deben guardar coherencia el resto de las leyes.
+Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la" />
 	<meta property="og:image" content="" /> {% endblock %}
 	<title>{% block titulo %}{% endblock titulo %} - Bases para la Reforma</title>
 
@@ -34,14 +29,66 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 	<link href="{{ baseUrl() }}/assets-ref/css/virtuagora-ref-side.css" rel="stylesheet">
 </head>
 <body >
-	<div class="wrapper">
+	<div id="wrapper">
+		{% include 'ref/menu-side.twig' %}
+		<div id="page-content-wrapper">
 		{% block body %}{% endblock %}
-	</div>	
+		</div>
+	</div>
+		{% if flash['success'] is defined %}
+	<div id="modal-success" class="modal fade " tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #8BC34A;color: #FFF;border-bottom: 0;">
+					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
+					<h4>{{ flash.success|capitalize }}</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %} {% if flash['errors'] is defined %}
+	<div id="modal-errors" class="modal fade " tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #ff5722;color: #FFF;border-bottom: 0;">
+					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
+					<ul class="list-unstyled">
+						{% for error in flash['errors'] %}
+						<h4> {{ error|capitalize }}</h4>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %} {% if flash['warning'] is defined %}
+	<div id="modal-warning" class="modal fade " tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #FFC107;color: #000;border-bottom: 0;">
+					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button> {{ flash.warning|capitalize
+					}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="{{ baseUrl() }}/assets-ref/js/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="{{ baseUrl() }}/assets-ref/js/bootstrap.min.js"></script>
 	<script src="{{ baseUrl() }}/assets-ref/js/main.js"></script>
+	<script>
+		$(document).ready(function() {
+			{% if flash['success'] is defined %}
+				$('#modal-success').modal('show');
+			{% endif %} {% if flash['errors'] is defined %}
+				$('#modal-errors').modal('show');
+			{% endif %} {% if flash['warning'] is defined %}
+				$('#modal-warning').modal('show');
+			{% endif %}
+		});
+		</script>
 	<!--=======================-->
 	{% block scripts %}{% endblock %}
 </body>

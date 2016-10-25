@@ -165,8 +165,8 @@ class PortalCtrl extends Controller {
             $usuario->apellido = $preuser->apellido;
             $usuario->puntos = 0;
             $usuario->suspendido = false;
-            $usuario->es_funcionario = false;
-            $usuario->es_jefe = false;
+            // Saque el campo de es_jefe y cambie es_funcionario por es_moderador
+            $usuario->es_moderador = false;
             $usuario->img_tipo = 1;
             $usuario->img_hash = md5($preuser->email);
             $usuario->birthday = $preuser->birthday;

@@ -45,11 +45,32 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="page-scroll">
-								<a href="#about">Ejes</a>
+								<a href="{{urlFor('shwIndex')}}">Ejes</a>
 							</li>
+							{% if user is not empty %}
+							<li class="page-scroll">
+								<a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}"><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-circle" style="width:21px;margin-right:5px">{{
+									user.nombre }}
+								</a>
+							</li>
+							<li class="page-scroll">
+								<a href="{{urlFor('shwModifUsuario')}}"><i class="fa fa-pencil fa-fw fa-lg"></i> </a>
+							</li>
+							{% if user and (user.es_moderador == 1) %}
+							<li class="page-scroll">
+								<a href="{{urlFor('shwIndexAdmin')}}"><i class="fa fa-cog fa-lg fa-fw"></i> <span class="hidden-md hidden-lg">Ajustes</span></a>
+							</li>
+							{% endif %}
+							<li class="page-scroll">
+								<form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST">
+									<a href="javascript:void(0)" onclick="document.getElementById('form-salir').submit();"><i class="fa fa-sign-out fa-fw fa-lg"></i> <span class="hidden-md hidden-lg">Salir</span></a>
+								</form>
+							</li>
+							{% else %}
 							<li class="page-scroll">
 								<a href="{{urlFor('shwLogin')}}"><i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión</a>
 							</li>
+							{% endif %}
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -57,7 +78,6 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 				<!-- /.container-fluid -->
 			</nav>
 			<!--HEADER-->
-			
 		</div>
 		<!-- container-->
 		<!-- body -->

@@ -1,19 +1,13 @@
-{% extends "lpe/master.twig" %} {# ----------------------------------------------------------- #}{% block linkhead %}
+{% extends "ref/side-master-user.twig" %} {# ----------------------------------------------------------- #}{% block linkhead %}
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/jquery-ui/jquery-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/css/timepicker/jquery.timepicker.css" /> {% endblock %} {% block titulo %}Modificar datos{% endblock %} {% block body %}
-<div class="container" style=" ">
+<div class="container-fluid" style=" ">
     <div class="row">
-        {% set paginaAdmin = 1 %} {% include '/lpe/usuario/listaSecciones.twig' %}
-        <div class="col-xs-12 col-sm-9">
-            <div class="text-center">
-                <h2 class="text-center"><strong>Modificar datos personales</strong>
-                <h6><i>Aqui podra editar sus datos personales</i></h6>
-        </h2>
-                <br>
-            </div>
-            <div class="list-group">
-                <li class="list-group-item">
+        <div class="col-xs-12 col-md-11 col-lg-8">
+                <h2>Modificar datos personales</h2>
+                <p class="text-muted">Aqui podra editar sus datos personales</p>
+    <hr>
                      <form action="{{ urlFor('runModifUsuario') }}" method="POST" class="form-horizontal">
                         <div class="form-group">
                             <label for="inputNombre" class="col-lg-2 control-label">Nombre/s</label>
@@ -73,8 +67,6 @@
                             </div>
                         </div>
                     </form>
-                </li>
-            </div>
         </div>
     </div>
 </div>

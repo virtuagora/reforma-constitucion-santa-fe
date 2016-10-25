@@ -4,11 +4,15 @@ class AdminCtrl extends Controller {
 
     public function verAdminAjustes() {
         $ajustes = Ajuste::all();
-        $this->render('lpe/admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
+        $this->render('ref/admin/ajustes.twig', array('ajustes' => $ajustes->toArray()));
     }
 
     public function verExportar() {
-        $this->render('lpe/admin/exportar.twig');
+        $this->render('ref/admin/exportar.twig');
+    }
+
+public function verModificarEjes() {
+        $this->render('ref/admin/modificarEjes.twig');
     }
 
     public function verEmails() {
@@ -33,7 +37,7 @@ class AdminCtrl extends Controller {
 
     public function verEstadisticas() {
         $usuarios = Usuario::count();
-        $this->render('lpe/admin/estadisticas.twig', array('usuarios' => $usuarios));
+        $this->render('ref/admin/estadisticas.twig', array('usuarios' => $usuarios));
     }
 
     public function adminAjustes() {
@@ -60,7 +64,7 @@ class AdminCtrl extends Controller {
     
     public function verCrearModerador() {
         $mods = Usuario::where('es_moderador', false)->get()->toArray();
-        $this->render('lpe/admin/moderadores.twig', ['moderadores' => $mods]);
+        $this->render('ref/admin/moderadores.twig', ['moderadores' => $mods]);
     }
     
     public function crearModerardor() {
@@ -117,7 +121,7 @@ class AdminCtrl extends Controller {
     }
 
     public function verIndexAdmin() {
-        $this->render('lpe/admin/indexAdmin.twig');
+        $this->render('ref/admin/indexAdmin.twig');
     }
     
     public function verSubirImagen() {
@@ -126,7 +130,7 @@ class AdminCtrl extends Controller {
             mkdir($dir, 0777, true);
         }
         $files = array_diff(scandir($dir), ['..', '.']);
-        $this->render('lpe/admin/subirImagenes.twig', ['imagenes' => $files]);
+        $this->render('ref/admin/subirImagenes.twig', ['imagenes' => $files]);
     }
 
     public function subirImagen() {

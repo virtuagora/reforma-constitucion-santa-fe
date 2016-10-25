@@ -1,65 +1,60 @@
 {% extends "ref/side-master.twig" %} {# ----------------------------------------------------------- #} {% block linkhead
 %}
 <link rel="stylesheet" href="{{ baseUrl() }}/assets-ref/css/sceditor/sceditor-main.css"> {% endblock %} {% block titulo %}Nuevo Eje{% endblock %} {% block body %}
-<div id="wrapper">
-	{% include "ref/menu-side.twig"%}
-	<!-- Page Content -->
-	<div id="page-content-wrapper">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-8">
-					<form id="crearDerecho" action="{{ urlFor('runCrearDerecho') }}" method="POST" enctype="multipart/form-data">
-						<h1>Nuevo Eje</h1>
-						<hr>
-						<div class="form-group">
-							<label class="control-label" for="titulo">Titulo del Eje</label>
-							<input class="form-control input-lg" id="titulo" name="titulo" type="text">
-						</div>
-						<div class="form-group">
-							<label class="control-label" for="orden">Orden del Eje</label>
-							<span class="help-block">De ser 8 ejes en total, defina en que orden se ubica el eje. (Por ejemplo, si es el segundo eje, seria "2")</span>
-							<input class="form-control" id="orden" name="orden" value="3" type="text">
-						</div>
-						<div class="form-group">
-							<label class="control-label" for="descripcionHome">Descripcion en Home</label>
-							<span class="help-block">Sin formato. Esta descripción aparece en la página donde se listan los ejes.</span>
-							<textarea class="form-control" rows="3" id="descripcionHome" name="descripcionHome"></textarea>
-						</div>
-						<hr>
-						<div class="form-group">
-							<label class="control-label" for="inputLarge">Descripcion</label>
-							<span class="help-block">Esta es la descripcion del EJE.</span>
-							<textarea name="descripcion"></textarea>
-						</div>
-						<hr>
-						<h3>Sub-Ejes</h3>
-						<p class="text-muted">Aqui se listan los sub-ejes del eje general. En lo posible, intentar que sean los mas definitivos posibles.</p>
-						<ul class="list-group lista-acciones">
-							<li class="list-group-item accion-container">
-								<textarea name="cuerpo" class="accion form-control" rows="2" placeholder="Describa el eje"></textarea>
-							</li>
-						</ul>
-						<a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>
-						<hr>
-						<div class="form-group clearfix">
-							<a href="#" class="btn btn-large btn-default ">Cancelar</a>
-							<button type="submit" class="btn btn-lg btn-primary pull-right">Guardar</button>
-						</div>
-					</form>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-md-11 col-lg-8">
+			<form id="crearDerecho" action="{{ urlFor('runCrearDerecho') }}" method="POST" enctype="multipart/form-data">
+				<h1>Nuevo Eje</h1>
+				<hr>
+				<div class="form-group">
+					<label class="control-label" for="titulo">Titulo del Eje</label>
+					<input class="form-control input-lg" id="titulo" name="titulo" type="text">
 				</div>
-			</div>
+				<div class="form-group">
+					<label class="control-label" for="orden">Orden del Eje</label>
+					<span class="help-block">De ser 8 ejes en total, defina en que orden se ubica el eje. (Por ejemplo, si es el segundo eje, seria "2")</span>
+					<input class="form-control" id="orden" name="orden" type="text">
+				</div>
+				<div class="form-group">
+					<label class="control-label" for="descripcionHome">Descripcion en Home</label>
+					<span class="help-block">Sin formato. Esta descripción aparece en la página donde se listan los ejes.</span>
+					<textarea class="form-control" rows="3" id="descripcionHome" name="descripcionHome"></textarea>
+				</div>
+				<hr>
+				<div class="form-group">
+					<label class="control-label" for="inputLarge">Descripcion</label>
+					<span class="help-block">Esta es la descripcion del sub-eje.</span>
+					<textarea name="descripcion"></textarea>
+				</div>
+				<hr>
+				<h3>Sub-Ejes</h3>
+				<p class="text-muted">Aqui se listan los sub-ejes del eje general. En lo posible, intentar que sean los mas definitivos posibles.</p>
+				<ul class="list-group lista-acciones">
+					<li class="list-group-item accion-container">
+						<textarea name="cuerpo" class="accion form-control" rows="2" placeholder="Describa el eje"></textarea>
+					</li>
+				</ul>
+				<a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>
+				<hr>
+				<input type="text" name="secciones" value="" hidden>
+            <input type="text" name="categoria" value="1" hidden>
+            <input type="text" name="tags" value="" hidden>
+				<div class="form-group clearfix">
+					<a href="#" class="btn btn-large btn-default ">Cancelar</a>
+					<button type="submit" class="btn btn-lg btn-primary pull-right">Guardar</button>
+				</div>
+			</form>
 		</div>
 	</div>
-	<!-- /#page-content-wrapper -->
 </div>
-<!-- /#wrapper -->
 {% endblock body %} {# -------------------------------------------- #} {% block scripts %}
 <script src="{{ baseUrl() }}/assets-ref/js/autosize.min.js"></script>
 <script src="{{ baseUrl() }}/assets-ref/js/sceditor/jquery.sceditor.js"></script>
 <script id="accionTemplate" type="text/template">
     <li class="list-group-item accion-container">
         <a id="eliminar-numAccion" href="javascript:void(0)" data-idaccion='numAccion' class="eliminarAccion pull-right" style="font-size:13px;"><i class="fa fa-close"></i></a>
-        <textarea name="cuerpo" class="accion form-control" rows="2" placeholder="Describa el EJE..."></textarea>
+        <textarea name="cuerpo" class="accion form-control" rows="2" placeholder="Describa el sub-eje..."></textarea>
     </li>
 </script>
 <script>
@@ -104,15 +99,13 @@
         $(this).closest(".li-accion").remove();
     }
 
-	 $( "form" ).submit(function( event ) {
-		event.preventDefault();	
+	 $( "form" ).submit(function( event ) {	
         var secciones = [];        
         $( "textarea[name=cuerpo]" ).each(function( index ) {
         secciones.push($( this ).val());
         });
         var seccionesString = secciones.join("&&")
         $('input[name=secciones]').val(seccionesString);
-		console.log($("form").	serialize())
         return true;
 });
 

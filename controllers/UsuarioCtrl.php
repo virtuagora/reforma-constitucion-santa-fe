@@ -4,13 +4,13 @@ class UsuarioCtrl extends RMRController {
 
     protected $mediaTypes = ['json', 'view'];
     protected $properties = ['id', 'nombre', 'apellido', 'puntos', 'created_at', 
-                             'suspendido', 'advertencia', 'verified_at'];
+                             'suspendido', 'advertencia', 'verified_at', 'es_moderador'];
     protected $searchable = true;
 
     public function queryModel($meth, $repr) {
         switch ($meth) {
             case 0: return Usuario::query();
-            case 1: return Usuario::with('partido');
+            case 1: return Usuario::query();
         }
     }
 
@@ -24,11 +24,11 @@ class UsuarioCtrl extends RMRController {
         $datos = $usuario->toArray();
         $comentarios = $usuario->comentarios()->orderBy('created_at', 'desc')->take(5)->get()->toArray();
         $datos['comentarios_count'] = $usuario->comentarios()->count();
-        $this->render('lpe/usuario/ver.twig', ['usuario' => $datos, 'comentarios' => $comentarios]);
+        $this->render('ref/usuario/ver.twig', ['usuario' => $datos, 'comentarios' => $comentarios]);
     }
 
     public function verCambiarClave() {
-        $this->render('/lpe/usuario/cambiar-clave.twig');
+        $this->render('/ref/usuario/cambiar-clave.twig');
     }
 
     public function cambiarClave() {
@@ -55,7 +55,7 @@ class UsuarioCtrl extends RMRController {
 
     public function verModificar() {
         $usuario = $this->session->getUser();
-        $this->render('/lpe/usuario/modificar.twig', array('usuario' => $usuario->toArray(), 'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
+        $this->render('ref/usuario/modificar.twig', array('usuario' => $usuario->toArray(), 'localidades' => ['Rosario','La Capital','General López','Castellanos','General Obligado',
                 'San Lorenzo','Las Colonias','Constitución','Caseros','San Jerónimo','San Cristóbal',
                 'Iriondo','San Martín','Vera','Belgrano','San Justo','San Javier','9 de Julio','Garay'],
             'ocupaciones' => ['Estudiante','Docente Nivel Inicial','Docente Nivel Primario',

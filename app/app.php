@@ -85,14 +85,13 @@ $app->get('/test', function () use ($app) {
     $app->render('ref/test.twig');
 });
 
-$app->group('/derecho', function () use ($app, $checkRole) {
+$app->group('/eje', function () use ($app, $checkRole) {
     $app->get('/crear', $checkRole('mod'), 'DerechoCtrl:verCrear')->name('shwCrearDerecho');
     $app->post('/crear', $checkRole('mod'), 'DerechoCtrl:crear')->name('runCrearDerecho');
     $app->get('/:idDer', 'DerechoCtrl:ver')->name('shwDerecho');
     $app->get('/:idDer/modificar', $checkRole('mod'), 'DerechoCtrl:verModificar')->name('shwModifDerecho');
     $app->post('/:idDer/modificar', $checkRole('mod'), 'DerechoCtrl:modificar')->name('runModifDerecho');
 });
-
 $app->group('/admin', function () use ($app, $checkRole) {
     $app->get('/', $checkRole('mod'), 'AdminCtrl:verIndexAdmin')->name('shwIndexAdmin');    
     $app->get('/upload', $checkRole('mod'), 'AdminCtrl:verSubirImagen')->name('shwCrearImagen');
@@ -104,6 +103,7 @@ $app->group('/admin', function () use ($app, $checkRole) {
     $app->get('/estadisticas', $checkRole('mod'), 'AdminCtrl:verEstadisticas')->name('shwEstadi');
     $app->get('/exportar', $checkRole('mod'), 'AdminCtrl:verExportar')->name('shwExportar');
     $app->get('/emails', $checkRole('mod'), 'AdminCtrl:verEmails')->name('shwEmails');
+    $app->get('/ejes', $checkRole('mod'), 'AdminCtrl:verModificarEjes')->name('shwModificarEjes');    
     $app->get('/comments/:idDer', $checkRole('mod'), 'AdminCtrl:verComments')->name('shwComments');
     $app->get('/moderador/crear', $checkRole('mod'), 'AdminCtrl:verCrearModerador')->name('shwCrearModerad');
     $app->post('/moderador/crear', $checkRole('mod'), 'AdminCtrl:crearModerador')->name('runCrearModerad');

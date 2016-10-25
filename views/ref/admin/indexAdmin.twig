@@ -1,15 +1,13 @@
-{% extends "lpe/master.twig" %}
- {% block linkhead %}
-<link rel="stylesheet" href="{{ baseUrl() }}/assets-lpe/css/sceditor/sceditor-main.css"> {% endblock %}
+{% extends "ref/side-master.twig" %}
+
 {# ----------------------------------------------------------- #} {% block titulo %}Administración{% endblock %} {% block body %}
-<div class="container" style=" ">
+<div class="container-fluid" style="">
     <div class="row">
-        {% set paginaAdmin = 1 %} {% include '/lpe/admin/listaSecciones.twig' %}
-        <div class="col-xs-12 col-sm-9">
-            <div class="text-center">
-                <h4><strong>Seleccione del menú para realizar ajustes.</strong></h4>
-                <br>
-            </div>
+        <div class="col-xs-12 col-md-10 col-lg-8">
+                <div class="well">
+                Seleccione del menú para realizar ajustes.
+                </div>
+                
         </div>
     </div>
 </div>

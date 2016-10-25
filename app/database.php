@@ -6,7 +6,7 @@ $capsule->addConnection([
     'host' => 'localhost',
     'database' => 'reforma',
     'username' => 'root',
-    'password' => '',
+    'password' => 'root',
     'charset' => 'utf8',
     'collation' => 'utf8_general_ci',
     'prefix' => '',

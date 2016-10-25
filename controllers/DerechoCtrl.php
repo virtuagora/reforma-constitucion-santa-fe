@@ -8,13 +8,13 @@ class DerechoCtrl extends Controller {
         $derecho = Derecho::with('contenido')->findOrFail($idDer);
         $contenido = $derecho->contenido;
         $datosDer = array_merge($contenido->toArray(), $derecho->toArray());
-        $this->render('lpe/contenido/derecho/ver.twig', [
+        $this->render('ref/contenido/derecho/ver.twig', [
             'derecho' => $datosDer,
         ]);
     }
 
     public function verCrear() {
-        $this->render('lpe/contenido/derecho/crear.twig');
+        $this->render('ref/contenido/derecho/crear.twig');
     }
 
     public function crear() {
@@ -34,6 +34,12 @@ class DerechoCtrl extends Controller {
         }
         $contenido = new Contenido;
         $contenido->titulo = $vdt->getData('titulo');
+        // Agregue esto porque no guardabas la descripcion para el home
+        // Aun asi.. como vamos a diferenciar entre una descripcion y otra?
+        // Porque si hago {{derecho.descripcion}} entonces que me tira?
+        // Bah, no se si el nombre del atributo lo tira igual que el de la tabla
+        // Fijate como podes verlo :(
+        $contenido->descripcion = $vdt->getData('descripcionHome');
         $contenido->puntos = 0;
         $contenido->categoria_id = 1;
         $contenido->orden = $vdt->getData('orden')?: 0;
@@ -50,7 +56,7 @@ class DerechoCtrl extends Controller {
         $derecho = Derecho::with('contenido')->findOrFail($idDer);
         $contenido = $derecho->contenido;
         $datos = array_merge($contenido->toArray(), $derecho->toArray());
-        $this->render('lpe/contenido/derecho/editar.twig', [
+        $this->render('ref/contenido/derecho/editar.twig', [
             'derecho' => $datos
         ]);
     }
