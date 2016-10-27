@@ -54,7 +54,7 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 								</a>
 							</li>
 							<li class="page-scroll">
-								<a href="{{urlFor('shwModifUsuario')}}"><i class="fa fa-pencil fa-fw fa-lg"></i> </a>
+								<a href="{{urlFor('shwModifUsuario')}}"><i class="fa fa-pencil fa-fw fa-lg"></i> <span class="hidden-md hidden-lg">Editar perfil</span></a>
 							</li>
 							{% if user and (user.es_moderador == 1) %}
 							<li class="page-scroll">
@@ -62,8 +62,8 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 							</li>
 							{% endif %}
 							<li class="page-scroll">
-								<form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST">
 									<a href="javascript:void(0)" onclick="document.getElementById('form-salir').submit();"><i class="fa fa-sign-out fa-fw fa-lg"></i> <span class="hidden-md hidden-lg">Salir</span></a>
+								<form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST">
 								</form>
 							</li>
 							{% else %}

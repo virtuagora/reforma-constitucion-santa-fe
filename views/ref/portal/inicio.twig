@@ -6,6 +6,7 @@
 			<h1 class="blanco bold">La Constitución de Santa Fe</h1>
 		</div>
 	</div>
+				<img src="{{ baseUrl() }}/assets-ref/img/encabezado-fondo-transp.png" class="medios img-responsive">  
 </header>
 <div class="introParticipacion">
 	<div class="container">
@@ -20,13 +21,19 @@
 				{% endif %}
 				<p>Te invitamos a dejar tus opiniones en los 8 ejes principales a contemplarse en el proceso de reforma:</p>
 				{% if user is empty %}
-				<div class="btn-group btn-group-justified btn-group-lg">
+				<div class="btn-group btn-group-justified btn-group-lg hidden-xs hidden-sm">
+					<a href="{{urlFor('shwLogin')}}" class="btn btn-red"><i class="fa fa-sign-in fa-fw"></i>Iniciar Sesión</a>
+					<a href="{{urlFor('shwCrearUsuario')}}" class="btn btn-default"><i class="fa fa-plus fa-fw"></i>Registrarse</a>
+				</div>
+				<div class="btn-group btn-group-vertical btn-group-lg hidden-md hidden-lg" style="width:100%">
 					<a href="{{urlFor('shwLogin')}}" class="btn btn-red"><i class="fa fa-sign-in fa-fw"></i>Iniciar Sesión</a>
 					<a href="{{urlFor('shwCrearUsuario')}}" class="btn btn-default"><i class="fa fa-plus fa-fw"></i>Registrarse</a>
 				</div>
 				{% endif %}
 			</div>
-			<div class="col-xs-12 col-sm-5"></div>
+			<div class="col-xs-12 col-sm-5">
+				<img src="{{ baseUrl() }}/assets-ref/img/manos-fondo-transp.png" class="img-responsive" style="margin: auto; height:320px;" alt="">
+			</div>
 		</div>
 	</div>
 </div>

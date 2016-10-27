@@ -21,7 +21,8 @@ class Contenido extends Eloquent {
 
     public function getLinkAttribute() {
         //TODO fix
-        return $app->request->getUrl() . $app->urlFor($name, $attr);
+        //return $app->request->getUrl() . $app->urlFor($name, $attr);
+        return 'abcdefg';
     }
 
     public function setTituloAttribute($value) {

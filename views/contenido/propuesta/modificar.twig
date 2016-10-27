@@ -22,8 +22,8 @@
 {# ----------------------------------------------------------- #}
 {% block scripts_modificar %}
 <script>
-	$('[name="titulo"]').val('{{ propuesta.titulo }}');
-	$('[name="categoria"] select').val('{{ propuesta.categoria.id }}');
+		$('[name="titulo"]').val('{{ propuesta.titulo }}');
+		$('[name="categoria"] select').val('{{ propuesta.categoria.id }}');
 	$(document).ready(function(){
 		autosize($('[name="titulo"]'));
 		$("textarea[name='cuerpo']").sceditor('instance').val('{{ propuesta.cuerpo|bbCode }}', false);

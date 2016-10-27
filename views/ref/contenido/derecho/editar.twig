@@ -9,36 +9,36 @@
                 <hr>
                 <div class="form-group">
                     <label class="control-label" for="titulo">Titulo del Eje</label>
-                    <input class="form-control input-lg" id="titulo" name="titulo" val="{{derecho.titulo}}" ype="text">
+                    <input class="form-control input-lg" id="titulo" name="titulo" ype="text">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="orden">Orden del Eje</label>
                     <span class="help-block">De ser 8 ejes en total, defina en que orden se ubica el eje. (Por ejemplo, si es el segundo eje, seria "2")</span>
-                    <input class="form-control" id="orden" name="orden" val="{{derecho.orden}}" type="text">
+                    <input class="form-control" id="orden" name="orden"type="text">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="inputLarge">Descripcion en Home</label>
                     <span class="help-block">Sin formato. Esta descripción aparece en la página donde se listan los ejes.</span>
-                    <textarea class="form-control" rows="3" id="textArea"></textarea>
+                    <textarea class="form-control" rows="3" id="textArea">{{derecho.descripcionHome}}</textarea>
                 </div>
                 <hr>
                 <div class="form-group">
                     <label class="control-label" for="inputLarge">Descripcion</label>
                     <span class="help-block">Esta es la descripcion del EJE.</span>
-                    <textarea name="descripcion"></textarea>
+                    <textarea name="descripcion">{{ derecho.descripcion|bbCode }}</textarea>
                 </div>
                 <hr>
-                <h3>Sub-Ejes</h3>
-                <p class="text-muted">Aqui se listan los sub-ejes del eje general. En lo posible, intentar que sean los mas definitivos posibles.
+                <h3>Preguntas orientadoras</h3>
+                <p class="text-muted">Aqui se listan los preguntas orientadoras del eje general. En lo posible, intentar que sean los mas definitivos posibles.
                 </p>
                 <ul class="list-group lista-acciones">
                     {% for seccion in derecho.secciones %}
                     <li class="list-group-item accion-container">
-                        <textarea name="cuerpo" class="accion form-control" rows="2" placeholder="Describa el eje">{{seccion.descripcion|nl2br}}</textarea>
+                        <textarea name="cuerpo" class="accion form-control"  placeholder="Describa el eje">{{seccion.descripcion|nl2br}}</textarea>
                     </li>
                     {% endfor %}
                 </ul>
-                <a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>
+                <!--<a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>-->
                 <hr>
                 <div class="form-group clearfix">
                     <a href="#" class="btn btn-large btn-default ">Cancelar</a>
@@ -60,19 +60,20 @@
 <script>
 	var numeroAccion = 2;
 	 $(document).ready(function() {
+         $('[name="titulo"]').val('{{ derecho.titulo }}');
+	$('[name="orden"]').val('{{ derecho.orden }}');
  $("textarea[name=descripcion]").sceditor({
             plugins: "bbcode",
             emoticonsEnabled: false,
             toolbarExclude: "font,color,table,horizontalrule,subscript,superscript",
             height: '100%',
             width: '100%',
-            style: "{{ baseUrl() }}/assets-lpe/css/lpe.css",
+            style: "{{ baseUrl() }}/assets-ref/css/virtuagora-ref-side.css",
             resizeEnabled: false,
             resizeHeight: true,
             autoExpand: true,
             enablePasteFiltering: true
         });
-        $("textarea[name=descripcion]").sceditor('instance').val('{{ derecho.descripcion|bbCode }}', false)
          autosize($('textarea'));
 	 });
 	 
