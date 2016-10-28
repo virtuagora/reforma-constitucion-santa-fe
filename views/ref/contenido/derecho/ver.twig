@@ -29,11 +29,9 @@
 						<tr>
 							<td>
 								<h3 class="black grey">Algunas preguntas orientativas</h3>
-								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
-								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
-								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
-								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
-								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
+								{% for seccion in derecho.secciones %}
+								<h5 class="bold">{{seccion.descripcion}}</h5>
+								{% endfor %}
 							</td>
 							<td class="toggle-comentarios" style="width:200px; background-color:">
 								<i class="fa fa-comments-o fa-fw"></i> ¡Participá!
@@ -45,7 +43,7 @@
 		</div>
 	</div>
 </div>
-<div id="listaComentarios" style="padding:30px;">
+<div id="listaComentarios" style="padding:30px 0px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">
