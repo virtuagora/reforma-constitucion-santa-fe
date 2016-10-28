@@ -20,7 +20,8 @@ class PortalCtrl extends Controller {
         //     'intro' => $intro,
         //     'videos' => $videos,
         // ]);
-        $this->render('ref/portal/inicio.twig');
+        $derechos = Contenido::where('contenible_type', 'Derecho')->orderBy('orden')->get()->toArray();
+        $this->render('ref/portal/inicio.twig', ['ejes' => $derechos]);
     }
 
     public function verPortal() {

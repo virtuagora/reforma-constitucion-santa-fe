@@ -1,5 +1,6 @@
-{% extends "ref/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{%endblock
-%} {% block body %}
+{% extends "ref/master.twig" %} {# ----------------------------------------------------------- #}
+{% block titulo %}{{derecho.titulo}}{%endblock%}
+{% block body %}
 <header class="titulo">
 	<div class="container">
 		<div class="row text-right">
@@ -101,14 +102,14 @@
 								</div>
 								<div class="text-right" style="margin-top:3px;">
 									{% if user is not empty %}
-									<a href="javascript:votarComentario({{comentario.id}},1)" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.votos|length}}</b>	</a>
+									<a href="javascript:votarComentario({{comentario.id}},1)" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.karma}}</b>	</a>
 									<a href="javascript:votarComentario({{comentario.id}},-1)" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
 									<a href="javascript:verBoxResponder({{comentario.id}})" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Responder" ><i class="fa fa-reply"></i> <b>{{comentario.respuestas|length}}</b></a>
 									{% if user and (user.es_moderador) %}
 									<a href="javascript:eliminarComentario({{comentario.id}})" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar" ><i class="fa fa-times"></i></a>
 									{% endif %}
 									{% else %}
-<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.votos|length}}</b> Me gusta</a>
+<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.karma}}</b> Me gusta</a>
 									<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
 									<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Responder" ><i class="fa fa-reply"></i> <b>{{comentario.respuestas|length}}</b></a>
 									{% endif %}
@@ -142,10 +143,10 @@
 										<br>
 										<div class="pull-right" style="margin-top:4px;">
 											{% if user is not empty %}
-									<a href="javascript:votarComentario({{respuesta.id}},1)" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{respuesta.votos|length}}</b></a>
+									<a href="javascript:votarComentario({{respuesta.id}},1)" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{respuesta.karma}}</b></a>
 									<a href="javascript:votarComentario({{respuesta.id}},-1)" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
 									{% else %}
-<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{respuesta.votos|length}}</b></a>
+<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{respuesta.karma}}</b></a>
 									<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
 									{% endif %}
 											</div>

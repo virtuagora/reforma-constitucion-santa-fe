@@ -38,19 +38,18 @@
 	</div>
 </div>
 <div class="listadoEjes">
-	{% for i in 1..8 %}
-	<div class="ejeIntro eje{{i}}">
+	{% for eje in ejes %}
+	<div class="ejeIntro eje{{eje.orden}}">
 		<div class="container">
 			<div class="row">
 				<div class="parent">
 					<div class="col-xs-12 col-md-5 child">
-						<h1 class="grande black blanco" style="margin:0;"><span style="color:#c40202">0{{i}}</span><br>Democracia y participación</h1>
+						<h1 class="grande black blanco" style="margin:0;"><span style="color:#c40202">0{{eje.orden}}</span><br>{{eje.titulo}}</h1>
 					</div>
 					<div class="col-xs-12 col-md-5 child">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo quas autem cumque, quasi reiciendis veniam ut tenetur
-							doloribus. Quis unde commodi nulla molestiae tenetur, quia deleniti fugiat non cupiditate ullam.</p>
+						<p>{{eje.descripcion}}</p>
 					</div>
-					<div class="col-xs-12 col-md-2 child"><a href="#" class="btn btn-large btn-participar">PARTICIPAR</a></div>
+					<div class="col-xs-12 col-md-2 child"><a href="{{urlFor('shwDerecho', {'idDer':eje.id})}}" class="btn btn-large btn-participar">PARTICIPAR</a></div>
 				</div>
 			</div>
 		</div>

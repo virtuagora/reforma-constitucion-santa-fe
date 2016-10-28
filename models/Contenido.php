@@ -6,8 +6,8 @@ class Contenido extends Eloquent {
     protected $table = 'contenidos';
 
     protected $dates = ['deleted_at'];
-    protected $visible = ['id', 'titulo', 'contenible_id', 'contenible_type', 'puntos',
-                          'created_at', 'link', 'autor', 'contenible'];
+    protected $visible = ['id', 'titulo', 'descripcion', 'contenible_id', 'contenible_type',
+                          'created_at', 'link', 'autor', 'contenible', 'puntos', 'orden'];
     protected $appends = ['link'];
     protected $with = ['autor'];
 
@@ -20,9 +20,10 @@ class Contenido extends Eloquent {
     }
 
     public function getLinkAttribute() {
-        //TODO fix
-        //return $app->request->getUrl() . $app->urlFor($name, $attr);
-        return 'abcdefg';
+        $name = 'shwDerecho';
+        $attr = ['idDer' => $this->attributes['contenible_id']];
+        $app = Slim\Slim::getInstance();
+        return $app->request->getUrl() . $app->urlFor($name, $attr);
     }
 
     public function setTituloAttribute($value) {
