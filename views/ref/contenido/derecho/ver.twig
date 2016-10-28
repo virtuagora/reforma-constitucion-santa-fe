@@ -1,188 +1,229 @@
-{% if derecho.imagen == 1 %}
-{% set linkImagen = baseUrl() ~ '/img/derecho/' ~ derecho.id ~ '.jpg' %}
-{% endif %}
+{% extends "ref/master.twig" %} {# ----------------------------------------------------------- #} {% block titulo %}Inicio{%endblock
+%} {% block body %}
+<header class="titulo">
+	<div class="container">
+		<div class="row text-right">
+			<h1 class="blanco bold">La Constitución de Santa Fe</h1>
+		</div>
+	</div>
+	<img src="{{ baseUrl() }}/assets-ref/img/encabezado-fondo-transp.png" class="medios img-responsive">
+</header>
+<div class="eje-container eje{{derecho.id}}">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-7 col-md-6 col-md-offset-1">
+				<h1 class="black grande"><span class="red">0{{derecho.orden}}</span><br><span class="white">{{derecho.titulo}}</span></h1>
+				<div class="descripcion-content">
+					{{ derecho.descripcion|bbCode }}
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-5 col-md-4 hidden-xs">
+				<img src="{{ baseUrl() }}/assets-ref/img/manos-fondo-transp.png" class="img-responsive" style="margin: auto; max-height:320px;"
+						alt="">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-10 col-md-offset-1">
+				<table class="preguntas table">
+					<tbody>
+						<tr>
+							<td>
+								<h3 class="black grey">Algunas preguntas orientativas</h3>
+								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
+								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
+								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
+								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
+								<h5 class="bold">¿Esta es una pregunta orientativa y yo estoy agregando caracteres para ver como queda la pregunta colocandola asi?</h5>
+							</td>
+							<td class="toggle-comentarios" style="width:200px; background-color:">
+								<i class="fa fa-comments-o fa-fw"></i> ¡Participá!
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="listaComentarios" style="padding:30px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-8 col-md-offset-2">
+				<div class="comentario-container">
+					<a href="profile.html" class="pull-left">
+						 {% if user is not empty %}
+						<img alt="image" class="img-circle" src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}">
+						{% else %}
+						<img alt="image" class="img-circle" src="{{ baseUrl() }}/assets/img/anon64.jpg">
+						{% endif %}
+					</a>
+					<div class="media-body">
+						{% if user is not empty %}
+						<form action="{{ urlFor('runComentar', {'tipoRaiz': 'seccion' , 'idRaiz': 1}) }}" method="POST">
+							<strong>{{ user.nombre }} {{ user.apellido}}</strong><br>
+							<small class="text-muted">Deje su comentario</small>
+							<textarea name="cuerpo" class="form-control" rows="2" style=""></textarea>
+							<br>
+							<div class="pull-right">
+								<button type="submit" class="btn btn-xs btn-success"><i class="fa fa-thumbs-up fa-fw"></i> Enviar</button>
+							</div>
+						</form>
+						{% else %}
+						<strong>Usuario anonimo</strong><br>
+						<small class="text-primary">Debe<strong><a href="#"><i class="fa fa-sign-in fa-fw"></i>INICIAR SESION</a></strong> para poder comentar</small>
+						<textarea name="comentario" class="form-control disabled" id="" rows="2" style="" disabled></textarea>
+						<br>
+						<div class="pull-right">
+							<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-primary"><i class="fa fa-sign-in fa-fw"></i> Iniciar sesión</a>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+					{% if derecho.secciones[0].comentarios|length > 0 %}
+				<div class="grid">
+					<div class="grid-sizer"></div>
+					{% for comentario in derecho.secciones[0].comentarios %}
+					<div class="grid-item">
+						<div class="comentario-container">
+							<a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}" class="pull-left">
+								<img alt="image" class="img-circle" src="{{ avatarUrl(comentario.autor.img_tipo, comentario.autor.img_hash, 32) }}">
+							</a>
+							<div class="media-body ">
+								<strong>{{ comentario.autor.nombre }} {{ comentario.autor.apellido }}</strong> hizo un comentario<br>
+								<small class="text-muted">{{ comentario.created_at|date("d-M-Y") }}</small>
+								<div class="well well-sm" style="margin-top:5px; margin-bottom:5px;">
+									{{ comentario.cuerpo|nl2br }}
+								</div>
+								<div class="text-right" style="margin-top:3px;">
+									{% if user is not empty %}
+									<a href="javascript:votarComentario({{comentario.id}},1)" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.votos|length}}</b>	</a>
+									<a href="javascript:votarComentario({{comentario.id}},-1)" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
+									<a href="javascript:verBoxResponder({{comentario.id}})" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Responder" ><i class="fa fa-reply"></i> <b>{{comentario.respuestas|length}}</b></a>
+									{% if user and (user.es_moderador) %}
+									<a href="javascript:eliminarComentario({{comentario.id}})" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar" ><i class="fa fa-times"></i></a>
+									{% endif %}
+									{% else %}
+<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.votos|length}}</b> Me gusta</a>
+									<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
+									<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Responder" ><i class="fa fa-reply"></i> <b>{{comentario.respuestas|length}}</b></a>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="lista-respuestas" style="margin-top:20px; padding-left:40px;">
+							<form class="form-horizontal" action="{{ urlFor('runComentar', {'tipoRaiz': 'comentario', 'idRaiz': comentario.id }) }}" method="POST">
+							<div id="respComentario-{{comentario.id}}" class="comentario-container" style="display:none;">
+								<a href="{{ urlFor('shwUsuario',{'idUsu': user.id}) }}" class="pull-left">
+									<img alt="image" class="img-circle" src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" style="width:20px;">
+								</a>
+								<div class="media-body">
+										<strong>{{ user.nombre }} {{ user.apellido}}</strong><br>
+										<small class="text-muted">en respuesta a {{ respuesta.autor.nombre }} {{ respuesta.autor.apellido }}</small>
+										<textarea name="cuerpo" class="form-control respuesta" rows="1" style=""></textarea>
+										<div class="pull-right" style="margin-bottom:8px;">
+											<button type="submit" class="btn btn-xs btn-success"><i class="fa fa-check fa-fw"></i> Enviar</button>
+										</div>
+								</div>
+							</div>
+							</form>
+						{% if comentario.respuestas|length > 0 %}
+            {% for respuesta in comentario.respuestas %}
+							<div class="comentario-container">
+								<a href="{{ urlFor('shwUsuario',{'idUsu': respuesta.autor.id}) }}" class="pull-left">
+									<img alt="image" class="img-circle" src="{{ avatarUrl(respuesta.autor.img_tipo, respuesta.autor.img_hash, 32) }}" style="width:20px;">
+								</a>
+								<div class="media-body">
+										<strong>{{ respuesta.autor.nombre }} {{ respuesta.autor.apellido }}</strong><i> <span class="respuesta">{{ respuesta.cuerpo|nl2br }}</span></i>
+										<br>
+										<div class="pull-right" style="margin-top:4px;">
+											{% if user is not empty %}
+									<a href="javascript:votarComentario({{respuesta.id}},1)" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{respuesta.votos|length}}</b></a>
+									<a href="javascript:votarComentario({{respuesta.id}},-1)" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
+									{% else %}
+<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{respuesta.votos|length}}</b></a>
+									<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
+									{% endif %}
+											</div>
+								</div>
+							</div>
+						{% endfor %}
+						{% endif %}
+						</div>
 
-{% extends "lpe/master.twig" %} 
-
-{% set share_link = derecho.link %}
-{% set twitter_txt = 'Estoy debatiendo acerca del derecho "' ~ derecho.titulo|lower ~ '" ¡Animate vos tambien! ' %}
-
-{% block opengraph %}
-<meta property="og:url"                content="{{ baseUrl() }}/derecho/{{derecho.id}}" />
-<meta property="og:type"               content="article" />
-<meta property="og:title"              content="{{ derecho.titulo}} - Ley del Árbol" />
-<meta property="og:description"        content="Enterate más acerca de esta nueva Ley.Te invitamos a conocerlo y a que realices tu aporte directamente o a través de la organización de la que formes parte." />
-{% if derecho.imagen == 1 %}
-<meta property="og:image"              content="{{linkImagen}}" />
-{% else %}
-<meta property="og:image"              content="{{ baseUrl() }}/assets-lpe/img/sharer.png"/>
-{% endif %}
-<!--<meta property="og:video"              content="https://www.youtube.com/watch?v={{derecho.video}}" />-->
-{% endblock %}
-{% block linkhead %} {% endblock %} {# ----------------------------------------------------------- #} {% block titulo %}{{ derecho.titulo }}{% endblock %} {% block body %}
-<article>
-{% set colorSeleccionado = random(3) %}
-    {% if derecho.imagen == 1 %}
-    <!--<img src="{{linkImagen}}" class="img-responsive" style="width:100%;margin-bottom: 30px;" alt="">-->
- <div class="titulo-derecho-background bgcolor{{colorSeleccionado}}" style="{{ derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''}}; background-position: center bottom;">
-        <div class="overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h1><strong>{{ derecho.titulo }}</strong></h1> {% if user and (user.patrulla_id != null) %}
-                        {#<h6><a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="btn btn-default"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar derecho</a></h6>#} {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% else %}
-    <div class="titulo-derecho-background bgcolor{{colorSeleccionado}}" style="{# derecho.imagen == 1 ? 'background-image: url(' ~ linkImagen ~ ')':''#}">
-        <div class="overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h1><strong>{{ derecho.titulo }}</strong></h1> {% if user and (user.patrulla_id != null) %}
-                        {#<h6><a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="btn btn-default"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar derecho</a></h6>#} {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    <div class="container">
-        <div class="row">
-            <div id="derecho" class="col-xs-12 col-sm-12 col-md-8">
-                <div id="descripcion">
-                    <p>{{ derecho.descripcion|bbCode }}</p>
-                    <hr>
-                </div>
-                {% for seccion in derecho.secciones %}
-                <div class="accion clearfix">
-                    <div  style="margin-left:20px" class="pull-right">
-                        {% set ptj = (seccion.votos_alta * 3) + (seccion.votos_media * 2) + (seccion.votos_baja * 1) %}
-                        <span class="text-info" style="padding: 10px 8px 8px; font-size: 15px">&nbsp;{{ptj}}<i class="zmdi zmdi-long-arrow-up zmdi-hc-fw zmdi-hc-lg"></i></span>
-                    </div>
-                    <div style="font-size: 14px; line-height: 21px;">{{seccion.descripcion|bbCode}}</div>
-                    <!--<h6><b>Importancia de la acción</b></h6>
-                    <div class="btn-group btn-group-justified" style="margin-bottom:10px;">
-                        <a href="javascript:votarSeccion({{seccion.id}},3)" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 3)) ? 'btn-primary disabled' : 'btn-default'}}">Alta</a>
-                        <a href="javascript:votarSeccion({{seccion.id}},2)" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 2)) ? 'btn-primary disabled' : 'btn-default'}}">Media</a>
-                        <a href="javascript:votarSeccion({{seccion.id}},1)" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 1)) ? 'btn-primary disabled' : 'btn-default'}}">Baja</a>
-                    </div>-->
-                    {% set comentariosSeccion = seccion.comentarios|length %}
-                                {% for comentario in seccion.comentarios %}
-                                {% set comentariosSeccion = comentariosSeccion + comentario.respuestas|length %}
-                                {% endfor %}
-                    <div class="btn-group btn-group-justified btn-group-sm hidden-xs " style="margin-top: 15px;">
-                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',3)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 3)) ? 'btn-primary disabled' : 'btn-default'}}">
-                                Muy importante
-                                {% if user and (user.patrulla_id != null) %}
-                                &nbsp;<span class="badge" style="padding-top: 3px; padding-bottom: 1px;">{{seccion.votos_alta}}</span>
-                                {% endif %}
-                                </a>
-                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',2)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 2)) ? 'btn-primary disabled' : 'btn-default'}}">
-                                Importante
-                                {% if user and (user.patrulla_id != null) %}
-                                &nbsp;<span class="badge" style="padding-top: 3px; padding-bottom: 1px;">{{seccion.votos_media}}</span>
-                                {% endif %}
-                                </a>
-                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',1)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 1)) ? 'btn-primary disabled' : 'btn-default'}}">
-                                Poco importante
-                                {% if user and (user.patrulla_id != null) %}
-                                &nbsp;<span class="badge" style="padding-top: 3px; padding-bottom: 1px;">{{seccion.votos_baja}}</span>
-                                {% endif %}
-                                </a>
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" class="btn btn-info">Participá <i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i> {{ comentariosSeccion }}</a>
-                        </div>
-                        <div class="btn-group btn-group-vertical btn-block btn-group-sm hidden-sm hidden-md hidden-lg" style="margin-top: 15px;">
-                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',3)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 3)) ? 'btn-primary disabled' : 'btn-default'}}">
-                                Muy importante
-                                {% if user and (user.patrulla_id != null) %}
-                                &nbsp;<span class="badge" style="padding-top: 3px; padding-bottom: 1px;">{{seccion.votos_alta}}</span>
-                                {% endif %}
-                                </a>
-                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',2)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 2)) ? 'btn-primary disabled' : 'btn-default'}}">
-                                Importante
-                                {% if user and (user.patrulla_id != null) %}
-                                &nbsp;<span class="badge" style="padding-top: 3px; padding-bottom: 1px;">{{seccion.votos_media}}</span>
-                                {% endif %}
-                                </a>
-                            <a href="{{ user ? 'javascript:votarSeccion(' ~ seccion.id ~',1)' : urlFor('shwLogin')}}" class="btn {{((voto[seccion.id] is not null) and (voto[seccion.id] == 1)) ? 'btn-primary disabled' : 'btn-default'}}">
-                                Poco importante
-                                {% if user and (user.patrulla_id != null) %}
-                                &nbsp;<span class="badge" style="padding-top: 3px; padding-bottom: 1px;">{{seccion.votos_baja}}</span>
-                                {% endif %}
-                                </a>
-                            <a href="javascript:void(0)" data-toggle="modal" data-target="#comentarios{{ seccion.id }}" class="btn btn-info">Participá <i class="zmdi zmdi-comments zmdi-hc-lg zmdi-hc-fw"></i> {{ comentariosSeccion }}</a>
-                        </div>
-                    {% include 'lpe/contenido/derecho/comentarioModal.twig' %}
-                </div>
-                <hr>
-                {% endfor %}
-            </div>
-            <div class="col-xs-12 col-md-4">
-                {% if derecho.video is not null %}
-                <div class="embed-responsive embed-responsive-16by9" style="margin-bottom: 20px;">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{derecho.video}}" frameborder="0" allowfullscreen></iframe>
-                </div>
-                {% endif %} 
-                <div class="btn-group btn-group-justified" style="margin-bottom:25px;">
-                    <a href="https://www.facebook.com/sharer.php?u={{ share_link }}" target="_blank" class="btn btn-default" style="background-color:#3b5998; color:#FFF"><i class="zmdi zmdi-facebook zmdi-hc-2x"></i></a>
-                    <a href="https://twitter.com/share?text={{ twitter_txt }}&url={{ share_link }}&hashtags=nlpe" target="_blank" class="btn btn-default" style="background-color:#55acee; color:#FFF"><i class="zmdi zmdi-twitter zmdi-hc-2x"></i></a>
-                    <a href="https://plus.google.com/share?url={{ share_link }}" target="_blank" class="btn btn-default" style="background-color:#dd4b39; color:#FFF"><i class="zmdi zmdi-google-plus zmdi-hc-2x"></i></a>
-                </div>
-                {% for opinion in derecho.opiniones %}
-                <div class="panel">
-                    <div class="panel-body tag-opinion bgcolor{{colorSeleccionado}}">
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#opinion{{loop.index}}">
-                            <div class="overlay">
-                                <h5><small>La opinión de..</small><br><b>{{opinion.participante.nombre}}</b></h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                {% include 'lpe/contenido/opinion/ver.twig' %} {% endfor %} {% if user and (user.patrulla_id != null) %}
-                <a href="{{ urlFor('shwCrearOpinion')}}" class="btn btn-primary btn-block"><i class="zmdi zmdi-plus zmdi-hc-lg zmdi-hc-fw"></i>Nueva Opinion</a>
-                <br>
-                <a href="{{ urlFor('shwModifDerecho', {'idDer': derecho.id}) }}" class="btn btn-default btn-block"><i class="zmdi zmdi-edit zmdi-hc-lg zmdi-hc-fw"></i>Editar derecho</a> {% endif %}
-
-            </div>
-        </div>
-</article>
-{% if user and (user.patrulla_id != null) %}
- {% include 'lpe/contenido/moderar.twig' %}
-  {% endif %}
-<form id="votarSeccion" method="POST">
-    <input type="hidden" type="text" name="postura">
-</form>
+						<hr>
+					</div>
+					{% endfor %}
+				</div>
+					{% else %}
+					<div class="text-center">
+						<h3 class="black gris">No hay comentarios<br><small>¡Sea el primero dejando su comentario!</small></h3>
+					</div>
+					{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
 <form id="votarComentario" method="POST">
     <input type="text" name="valor" style="display:none">
 </form>
-{% endblock %} {# ----------------------------------------------------------- #} {% block scripts %}
-<script src="{{ baseUrl() }}/assets-lpe/js/autosize.min.js"></script>
+ <form id="eliminarComentario" action="{{ urlFor('runElimiComenta') }}" method="POST">
+    <input type="hidden" type="text" name="id">
+</form>
+{% endblock body %} {# -------------------------------------------- #} {% block scripts %}
+<script src="{{ baseUrl() }}/assets-ref/js/autosize.min.js"></script>
+<script src="{{ baseUrl() }}/assets-lpe/js/masonry.pkgd.min.js"></script>
 <script>
-    $(document).ready(function() {
-        autosize($('textarea'));
-        // $('body').scrollspy({ target: '#secciones' })
-        $(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        })
-
+	var countletter = 0;
+	$(document).ready(function() {
+         autosize($('textarea'));
+				 $('[data-toggle="tooltip"]').tooltip();
+				  $('.grid').masonry({
+        // set itemSelector so .grid-sizer is not used in layout
+        itemSelector: '.grid-item',
+        // use element for option
+        columnWidth: '.grid-sizer',
+        percentPosition: true
     })
+	 });
 
-    var votarSeccion = function(id, valor) {
-        var action_no = "{{ urlFor('runVotarSeccion') }}";
-        $('#votarSeccion').find('input[name="postura"]').val(valor)
-        var action_yes = action_no.replace(':idSec', id);
-        $('#votarSeccion').attr('action', action_yes);
-        $('#votarSeccion').submit();
+    $(function() {
+  $('a[href="#derechos"]').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
     }
+  });
+});
 
-    var verBoxResponder = function(id) {
+$('td.toggle-comentarios').click(function(){ 
+            $('#listaComentarios').show(150);
+						
+    });
+		    var verBoxResponder = function(id) {
         $('#respComentario-' + id).toggle();
+								$('.grid').masonry();
     }
 
+$( "textarea.respuesta" ).keydown(function() {
+  countletter += 1;
+	if( countletter == 10 ){
+		countletter = 0
+				$('.grid').masonry();
+	}
+});
     var votarComentario = function(id, valor) {
         var action_no = "{{ urlFor('runVotarComenta') }}";
         $('#votarComentario').find('input[name="valor"]').val(valor)
@@ -190,5 +231,10 @@
         $('#votarComentario').attr('action', action_yes);
         $('#votarComentario').submit();
     }
-</script>
-{% include 'lpe/contenido/moderar.js.twig' %} {% endblock %}
+
+		 var eliminarComentario = function(id) {
+        $('#eliminarComentario').find('input[name="id"]').val(id)
+        $('#eliminarComentario').submit();
+    }
+		
+</script> {% endblock scripts %}

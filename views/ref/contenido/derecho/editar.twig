@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12 col-md-11 col-lg-8">
-            <form id="crearDerecho" action="{{ urlFor('runCrearDerecho') }}" method="POST" enctype="multipart/form-data">
+            <form id="crearDerecho" action="{{ urlFor('runModifDerecho', {'idDer':derecho.id}) }}" method="POST" enctype="multipart/form-data">
                 <h1>Modificar Eje</h1>
                 <hr>
                 <div class="form-group">
@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label class="control-label" for="orden">Orden del Eje</label>
                     <span class="help-block">De ser 8 ejes en total, defina en que orden se ubica el eje. (Por ejemplo, si es el segundo eje, seria "2")</span>
-                    <input class="form-control" id="orden" name="orden"type="text">
+                    <input class="form-control" id="orden" name="orden" type="text">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="inputLarge">Descripcion en Home</label>
@@ -40,6 +40,9 @@
                 </ul>
                 <!--<a id="nuevaAccion" href="javascript:void(0)" class="btn btn-sm btn-info btn-block"><i class="mdi mdi-plus"></i> Agregar una acción</a>-->
                 <hr>
+                <input type="text" name="secciones" value="" hidden>
+            <input type="text" name="categoria" value="1" hidden>
+            <input type="text" name="tags" value="" hidden>
                 <div class="form-group clearfix">
                     <a href="#" class="btn btn-large btn-default ">Cancelar</a>
                     <button type="submit" class="btn btn-lg btn-primary pull-right">Guardar</button>

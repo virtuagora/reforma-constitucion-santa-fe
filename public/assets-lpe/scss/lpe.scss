@@ -6,7 +6,6 @@
 @import "../css/font-awesome.css";
 @import 'https://fonts.googleapis.com/css?family=Slabo+27px';
 @import "../css/fontslpe.css";
-
 // @font-face {
 //     font-family: 'PF Beau Sans Pro';
 //     src: url("https://www.santafe.gob.ar/assets/standard/fonts/pfbeausanspro/PFBeauSansPro-Bold.eot?78703725");
@@ -42,9 +41,6 @@
 //     font-weight: 300;
 //     font-style: normal;
 // }
-
-
-
 * {
     margin: 0;
 }
@@ -52,7 +48,7 @@
 html,
 body {
     height: 100%;
-    font-family:"PF Beau Sans Pro"
+    font-family: "PF Beau Sans Pro"
 }
 
 .wrapper {
@@ -81,11 +77,12 @@ body {
     }
 }
 
-
-.mce-content-body{
+.mce-content-body {
     padding: 8px;
     font-size: 15px;
 }
+
+
 /*
 
 Sticky Footer by Ryan Fait
@@ -93,12 +90,13 @@ http://ryanfait.com/
 
 */
 
-.g-recaptcha{
+.g-recaptcha {
     margin: 0 auto;
     width: 50%;
 }
 
-.ui-datepicker-year, .ui-datepicker-month{
+.ui-datepicker-year,
+.ui-datepicker-month {
     color: #000
 }
 
@@ -120,18 +118,19 @@ http://ryanfait.com/
     background-repeat: repeat-x;
     background-position: center top;
 }
-.barra-footer{
+
+.barra-footer {
     background-image: url("../img/tramasf.jpg");
     height: 6px;
     background-repeat: repeat-x;
     background-position: top top;
 }
 
-@media (min-width: 768px){
-.navbar-nav > li > a {
-    padding-top: 30.5px;
-    padding-bottom: 10.5px;
-}
+@media (min-width: 768px) {
+    .navbar-nav>li>a {
+        padding-top: 30.5px;
+        padding-bottom: 10.5px;
+    }
 }
 
 // @media (min-width: 768px){
@@ -146,15 +145,16 @@ http://ryanfait.com/
 a.navbar-brand {
     padding: 16px 15px 14px;
 }
-ul.nav.navbar-nav{
+
+ul.nav.navbar-nav {
     text-transform: uppercase;
     font-size: 14px;
 }
-ul.nav.navbar-nav.navbar-right{
+
+ul.nav.navbar-nav.navbar-right {
     text-transform: capitalize;
     font-size: 13px;
 }
-
 
 .cuadro1 {
     background-image: url("https://material-design.storage.googleapis.com/publish/material_v_8/material_ext_publish/0Bx4BSt6jniD7OFZFR1ZOUmFWTEE/style_icons_system_intro.png");
@@ -283,15 +283,16 @@ figure:hover:before {
     left: 0;
     bottom: -30%;
 }
-.cap-bot{
-//     background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(0, 0, 0, 0)),to(rgba(0, 0, 0, 0.4)));
-// background-image: -webkit-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
-// background-image: -o-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
-// background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
-// filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.4)', GradientType=0);
+
+.cap-bot {
+    //     background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(0, 0, 0, 0)),to(rgba(0, 0, 0, 0.4)));
+    // background-image: -webkit-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
+    // background-image: -o-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
+    // background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.4) 100%);
+    // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.4)', GradientType=0);
     padding: 20px 3px 20px;
-    height:170px;
-    h5{
+    height: 170px;
+    h5 {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         letter-spacing: -1px;
         color: #FFF;
@@ -305,33 +306,30 @@ figure:hover:before {
 .grid-sizer,
 .grid-item {
     border: 2px solid #FFF;
-
-
-
-        background-color: #6f5499;
-background-image: -webkit-gradient(linear,left top,left bottom,from(#563d7c),to(#6f5499));
-background-image: -webkit-linear-gradient(top,#563d7c 0,#6f5499 100%);
-background-image: -o-linear-gradient(top,#563d7c 0,#6f5499 100%);
-background-image: linear-gradient(to bottom,#563d7c 0,#6f5499 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
-    h6{text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); font-weight: 100;}
+    background-color: #6f5499;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#563d7c), to(#6f5499));
+    background-image: -webkit-linear-gradient(top, #563d7c 0, #6f5499 100%);
+    background-image: -o-linear-gradient(top, #563d7c 0, #6f5499 100%);
+    background-image: linear-gradient(to bottom, #563d7c 0, #6f5499 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
+    h6 {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        font-weight: 100;
+    }
     @media (max-width: $screen-xs-max) {
         width: 100%;
-        
     }
     @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
         width: 50%;
-        
     }
     @media (min-width: $screen-md-min) {
         width: 23%;
         margin: 10px 1%;
     }
-    &.w2{
-      @media (min-width: $screen-md-min) {
-        width: 40%;
-
-    }  
+    &.w2 {
+        @media (min-width: $screen-md-min) {
+            width: 40%;
+        }
     }
 }
 
@@ -343,12 +341,10 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endC
 }
 
 // AJAJAJA
-
-#body-editor{
+#body-editor {
     font-size: 14px;
     line-height: 21px
 }
-
 
 // CREAR DERECHO
 input[type=text].form-control.input-lg,
@@ -356,102 +352,101 @@ textarea.form-control.input-lg {
     font-size: 30px
 }
 
-.bolder{
+.bolder {
     font-weight: 700;
 }
 
-#crearDerecho{
-.titulo-derecho-background{
-    background-position: center center;
-    background-size: cover;
-margin-bottom:40px;
-.overlay{
-    background: rgba(0,0,0,0.3); 
-    padding: 100px 0;
-}
-textarea{
-    color:#FFF;
-    background-color: none;
-    font-size: 56px;
-    text-align: center;
-text-shadow: 0 1px 0 rgba(0,0,0,.1);
-font-weight: 700;
-line-height: normal;
-resize: none;
-margin: 23px 0 11.5px;
-}
-}
-textarea.accion{
-    font-size: 19.5px;
-    line-height: 27.3px;
-    font-weight: 300;
-    padding:0 0 10px;
-}
-.btn-file {
-    position: relative;
-    overflow: hidden;
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
-}
-}
-
-article{
-
-.titulo-derecho-background {
-    
-color: #cdbfe3;
-text-align: center;
-text-shadow: 0 1px 0 rgba(0,0,0,.1);
-margin-bottom:40px;
-background-size: cover;
-background-position: center center;
-h1{color:#FFF;}
-.overlay{
-    // background: rgba(0,0,0,0.3); 
-    padding: 100px 0;
-}
-}
-#derecho #descripcion{
-    font-size: 14px;
-      line-height: 21px;
-}
-span.badge{
-    background-color: $brand-primary;
-}
-#nav-derechos.affix{
-    top:30px
+#crearDerecho {
+    .titulo-derecho-background {
+        background-position: center center;
+        background-size: cover;
+        margin-bottom: 40px;
+        .overlay {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 100px 0;
+        }
+        textarea {
+            color: #FFF;
+            background-color: none;
+            font-size: 56px;
+            text-align: center;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+            font-weight: 700;
+            line-height: normal;
+            resize: none;
+            margin: 23px 0 11.5px;
+        }
+    }
+    textarea.accion {
+        font-size: 19.5px;
+        line-height: 27.3px;
+        font-weight: 300;
+        padding: 0 0 10px;
+    }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
 }
 
-#nav-derechos > a{
-    padding: 10px
-}
-p{
-      font-size: 14px;
-      line-height: 21px;
-}
-img.size32{
-    width: 32px;
-}
-p.comentario{
-    font-size: 12px;
-    line-height: 1.5;
-}
-textarea.comentario{
-    resize: vertical;
-}
+article {
+    .titulo-derecho-background {
+        color: #cdbfe3;
+        text-align: center;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+        margin-bottom: 40px;
+        background-size: cover;
+        background-position: center center;
+        h1 {
+            color: #FFF;
+        }
+        .overlay {
+            // background: rgba(0,0,0,0.3); 
+            padding: 100px 0;
+        }
+    }
+    #derecho #descripcion {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    span.badge {
+        background-color: $brand-primary;
+    }
+    #nav-derechos.affix {
+        top: 30px
+    }
+    #nav-derechos>a {
+        padding: 10px
+    }
+    p {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    img.size32 {
+        width: 32px;
+    }
+    p.comentario {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    textarea.comentario {
+        resize: vertical;
+    }
 }
 
 // article{
@@ -461,7 +456,6 @@ textarea.comentario{
 // #nav-derechos.affix{
 //     top:30px
 // }
-
 // #nav-derechos > a{
 //     padding: 10px
 // }
@@ -471,14 +465,12 @@ textarea.comentario{
 //     font-family: 'Slabo 27px', serif;
 //     color: $gray-darker;
 // }
-
 // .body-seccion p{
 //     font-size: 16px;
 //     line-height: 20px;
 //     font-family: 'Slabo 27px', serif;
 //     color: $gray-darker;
 // }
-
 // p.comentario{
 //     font-size: 12px;
 //     line-height: 1.5;
@@ -487,184 +479,179 @@ textarea.comentario{
 //     resize: vertical;
 // }
 // }
-
-
-.tag-opinion{
-    padding:0;
+.tag-opinion {
+    padding: 0;
     text-align: center;
-    img{
-        left:0;
+    img {
+        left: 0;
     }
-
-    .overlay{
-        background: rgba(0,0,0,0.2);
+    .overlay {
+        background: rgba(0, 0, 0, 0.2);
         padding: 15px;
     }
-    h5{
-    color: #FFF;
+    h5 {
+        color: #FFF;
     }
-    a:hover{
+    a:hover {
         text-decoration: none;
-        
     }
 }
 
 // ================
-
-.opinionModal .descripcion{
+.opinionModal .descripcion {
     font-size: 14px;
-      line-height: 21px;
+    line-height: 21px;
 }
 
-
 // --------------------
-
-.header-opinion{
+.header-opinion {
     border-radius: 5px;
-    background-size:cover;
+    background-size: cover;
     margin-bottom: 20px;
-    .overlay{
-        background: rgba(0,0,0,0.4);
+    .overlay {
+        background: rgba(0, 0, 0, 0.4);
         padding: 40px 0 55px;
         border-radius: 5px;
     }
-    h3{
-    color: #FFF;
-    } 
-
+    h3 {
+        color: #FFF;
+    }
 }
 
 // ------------------------
-
-.editor-area{
+.editor-area {
     font-size: 14px;
 }
 
-#modificarInicio{
-    textarea[name=titulo]{
-        font-size:56px;
-        font-weight:700;
-        text-align:center;
+#modificarInicio {
+    textarea[name=titulo] {
+        font-size: 56px;
+        font-weight: 700;
+        text-align: center;
         line-height: 62px;
-        padding:10px;
-        resize:none;
-        margin-bottom:15px;
+        padding: 10px;
+        resize: none;
+        margin-bottom: 15px;
         color: #444;
     }
-    textarea[name=descripcion]{
-    font-size: 19.5px;
-    line-height: 27.3px;
-    font-weight: 300;
-    padding:0 0 10px;
-    text-align: center;
-    resize:none;
+    textarea[name=descripcion] {
+        font-size: 19.5px;
+        line-height: 27.3px;
+        font-weight: 300;
+        padding: 0 0 10px;
+        text-align: center;
+        resize: none;
     }
 }
 
-#myCarousel{
-    .conoce{
-        color:#FFF; padding-top:20px; margin: 0;
-        text-shadow: 0 1px 0 rgba(0,0,0,.1);
-        
+#myCarousel {
+    .conoce {
+        color: #FFF;
+        padding-top: 20px;
+        margin: 0;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
     }
-    .embed-responsive{
+    .embed-responsive {
         // margin: 20px 0 40px;
     }
 }
 
 // ===========================
-
-.twitter-typeahead{
+.twitter-typeahead {
     width: 100%;
 }
 
 // ==================================
-
-$c1 : #6f5499;
-$c2 : #00a73d;
-$c3 : #00cbdc;
-$c4 : #ff5400;
-.bgcolor0{
+$c1: #6f5499;
+$c2: #00a73d;
+$c3: #00cbdc;
+$c4: #ff5400;
+.bgcolor0 {
     background-color: $c1;
-background-image: -webkit-gradient(linear,left top,left bottom,from(darken($c1,20%),to($c1)));
-background-image: -webkit-linear-gradient(top,darken($c1,20%) 0,$c1 100%);
-background-image: -o-linear-gradient(top,darken($c1,20%) 0,$c1 100%);
-background-image: linear-gradient(to bottom,darken($c1,20%) 0,$c1 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($c1,20%)', endColorstr='$c1', GradientType=0);
-background-repeat: repeat-x;
-}
-.bgcolor1{
-    background-color: $c2;
-background-image: -webkit-gradient(linear,left top,left bottom,from(darken($c2,20%),to($c2)));
-background-image: -webkit-linear-gradient(top,darken($c2,20%) 0,$c2 100%);
-background-image: -o-linear-gradient(top,darken($c2,20%) 0,$c2 100%);
-background-image: linear-gradient(to bottom,darken($c2,20%) 0,$c2 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($c2,20%)', endColorstr='$c2', GradientType=0);
-background-repeat: repeat-x;
-}
-.bgcolor2{
-    background-color: $c3;
-background-image: -webkit-gradient(linear,left top,left bottom,from(darken($c3,20%),to($c3)));
-background-image: -webkit-linear-gradient(top,darken($c3,20%) 0,$c3 100%);
-background-image: -o-linear-gradient(top,darken($c3,20%) 0,$c3 100%);
-background-image: linear-gradient(to bottom,darken($c3,20%) 0,$c3 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($c3,20%)', endColorstr='$c3', GradientType=0);
-background-repeat: repeat-x;
-}
-.bgcolor3{
-    background-color: $c4;
-background-image: -webkit-gradient(linear,left top,left bottom,from(darken($c4,20%),to($c4)));
-background-image: -webkit-linear-gradient(top,darken($c4,20%) 0,$c4 100%);
-background-image: -o-linear-gradient(top,darken($c4,20%) 0,$c4 100%);
-background-image: linear-gradient(to bottom,darken($c4,20%) 0,$c4 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='darken($c4,20%)', endColorstr='$c4', GradientType=0);
-background-repeat: repeat-x;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(darken($c1, 20%), to($c1)));
+    background-image: -webkit-linear-gradient(top, darken($c1, 20%) 0, $c1 100%);
+    background-image: -o-linear-gradient(top, darken($c1, 20%) 0, $c1 100%);
+    background-image: linear-gradient(to bottom, darken($c1, 20%) 0, $c1 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='darken($c1,20%)', endColorstr='$c1', GradientType=0);
+    background-repeat: repeat-x;
 }
 
-.list-group-item.active .list-group-item-text{
+.bgcolor1 {
+    background-color: $c2;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(darken($c2, 20%), to($c2)));
+    background-image: -webkit-linear-gradient(top, darken($c2, 20%) 0, $c2 100%);
+    background-image: -o-linear-gradient(top, darken($c2, 20%) 0, $c2 100%);
+    background-image: linear-gradient(to bottom, darken($c2, 20%) 0, $c2 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='darken($c2,20%)', endColorstr='$c2', GradientType=0);
+    background-repeat: repeat-x;
+}
+
+.bgcolor2 {
+    background-color: $c3;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(darken($c3, 20%), to($c3)));
+    background-image: -webkit-linear-gradient(top, darken($c3, 20%) 0, $c3 100%);
+    background-image: -o-linear-gradient(top, darken($c3, 20%) 0, $c3 100%);
+    background-image: linear-gradient(to bottom, darken($c3, 20%) 0, $c3 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='darken($c3,20%)', endColorstr='$c3', GradientType=0);
+    background-repeat: repeat-x;
+}
+
+.bgcolor3 {
+    background-color: $c4;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(darken($c4, 20%), to($c4)));
+    background-image: -webkit-linear-gradient(top, darken($c4, 20%) 0, $c4 100%);
+    background-image: -o-linear-gradient(top, darken($c4, 20%) 0, $c4 100%);
+    background-image: linear-gradient(to bottom, darken($c4, 20%) 0, $c4 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='darken($c4,20%)', endColorstr='$c4', GradientType=0);
+    background-repeat: repeat-x;
+}
+
+.list-group-item.active .list-group-item-text {
     color: #FFF;
 }
-.list-group-item .list-group-item-text{
+
+.list-group-item .list-group-item-text {
     color: #999;
 }
 
-ul.socialmedia li a{
+ul.socialmedia li a {
     color: #757575;
-    font-size:24px;
+    font-size: 24px;
 }
-ul.socialmedia{
+
+ul.socialmedia {
     margin-bottom: 0;
 }
-.lastfoot{
-        font-size: 14px;
+
+.lastfoot {
+    font-size: 14px;
     line-height: normal;
     color: #FFF;
 }
 
-.inicio-banner{
+.inicio-banner {
     background-image: url("../../img/banner.jpg");
     background-size: cover;
     background-position: bottom center;
     color: #FFF;
-    margin-bottom:30px;
+    margin-bottom: 30px;
     padding: 0 0;
-    .overlay-banner{
-    padding: 50px 15px;
-
-        background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(0, 0, 0, 0)),to(rgba(0, 0, 0, 0.2)));
-background-image: -webkit-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.2) 100%);
-background-image: -o-linear-gradient(top,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.2) 100%);
-background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0,rgba(0, 0, 0, 0.2) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.2)', GradientType=0);
+    .overlay-banner {
+        padding: 50px 15px;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.2)));
+        background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.2) 100%);
+        background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.2) 100%);
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.2) 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='rgba(0, 0, 0, 0)', endColorstr='rgba(0, 0, 0, 0.2)', GradientType=0);
     }
-    h1{    
+    h1 {
         text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
         letter-spacing: -1.4px;
         color: #FFF;
-        }
-    .descripcion{
+    }
+    .descripcion {
         text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-color: rgb(255, 255, 255);
-margin-bottom: 0;
+        color: rgb(255, 255, 255);
+        margin-bottom: 0;
     }
 }
