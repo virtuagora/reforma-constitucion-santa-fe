@@ -1,0 +1,26 @@
+{% set body_style = 'background-color: #fff;' %} {% extends "ref/master2.twig" %} {# -----------------------------------------------------------
+#} {% block titulo %}Terminos y Condiciones{% endblock %} {% block body %}
+<div class="registro-panel">
+	<div class="container">
+		<div class="row">
+			<div class="panel-inicio col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 ">
+				<h1 class="black gris ">Terminos y condiciones de uso</h1>
+                <hr>
+                {{ tos.value|bbCode }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %} {# ----------------------------------------------------------- #} {% block scripts %}
+<script>
+    $( document ).ready(function() {
+        $( "#volverInicio" ).click(function() {
+          $( ".panel-recuperar" ).hide("slide" );
+          $( ".panel-inicio" ).show("slide" );
+        });
+        $( "#verRecuperar" ).click(function() {
+          $( ".panel-inicio" ).hide("slide" );
+                $( ".panel-recuperar" ).show("slide" );
+        });
+    });
+</script> {% endblock %}
