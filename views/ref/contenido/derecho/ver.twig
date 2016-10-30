@@ -1,5 +1,13 @@
 {% extends "ref/master.twig" %} {# ----------------------------------------------------------- #}
 {% block titulo %}{{derecho.titulo}}{%endblock%}
+{% block opengraph %}
+	<meta property="og:url" content="{{ derecho.link }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="{{ derecho.titulo }} - Bases para la Reforma" />
+	<meta property="og:site_name" content="Bases para la Reforma" />
+	<meta property="og:description" content="La Constitución es la ley fundamental de un Estado, la de más alto rango en el ordenamiento político y jurídico, y con la cual deben guardar coherencia el resto de las leyes.
+Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la" />
+	<meta property="og:image" content="" /> {% endblock %}
 {% block body %}
 <header class="titulo">
 	<div class="container">
