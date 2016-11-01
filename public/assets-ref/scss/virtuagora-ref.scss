@@ -235,7 +235,14 @@ header.titulo {
   }
   }
   background-color: #80cbfc;
-  
+  h1{
+    margin-right:10px;
+    margin-left:10px;
+    font-size:30px;
+    @media (min-width: 768px) {
+      font-size:50px;
+    }  
+  }
 }
 p{
   font-size: 16px;
@@ -244,6 +251,12 @@ p{
 .introParticipacion {
   background-color: #FFFFFF;
   padding:30px;
+  h1.grande{
+    font-size:30px;
+    @media (min-width: 768px) {
+      font-size:50px;
+    }  
+  }
 }
 .listadoEjes{
   .parent {
@@ -263,7 +276,7 @@ p{
       margin: 0;
     }
     h1.grande{
-      font-size:40px;
+      font-size:35px;
     @media (min-width: 768px) {
       font-size:50px;
     }  
@@ -390,6 +403,12 @@ h6 {
   }
   span.white{
     color: #FFF;
+  }
+  h1.black.grande{
+    font-size:30px;
+    @media (min-width: 768px) {
+      font-size:50px;
+    }  
   }
   .descripcion-content{
     font: 16px/20px 'Open Sans', Arial, Helvetica, sans-serif;

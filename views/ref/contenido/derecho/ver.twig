@@ -21,6 +21,11 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-7 col-md-6 col-md-offset-1">
+				<a href="{{urlFor('shwIndex')}}" class="btn btn-default"><i class="fa fa-arrow-left fa-fw"></i> Volver Atrás</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-7 col-md-6 col-md-offset-1">
 				<h1 class="black grande"><span class="red">0{{derecho.orden}}</span><br><span class="white">{{derecho.titulo}}</span></h1>
 				<div class="descripcion-content">
 					{{ derecho.descripcion|bbCode }}
@@ -42,8 +47,8 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 								<h5 class="bold">{{seccion.descripcion}}</h5>
 								{% endfor %}
 							</td>
-							<td class="toggle-comentarios" style="width:200px; background-color:">
-								<i class="fa fa-comments-o fa-fw"></i> ¡Participá!
+							<td class="toggle-comentarios" style="max-width:200px; background-color:">
+								<i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs"> ¡Participá!</span>
 							</td>
 						</tr>
 					</tbody>
@@ -57,7 +62,7 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">
 				<div class="comentario-container">
-					<a href="profile.html" class="pull-left">
+					<a href="{{urlFor('shwLogin')}}" class="pull-left">
 						 {% if user is not empty %}
 						<img alt="image" class="img-circle" src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}">
 						{% else %}
