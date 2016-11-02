@@ -119,13 +119,14 @@ class PortalCtrl extends Controller {
         $preuser->address = $vdt->getData('address');
         $preuser->save();
         
+        $headers = "From: Bases para la Reforma <noreply@basesparalareforma.digital>\r\n";
         $to = $preuser->email;
         $subject = 'Confirma tu registro - Bases para la Reforma - Santa Fe';
         $message = $this->view->fetch('email/registro.twig', [
             'id' => $preuser->id,
             'token' => $preuser->emailed_token
         ]);
-        mail($to, $subject, $message);
+        mail($to, $subject, $message, $headers);
         
         $this->render('ref/registro/registro-exito.twig', array('email' => $preuser->email));
     }
@@ -181,13 +182,14 @@ class PortalCtrl extends Controller {
         $usuario->token = bin2hex(openssl_random_pseudo_bytes(16));
         $usuario->save();
         
+        $headers = "From: Bases para la Reforma <noreply@basesparalareforma.digital>\r\n";
         $to = $usuario->email;
         $subject = 'Reiniciar clave - Bases para la Reforma - Santa Fe';
         $message = $this->view->fetch('email/recuperar.twig', [
             'id' => $usuario->id,
             'token' => $usuario->token
         ]);
-        mail($to, $subject, $message);
+        mail($to, $subject, $message, $headers);
         
         $this->redirectTo('shwRecuperarClave');
     }
