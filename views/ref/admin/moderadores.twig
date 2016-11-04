@@ -28,10 +28,10 @@ endblock %} {% block body %}
                     <div class="pull-right text-center">
                         <form action="" method="POST">
                             <input type="hidden" name="id" value="{{moderador.id}}">
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="zmdi zmdi-close zmdi-hc-lg"></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times fa-lg"></i></button>
                         </form>
                     </div>
-                    <h4><strong><i class="zmdi zmdi-accounts-list-alt zmdi-hc-lg zmdi-hc-fw"></i> {{ moderador.nombre }} {{ moderador.apellido }}</strong>                        <small>{{ moderador.email}}</small></h4>
+                    <h4><strong><i class="fa fa-shield fa-lg fa-fw"></i> {{ moderador.nombre }} {{ moderador.apellido }}</strong>                        <small>{{ moderador.email}}</small></h4>
                 </li>
                 {% endfor %} {% else%}
                 <li class="list-group-item">
@@ -52,7 +52,7 @@ endblock %} {% block body %}
             return obj.id;
         },
         remote: {
-            url: '{{ baseUrl() }}' + '/usuario?where_null=patrulla_id&q=%QUERY',
+            url: '{{ baseUrl() }}' + '/usuario?where=es_moderador-eq-0&q=%QUERY',
             wildcard: '%QUERY'
         }
     });
@@ -64,10 +64,10 @@ endblock %} {% block body %}
         display: 'nombre',
         source: usuarios,
         templates: {
-            empty: '<a href="javascript:void(0)" class="list-group-item"><i class="zmdi zmdi-close zmdi-hc-lg zmdi-hc-fw"></i> No se encontraron usuarios</a>',
-            pending: '<a href="javascript:void(0)" class="list-group-item"><i class="zmdi zmdi-spinner zmdi-hc-lg zmdi-hc-fw zmdi-hc-spin"></i> Buscando...</a>',
+            empty: '<a href="javascript:void(0)" class="list-group-item"><i class="fa fa-times fa-lg fa-fw"></i> No se encontraron usuarios</a>',
+            pending: '<a href="javascript:void(0)" class="list-group-item"><i class="fa fa-circle-o-notch fa-lg fa-fw fa-spin"></i> Buscando...</a>',
             suggestion: function(data) {
-                return '<a href="javascript:void(0)" class="list-group-item"><i class="zmdi zmdi-account-circle zmdi-hc-lg zmdi-hc-fw"></i> ' + data.nombre + ' ' + data.apellido + ' - <i>' + data.email + '</i></a>';
+                return '<a href="javascript:void(0)" class="list-group-item"><i class="fa fa-user fa-lg fa-fw"></i> ' + data.nombre + ' ' + data.apellido + ' - <i>' + data.email + '</i></a>';
             }
         }
     });

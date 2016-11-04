@@ -63,15 +63,13 @@ public function verModificarEjes() {
     }
     
     public function verCrearModerador() {
-        $mods = Usuario::where('es_moderador', false)->get()->toArray();
+        $mods = Usuario::where('es_moderador', 1)->get()->toArray();
         $this->render('ref/admin/moderadores.twig', ['moderadores' => $mods]);
     }
     
-    public function crearModerardor() {
+    public function crearModerador() {
         $req = $this->request;
-        $vdt = new Validate\QuickValidator([$this, 'notFound']);
-        $vdt->test($req->post('id'), new Validate\Rule\NumNatural());
-        $usuario = Usuario::findOrFail($vdt->getData('id'));
+        $usuario = Usuario::findOrFail($req->post('id'));
         if ($usuario->es_moderador) {
             throw new TurnbackException('Ese usuario ya es moderador.');
         }
