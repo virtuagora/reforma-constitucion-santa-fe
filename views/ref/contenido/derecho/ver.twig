@@ -71,7 +71,7 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 					</a>
 					<div class="media-body">
 						{% if user is not empty %}
-						<form action="{{ urlFor('runComentar', {'tipoRaiz': 'seccion' , 'idRaiz': 1}) }}" method="POST">
+						<form action="{{ urlFor('runComentar', {'tipoRaiz': 'seccion' , 'idRaiz': derecho.secciones[0].id}) }}" method="POST">
 							<strong>{{ user.nombre }} {{ user.apellido}}</strong><br>
 							<small class="text-muted">Deje su comentario</small>
 							<textarea id="dejarComentario" name="cuerpo" class="form-control" rows="2" style=""></textarea>

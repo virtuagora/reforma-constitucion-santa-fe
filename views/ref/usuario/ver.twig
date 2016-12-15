@@ -23,7 +23,7 @@
             <h4 class="black">Comentarios <i class="zmdi zmdi-comment-outline zmdi-hc-fw"></i>({{usuario.comentarios_count}})</h4>
               {% if comentarios|length > 0 %} {% for comentario in comentarios %}
                 <blockquote>
-                <p class="lead">{{ comentario.cuerpo }}</p>
+                <p class="">{{ comentario.cuerpo }}</p>
                 <p class="lead"><small>Comentario hecho el {{ comentario.created_at|date("d/m/Y")}}</small></p>
                 </blockquote>
                 <hr>
