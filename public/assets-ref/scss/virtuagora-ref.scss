@@ -18,18 +18,18 @@ body {
   height: auto !important;
   /* This line and the next line are not necessary unless you need IE6 support */
   height: 100%;
-  margin: 0 auto -215px;
+  margin: 0 auto -271px;
   /* the bottom margin is the negative value of the footer's height */
 }
 
 .push {
-  height: 215px;
+  height: 271px;
   /* .push must be the same height as .footer */
 }
 
 .footer {
-  padding-top: 60px;
-  height: 215px;
+  // padding-top: 60px;
+  // height: 215px;
   // border-top: 50px solid #FFF;
   // margin-top: 80px;
   text-align: center;
@@ -216,6 +216,26 @@ http://ryanfait.com/
     border:0;
     padding: 0;
     padding-right: 35px;
+  }
+
+  
+
+  .navbar-custom.affix .navbar-nav li a.coloreado {
+    background-color: #46639f;
+    color: #FFF;
+    font-weight: 500;
+  }
+
+  .navbar-custom.affix .navbar-nav li.dropdown ul.dropdown-menu a {
+    line-height: normal;
+    padding: 10px;
+    height: 36px;
+  }
+  .navbar-custom.affix .navbar-nav li a.middlebtn {
+    padding-left:9px;padding-right:9px;
+  }
+  .navbar-custom.affix .navbar-nav li a.salir {
+    background-color: #c40202;
   }
   .navbar-custom.affix .navbar-nav li:last-child a {
     padding-right: 0;

@@ -119,7 +119,7 @@ $app->group('/comentario', function () use ($app, $checkRole) {
 
 $app->get('/', 'PortalCtrl:verIndex')->name('shwIndex');
 $app->get('/portal', 'PortalCtrl:verPortal')->name('shwPortal');
-$app->get('/tos', 'PortalCtrl:verTos')->name('shwTos');;
+//$app->get('/tos', 'PortalCtrl:verTos')->name('shwTos');;
 $app->get('/login', $checkNoSession, 'PortalCtrl:verLogin')->name('shwLogin');
 $app->post('/login', $checkNoSession, 'PortalCtrl:login')->name('runLogin');
 $app->post('/logout', 'PortalCtrl:logout')->name('runLogout');
