@@ -1,15 +1,11 @@
 <!-- Sidebar -->
 <div id="sidebar-wrapper">
 	<ul class="sidebar-nav">
-		<br>
-		<li>
-			<a href="{{urlFor('shwIndex')}}"><i class="fa fa-arrow-circle-left fa-2x" style="display:inline;"></i></a>
-		</li>
 		<li class="sidebar-brand text-center" style="height:auto; padding: 10px 10px 0; line-height:normal;">
 			<a href="{{urlFor('shwIndex')}}">
-				<img src="{{baseUrl()}}/assets-ref/img/logo.png" class="img-responsive" alt="">
+<img src="{{baseUrl()}}/assets-ref/img/sf-ref-logo-white.svg" class="img-responsive" style="padding:10px;" alt="">
 			</a>
-			<a href="http://www.virtuagora.org" style="display:inline;">
+			<a href="https://www.virtuagora.org" style="display:inline;">
 				<span style="font-size:9px;color:#FFF">
                         En colaboración con 
                         <img src="{{baseUrl()}}/assets/img/bigwhitelogo.png" style="height:17px;"alt=""/>
@@ -18,14 +14,17 @@
 		</li>
 		<hr>
 		<li>
-			<a href="{{ urlFor('shwModifUsuario') }}">Editar perfil</a>
+			<a href="{{ urlFor('shwModifUsuario') }}" style="font-weight:600;">Editar perfil</a>
 		</li>
 		<li>
-			<a href="{{ urlFor('shwModifClvUsuario') }}">Cambiar clave</a>
+			<a href="{{ urlFor('shwModifClvUsuario') }}" style="font-weight:600;">Cambiar clave</a>
+		</li>
+		<li>
+			<a href="{{urlFor('shwIndex')}}"><i class="fa fa-reply fa-lg" style="display:inline;"></i>&nbsp; Volver</a>
 		</li>
 		<hr>
 		<li>
-			<span style="color:#FFF"><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" style="width:32px; border-radius:20px;margin-right:5px;" alt=""> {{user.nombre}} {{user.apellido}}</span>
+			<span style="color:#FFF;font-weight:400;"><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-rounded" style="width:25px;" alt="">&nbsp;&nbsp;{{user.nombre}} {{user.apellido}}</span>
 		</li>
 	</ul>
 </div>

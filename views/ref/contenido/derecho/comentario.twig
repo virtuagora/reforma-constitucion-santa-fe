@@ -5,7 +5,7 @@
         </a>
      </div>
     <div class="col-xs-10 col-sm-9">
-        <span class="pull-left text-info" style="margin-top:0"><strong>{{ comentario.autor.nombre }} {{ comentario.autor.apellido }}</strong></span>
+        <span class="pull-left text-info" style="margin-top:0;color:#dcdde3;"><strong>{{ comentario.autor.nombre }} {{ comentario.autor.apellido }}</strong></span>
           {% if comentario.autor.patrulla_id != null %}
          <span class="text-warning" data-toggle="tooltip" data-placement="right" data-original-title="Oficial"><i class="fa fa-check fa-fw"></i></span>
         {% endif %}
@@ -28,7 +28,7 @@
             <li><a href="{{urlFor('shwLogin')}}" style="text-decoration:none;"><span class="text-danger" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><b><i class="zmdi zmdi-long-arrow-down"></i></a></b></li>
             {% endif %}  
         </ul>
-        <div id="respComentario-{{comentario.id}}" class="well well" style="display:none">
+        <div id="respComentario-{{comentario.id}}" class="" style="display:none">
             <form class="form-horizontal" action="{{ urlFor('runComentar', {'tipoRaiz': 'comentario', 'idRaiz': comentario.id }) }}" method="POST">
                 <div class="form-group" style="margin-bottom:0">
                     <label class="col-xs-1 text-center"><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-circle" style="width: 25px; margin:0 auto 5px" alt=""></label>

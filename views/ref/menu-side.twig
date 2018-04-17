@@ -1,15 +1,11 @@
 <!-- Sidebar -->
 <div id="sidebar-wrapper">
 	<ul class="sidebar-nav">
-		<br>
-		<li>
-			<a href="{{urlFor('shwIndex')}}"><i class="fa fa-arrow-circle-left fa-2x" style="display:inline;"></i></a>
-		</li>
-		<li class="sidebar-brand text-center" style="height:auto; padding: 10px 10px 0; line-height:normal;">
+	<li class="sidebar-brand text-center" style="height:auto; padding: 10px 10px 0; line-height:normal;">
 			<a href="{{urlFor('shwIndex')}}">
-				<img src="{{baseUrl()}}/assets-ref/img/logo.png" class="img-responsive" alt="">
+<img src="{{baseUrl()}}/assets-ref/img/sf-ref-logo-white.svg" class="img-responsive" style="padding:10px;" alt="">
 			</a>
-			<a href="http://www.virtuagora.org" style="display:inline;">
+			<a href="https://www.virtuagora.org" style="display:inline;">
 				<span style="font-size:9px;color:#FFF">
                         En colaboración con 
                         <img src="{{baseUrl()}}/assets/img/bigwhitelogo.png" style="height:17px;"alt=""/>
@@ -18,14 +14,14 @@
 		</li>
 		<hr>
 		<li>
-			<a href="{{urlFor('shwCrearDerecho')}}">Nuevo <b>Eje</b></a>
+			<a href="{{urlFor('shwCrearDerecho')}}" style="font-weight:600;">Nuevo <b>Eje</b></a>
 		</li>
 		<li>
-			<a href="{{urlFor('shwModificarEjes')}}">Modificar <b>Ejes</b></a>
+			<a href="{{urlFor('shwModificarEjes')}}" style="font-weight:600;">Modificar <b>Ejes</b></a>
 		</li>
 		<hr>
 		<li>
-			<a href="{{ urlFor('shwCrearModerad') }}">Moderadores</a>
+			<a href="{{ urlFor('shwCrearModerad') }}" style="font-weight:600;">Moderadores</a>
 		</li>
 		{#<li>
 			<a href="{{ urlFor('shwCrearImagen') }}">Imagenes</a>
@@ -34,14 +30,17 @@
 			<a href="{{ urlFor('shwAdmAjuste') }}">Ajustes</a>
 		</li>#}
 		<li>
-			<a href="{{ urlFor('shwEstadi') }}">Estadisticas</a>
+			<a href="{{ urlFor('shwEstadi') }}" style="font-weight:600;">Estadisticas</a>
 		</li>
 		<li>
-			<a href="{{ urlFor('shwExportar') }}">Exportar</a>
+			<a href="{{ urlFor('shwExportar') }}" style="font-weight:600;">Exportar</a>
+		</li>
+		<li>
+			<a href="{{urlFor('shwIndex')}}"><i class="fa fa-reply fa-lg" style="display:inline;"></i> Volver</a>
 		</li>
 		<hr>
 		<li>
-			<span style="color:#FFF"><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" style="width:32px; border-radius:20px;margin-right:5px;" alt=""> {{user.nombre}} {{user.apellido}}</span> <span style="color: #efb101"><i class="fa fa-check fa-fw" style="display:inline;"></i></span>
+			<span style="color:#FFF"><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-rounded" style="width:25px;margin-right:5px;" alt=""> {{user.nombre}} {{user.apellido}}</span> <span style="color: #efb101"><i class="fa fa-check fa-fw" style="display:inline;"></i></span>
 		</li>
 	</ul>
 </div>

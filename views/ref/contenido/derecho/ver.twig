@@ -9,93 +9,106 @@
 Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la" />
 	<meta property="og:image" content="" /> {% endblock %}
 {% block body %}
-<header class="titulo">
-	<div class="container">
-		<div class="row text-right">
-			<h1 class="blanco bold">La Constitución de Santa Fe</h1>
-		</div>
-	</div>
-	<img src="{{ baseUrl() }}/assets-ref/img/encabezado-fondo-transp.png" class="medios img-responsive">
-</header>
-<div class="eje-container eje{{derecho.id}}">
+<img src="{{ baseUrl() }}/assets-ref/img/bg1pattern-b.svg" class="hidden-xs hidden-sm hidden-md" style="position: absolute;left: -240px;top: 100px;height: 580px;">
+<img src="{{ baseUrl() }}/assets-ref/img/bg1pattern-b.svg" class="hidden-xs hidden-lg" style="position: absolute;left: -300px;top: 100px;height: 580px;">
+<div class="eje-container" style="padding-bottom:0;">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-sm-7 col-md-6 col-md-offset-1">
-				<a href="{{urlFor('shwIndex')}}" class="btn btn-default"><i class="fa fa-arrow-left fa-fw"></i> Volver Atrás</a>
+<div class="col-xs-12  col-sm-offset-3 col-sm-9 col-md-offset-2 col-md-9">
+<br>
+
+				<a href="{{urlFor('shwIndex')}}" class="button-without-color force-gris" style="font-size:16px; font-weight:500;"><i class="fa fa-arrow-left fa-fw"></i> Volver a todos los ejes</a>
+				<br>
+<br>
+<br>
+				<br>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-sm-7 col-md-6 col-md-offset-1">
-				<h1 class="black grande"><span class="red">0{{derecho.orden}}</span><br><span class="white">{{derecho.titulo}}</span></h1>
-				<div class="descripcion-content">
+<div class="col-xs-12  col-sm-offset-3 col-sm-9 col-md-offset-2 col-md-9" style="border-bottom:3px solid #333;margin-bottom:30px;padding-bottom:10px;">
+				<h1 class="heavy grande gris hidden-xs" style="font-size: 45px;">{{derecho.titulo}}</h1>
+				<h1 class="heavy grande gris hidden-sm hidden-md hidden-lg" style="font-size: 25px;">{{derecho.titulo}}</h1>
+				<br>
+				<br>
+				<div class="clearfix">
+<h1 class="heavy pull-left hidden-xs" style="padding:0; margin-top:0;">Temas orientativos</h1>
+<h3 class="heavy pull-left hidden-sm hidden-md hidden-lg" style="padding:0; margin-top:0;">Temas orientativos</h3>
+				<a href="javascript:showDescriptionBox()" class="button-without-color pull-right" style="padding:0; margin:0;"><i class="fa fa-plus fa-2x"></i></a>
+				</div>
+				<div id="description-box" class="descripcion-content" style="display:none;">
 					{{ derecho.descripcion|bbCode }}
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-5 col-md-4 hidden-xs">
-				<img src="{{ baseUrl() }}/assets-ref/img/manos-fondo-transp.png" class="img-responsive" style="margin: auto; max-height:320px;"
-						alt="">
-			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-md-10 col-md-offset-1">
-				<table class="preguntas table">
+<div class="col-xs-12 col-sm-offset-3 col-sm-9 col-md-offset-2 col-md-9" style="border-bottom:3px solid #333;margin-bottom:30px;padding-bottom:10px;">
+<div class="clearfix">
+  <h1 class="heavy pull-left hidden-xs" style="padding:0; margin-top:0;">Preguntas orientadoras</h1>
+  <h3 class="heavy pull-left hidden-sm hidden-md hidden-lg" style="padding:0; margin-top:0;">Preguntas orientadoras</h3>
+  <a href="javascript:showQuestionsBox()" class="button-without-color pull-right" style="padding:0; margin:0;">
+    <i class="fa fa-plus fa-2x"></i>
+  </a>
+</div>
+<div id="questions-box" style="display:none;">
+				<table>
 					<tbody>
 						<tr>
 							<td>
-								<h3 class="black grey">Algunas preguntas orientativas</h3>
 								{% for seccion in derecho.secciones %}
 								<h5 class="bold">{{seccion.descripcion}}</h5>
 								{% endfor %}
 							</td>
-							<td class="toggle-comentarios" style="max-width:200px; background-color:">
-								<i class="fa fa-comments-o fa-fw"></i><span class="hidden-xs"> ¡Participá!</span>
-							</td>
 						</tr>
 					</tbody>
 				</table>
+<br>
+				<br>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div id="listaComentarios" style="padding:30px 0px;">
+<div id="listaComentarios" style="padding:10px 0px;">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-md-8 col-md-offset-2">
+<div class="col-xs-12 col-sm-offset-3 col-sm-9 col-md-offset-2 col-md-9">
+			<h1 class="heavy grande gris hidden-xs" style="font-size: 40px;">Mirá, opiná, proponé</h1>
+				<h1 class="heavy grande gris hidden-sm hidden-md hidden-lg" style="font-size: 25px;">Mirá, opiná, proponé</h1>
+				<br>
 				<div class="comentario-container">
-					<a href="{{urlFor('shwLogin')}}" class="pull-left">
 						 {% if user is not empty %}
+					<a href="{{urlFor('shwLogin')}}" class="pull-left">
 						<img alt="image" class="img-rounded" src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}">
-						{% else %}
-						<img alt="image" class="img-rounded" src="{{ baseUrl() }}/assets/img/anon64.jpg">
-						{% endif %}
 					</a>
-					<div class="media-body">
+						{% endif %}
+					<div class="media-body" style="font-size: 17px;">
 						{% if user is not empty %}
 						<form action="{{ urlFor('runComentar', {'tipoRaiz': 'seccion' , 'idRaiz': derecho.secciones[0].id}) }}" method="POST">
 							<strong>{{ user.nombre }} {{ user.apellido}}</strong><br>
 							<small class="text-muted">Deje su comentario</small>
-							<textarea id="dejarComentario" name="cuerpo" class="form-control" rows="2" style=""></textarea>
+							<textarea id="dejarComentario" name="cuerpo" class="form-control" rows="2" style="font-size:20px;"></textarea>
 							<br>
 							<div class="pull-right">
-								<button type="submit" class="btn btn-xs btn-success"><i class="fa fa-thumbs-up fa-fw"></i> Enviar</button>
+								<button type="submit" class="button-without-color" style="font-size:24px;"><i class="fa fa-thumbs-up fa-fw"></i> Enviar</button>
 							</div>
 						</form>
 						{% else %}
-						<strong>Usuario anonimo</strong><br>
-						<small class="text-primary">Debe<strong><a href="#"><i class="fa fa-sign-in fa-fw"></i>INICIAR SESION</a></strong> para poder comentar</small>
-						<textarea id="dejarComentario" name="comentario" class="form-control disabled" id="" rows="2" style="" disabled></textarea>
+<div style="border-bottom:3px solid #333;margin-bottom:30px;padding-bottom:10px;">
+<h3 class="black" style="padding:0; margin-top:0;">Debe <span class="force-red">iniciar sesión</span> o registrarse<br>para participar y comentar</h3>
 						<br>
-						<div class="pull-right">
-							<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-primary"><i class="fa fa-sign-in fa-fw"></i> Iniciar sesión</a>
+						<div class="clearfix">
+							<a href="{{urlFor('shwLogin')}}" class="button-without-color pull-right"><i class="fa fa-minus fa-fw"></i> Iniciar sesión</a>
+							<a href="{{urlFor('shwCrearUsuario')}}" class="button-without-color pull-right"><i class="fa fa-minus fa-fw"></i> Registrarse</a>
+						</div>
 						</div>
 						{% endif %}
 					</div>
 				</div>
-				<hr>
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid">
+	<div class="container">
+				<hr>
 		<div class="row">
 			<div class="col-xs-12">
 					{% if derecho.secciones[0].comentarios|length > 0 %}
@@ -108,24 +121,24 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 								<img alt="image" class="img-rounded" src="{{ avatarUrl(comentario.autor.img_tipo, comentario.autor.img_hash, 32) }}">
 							</a>
 							<div class="media-body ">
-								<strong>{{ comentario.autor.es_moderador ? "<i class='fa fa-shield fa-fw'' title='Moderador'></i>" }} {{ comentario.autor.nombre }} {{ comentario.autor.apellido }}</strong> hizo un comentario
 								{% if user and (user.es_moderador) %}
 									<a href="javascript:eliminarComentario({{comentario.id}})" class="btn btn-xs btn-warning pull-right" style="margin-left:5px;" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar" ><i class="fa fa-times"></i></a>
 									{% endif %}
+								<span style="color:#555;"><strong>{{ comentario.autor.es_moderador ? "<i class='fa fa-shield fa-fw'' title='Moderador'></i>" }} {{ comentario.autor.nombre }} {{ comentario.autor.apellido }}</strong> hizo un comentario</span>
 								<br>
 								<small class="text-muted">{{ comentario.created_at|date("d-M-Y") }}</small>
-								<div class="well well-sm" style="margin-top:5px; margin-bottom:5px;">
+								<div class="" style="margin-top:5px; margin-bottom:5px; font-weight: 500; font-size: 12px;line-height: 1.3rem;">
 									{{ comentario.cuerpo|nl2br }}
 								</div>
-								<div class="text-right" style="margin-top:3px;">
+								<div class="text-right" style="margin-top:8px;">
 									{% if user is not empty %}
-									<a href="javascript:votarComentario({{comentario.id}},1)" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.karma}}</b></a>
-									<a href="javascript:votarComentario({{comentario.id}},-1)" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
-									<a href="javascript:verBoxResponder({{comentario.id}})" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Responder" ><i class="fa fa-reply"></i> <b>{{comentario.respuestas|length}}</b></a>
+									<a href="javascript:votarComentario({{comentario.id}},1)" class="button-without-color" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.karma}}</b></a>
+									<a href="javascript:votarComentario({{comentario.id}},-1)" class="button-without-color" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
+									<a href="javascript:verBoxResponder({{comentario.id}})" class="button-without-color" data-toggle="tooltip" data-placement="bottom" data-original-title="Responder" ><i class="fa fa-minus"></i> <b>Responder {#comentario.respuestas|length#}</b></a>
 									{% else %}
-<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.karma}}</b></a>
-									<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
-									<a href="{{urlFor('shwLogin')}}" class="btn btn-xs btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Responder" ><i class="fa fa-reply"></i> <b>{{comentario.respuestas|length}}</b></a>
+<a href="{{urlFor('shwLogin')}}" class="button-without-color" data-toggle="tooltip" data-placement="bottom" data-original-title="Me gusta"><i class="fa fa-thumbs-up"></i> <b>{{comentario.karma}}</b></a>
+									<a href="{{urlFor('shwLogin')}}" class="button-without-color" data-toggle="tooltip" data-placement="bottom" data-original-title="No me gusta"><i class="fa fa-thumbs-up fa-flip-vertical fa-flip-horizontal"></i></a>									
+									<a href="{{urlFor('shwLogin')}}" class="button-without-color" data-toggle="tooltip" data-placement="bottom" data-original-title="Responder" ><i class="fa fa-minus"></i> <b>Responder {#comentario.respuestas|length#}</b></a>
 									{% endif %}
 								</div>
 							</div>
@@ -138,10 +151,10 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 								</a>
 								<div class="media-body">
 										<strong>{{ user.es_moderador ? "<i class='fa fa-shield fa-fw'' title='Moderador'></i>" }} {{ user.nombre }} {{ user.apellido}}</strong><br>
-										<small class="text-muted">en respuesta a {{ respuesta.autor.nombre }} {{ respuesta.autor.apellido }}</small>
+										<small class="text-muted">en respuesta a {{ comentario.autor.nombre }} {{ comentario.autor.apellido }}</small>
 										<textarea name="cuerpo" class="form-control respuesta" rows="1" style=""></textarea>
 										<div class="pull-right" style="margin-bottom:8px;">
-											<button type="submit" class="btn btn-xs btn-success"><i class="fa fa-check fa-fw"></i> Enviar</button>
+											<button type="submit" class="button-without-color"><i class="fa fa-check fa-fw"></i> Enviar</button>
 										</div>
 								</div>
 							</div>
@@ -166,7 +179,7 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 									{% endif %}
 											</div>
 									
-										<strong>{{ respuesta.autor.es_moderador ? "<i class='fa fa-shield fa-fw'' title='Moderador'></i>" }} {{ respuesta.autor.nombre }} {{ respuesta.autor.apellido }}</strong><i> <span class="respuesta">{{ respuesta.cuerpo|nl2br }}</span></i>
+										<strong>{{ respuesta.autor.es_moderador ? "<i class='fa fa-shield fa-fw'' title='Moderador'></i>" }} <span style="color:#9e9e9e;">{{ respuesta.autor.nombre }} {{ respuesta.autor.apellido }}</span></strong><i> <span class="respuesta" style="margin-top:5px; margin-bottom:5px; font-weight: 500; font-size: 12px; color:#9e9e9e;">{{ respuesta.cuerpo|nl2br }}</span></i>
 								</div>
 							</div>
 						{% endfor %}
@@ -255,5 +268,12 @@ $( "textarea.respuesta" ).keydown(function() {
         $('#eliminarComentario').find('input[name="id"]').val(id)
         $('#eliminarComentario').submit();
     }
-		
+
+		var showDescriptionBox = function(){
+			$('#description-box').slideToggle();
+		}
+		var showQuestionsBox = function(){
+			$('#questions-box').slideToggle();
+		}
+
 </script> {% endblock scripts %}

@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Comentarios</h4>
             </div>
             <div class="modal-body">
-                <div class="well">
+                <div class="">
                 {% if user is not null %}
                     <form class="form-horizontal" action="{{ urlFor('runComentar', {'tipoRaiz': 'seccion' , 'idRaiz': seccion.id}) }}" method="POST">
                         <div class="form-group" style="margin-bottom:0">

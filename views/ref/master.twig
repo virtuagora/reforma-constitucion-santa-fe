@@ -1,185 +1,229 @@
 <!DOCTYPE html>
 <html lang="es-ES">
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<link rel="shortcut icon" href="{{ baseUrl() }}/assets-ref/img/favicon/16.png" type="image/x-icon" />
-	<!-- For iPhone -->
-	<link rel="apple-touch-icon-precomposed" href="{{ baseUrl() }}/assets-ref/img/favicon/57.png">
-	<!-- For iPhone 4 Retina display -->
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ baseUrl() }}/assets-ref/img/favicon/57.png">
-	<!-- For iPad -->
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ baseUrl() }}/assets-ref/img/favicon/72.png">
-	<!-- For iPad Retina display -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ baseUrl() }}/assets-ref/img/favicon/144.png"> {% block opengraph %}
-	<meta property="og:url" content="{{ baseUrl() }}" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Bases para la Reforma" />
-	<meta property="og:site_name" content="Bases para la Reforma" />
-	<meta property="og:description" content="La Constitución es la ley fundamental de un Estado, la de más alto rango en el ordenamiento político y jurídico, y con la cual deben guardar coherencia el resto de las leyes.
-Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la" />
-	<meta property="og:image" content="" /> {% endblock %}
-	<title>{% block titulo %}{% endblock titulo %} - Bases para la Reforma</title>
-	<!-- Bootstrap -->
-	{% block linkhead %}{% endblock %}
-	<link href="{{ baseUrl() }}/assets-ref/css/virtuagora-ref.css" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="shortcut icon" href="{{ baseUrl() }}/assets-ref/img/favicon/16.png" type="image/x-icon"/>
+    <!-- For iPhone -->
+    <link rel="apple-touch-icon-precomposed" href="{{ baseUrl() }}/assets-ref/img/favicon/57.png">
+    <!-- For iPhone 4 Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ baseUrl() }}/assets-ref/img/favicon/57.png">
+    <!-- For iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ baseUrl() }}/assets-ref/img/favicon/72.png">
+    <!-- For iPad Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ baseUrl() }}/assets-ref/img/favicon/144.png">
+    {% block opengraph %}
+      <meta property="og:url" content="{{ baseUrl() }}"/>
+      <meta property="og:type" content="website"/>
+      <meta property="og:title" content="Bases para la Reforma"/>
+      <meta property="og:site_name" content="Bases para la Reforma"/>
+      <meta property="og:description" content="La Constitución es la ley fundamental de un Estado, la de más alto rango en el ordenamiento político y jurídico, y con la cual deben guardar coherencia el resto de las leyes.
+Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"/>
+      <meta property="og:image" content=""/>
+    {% endblock %}
+    <title>
+      {% block titulo %}{% endblock titulo %}
+      - Bases para la Reforma</title>
+    <!-- Bootstrap -->
+    {% block linkhead %}{% endblock %}
+    <link href="{{ baseUrl() }}/assets-ref/css/virtuagora-ref.css" rel="stylesheet">
+  </head>
 
-<body data-spy="scroll">
-	<div class="wrapper">
-		<div class="container">
-			<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom affix">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header page-scroll">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span><i class="fa fa-bars fa-2x"></i>
-                </button>
-						<a class="navbar-brand blanco" href="http://basesparalareforma.digital/"><img src="{{ baseUrl() }}/assets-ref/img/logo.png" class="img-responsive" alt=""></a>
-						<a class="navbar-brand negro" href="http://basesparalareforma.digital/"><img src="{{ baseUrl() }}/assets-ref/img/logo2.png" class="img-responsive" alt=""></a>
-					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav navbar-right">
-								<li class="page-scroll">
-								<a href="http://basesparalareforma.digital/">Inicio</a>
-							</li>
-							<li class="page-scroll dropdown hidden-xs">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Otro links <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-							<li class="page-scroll">
-								<a href="http://basesparalareforma.digital/antecedentes">Antecedentes</a>
-							</li>
-							<li class="page-scroll">
-								<a href="http://basesparalareforma.digital/necesidad-de-la-reforma/">Necesidad de la Reforma</a>
-							</li>
-							<li class="page-scroll">
-								<a href="http://basesparalareforma.digital/instancias-de-participacion/">Antecedentes</a>
-							</li>
-							<li class="page-scroll">
-								<a href="http://basesparalareforma.digital/documentacion/">Documentos</a>
-							</li>
-							<li class="page-scroll">
-								<a href="http://basesparalareforma.digital/novedades/">Novedades</a>
-							</li>
-								</ul>
-							</li>
-							<li class="page-scroll">
-								<a href="{{urlFor('shwIndex')}}" style="font-weight:700;">Ejes</a>
-							</li>
-							{% if user is not empty %}
-							{% if user and (user.es_moderador == 1) %}
-							<li class="page-scroll">
-								<a href="{{urlFor('shwIndexAdmin')}}"  class="middlebtn" ><i class="fa fa-cog fa-lg fa-fw"></i> <span class="hidden-md hidden-sm hidden-lg">Ajustes</span></a>
-							</li>
-							{% endif %}
-							<li class="page-scroll">
-								<a href="{{urlFor('shwModifUsuario')}}" class="middlebtn" ><i class="fa fa-pencil fa-fw fa-lg"></i> <span class="hidden-md hidden-sm hidden-lg">Editar perfil</span></a>
-							</li>
-							<li class="page-scroll">
-								<a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}" class="coloreado middlebtn" ><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-rounded" style="width:21px;margin-right:5px">{{
-									user.nombre }}
-								</a>
-							</li>
-							<li class="page-scroll">
-									<a href="javascript:void(0)" onclick="document.getElementById('form-salir').submit();" class="coloreado salir"><span class="hidden-xs">&nbsp;&nbsp;</span><i class="fa fa-sign-out fa-fw fa-lg"></i><span class="hidden-xs">&nbsp;&nbsp;</span><span class="hidden-md hidden-sm hidden-lg">Salir</span></a>
-								<form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST">
-								</form>
-							</li>
-							{% else %}
-							<li class="page-scroll">
-								<a href="{{urlFor('shwLogin')}}" class="coloreado">&nbsp;&nbsp;<i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión &nbsp;&nbsp;</a>
-							</li>
-							{% endif %}
-						</ul>
-						
-					</div>
-					<!-- /.navbar-collapse -->
-				</div>
-				<!-- /.container-fluid -->
-			</nav>
-			<!--HEADER-->
-		</div>
-		<!-- container-->
-		<!-- body -->
-		{% block body %}{% endblock %}
-		<div class="push"></div>
-	</div>
-	<div class="footer">
-		<div style="
-    height: 216px;
-    padding-top: 60px;
-">		
-		<h1><a href="https://twitter.com/intent/tweet?hashtags=BasesparalaReforma%2C&amp;original_referer=http%3A%2F%2Fbasesparalareforma.digital%2Fantecedentes%2F&amp;ref_src=twsrc%5Etfw&amp;text=Yo%20participo%20de%20las%20%23BasesparalaReforma%2C%20una%20Constituci%C3%B3n%20para%20Santa%20Fe.%20Sumate%20en&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fbasesparalareforma.digital" target="_blank">#BasesparalaReforma</a></h1>
-			
-		</div>
-			<footer id="footer" class="fusion-footer-copyright-area fusion-footer-copyright-center" style="
-    background-color: #282a2b;
-    padding-top: 18px;
-    padding-bottom: 16px;
-    color: #8c8989;
-    border-top: 1px solid #4b4c4d;
-    "><div class="fusion-row"><div class="fusion-copyright-content"><div class="fusion-copyright-notice" style="padding-bottom: 0px;"><div><span class="hidden-xs hidden-sm">Desarrollado con Software Libre sobre </span><a href="https://es.wordpress.org/" target="_blank">WordPress 4.6.1</a> y <a href="http://virtuagora.org/" target="_blank">Virtuagora 1.0</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/virtuagora/virtuagora" target="_blank"><img style="max-width: 20px;" src="http://basesparalareforma.digital/wp-content/uploads/2016/12/github-logo.png"></a><span class="hidden-xs hidden-sm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="/terminos-y-condiciones" target="_self">TÉRMINOS Y CONDICIONES</a></div></div><div class="fusion-social-links-footer" style="display: none;"></div></div></div></footer>				
-	</div>
-	{% if flash['success'] is defined %}
-	<div id="modal-success" class="modal fade " tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header" style="background-color: #8BC34A;color: #FFF;border-bottom: 0;">
-					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
-					<h4>{{ flash.success|capitalize }}</h4>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endif %} {% if flash['errors'] is defined %}
-	<div id="modal-errors" class="modal fade " tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header" style="background-color: #ff5722;color: #FFF;border-bottom: 0;">
-					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
-					<ul class="list-unstyled">
-						{% for error in flash['errors'] %}
-						<h4> {{ error|capitalize }}</h4>
-						{% endfor %}
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endif %} {% if flash['warning'] is defined %}
-	<div id="modal-warning" class="modal fade " tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header" style="background-color: #FFC107;color: #000;border-bottom: 0;">
-					<button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button> {{ flash.warning|capitalize
+  <body data-spy="scroll">
+    <div class="wrapper">
+<div class="container" style="position: relative;z-index: 2000;">
+  <div class="row text-right the-header-links">
+    {% if user is not empty %}
+<a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}" class="header-link"><img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-rounded" style="margin-right:10px;">{{ user.nombre|lower}}</a>
+      <a href="{{urlFor('shwModifUsuario')}}" class="header-link"><i class="fa fa-pencil fa-fw fa-lg"></i></a>
+      <a href="javascript:void(0)" onclick="document.getElementById('form-salir').submit();" class="header-link"><i class="fa fa-sign-out fa-fw fa-lg"></i></a>
+    {% else %}
+      <a href="{{urlFor('shwLogin')}}" class="header-link">participá <i class="fa fa-sign-in fa-fw"></i></a>
+    {% endif %}
+<a href="http://basesparalareforma.digital/voces-ciudadanas" class="header-link">voces ciudadanas</a>
+<a href="http://basesparalareforma.digital/la-reforma" class="header-link">la reforma</a>
+    <a href="http://basesparalareforma.digital/noticias" class="header-link">noticias</a>
+    <a href="http://basesparalareforma.digital/documentos" class="header-link">documentos</a>
+{% if user and (user.es_moderador == 1) %}
+<a href="{{urlFor('shwIndexAdmin')}}" class="header-link">
+      <i class="fa fa-cog fa-lg fa-fw"></i>
+    </a>
+{% endif %}
+  </div>
+</div>
+      <div class="container">
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom affix">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars fa-2x"></i>
+              </button>
+              <a class="navbar-brand blanco" href="http://basesparalareforma.digital/"><img src="{{ baseUrl() }}/assets-ref/img/sf-ref-logo.svg" class="img-responsive" alt=""></a>
+              <a class="navbar-brand negro" href="http://basesparalareforma.digital/"><img src="{{ baseUrl() }}/assets-ref/img/sf-ref-logo.svg" class="img-responsive" alt=""></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+{% if user is not empty %}
+  {% if user and (user.es_moderador == 1) %}
+    <li class="page-scroll">
+<a href="{{urlFor('shwIndexAdmin')}}" class="middlebtn hidden-sm">
+        <i class="fa fa-cog fa-lg fa-fw"></i>
+        <span class="hidden-md hidden-sm hidden-lg">Ajustes</span></a>
+    </li>
+  {% endif %}
+  <li class="page-scroll">
+    <a href="{{urlFor('shwModifUsuario')}}" class="middlebtn hidden-sm">
+      <i class="fa fa-pencil fa-fw fa-lg"></i>
+      <span class="hidden-md hidden-sm hidden-lg">Editar perfil</span></a>
+  </li>
+  <li class="page-scroll">
+    <a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}" class="coloreado middlebtn">
+    <img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-rounded" style="width:21px;margin-right:5px">
+    <span class="hidden-sm">{{user.nombre|lower}}</span>
+    </a>
+  </li>
+  <li class="page-scroll">
+    <a href="javascript:void(0)" onclick="document.getElementById('form-salir').submit();" class="coloreado salir">
+      <span class="hidden-xs">&nbsp;&nbsp;</span>
+      <i class="fa fa-sign-out fa-fw fa-lg"></i>
+      <span class="hidden-xs">&nbsp;&nbsp;</span><span class="hidden-md hidden-sm hidden-lg">Salir</span></a>
+    <form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST"></form>
+  </li>
+{% else %}
+  <li class="page-scroll">
+    <a href="{{urlFor('shwLogin')}}">participá
+      <i class="fa fa-sign-in fa-fw"></i>
+    </a>
+  </li>
+{% endif %}
+<li class="page-scroll">
+  <a href="{{urlFor('shwIndex')}}">ejes</a>
+</li>
+<li class="page-scroll">
+<a href="http://basesparalareforma.digital/voces-ciudadanas">voces ciudadanas</a>
+</li>
+<li class="page-scroll">
+  <a href="http://basesparalareforma.digital/la-reforma">la reforma</a>
+</li>
+<li class="page-scroll">
+  <a href="http://basesparalareforma.digital/noticias">noticias</a>
+</li>
+<li class="page-scroll">
+  <a href="http://basesparalareforma.digital/documentos">documentos</a>
+</li>
+              </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container-fluid -->
+        </nav>
+        <!--HEADER-->
+      </div>
+      <!-- container-->
+      <!-- body -->
+      {% block body %}{% endblock %}
+      <div class="push"></div>
+    </div>
+    <div class="footer">
+      <div style="height: 219px;padding-top: 60px;position: relative;overflow: hidden;">
+        <h1>
+          <a href="https://twitter.com/intent/tweet?hashtags=lostiemposcambian%2C&amp;original_referer=http%3A%2F%2Fbasesparalareforma.digital%2Fantecedentes%2F&amp;ref_src=twsrc%5Etfw&amp;text=Yo%20participo%20de%20las%20%23BasesparalaReforma%2C%20una%20Constituci%C3%B3n%20para%20Santa%20Fe.%20Sumate%20en&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fbasesparalareforma.digital" target="_blank">#lostiemposcambian</a>
+        </h1>
+        <img src="{{ baseUrl() }}/assets-ref/img/bg2pattern.svg" class="hidden-xs" style="position: absolute;right: -96px;bottom: -226px;">
+        <img src="{{ baseUrl() }}/assets-ref/img/bg2pattern.svg" class="hidden-sm hidden-md hidden-lg" style="position: absolute;right: 0;bottom: -104px;height: 190px;">
+      </div>
+      <footer id="footer" class="fusion-footer-copyright-area fusion-footer-copyright-center" style="background-color: #003e5a;padding-top: 18px;padding-bottom: 17px;color: #FFF;">
+        <div class="fusion-row">
+          <div class="fusion-copyright-content">
+            <div class="fusion-copyright-notice container" style="padding-bottom: 0px;">
+              <div class="clearfix" style="font-weight: 500;">
+                <span class="pull-left">© 2018 Bases para la reforma | Todos los derechos reservados
+                  <a href="https://es.wordpress.org/" target="_blank">WordPress 4.6.1</a>
+                  y
+                  <a href="https://virtuagora.org/" target="_blank">Virtuágora</a>
+                  <i class="fa fa-github"></i>
+                </a>
+              </span>
+              <a href="/terminos-y-condiciones" class="pull-right" target="_self">TÉRMINOS Y CONDICIONES</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  {% if flash['success'] is defined %}
+    <div id="modal-success" class="modal fade " tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #8BC34A;color: #FFF;border-bottom: 0;">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-times"></i>
+            </button>
+            <h4>{{ flash.success|capitalize }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if flash['errors'] is defined %}
+    <div id="modal-errors" class="modal fade " tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #ff5722;color: #FFF;border-bottom: 0;">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-times"></i>
+            </button>
+            <ul class="list-unstyled">
+              {% for error in flash['errors'] %}
+                <h4>
+                  {{ error|capitalize }}</h4>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if flash['warning'] is defined %}
+    <div id="modal-warning" class="modal fade " tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #FFC107;color: #000;border-bottom: 0;">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-times"></i>
+            </button>
+            {{ flash.warning|capitalize
 					}}
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endif %}
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="{{ baseUrl() }}/assets-ref/js/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="{{ baseUrl() }}/assets-ref/js/bootstrap.min.js"></script>
-	<script src="{{ baseUrl() }}/assets-ref/js/main.js"></script>
-	<script>
-		$(document).ready(function() {
-			{% if flash['success'] is defined %}
-				$('#modal-success').modal('show');
-			{% endif %} {% if flash['errors'] is defined %}
-				$('#modal-errors').modal('show');
-			{% endif %} {% if flash['warning'] is defined %}
-				$('#modal-warning').modal('show');
-			{% endif %}
-		});
-	</script>
-	<!--=======================-->
-	{% block scripts %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="{{ baseUrl() }}/assets-ref/js/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{ baseUrl() }}/assets-ref/js/bootstrap.min.js"></script>
+  <script src="{{ baseUrl() }}/assets-ref/js/main.js"></script>
+  <script>
+    $(document).ready(function () {
+      {% if flash['success'] is defined %}
+        $('#modal-success').modal('show');
+      {% endif %}{% if flash['errors'] is defined %}
+        $('#modal-errors').modal('show');
+      {% endif %}{% if flash['warning'] is defined %}
+        $('#modal-warning').modal('show');
+      {% endif %}
+    });
+  </script>
+  <!--=======================-->
+  {% block scripts %}{% endblock %}
 </body>
 
 </html>
