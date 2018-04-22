@@ -77,8 +77,12 @@ $checkRole = function ($role) use ($app) {
     };
 };
 
+// Prepare dispatcher
 // $app->get('/test', function () use ($app) {
-//     $app->render('ref/registro/registro-exito.twig',[]);
+//     // $req = $app->request;
+//     // $uri = $req->headers->get('x-forwarded-host')?: $req->getUrl();
+//     // var_dump($uri);
+//     $app->render('ref/test.twig');
 // });
 
 $app->group('/eje', function () use ($app, $checkRole) {
@@ -143,4 +147,10 @@ $app->group('/perfil', function () use ($app, $checkRole) {
     $app->post('/cambiar-clave', $checkRole('usr'), 'UsuarioCtrl:cambiarClave')->name('runModifClvUsuario');
 });
 
-// $app->get('/testemail', 'PortalCtrl:testEmail');
+$app->get('/testemail', function () use ($app) {
+    $headers = "From: La Reforma Santa Fe <noreply@basesparalareforma.digital>\r\n";
+    $to = 'guillermocroppi@gmail.com';
+    $subject = 'Confirma tu registro';
+    $message = $this->view->fetch('email/email.twig');
+    mail($to, $subject, $message, $headers);
+});

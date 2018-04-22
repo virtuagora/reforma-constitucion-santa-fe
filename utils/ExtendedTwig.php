@@ -29,7 +29,8 @@ class ExtendedTwig extends Twig_Extension {
 
     public function getFilters() {
         return array(
-            new Twig_SimpleFilter('bbCode', array($this, 'bbCodeFilter'), array('is_safe' => array('html')))
+            new Twig_SimpleFilter('bbCode', array($this, 'bbCodeFilter'), array('is_safe' => array('html'))),
+            new Twig_SimpleFilter('clickableLinks', [$this, 'clickableLinksFilter'], ['is_safe' => ['html']])
         );
     }
 
@@ -64,6 +65,11 @@ class ExtendedTwig extends Twig_Extension {
 
     public function site($url, $withUri = true, $appName = 'default') {
         return $this->base($withUri, $appName) . '/' . ltrim($url, '/');
+    }
+
+    public function clickableLinksFilter($str) {
+        $url = '/([--:\w?@%&+~#=]*\.[a-z]{2,4}\/{0,2})((?:[?&](?:\w+)=(?:\w+))+|[--:\w?@%&+~#=]+)?/';
+        return preg_replace($url, '<a href="$0" target="_blank">$0</a>', $str);
     }
 
     public function base($withUri = true, $appName = 'default') {

@@ -1,21 +1,21 @@
 <?php use Augusthur\Validation as Validate;
 
 class ComentarioCtrl extends RMRController {
-
+    
     protected $mediaTypes = ['json'];
     protected $properties = ['id', 'comentable_type', 'comentable_id', 'created_at', 'autor_id'];
-
+    
     public function queryModel($meth, $repr) {
         return Comentario::query();
     }
-
+    
     public function comentar($tipoRaiz, $idRaiz) {
         $vdt = new Validate\Validator();
         $vdt->addRule('idRaiz', new Validate\Rule\NumNatural())
-            ->addRule('tipoRaiz', new Validate\Rule\InArray(['Seccion', 'Comentario']))
-            ->addRule('cuerpo', new Validate\Rule\MinLength(4))
-            ->addRule('cuerpo', new Validate\Rule\MaxLength(4096))
-            ->addFilter('tipoRaiz', 'ucfirst');
+        ->addRule('tipoRaiz', new Validate\Rule\InArray(['Seccion', 'Comentario']))
+        ->addRule('cuerpo', new Validate\Rule\MinLength(4))
+        ->addRule('cuerpo', new Validate\Rule\MaxLength(4096))
+        ->addFilter('tipoRaiz', 'ucfirst');
         $req = $this->request;
         $data = array_merge($req->post(), ['idRaiz' => $idRaiz, 'tipoRaiz' => $tipoRaiz]);
         if (!$vdt->validate($data)) {
@@ -35,13 +35,13 @@ class ComentarioCtrl extends RMRController {
         $raiz->contenido()->increment('puntos', 3);
         $autor->increment('puntos', 5);
         $this->flash('success', 'Su comentario fue enviado exitosamente.');
-        $this->redirect($req->getReferrer());
+        $this->redirect(explode('?', $req->getReferrer())[0].'?event=newComment');
     }
-
+    
     public function votar($idCom) {
         $vdt = new Validate\Validator();
         $vdt->addRule('idCom', new Validate\Rule\NumNatural())
-            ->addRule('valor', new Validate\Rule\InArray(array(-1, 1)));
+        ->addRule('valor', new Validate\Rule\InArray(array(-1, 1)));
         $req = $this->request;
         $data = array_merge(array('idCom' => $idCom), $req->post());
         if (!$vdt->validate($data)) {
@@ -50,7 +50,7 @@ class ComentarioCtrl extends RMRController {
         $usuario = $this->session->getUser();
         $comentario = Comentario::findOrFail($idCom);
         $voto = VotoComentario::firstOrNew(array('comentario_id' => $comentario->id,
-                                                 'usuario_id' => $usuario->id));
+        'usuario_id' => $usuario->id));
         if (!$voto->exists) {
             $voto->valor = $vdt->getData('valor');
             $voto->save();
@@ -60,9 +60,9 @@ class ComentarioCtrl extends RMRController {
             throw new TurnbackException('No puede votar dos veces el mismo comentario.');
         }
         $this->flash('success', 'Su voto fue registrado exitosamente.');
-        $this->redirect($req->getReferrer());
+        $this->redirect(explode('?', $req->getReferrer())[0].'?event=voteComment');
     }
-
+    
     public function eliminar() {
         $req = $this->request;
         $vdt = new Validate\QuickValidator([$this, 'notFound']);

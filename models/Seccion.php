@@ -2,7 +2,7 @@
 
 class Seccion extends Eloquent {
     protected $table = 'secciones';
-    protected $visible = ['id', 'descripcion', 'comentarios'];
+    protected $visible = ['id', 'descripcion', 'comentarios','derecho'];
     protected $with = ['comentarios'];
 
     public function derecho() {

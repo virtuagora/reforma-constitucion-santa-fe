@@ -15,80 +15,217 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ baseUrl() }}/assets-ref/img/favicon/72.png">
 	<!-- For iPad Retina display -->
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ baseUrl() }}/assets-ref/img/favicon/144.png">
-	<meta property="og:title" content="Inicio" />
-	<meta property="og:type" content="webpage" />
-	<meta property="og:url" content="http://lareformasantafe.digital/" />
-	<meta property="og:site_name" content="Bases para la Reforma" />
-	<meta property="og:description" content="Nuestra Constitución 
-La Constitución es la ley fundamental de un Estado, la de más alto rango en el ordenamiento político y jurídico, y con la cual deben guardar coherencia el resto de las leyes.
-Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la" />
-	<meta property="og:image" content="http://lareformasantafe.digital/wp-content/uploads/2016/08/logo2.png" />
-	<title>{% block titulo %}{% endblock titulo %} - Bases para la Reforma</title>
+{% block opengraph %}
+  <meta content="http://lareformasantafe.digital/participa/public" property="og:url"/>
+  <meta content="website" property="og:type"/>
+  <meta content='Los tiempos cambian - La Reforma Santa Fe' property="og:title"/>
+  <meta content="Los tiempos cambian. Es tiempo de reforma, de debate público y fundamentalmente de participación ciudadana. No sólo cambiaron muchas cosas, sino que conquistamos un montón de derechos. Que estén en nuestra Constitución, significa no perderlos en el futuro." property="og:description"/>
+  <meta content="Los tiempos cambian. Es tiempo de reforma, de debate público y fundamentalmente de participación ciudadana. No sólo cambiaron muchas cosas, sino que conquistamos un montón de derechos. Que estén en nuestra Constitución, significa no perderlos en el futuro." name="description"/>
+  <meta name="google" content="notranslate"/>
+  <meta content="{{ baseUrl() }}/assets-ref/img/sta-fe-refomr-aimg.jpg" property="og:image"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="@laReformaSF" name="twitter:site"/>
+  <meta content="@laReformaSF" name="twitter:creator"/>
+{% endblock %}
+	<title>Error - Bases para la Reforma</title>
 
 	<!-- Bootstrap -->
-	{% block linkhead %}{% endblock %}
+
 	<link href="{{ baseUrl() }}/assets-ref/css/virtuagora-ref.css" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-73061346-11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-73061346-11');
+</script>
+  <script>
+    gtag('event', 'errorInterno',{
+      'value': '{{mensaje}}'
+    });
+  </script>
 </head>
-<body data-spy="scroll">
-	<div class="wrapper" style="background-color:#562d2d">
-		<div class="container">
-			<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom affix">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header page-scroll">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-						<a class="navbar-brand blanco" href="http://lareformasantafe.digital/"><img src="{{ baseUrl() }}/assets-ref/img/logo.png" class="img-responsive" alt=""></a>
-						<a class="navbar-brand negro" href="#page-top"><img src="{{ baseUrl() }}/assets-ref/img/logo2.png" class="img-responsive" alt=""></a>
-					</div>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav navbar-right">
-							<li class="hidden active">
-								<a href="#page-top"></a>
-							</li>
-							<li class="page-scroll">
-								<a href="#about">Ejes</a>
-							</li>
-							<li class="page-scroll">
-								<a href="#contact"><i class="fa fa-sign-in fa-fw"></i> Iniciar Sesión</a>
-							</li>
-						</ul>
-					</div>
-					<!-- /.navbar-collapse -->
-				</div>
-				<!-- /.container-fluid -->
-			</nav>
-
-			
-		</div>
-		<!-- container-->
-		<!-- body -->
-		<div class="container">
-            <div class="row text-center" style="padding: 150px 15px 20px;">
-                <h1 class="black blanco grande">
-                    Error Interno
-                </h1>
-                <p style="color:#FFF;">{{ mensaje }}</p>
-                <a href="{{urlFor('shwIndex')}}" class="btn btn-primary btn-lg" style="font-size:30px;"><i class="fa fa-home"></i></a>
-            </div>
+ <body data-spy="scroll" {% if body_class is defined %} class='{{ body_class }}' {% endif %}>
+    <div class="wrapper">
+      <nav id="mainNav" class="navbar navbar-default navbar-custom affix" style="width: 100%;position: relative;margin-bottom:0;border-radius: 0">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-bars fa-2x"></i>
+            </button>
+            <a class="navbar-brand blanco" href="http://lareformasantafe.digital/"><img src="{{ baseUrl() }}/assets-ref/img/sf-ref-logo-grey.svg" class="img-responsive" alt=""></a>
+            <a class="navbar-brand negro" href="http://lareformasantafe.digital/"><img src="{{ baseUrl() }}/assets-ref/img/sf-ref-logo-grey.svg" class="img-responsive" alt=""></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+{% if user is not empty %}
+  {% if user and(user.es_moderador == 1) %}
+    <li class="page-scroll">
+      <a href="{{urlFor('shwIndexAdmin')}}" class="middlebtn hidden-sm">
+        <i class="fa fa-cog fa-lg fa-fw"></i>
+        <span class="hidden-md hidden-sm hidden-lg">Ajustes</span></a>
+    </li>
+  {% endif %}
+  <li class="page-scroll">
+    <a href="{{urlFor('shwModifUsuario')}}" class="middlebtn hidden-sm">
+      <i class="fa fa-pencil fa-fw fa-lg"></i>
+      <span class="hidden-md hidden-sm hidden-lg">Editar perfil</span></a>
+  </li>
+  <li class="page-scroll">
+    <a href="{{urlFor('shwUsuario', {'idUsu': user.id})}}" class="coloreado middlebtn">
+      <img src="{{ avatarUrl(user.img_tipo, user.img_hash, 32) }}" class="img-rounded" style="width:21px;margin-right:5px">
+      <span class="hidden-sm">{{user.nombre|lower}}</span>
+    </a>
+  </li>
+  <li class="page-scroll">
+    <a href="javascript:void(0)" onclick="document.getElementById('form-salir').submit();" class="coloreado salir">
+      <span class="hidden-xs">&nbsp;&nbsp;</span>
+      <i class="fa fa-sign-out fa-fw fa-lg"></i>
+      <span class="hidden-xs">&nbsp;&nbsp;</span><span class="hidden-md hidden-sm hidden-lg">Salir</span></a>
+    <form id="form-salir" action="{{ urlFor('runLogout') }}" method="POST"></form>
+  </li>
+{% else %}
+  <li class="page-scroll">
+    <a href="{{urlFor('shwLogin')}}">participá
+      <i class="fa fa-sign-in fa-fw"></i>
+    </a>
+  </li>
+{% endif %}
+<li class="page-scroll">
+  <a href="{{urlFor('shwIndex')}}">ejes</a>
+</li>
+<li class="page-scroll">
+  <a href="http://lareformasantafe.digital/voces-ciudadanas">voces ciudadanas</a>
+</li>
+<li class="page-scroll">
+  <a href="http://lareformasantafe.digital/la-reforma">la reforma</a>
+</li>
+<li class="page-scroll">
+  <a href="http://lareformasantafe.digital/noticias">noticias</a>
+</li>
+<li class="page-scroll">
+  <a href="http://lareformasantafe.digital/documentos">documentos</a>
+</li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
         </div>
-
-
-		<div class="push"></div>
-	</div>
-	</div>
-	<div class="footer">
-		<h1><a href="https://twitter.com/intent/tweet?hashtags=BasesparalaReforma%2C&amp;original_referer=http%3A%2F%2Fbasesparalareforma.digital%2Fantecedentes%2F&amp;ref_src=twsrc%5Etfw&amp;text=Yo%20participo%20de%20las%20%23BasesparalaReforma%2C%20una%20Constituci%C3%B3n%20para%20Santa%20Fe.%20Sumate%20en&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fbasesparalareforma.digital" target="_blank">#BasesparalaReforma</a></h1>
-	</div>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="{{ baseUrl() }}/assets-ref/js/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="{{ baseUrl() }}/assets-ref/js/bootstrap.min.js"></script>
-	<script src="{{ baseUrl() }}/assets-ref/js/main.js"></script>
-	<!--=======================-->
-	{% block scripts %}{% endblock %}
+        <!-- /.container-fluid -->
+      </nav>
+      <!--HEADER-->
+      <!-- container-->
+      <!-- body -->
+<div class="container">
+  <div class="row text-center" style="padding: 150px 15px 20px;">
+    <h1 class="black grande">
+      Error Interno
+    </h1>
+    <p>{{ mensaje }}</p>
+    <a href="{{urlFor('shwIndex')}}" class="btn btn-white btn-lg" style="font-size:30px;">
+      <i class="fa fa-home"></i>
+    </a>
+  </div>
+</div>
+      <div class="push"></div>
+    </div>
+    <div class="footer">
+      <div style="height: 219px;padding-top: 60px;position: relative;overflow: hidden;">
+        <h1>
+<a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flareformasantafe.digital%2F&via=laReformaSF&text=Los%20tiempos%20cambian.%20Yo%20participo%20en%20construir%20mi%20constituci%C3%B3n.%20Te%20invito%20a%20que%20te%20sumes.&hashtags=lostiemposcambian" target="_blank">#lostiemposcambian</a>
+        </h1>
+<img src="{{ baseUrl() }}/assets-ref/img/bg2pattern.svg" class="hidden-xs" style="position: absolute;right: -96px;bottom: -226px;">
+<img src="{{ baseUrl() }}/assets-ref/img/bg2pattern.svg" class="hidden-sm hidden-md hidden-lg" style="position: absolute;right: 0;bottom: -104px;height: 190px;">
+      </div>
+      <footer id="footer" class="fusion-footer-copyright-area fusion-footer-copyright-center" style="background-color: #003e5a;padding-top: 18px;padding-bottom: 17px;color: #FFF;">
+        <div class="fusion-row">
+          <div class="fusion-copyright-content">
+            <div class="fusion-copyright-notice container" style="padding-bottom: 0px;">
+              <div class="clearfix" style="font-weight: 500;">
+                <span class="pull-left">© 2018 Bases para la reforma | Todos los derechos reservados
+                  <a href="https://es.wordpress.org/" target="_blank">WordPress 4.6.1</a>
+                  y
+                  <a href="https://virtuagora.org/" target="_blank">Virtuágora</a>
+                  <i class="fa fa-github"></i>
+                </a>
+              </span>
+              <a href="/terminos-y-condiciones" class="pull-right" target="_self">TÉRMINOS Y CONDICIONES</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  {% if flash['success'] is defined %}
+    <div id="modal-success" class="modal fade " tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #8BC34A;color: #FFF;border-bottom: 0;">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-times"></i>
+            </button>
+            <h4>{{ flash.success|capitalize }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if flash['errors'] is defined %}
+    <div id="modal-errors" class="modal fade " tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #ff5722;color: #FFF;border-bottom: 0;">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-times"></i>
+            </button>
+            <ul class="list-unstyled">
+              {% for error in flash['errors'] %}
+                <h4>
+                  {{ error|capitalize }}</h4>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if flash['warning'] is defined %}
+    <div id="modal-warning" class="modal fade " tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #FFC107;color: #000;border-bottom: 0;">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-times"></i>
+            </button>
+            {{ flash.warning|capitalize
+					}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="{{ baseUrl() }}/assets-ref/js/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{ baseUrl() }}/assets-ref/js/bootstrap.min.js"></script>
+  <!--=======================-->
+  <script>
+    $(document).ready(function () {
+      {% if flash['success'] is defined %}
+        $('#modal-success').modal('show');
+      {% endif %}{% if flash['errors'] is defined %}
+        $('#modal-errors').modal('show');
+      {% endif %}{% if flash['warning'] is defined %}
+        $('#modal-warning').modal('show');
+      {% endif %}
+    });
+  </script>
+  {% block scripts %}{% endblock %}
 </body>
+
 
 </html>

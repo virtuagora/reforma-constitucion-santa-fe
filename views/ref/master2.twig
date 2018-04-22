@@ -16,20 +16,32 @@
     <!-- For iPad Retina display -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ baseUrl() }}/assets-ref/img/favicon/144.png">
     {% block opengraph %}
-      <meta property="og:url" content="{{ baseUrl() }}"/>
-      <meta property="og:type" content="website"/>
-      <meta property="og:title" content="Bases para la Reforma"/>
-      <meta property="og:site_name" content="Bases para la Reforma"/>
-      <meta property="og:description" content="La Constitución es la ley fundamental de un Estado, la de más alto rango en el ordenamiento político y jurídico, y con la cual deben guardar coherencia el resto de las leyes.
-Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"/>
-      <meta property="og:image" content=""/>
+<meta content="http://lareformasantafe.digital/participa/public" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content='Los tiempos cambian - La Reforma Santa Fe' property="og:title"/>
+<meta content="Los tiempos cambian. Es tiempo de reforma, de debate público y fundamentalmente de participación ciudadana. No sólo cambiaron muchas cosas, sino que conquistamos un montón de derechos. Que estén en nuestra Constitución, significa no perderlos en el futuro." property="og:description"/>
+<meta content="Los tiempos cambian. Es tiempo de reforma, de debate público y fundamentalmente de participación ciudadana. No sólo cambiaron muchas cosas, sino que conquistamos un montón de derechos. Que estén en nuestra Constitución, significa no perderlos en el futuro." name="description"/>
+<meta name="google" content="notranslate"/>
+<meta content="{{ baseUrl() }}/assets-ref/img/sta-fe-refomr-aimg.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@laReformaSF" name="twitter:site"/>
+<meta content="@laReformaSF" name="twitter:creator"/>
     {% endblock %}
     <title>
-      {% block titulo %}{% endblock titulo %}
-      - Bases para la Reforma</title>
+      {% block titulo %}{% endblock titulo %} - La Reforma Santa Fe</title>
     <!-- Bootstrap -->
-    {% block linkhead %}{% endblock %}
     <link href="{{ baseUrl() }}/assets-ref/css/virtuagora-ref.css" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-73061346-11"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-73061346-11');
+</script>
+    {% block linkhead %}{% endblock %}
+
   </head>
 
   <body data-spy="scroll" {% if body_class is defined %} class='{{ body_class }}' {% endif %}>
@@ -111,7 +123,7 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
     <div class="footer">
       <div style="height: 219px;padding-top: 60px;position: relative;overflow: hidden;">
         <h1>
-          <a href="https://twitter.com/intent/tweet?hashtags=lostiemposcambian%2C&amp;original_referer=http%3A%2F%2Fbasesparalareforma.digital%2Fantecedentes%2F&amp;ref_src=twsrc%5Etfw&amp;text=Yo%20participo%20de%20las%20%23BasesparalaReforma%2C%20una%20Constituci%C3%B3n%20para%20Santa%20Fe.%20Sumate%20en&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fbasesparalareforma.digital" target="_blank">#lostiemposcambian</a>
+<a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flareformasantafe.digital%2F&via=laReformaSF&text=Los%20tiempos%20cambian.%20Yo%20participo%20en%20construir%20mi%20constituci%C3%B3n.%20Te%20invito%20a%20que%20te%20sumes.&hashtags=lostiemposcambian" target="_blank">#lostiemposcambian</a>
         </h1>
 <img src="{{ baseUrl() }}/assets-ref/img/bg2pattern.svg" class="hidden-xs" style="position: absolute;right: -96px;bottom: -226px;">
 <img src="{{ baseUrl() }}/assets-ref/img/bg2pattern.svg" class="hidden-sm hidden-md hidden-lg" style="position: absolute;right: 0;bottom: -104px;height: 190px;">

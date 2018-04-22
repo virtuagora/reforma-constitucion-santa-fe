@@ -1,6 +1,12 @@
 {% set body_style = 'background-color: #ddf3ff;' %} 
 {% extends "ref/master2.twig" %} {# -----------------------------------------------------------
-#} {% block titulo %}Recuperar contraseña{% endblock %} {% block body %}
+#} 
+{% block linkhead %}
+  <script>
+    gtag('event', 'reestablecerPasswordSended');
+  </script>
+{% endblock %}
+{% block titulo %}Recuperar contraseña{% endblock %} {% block body %}
 <div class="registro-panel">
 	<div class="container">
 		<div class="row">

@@ -1,13 +1,17 @@
 {% extends "ref/master.twig" %} {# ----------------------------------------------------------- #}
 {% block titulo %}{{derecho.titulo}}{%endblock%}
 {% block opengraph %}
-	<meta property="og:url" content="{{ derecho.link }}" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="{{ derecho.titulo }} - Bases para la Reforma" />
-	<meta property="og:site_name" content="Bases para la Reforma" />
-	<meta property="og:description" content="La Constitución es la ley fundamental de un Estado, la de más alto rango en el ordenamiento político y jurídico, y con la cual deben guardar coherencia el resto de las leyes.
-Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la" />
-	<meta property="og:image" content="" /> {% endblock %}
+<meta content="{{ derecho.link }}" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content='{{ derecho.titulo }} - La Reforma Santa Fe - Participá' property="og:title"/>
+<meta content="Los tiempos cambian. Es tiempo de reforma, de debate público y fundamentalmente de participación ciudadana. No sólo cambiaron muchas cosas, sino que conquistamos un montón de derechos. Que estén en nuestra Constitución, significa no perderlos en el futuro." property="og:description"/>
+<meta content="Los tiempos cambian. Es tiempo de reforma, de debate público y fundamentalmente de participación ciudadana. No sólo cambiaron muchas cosas, sino que conquistamos un montón de derechos. Que estén en nuestra Constitución, significa no perderlos en el futuro." name="description"/>
+<meta name="google" content="notranslate"/>
+<meta content="{{ baseUrl() }}/assets-ref/img/sta-fe-refomr-aimg.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@laReformaSF" name="twitter:site"/>
+<meta content="@laReformaSF" name="twitter:creator"/>
+ {% endblock %}
 {% block body %}
 <img src="{{ baseUrl() }}/assets-ref/img/bg1pattern-b.svg" class="hidden-xs hidden-sm hidden-md" style="position: absolute;left: -240px;top: 100px;height: 580px;">
 <img src="{{ baseUrl() }}/assets-ref/img/bg1pattern-b.svg" class="hidden-xs hidden-lg" style="position: absolute;left: -300px;top: 100px;height: 580px;">
@@ -114,7 +118,7 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 					{% if derecho.secciones[0].comentarios|length > 0 %}
 				<div class="grid">
 					<div class="grid-sizer"></div>
-					{% for comentario in derecho.secciones[0].comentarios %}
+					{% for comentario in derecho.secciones[0].comentarios|reverse %}
 					<div class="grid-item">
 						<div class="comentario-container">
 							<a href="{{ urlFor('shwUsuario',{'idUsu': comentario.autor.id}) }}" class="pull-left">
@@ -125,8 +129,6 @@ Así, en el caso de la Constitución de Santa Fe, es la norma fundamental de la"
 									<a href="javascript:eliminarComentario({{comentario.id}})" class="btn btn-xs btn-warning pull-right" style="margin-left:5px;" data-toggle="tooltip" data-placement="bottom" data-original-title="Eliminar" ><i class="fa fa-times"></i></a>
 									{% endif %}
 								<span style="color:#555;"><strong>{{ comentario.autor.es_moderador ? "<i class='fa fa-shield fa-fw'' title='Moderador'></i>" }} {{ comentario.autor.nombre }} {{ comentario.autor.apellido }}</strong> hizo un comentario</span>
-								<br>
-								<small class="text-muted">{{ comentario.created_at|date("d-M-Y") }}</small>
 								<div class="" style="margin-top:5px; margin-bottom:5px; font-weight: 500; font-size: 12px;line-height: 1.3rem;">
 									{{ comentario.cuerpo|nl2br }}
 								</div>

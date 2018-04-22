@@ -2,6 +2,11 @@
 {% extends "ref/master2.twig" %} 
 {# ----------------------------------------------------------- #} 
 {% block titulo %}Validar email{% endblock %} 
+{% block linkhead %}
+<script>
+  gtag('event', 'usuarioVerificado');
+</script>
+{% endblock %}
 {% block body %}
 <div class="registro-panel">
 <div class="container">
